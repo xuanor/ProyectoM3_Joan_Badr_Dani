@@ -5,15 +5,15 @@ public abstract class Ship {
 	int baseDamage;
 }
 
-class LigthHunter implements Ship {
+class LigthHunter extends Ship {
 	
 }
-class HeavyHunter {
+class HeavyHunter  extends Ship{
 	
 }
-class BattleShip {
+class BattleShip extends Ship{
 	
 }
-class ArmoredShip {
+class ArmoredShip extends Ship{
 	
 }
