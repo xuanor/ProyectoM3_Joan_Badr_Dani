@@ -24,9 +24,18 @@ public class Battle {
 	// Muertes x ejercicto
 	int[] enemyDrops, planetDrops;
 	
-	// 2x3 perdidas de los 2 recursos
+	// Array 2x3 perdidas de los 2 recursos
 	// Fila 1 recursos de mi ejercito
 	// Fila 2 recursos del otro ejercito 
 	// recursos ponderados(con su valor) de los dos ejercitos
 	int[][] resourcesLooses;
+	
+	// Array 2x7 
+	// cada fila representa a un ejercito (0 y 1) 
+	// cada columna representa un tipo de soldado y su cantidad incial (0-7)
+	int[][] initialArmies;
+	
+	// Tipos de unidades que hay
+	int[] actualNumberUnitsPlanet, actualNumberUnitsEnemy;
+	
 }
