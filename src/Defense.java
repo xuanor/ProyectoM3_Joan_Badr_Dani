@@ -1,9 +1,16 @@
 
-public class Defense {
+public class Defense implements MilitaryUnit, Variables{
 
-	int armor;
-	int initialArmor;
-	int baseDamage;
+	private int armor;
+	private int initialArmor;
+	private int baseDamage;
+	
+	public Defense(int armor, int initialArmor, int baseDamage) {
+		super();
+		this.armor = armor;
+		this.initialArmor = initialArmor;
+		this.baseDamage = baseDamage;
+	}
 	
 	public int getArmor() {
 		return armor;
@@ -27,14 +34,28 @@ public class Defense {
 	
 }
 
-class MisileLauncher extends Defense{
+class MisileLauncher extends Defense {
+
+	public MisileLauncher(int armor, int initialArmor, int baseDamage) {
+		super(armor, initialArmor, baseDamage);
+	}
 	
 }
 
-class IonCannon extends Defense{
+class IonCannon extends Defense {
+
+	public IonCannon(int armor, int initialArmor, int baseDamage) {
+		super(armor, initialArmor, baseDamage);
+		
+	}
 	
 }
 
-class PlasmaCannon extends Defense{
+class PlasmaCannon extends Defense {
+
+	public PlasmaCannon(int armor, int initialArmor, int baseDamage) {
+		super(armor, initialArmor, baseDamage);
+		
+	}
 	
 }
