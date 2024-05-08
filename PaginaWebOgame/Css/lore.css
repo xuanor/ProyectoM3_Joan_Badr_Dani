@@ -1,6 +1,26 @@
-.general {
+/* Estilos para la cabecera */
+#cabecera {
     background-color: #333; /* Color de fondo */
     color: #fff; /* Color del texto */
     padding: 20px; /* Espaciado interno */
     text-align: center; /* Alineación del texto */
+}
+
+/* Estilos para el título */
+#cabecera h1 {
+    margin: 0; /* Elimina el margen predeterminado */
+}
+
+/* Estilos para el subtítulo */
+#g_tex {
+    margin-top: 5px; /* Espaciado superior */
+    font-style: italic; /* Texto en cursiva */
+}
+
+/* Estilos para la imagen del logo */
+#cabecera img {
+    width: 150px; /* Ancho de la imagen */
+    height: auto; /* Altura automática */
+    display: block; /* Asegura que la imagen esté centrada horizontalmente */
+    margin: 0 auto; /* Centra la imagen horizontalmente */
 }
