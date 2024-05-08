@@ -122,11 +122,46 @@ public class Planet {
 	
 	public void printStats() {
 		
+	    int cantidadLight = 0;
+	    int cantidadHeavy = 0;
+	    int cantidadBattle = 0;
+	    int cantidadArmored = 0;
+	    int cantidadMissile = 0;
+	    int cantidadIon = 0;
+	    int cantidadPlasma = 0;
+		
 		for (int i = 0; i < army.length; i++) {
-		     System.out.println(army[i]);
+		     cantidadLight = army[0].size();
+		     cantidadHeavy = army[1].size();
+		     cantidadBattle = army[2].size();
+		     cantidadArmored = army[3].size();
+		     cantidadMissile = army[4].size();
+		     cantidadIon = army[5].size();
+		     cantidadPlasma = army[6].size();
 		}
 		
-		String stats = String.format("",technologyAtack, technologyDefense, this.getArmy());
+	    String stats = String.format("Planet Stats:\n"
+	    						   + "\nTECHNOLOGY\n"
+	    						   + "\nAtack Technology%14d\n"
+	    						   + "Defense Technology%12d\n"
+	    						   + "\nDEFENSES\n"
+	    						   + "\nMissile Launcher%14d\n"
+	    						   + "Ion Cannon%20d\n"
+	    						   + "Plasma Cannon%17d\n"
+	    						   + "\nFLEET\n"
+	    						   + "\nLight Hunter%18d\n"
+	    						   + "Heavy Hunter%18d\n"
+	    						   + "Battle Ship%19d\n"
+	    						   + "Armored Ship%18d\n"
+	    						   + "\nRESOURCES\n"
+	    						   + "\nMetal%25d\n"
+	    						   + "Deuterium%21d",
+technologyAtack, technologyDefense, cantidadMissile, cantidadIon, cantidadPlasma, cantidadLight, 
+cantidadHeavy, cantidadBattle, cantidadArmored, metal, deuterium);
+
+	        // Imprime las estadísticas
+	        System.out.println(stats);
 	}	
 	
 }
+	

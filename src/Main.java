@@ -58,6 +58,8 @@ public class Main implements Variables{
 //			timer.schedule(task2, 8000, 3000);
 			
 
+			mainPlanet.printStats();
+			
 	}
 	public static void createMyArmy(Planet myPlanet) {
 		ArrayList<MilitaryUnit>[] mainArmy = new ArrayList[7];
