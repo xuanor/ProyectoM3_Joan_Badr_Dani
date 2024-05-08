@@ -27,7 +27,7 @@ public class Main implements Variables{
 					UPGRADE_BASE_ATTACK_TECHNOLOGY_DEUTERIUM_COST);
 			
 			// Me crea mi ejercito y se lo añade al planeta
-			createMyArmy(mainPlanet);
+			//createMyArmy(mainPlanet);
 			
 			Planet enemyPlanet = new Planet(0,
 					0,
@@ -57,8 +57,8 @@ public class Main implements Variables{
 //			timer.schedule(task1, 10000, 5000);
 //			timer.schedule(task2, 8000, 3000);
 			
-
-			mainPlanet.printStats();
+			//mainPlanet.printStats();
+			enemyPlanet.printStats();
 			
 	}
 	public static void createMyArmy(Planet myPlanet) {
@@ -147,54 +147,61 @@ public class Main implements Variables{
 		
 		ArrayList<MilitaryUnit>[] enemyArmy = new ArrayList[7];
 		//*** UNIDADES DE BASE EN MI EJERCITO ***
-		final int BASE_UNIT_LIGHT_HUNTER = 0;
-		final int BASE_UNIT_HEAVY_HUNTER = 0;
-		final int BASE_UNIT_BATTLE_SHIP = 0;
-		final int BASE_UNIT_ARMORED_SHIP = 0;
-		final int BASE_UNIT_MISSILE_LOUNCHER = 0;
-		final int BASE_UNIT_ION_CANNON = 0;
-		final int BASE_UNIT_PLASMA_CANNON = 0;
+		int BASE_UNIT_LIGHT_HUNTER = 0;
+		int BASE_UNIT_HEAVY_HUNTER = 0;
+		int BASE_UNIT_BATTLE_SHIP = 0;
+		int BASE_UNIT_ARMORED_SHIP = 0;
+		int BASE_UNIT_MISSILE_LOUNCHER = 0;
+		int BASE_UNIT_ION_CANNON = 0;
+		int BASE_UNIT_PLASMA_CANNON = 0;
 		
 		// Para no gastar el metal al inciiar partida
 		int dinero = enemyPlanet.metal;
 		
-		// Mientras las reservas de Metal esten x encima del 20% puedes gastar 
-		while ( dinero > (METAL_BASE_ENEMY_ARMY*0.20)) {
-			float num = (float)(Math.random() * 13);
-				
-			if (num <= 3.5) {
-				BASE_UNIT_LIGHT_HUNTER += 1;
-				dinero -= METAL_COST_LIGTHHUNTER;
-				
-			}else if (num > 3.5 || num <= 6.0) {
-				BASE_UNIT_HEAVY_HUNTER += 1;
-				dinero -= METAL_COST_HEAVYHUNTER;
+		// Mientras las reservas de Metal esten x encima del 20% puedes gastar  o 50.000 (REVISAR*)
+		
+		while ( dinero > (METAL_BASE_ENEMY_ARMY*0.20) ) {
 			
-			}else if (num > 6.0 || num <= 8.0) {
-				BASE_UNIT_BATTLE_SHIP += 1;
-				dinero -= METAL_COST_BATTLESHIP;
-				
-			}else if (num > 8.0 || num <= 10.0) {
-				BASE_UNIT_ARMORED_SHIP += 1;
-				dinero -= METAL_COST_ARMOREDSHIP;
-				
-			}else if (num > 10.0 || num <= 11.0) {
-				BASE_UNIT_ARMORED_SHIP += 1;
-				dinero -= METAL_COST_ARMOREDSHIP;
-			}
-			else {
-				System.out.println("Numero esta mal");
-			}
+			// Mientras puedas comprar la tropa más barata continua
+			if (dinero < METAL_COST_LIGTHHUNTER) {
 			
+				float num = (float)(Math.random() * 13);
+				// Flota
+				if (num <= 3.5) {
+					BASE_UNIT_LIGHT_HUNTER += 1;
+					dinero -= METAL_COST_LIGTHHUNTER;
+					
+				}else if (num > 3.5 && num <= 6.0) {
+					BASE_UNIT_HEAVY_HUNTER += 1;
+					dinero -= METAL_COST_HEAVYHUNTER;
+				
+				}else if (num > 6.0 && num <= 8.0) {
+					BASE_UNIT_BATTLE_SHIP += 1;
+					dinero -= METAL_COST_BATTLESHIP;
+					
+				}else if (num > 8.0 && num <= 10.0) {
+					BASE_UNIT_ARMORED_SHIP += 1;
+					dinero -= METAL_COST_ARMOREDSHIP;
+					
+				}// Defensas ( enemigo tiene??**)
+				else if (num > 10.0 && num <= 11.0) {
+					BASE_UNIT_MISSILE_LOUNCHER += 1;
+					dinero -= METAL_COST_MISSILELAUNCHER;
+					
+				}else if (num > 11.0 && num <= 12.0) {
+					BASE_UNIT_ION_CANNON += 1;
+					dinero -= METAL_COST_IONCANNON;
+					
+				}else if (num > 12.0 && num <= 13.0) {
+					BASE_UNIT_PLASMA_CANNON += 1;
+					dinero -= METAL_COST_PLASMACANNON;
+				}
+			}
 
-			
 		}
-			
-//		Army[0] → arrayList de Ligth Hunter
-//		Army[1] → arrayList de Heavy Hunter
-//		Army[2] → arrayList de Battle Ship
-//		Army[3] → arrayList de Armored Ship
-
+//		System.out.println("metal = " + dinero);
+		
+		// Añadir plus de tecnologia por cada creacion de ejercito
 		
 		// Flota
 		ArrayList<MilitaryUnit> arrayLigthHunter = new ArrayList<MilitaryUnit>();
@@ -230,17 +237,17 @@ public class Main implements Variables{
 			arrayPlasmaCannon.add(d.new PlasmaCannon(ARMOR_BATTLESHIP, BASE_DAMAGE_BATTLESHIP));
 		}
 		
-		mainArmy[0] = arrayLigthHunter;
-		mainArmy[1] = arrayHeavyHunter;
-		mainArmy[2] = arrayBattleShip;
-		mainArmy[3] = arrayArmoredShip;
+		enemyArmy[0] = arrayLigthHunter;
+		enemyArmy[1] = arrayHeavyHunter;
+		enemyArmy[2] = arrayBattleShip;
+		enemyArmy[3] = arrayArmoredShip;
 		
-		mainArmy[4] = arrayMissileLouncher;
-		mainArmy[5] = arrayIonCannon;
-		mainArmy[6] = arrayPlasmaCannon;
+		enemyArmy[4] = arrayMissileLouncher;
+		enemyArmy[5] = arrayIonCannon;
+		enemyArmy[6] = arrayPlasmaCannon;
 		
-		myPlanet.setArmy(mainArmy);
-		//System.out.println("Longitud = " + mainArmy.length);
+		enemyPlanet.setArmy(enemyArmy);
+		System.out.println("Longitud flota enemiga = " + enemyArmy.length);
 		
 	}
 	
@@ -251,5 +258,19 @@ public class Main implements Variables{
 //		Heavy Hunter 12
 //		Battle Ship 1
 //		Armored Ship 1
+		
+		
+		// Me llaman desde la opc 5 del menu
+		// Miro la army actual del ejercito enemigo desde un objeto Battle
+		
+		Battle b = new Battle();
+		ArrayList<MilitaryUnit> enemyArray = b.getEnemyArmy();
+		// ACABAR *******
+		String datos = String.format("NEW THREAT COMING\n"
+				   + "\nLigth Hunter%14d\n"
+				   + "\nHeavy Hunter%12d\n"
+				   + "\nBattle Ship%14d\n"
+				   + "\nArmored Ship%14d\n",
+				   )
 	}
 }
