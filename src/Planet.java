@@ -142,20 +142,20 @@ public class Planet {
 		
 	    String stats = String.format("Planet Stats:\n"
 	    						   + "\nTECHNOLOGY\n"
-	    						   + "\nAtack Technology%20d\n"
-	    						   + "Defense Technology%20d\n"
+	    						   + "\nAtack Technology%14d\n"
+	    						   + "Defense Technology%12d\n"
 	    						   + "\nDEFENSES\n"
-	    						   + "\nMissile Launcher%20d\n"
+	    						   + "\nMissile Launcher%14d\n"
 	    						   + "Ion Cannon%20d\n"
-	    						   + "Plasma Cannon%20d\n"
+	    						   + "Plasma Cannon%17d\n"
 	    						   + "\nFLEET\n"
-	    						   + "\nLight Hunter%20d\n"
-	    						   + "Heavy Hunter%20d\n"
-	    						   + "Battle Ship%20d\n"
-	    						   + "Armored Ship%20d\n"
+	    						   + "\nLight Hunter%18d\n"
+	    						   + "Heavy Hunter%18d\n"
+	    						   + "Battle Ship%19d\n"
+	    						   + "Armored Ship%18d\n"
 	    						   + "\nRESOURCES\n"
-	    						   + "\nMetal%20d\n"
-	    						   + "Deuterium%20d",
+	    						   + "\nMetal%25d\n"
+	    						   + "Deuterium%21d",
 technologyAtack, technologyDefense, cantidadMissile, cantidadIon, cantidadPlasma, cantidadLight, 
 cantidadHeavy, cantidadBattle, cantidadArmored, metal, deuterium);
 

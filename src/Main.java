@@ -112,6 +112,8 @@ public class Main implements Variables{
 			timer.schedule(task2, 8000, 3000);
 			
 
+			mainPlanet.printStats();
+			
 	}
 
 	public void createEnemyArmy() {
