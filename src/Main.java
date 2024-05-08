@@ -59,18 +59,29 @@ public class Main implements Variables{
 				arrayArmoredShip.add(new ArmoredShip(ARMOR_ARMOREDSHIP, BASE_DAMAGE_ARMOREDSHIP));
 			}
 			// Defensas
-			Defense d = new Defense(BASE_UNIT_ARMORED_SHIP, BASE_UNIT_ION_CANNON, BASE_UNIT_PLASMA_CANNON)
+			Clases_defensa d = new Clases_defensa();
+			
 			ArrayList<MilitaryUnit> arrayMissileLouncher = new ArrayList<MilitaryUnit>();
 			for (int i = 0; i < BASE_UNIT_MISSILE_LOUNCHER; i++) {
-				arrayMissileLouncher.add(new MisileLauncher(ARMOR_MISSILELAUNCHER, BASE_DAMAGE_MISSILELAUNCHER));
+				arrayMissileLouncher.add(d.new MissileLauncher(ARMOR_MISSILELAUNCHER, BASE_DAMAGE_MISSILELAUNCHER));
 			}
 			ArrayList<MilitaryUnit> arrayIonCannon = new ArrayList<MilitaryUnit>();
 			for (int i = 0; i < BASE_UNIT_ION_CANNON; i++) {
-				arrayIonCannon.add(new BattleShip(ARMOR_BATTLESHIP, BASE_DAMAGE_BATTLESHIP));
+				arrayIonCannon.add(d.new IonCannon(ARMOR_BATTLESHIP, BASE_DAMAGE_BATTLESHIP));
+			}
+			ArrayList<MilitaryUnit> arrayPlasmaCannon = new ArrayList<MilitaryUnit>();
+			for (int i = 0; i < BASE_UNIT_PLASMA_CANNON; i++) {
+				arrayPlasmaCannon.add(d.new PlasmaCannon(ARMOR_BATTLESHIP, BASE_DAMAGE_BATTLESHIP));
 			}
 			
-			
 			mainArmy[0] = arrayLigthHunter;
+			mainArmy[1] = arrayHeavyHunter;
+			mainArmy[2] = arrayBattleShip;
+			mainArmy[3] = arrayArmoredShip;
+			
+			mainArmy[4] = arrayMissileLouncher;
+			mainArmy[5] = arrayIonCannon;
+			mainArmy[6] = arrayPlasmaCannon;
 			
 			Planet mainPlanet = new Planet(0,
 					0,
@@ -78,6 +89,10 @@ public class Main implements Variables{
 					DEUTERIUM_BASE_ENEMY_ARMY,
 					UPGRADE_BASE_DEFENSE_TECHNOLOGY_DEUTERIUM_COST,
 					UPGRADE_BASE_ATTACK_TECHNOLOGY_DEUTERIUM_COST);
+			
+			mainPlanet.setArmy(mainArmy);
+			
+			System.out.println("Longitud = " + mainArmy.length);
 			
 			// Prueba de ejecucion automatica
 			TimerTask task1 = new TimerTask() {
