@@ -1,6 +1,8 @@
 import java.util.ArrayList;
 
 public class Battle {
+	// ***VARIABLES***
+	
 	// Para almacenar la flota enemiga
 	ArrayList<MilitaryUnit> planetArmy; 
 	// Para almacenar la flota de nuestro planeta
@@ -37,5 +39,60 @@ public class Battle {
 	
 	// Tipos de unidades que hay
 	int[] actualNumberUnitsPlanet, actualNumberUnitsEnemy;
+	
+	// ***METODOS***
+	
+	//resumen, battles será el número de batallas que hayamos acumulado
+	public String getBattleReport(int battles) {
+		return "";
+	}
+	
+	//  Mostrar batalla paso a paso.
+	public String getBattleDevelopment() {
+		return "";
+	} 
+	
+	// Para inicializar el array initialArmies y poder calcular los reportes.
+	public void initInitialArmies() {
+
+	} 
+	// Para generar el array de pérdidas.
+	public void updateResourcesLooses() {
+		
+	} 
+	
+	// Para calcular costes de las flotas.
+	public void fleetResourceCost(ArrayList<MilitaryUnit>[] army) {
+		
+	}
+	
+	// Para calcular el número de unidades iniciales de cada flota
+	public void initialFleetNumber(ArrayList<MilitaryUnit>[] army) {
+		
+	} 
+	
+	// Para calcular los porcentajes de unidades que quedan respecto los ejércitos iniciales.
+	public int remainderPercentageFleet(ArrayList<MilitaryUnit>[] army){
+		return 0;
+	}
+	
+	//	Para que dado un ejército, nos devuelva el grupo defensor, 
+	//	0-3 en el caso de la flota enemiga, 0-6 en el caso del ejército de nuestro planeta.
+	public int getGroupDefender(ArrayList<MilitaryUnit>[] army) {
+		return 0;
+	}
+	// Que nos servirán para escoger el grupo atacante tanto del planeta...
+	public int getPlanetGroupAttacker() {
+		return 0;
+	}
+	//... como de la flota enemiga.
+	public int getEnemyGroupAttacker() {
+		return 0;
+	}
+	
+	//  Restablecer los blindajes de nuestro ejército.
+	public void resetArmyArmor() {
+		
+	}
 	
 }
