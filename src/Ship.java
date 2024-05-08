@@ -72,7 +72,7 @@ class LigthHunter extends Ship {
 	}
 	
 }
-class HeavyHunter  extends Ship{
+class HeavyHunter extends Ship{
 	
 	
 	public HeavyHunter() {

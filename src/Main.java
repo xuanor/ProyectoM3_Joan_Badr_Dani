@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.Timer;
 import java.util.TimerTask;
 
-public class Main {
+public class Main implements Variables{
 
 	public static void main(String[] args) {
 		// ** A HACER **
@@ -21,8 +21,63 @@ public class Main {
 //			int technologyDefense, int technologyAtack, int metal, int deuterium,
 //			int upgradeDefenseTechnologyDeuteriumCost, int upgradeAttackTechnologyDeuteriumCost,
 //			ArrayList<MilitaryUnit>[] army
-		
-			Planet mainPlanet = new Planet(0, 0, METAL_BASE_ENEMY_ARMY, DEUTERIUM_BASE_ENEMY_ARMY, 0, 0, null)
+			ArrayList<MilitaryUnit>[] mainArmy = new ArrayList[7];
+			
+			//*** UNIDADES DE BASE EN MI EJERCITO ***
+			final int BASE_UNIT_LIGHT_HUNTER = 15;
+			final int BASE_UNIT_HEAVY_HUNTER = 5;
+			final int BASE_UNIT_BATTLE_SHIP = 0;
+			final int BASE_UNIT_ARMORED_SHIP = 1;
+			final int BASE_UNIT_MISSILE_LOUNCHER = 10;
+			final int BASE_UNIT_ION_CANNON = 2;
+			final int BASE_UNIT_PLASMA_CANNON = 0;
+			
+//			Army[0] → arrayList de Ligth Hunter
+//			Army[1] → arrayList de Heavy Hunter
+//			Army[2] → arrayList de Battle Ship
+//			Army[3] → arrayList de Armored Ship
+//			Army[4] → arrayList de Missile Launcher
+//			Army[5] → arrayList de Ion Cannon
+//			Army[6] → arrayList de Plasma Cannon
+			
+			// Flota
+			ArrayList<MilitaryUnit> arrayLigthHunter = new ArrayList<MilitaryUnit>();
+			for (int i = 0; i < BASE_UNIT_LIGHT_HUNTER; i++) {
+				arrayLigthHunter.add(new LigthHunter(ARMOR_LIGTHHUNTER, BASE_DAMAGE_LIGTHHUNTER));
+			}
+			ArrayList<MilitaryUnit> arrayHeavyHunter = new ArrayList<MilitaryUnit>();
+			for (int i = 0; i < BASE_UNIT_HEAVY_HUNTER; i++) {
+				arrayHeavyHunter.add(new HeavyHunter(ARMOR_HEAVYHUNTER, BASE_DAMAGE_HEAVYHUNTER));
+			}
+			ArrayList<MilitaryUnit> arrayBattleShip = new ArrayList<MilitaryUnit>();
+			for (int i = 0; i < BASE_UNIT_BATTLE_SHIP; i++) {
+				arrayBattleShip.add(new BattleShip(ARMOR_BATTLESHIP, BASE_DAMAGE_BATTLESHIP));
+			}
+			
+			ArrayList<MilitaryUnit> arrayArmoredShip = new ArrayList<MilitaryUnit>();
+			for (int i = 0; i < BASE_UNIT_ARMORED_SHIP; i++) {
+				arrayArmoredShip.add(new ArmoredShip(ARMOR_ARMOREDSHIP, BASE_DAMAGE_ARMOREDSHIP));
+			}
+			// Defensas
+			Defense d = new Defense(BASE_UNIT_ARMORED_SHIP, BASE_UNIT_ION_CANNON, BASE_UNIT_PLASMA_CANNON)
+			ArrayList<MilitaryUnit> arrayMissileLouncher = new ArrayList<MilitaryUnit>();
+			for (int i = 0; i < BASE_UNIT_MISSILE_LOUNCHER; i++) {
+				arrayMissileLouncher.add(new MisileLauncher(ARMOR_MISSILELAUNCHER, BASE_DAMAGE_MISSILELAUNCHER));
+			}
+			ArrayList<MilitaryUnit> arrayIonCannon = new ArrayList<MilitaryUnit>();
+			for (int i = 0; i < BASE_UNIT_ION_CANNON; i++) {
+				arrayIonCannon.add(new BattleShip(ARMOR_BATTLESHIP, BASE_DAMAGE_BATTLESHIP));
+			}
+			
+			
+			mainArmy[0] = arrayLigthHunter;
+			
+			Planet mainPlanet = new Planet(0,
+					0,
+					METAL_BASE_ENEMY_ARMY, 
+					DEUTERIUM_BASE_ENEMY_ARMY,
+					UPGRADE_BASE_DEFENSE_TECHNOLOGY_DEUTERIUM_COST,
+					UPGRADE_BASE_ATTACK_TECHNOLOGY_DEUTERIUM_COST);
 			
 			// Prueba de ejecucion automatica
 			TimerTask task1 = new TimerTask() {

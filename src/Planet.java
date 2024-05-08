@@ -10,9 +10,10 @@ public class Planet {
 	int upgradeAttackTechnologyDeuteriumCost;
 	ArrayList<MilitaryUnit>[] army = new ArrayList[7];
 	
+	
 	// Constructor
 	public Planet(int technologyDefense, int technologyAtack, int metal, int deuterium,
-			int upgradeDefenseTechnologyDeuteriumCost, int upgradeAttackTechnologyDeuteriumCost,
+			int upgradeDefenseTechnologyDeuteriumCost, int upgradeAttackTechnologyDeuteriumCost) {
 		super();
 		this.technologyDefense = technologyDefense;
 		this.technologyAtack = technologyAtack;
@@ -20,8 +21,8 @@ public class Planet {
 		this.deuterium = deuterium;
 		this.upgradeDefenseTechnologyDeuteriumCost = upgradeDefenseTechnologyDeuteriumCost;
 		this.upgradeAttackTechnologyDeuteriumCost = upgradeAttackTechnologyDeuteriumCost;
-		this.army = army;
-	}	
+	}
+
 		
 
 	// Getters and setters
