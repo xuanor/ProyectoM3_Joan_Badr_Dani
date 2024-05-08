@@ -13,7 +13,8 @@ public class Planet {
 	
 	// Constructor
 	public Planet(int technologyDefense, int technologyAtack, int metal, int deuterium,
-			int upgradeDefenseTechnologyDeuteriumCost, int upgradeAttackTechnologyDeuteriumCost) {
+		int upgradeDefenseTechnologyDeuteriumCost, int upgradeAttackTechnologyDeuteriumCost) {
+
 		super();
 		this.technologyDefense = technologyDefense;
 		this.technologyAtack = technologyAtack;
@@ -121,6 +122,11 @@ public class Planet {
 	
 	public void printStats() {
 		
+		for (int i = 0; i < army.length; i++) {
+		     System.out.println(army[i]);
+		}
+		
+		String stats = String.format("",technologyAtack, technologyDefense, this.getArmy());
 	}	
 	
 }

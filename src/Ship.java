@@ -16,7 +16,9 @@ public abstract class Ship implements MilitaryUnit, Variables{
 
 class LigthHunter extends Ship {
 	
-	public LigthHunter(){};
+	public LigthHunter(){
+		super();
+	}
 	
 	public LigthHunter(int armor, int baseDamage) {
 		super(armor, baseDamage);
