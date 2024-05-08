@@ -92,6 +92,7 @@ public class Planet {
 		
 	}
 	
+	// Nuevas flotas de ataque
 	public void newLightHunter(int n) {
 		
 	}
@@ -107,7 +108,7 @@ public class Planet {
 	public void newArmoredShip(int n) {
 		
 	}
-	
+	// Nueva defensas
 	public void newMissileLauncher(int n) {
 		
 	}
@@ -130,14 +131,14 @@ public class Planet {
 	    int cantidadIon = 0;
 	    int cantidadPlasma = 0;
 		
-		for (int i = 0; i < army.length; i++) {
-		     cantidadLight = army[0].size();
-		     cantidadHeavy = army[1].size();
-		     cantidadBattle = army[2].size();
-		     cantidadArmored = army[3].size();
-		     cantidadMissile = army[4].size();
-		     cantidadIon = army[5].size();
-		     cantidadPlasma = army[6].size();
+		for (int i = 0; i < this.army.length; i++) {
+		     cantidadLight = this.army[0].size();
+		     cantidadHeavy = this.army[1].size();
+		     cantidadBattle = this.army[2].size();
+		     cantidadArmored = this.army[3].size();
+		     cantidadMissile = this.army[4].size();
+		     cantidadIon = this.army[5].size();
+		     cantidadPlasma = this.army[6].size();
 		}
 		
 	    String stats = String.format("Planet Stats:\n"
@@ -156,8 +157,8 @@ public class Planet {
 	    						   + "\nRESOURCES\n"
 	    						   + "\nMetal%25d\n"
 	    						   + "Deuterium%21d",
-technologyAtack, technologyDefense, cantidadMissile, cantidadIon, cantidadPlasma, cantidadLight, 
-cantidadHeavy, cantidadBattle, cantidadArmored, metal, deuterium);
+this.technologyAtack, this.technologyDefense, cantidadMissile, cantidadIon, cantidadPlasma, cantidadLight, 
+cantidadHeavy, cantidadBattle, cantidadArmored, this.metal, this.deuterium);
 
 	        // Imprime las estadísticas
 	        System.out.println(stats);
