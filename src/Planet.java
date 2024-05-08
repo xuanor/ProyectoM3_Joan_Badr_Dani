@@ -10,6 +10,20 @@ public class Planet {
 	int upgradeAttackTechnologyDeuteriumCost;
 	ArrayList<MilitaryUnit>[] army = new ArrayList[7];
 	
+	// Constructor
+	public Planet(int technologyDefense, int technologyAtack, int metal, int deuterium,
+			int upgradeDefenseTechnologyDeuteriumCost, int upgradeAttackTechnologyDeuteriumCost,
+		super();
+		this.technologyDefense = technologyDefense;
+		this.technologyAtack = technologyAtack;
+		this.metal = metal;
+		this.deuterium = deuterium;
+		this.upgradeDefenseTechnologyDeuteriumCost = upgradeDefenseTechnologyDeuteriumCost;
+		this.upgradeAttackTechnologyDeuteriumCost = upgradeAttackTechnologyDeuteriumCost;
+		this.army = army;
+	}	
+		
+
 	// Getters and setters
 	public int getTechnologyDefense() {
 		return technologyDefense;
@@ -66,20 +80,6 @@ public class Planet {
 	public void setArmy(ArrayList<MilitaryUnit>[] army) {
 		this.army = army;
 	}
-	
-	// Constructor
-	public Planet(int technologyDefense, int technologyAtack, int metal, int deuterium,
-			int upgradeDefenseTechnologyDeuteriumCost, int upgradeAttackTechnologyDeuteriumCost,
-			ArrayList<MilitaryUnit>[] army) {
-		super();
-		this.technologyDefense = technologyDefense;
-		this.technologyAtack = technologyAtack;
-		this.metal = metal;
-		this.deuterium = deuterium;
-		this.upgradeDefenseTechnologyDeuteriumCost = upgradeDefenseTechnologyDeuteriumCost;
-		this.upgradeAttackTechnologyDeuteriumCost = upgradeAttackTechnologyDeuteriumCost;
-		this.army = army;
-	}	
 	
 	// Mas metodos
 	public void upgradeTechnologyDefense() {

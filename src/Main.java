@@ -16,8 +16,14 @@ public class Main {
 			// utilizaremos const CHANCE_ATTACK_PLANET_UNITS	
 			// int[][] initialArmies??
 			// rellnando <int[] actualNumberUnitsPlanet> y <int initialNumberUnitsPlanet>
+			
 		
+//			int technologyDefense, int technologyAtack, int metal, int deuterium,
+//			int upgradeDefenseTechnologyDeuteriumCost, int upgradeAttackTechnologyDeuteriumCost,
+//			ArrayList<MilitaryUnit>[] army
 		
+			Planet mainPlanet = new Planet(0, 0, METAL_BASE_ENEMY_ARMY, DEUTERIUM_BASE_ENEMY_ARMY, 0, 0, null)
+			
 			// Prueba de ejecucion automatica
 			TimerTask task1 = new TimerTask() {
 				public void run(){
