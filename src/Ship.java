@@ -3,53 +3,69 @@ public abstract class Ship implements MilitaryUnit, Variables{
 	int armor;
 	int initialArmor;
 	int baseDamage;
+	
+	public Ship() {};// Añadir initial armour 
+	
+	public Ship(int armor, int baseDamage) {
+		super();
+		this.armor = armor;
+		this.baseDamage = baseDamage;
+	}
+	
 }
 
 class LigthHunter extends Ship {
+	
+	public LigthHunter(){};
+	
+	public LigthHunter(int armor, int baseDamage) {
+		super(armor, baseDamage);
 
-	@Override
+	}
+
+	
 	public int attack() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public void tekeDamage(int receivedDamage) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	
 	public int getActualArmor() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public int getMetalCost() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public int getDeuteriumCost() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public int getChanceGeneratinWaste() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public int getChanceAttackAgain() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public void resetArmor() {
 		// TODO Auto-generated method stub
 		
@@ -57,50 +73,60 @@ class LigthHunter extends Ship {
 	
 }
 class HeavyHunter  extends Ship{
+	
+	
+	public HeavyHunter() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
 
-	@Override
+	public HeavyHunter(int armor, int baseDamage) {
+		super(armor, baseDamage);
+	}
+
+	
 	public int attack() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public void tekeDamage(int receivedDamage) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	
 	public int getActualArmor() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public int getMetalCost() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public int getDeuteriumCost() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public int getChanceGeneratinWaste() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public int getChanceAttackAgain() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public void resetArmor() {
 		// TODO Auto-generated method stub
 		
@@ -109,49 +135,60 @@ class HeavyHunter  extends Ship{
 }
 class BattleShip extends Ship{
 
-	@Override
+	
+	public BattleShip() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public BattleShip(int armor, int baseDamage) {
+		super(armor, baseDamage);
+	}
+
+
 	public int attack() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public void tekeDamage(int receivedDamage) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	
 	public int getActualArmor() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public int getMetalCost() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public int getDeuteriumCost() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public int getChanceGeneratinWaste() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public int getChanceAttackAgain() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public void resetArmor() {
 		// TODO Auto-generated method stub
 		
@@ -160,49 +197,60 @@ class BattleShip extends Ship{
 }
 class ArmoredShip extends Ship{
 
-	@Override
+	
+	public ArmoredShip() {
+		super();
+		// TODO Auto-generated constructor stub
+	}
+
+
+	public ArmoredShip(int armor, int baseDamage) {
+		super(armor, baseDamage);
+	}
+
+
 	public int attack() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public void tekeDamage(int receivedDamage) {
 		// TODO Auto-generated method stub
 		
 	}
 
-	@Override
+	
 	public int getActualArmor() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public int getMetalCost() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public int getDeuteriumCost() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public int getChanceGeneratinWaste() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public int getChanceAttackAgain() {
 		// TODO Auto-generated method stub
 		return 0;
 	}
 
-	@Override
+	
 	public void resetArmor() {
 		// TODO Auto-generated method stub
 		
