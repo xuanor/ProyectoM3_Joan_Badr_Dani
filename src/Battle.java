@@ -3,9 +3,9 @@ import java.util.ArrayList;
 public class Battle {
 	// ***VARIABLES***
 	
-	// Para almacenar la flota enemiga
-	ArrayList<MilitaryUnit> planetArmy; 
 	// Para almacenar la flota de nuestro planeta
+	ArrayList<MilitaryUnit> planetArmy; 
+	// Para almacenar la flota enemiga
 	ArrayList<MilitaryUnit> enemyArmy;
 	// Fila 1 nuestro ejercito, fila 2 ejercito enemigo
 	ArrayList[][] armies;
