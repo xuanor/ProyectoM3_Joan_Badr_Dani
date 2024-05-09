@@ -13,7 +13,6 @@ public class Main implements Variables{
 			// Cada 3 min reciviremos un ataque con su respectiva batalla ( Gardaremos registro ultimas 5)
 			// Una vez creado todo tendremos menu (con o sin GUI) para controlar nuestro planeta
 			
-			
 			 
 			Planet mainPlanet = new Planet(0,
 					0,
@@ -24,16 +23,6 @@ public class Main implements Variables{
 			
 			// Me crea mi ejercito y se lo añade al planeta
 			createMyArmyInit(mainPlanet);
-			
-			Planet enemyPlanet = new Planet(0,
-					0,
-					METAL_BASE_ENEMY_ARMY, 
-					DEUTERIUM_BASE_ENEMY_ARMY,
-					UPGRADE_BASE_DEFENSE_TECHNOLOGY_DEUTERIUM_COST,
-					UPGRADE_BASE_ATTACK_TECHNOLOGY_DEUTERIUM_COST);
-			
-			// Me crea mi ejercito y se lo añade al planeta
-			createEnemyArmy(enemyPlanet);
 			
 			
 //			// Prueba de ejecucion automatica
@@ -54,7 +43,6 @@ public class Main implements Variables{
 //			timer.schedule(task2, 8000, 3000);
 			
 			mainPlanet.printStats();
-//			enemyPlanet.printStats();
 			
 			try {
 				mainPlanet.newBattleShip(10);
@@ -64,8 +52,8 @@ public class Main implements Variables{
 			
 			mainPlanet.printStats();
 //			Battle b = new Battle();
-//			ArrayList[][] army = {mainPlanet.getArmy(),enemyPlanet.getArmy()};
-//			b.setArmies(army);
+			ArrayList[][] army = {mainPlanet.getArmy(), createEnemyArmy()};
+			b.setArmies(army);
 //			ViewThreat(b);
 			
 			
@@ -137,10 +125,9 @@ public class Main implements Variables{
 		mainArmy[6] = arrayPlasmaCannon;
 		
 		myPlanet.setArmy(mainArmy);
-		//System.out.println("Longitud = " + mainArmy.length);
 	}
 
-	public static void createEnemyArmy(Planet enemyPlanet) {
+	public static ArrayList<MilitaryUnit>[]  createEnemyArmy() {
 		
 		// Num aleatorio del 0.0 al 10.0
 		
@@ -161,16 +148,14 @@ public class Main implements Variables{
 		int BASE_UNIT_HEAVY_HUNTER = 0;
 		int BASE_UNIT_BATTLE_SHIP = 0;
 		int BASE_UNIT_ARMORED_SHIP = 0;
-//		int BASE_UNIT_MISSILE_LOUNCHER = 0;
-//		int BASE_UNIT_ION_CANNON = 0;
-//		int BASE_UNIT_PLASMA_CANNON = 0;
+
 		
-		// Para no gastar el metal al inciiar partida
-		int dinero = enemyPlanet.metal;
+		// Para no gastar el metal al iniciar partida
+		int dinero = METAL_BASE_ENEMY_ARMY;
 		
-		// Mientras las reservas de Metal esten x encima del 20% puedes gastar  o 50.000 (REVISAR*)
+		// Mientras haya reservas de Metal  puedes gastar
 		
-		while ( dinero > (METAL_BASE_ENEMY_ARMY*0.20) ) {
+		while ( dinero > (METAL_BASE_ENEMY_ARMY) ) {
 			
 			// Mientras puedas comprar la tropa más barata continua
 			if (dinero > METAL_COST_LIGTHHUNTER) {
@@ -195,20 +180,6 @@ public class Main implements Variables{
 					
 				}
 				
-				
-				// Defensas ( enemigo tiene??**)
-//				else if (num > 10.0 && num <= 11.0) {
-//					BASE_UNIT_MISSILE_LOUNCHER += 1;
-//					dinero -= METAL_COST_MISSILELAUNCHER;
-//					
-//				}else if (num > 11.0 && num <= 12.0) {
-//					BASE_UNIT_ION_CANNON += 1;
-//					dinero -= METAL_COST_IONCANNON;
-//					
-//				}else if (num > 12.0 && num <= 13.0) {
-//					BASE_UNIT_PLASMA_CANNON += 1;
-//					dinero -= METAL_COST_PLASMACANNON;
-//				}
 			}
 			
 		}
@@ -234,44 +205,17 @@ public class Main implements Variables{
 		for (int i = 0; i < BASE_UNIT_ARMORED_SHIP; i++) {
 			arrayArmoredShip.add(cAtack.new ArmoredShip(ARMOR_ARMOREDSHIP, BASE_DAMAGE_ARMOREDSHIP));
 		}
-		// Defensas
-//		Clases_defensa d = new Clases_defensa();
-//		
-//		ArrayList<MilitaryUnit> arrayMissileLouncher = new ArrayList<MilitaryUnit>();
-//		for (int i = 0; i < BASE_UNIT_MISSILE_LOUNCHER; i++) {
-//			arrayMissileLouncher.add(d.new MissileLauncher(ARMOR_MISSILELAUNCHER, BASE_DAMAGE_MISSILELAUNCHER));
-//		}
-//		ArrayList<MilitaryUnit> arrayIonCannon = new ArrayList<MilitaryUnit>();
-//		for (int i = 0; i < BASE_UNIT_ION_CANNON; i++) {
-//			arrayIonCannon.add(d.new IonCannon(ARMOR_BATTLESHIP, BASE_DAMAGE_BATTLESHIP));
-//		}
-//		ArrayList<MilitaryUnit> arrayPlasmaCannon = new ArrayList<MilitaryUnit>();
-//		for (int i = 0; i < BASE_UNIT_PLASMA_CANNON; i++) {
-//			arrayPlasmaCannon.add(d.new PlasmaCannon(ARMOR_BATTLESHIP, BASE_DAMAGE_BATTLESHIP));
-//		}
 		
 		enemyArmy[0] = arrayLigthHunter;
 		enemyArmy[1] = arrayHeavyHunter;
 		enemyArmy[2] = arrayBattleShip;
 		enemyArmy[3] = arrayArmoredShip;
 		
-//		enemyArmy[4] = arrayMissileLouncher;
-//		enemyArmy[5] = arrayIonCannon;
-//		enemyArmy[6] = arrayPlasmaCannon;
-		
-		enemyPlanet.setArmy(enemyArmy);
-		System.out.println("Longitud flota enemiga = " + enemyArmy.length);
-		
+		//System.out.println("Longitud flota enemiga = " + enemyArmy.length);
+		return enemyArmy;
 	}
 	
 	public static void ViewThreat(Battle b) {
-		// Ver la nueva amenaza 
-//		NEW THREAT COMING
-//		Ligth Hunter 16
-//		Heavy Hunter 12
-//		Battle Ship 1
-//		Armored Ship 1
-		
 		
 		// Me llaman desde la opc 5 del menu
 		// Miro la army actual del ejercito enemigo desde un objeto Battle
@@ -291,10 +235,34 @@ public class Main implements Variables{
 		System.out.println(datos);
 	}
 	
+	public static int askAmount() {
+		Scanner sc = new Scanner(System.in);
+		boolean amountOk = false;
+		int amount = -1;
+		
+		do {
+			System.out.println("Amount of Units\nAmount: >");
+			try {
+				amount = sc.nextInt();
+				amountOk = true;
+			}
+			catch (Exception e) {
+				System.out.println("Invalid Option");
+				sc.nextLine();
+			}
+		}while(!amountOk);
+		
+		return amount;
+	}
+
 	
 	public static void mainMenu(Planet mainPlanet) {
 		Scanner sc = new Scanner(System.in);
-		
+		// Instanciamos la batalla
+		Battle b = new Battle();
+		// Set ejercitos en la battle
+		ArrayList[][] army = {mainPlanet.getArmy(), createEnemyArmy()};
+		b.setArmies(army);
 		boolean attackComing = false;
 		
 		String mainMenu = "Main Menu\n" + "1)View Planet Stats\n" + "2)Build\n" + "3)Upgrade Technology\n"
@@ -303,6 +271,7 @@ public class Main implements Variables{
 		String mainMenuAttack = "Main Menu\n" + "1)View Planet Stats\n" + "2)Build\n" + "3)Upgrade Technology\n"
 				+ "4)View Battle Reports\n" + "5)View Thread Coming\n" + "0)Exit\n";
 		
+		// Bucle del menu 1
 		int option = -1;
 		while (option != 0) {
 			if (attackComing) {
@@ -334,7 +303,7 @@ public class Main implements Variables{
 			
 			case 2:
 				System.out.println("Aqui va el menu de construcciones");
-				//subMenuBuilds();
+				subMenuBuilds(mainPlanet);
 				break;
 			
 			case 3:
@@ -345,11 +314,10 @@ public class Main implements Variables{
 				System.out.println("Aqui va el reporte de las batallas");
 				break;
 				
-				
-				// ESTO HAY QUE MODIFICARLO NO ESTA BIEN!
 			case 5:
 				if(attackComing) {
 				System.out.println("Aqui va el reporte del ataque");
+				ViewThreat(b);
 				attackComing = false;
 				}else {
 					System.out.println("Option out of range");
@@ -359,8 +327,7 @@ public class Main implements Variables{
 //			case 6:
 //				attackComing = true;
 //				System.out.println("Se ha cambiado el attackComing a true");
-//				break;
-			
+//				break;	
 			default:
 				System.out.println("Option out of range");
 				sc.nextLine();
@@ -368,5 +335,164 @@ public class Main implements Variables{
 		}
 		
 	}
+
+
+	public static void subMenuBuilds(Planet mainPlanet) {
+		Scanner sc = new Scanner(System.in);
+		
+		String menuBuildings = "Building Menu\n" + "1)Build Troops\n" + "2)Build Defenses\n" + "3)Go back";
+		
+		int option = -1;
+		while (option != 3) {
+			System.out.println("\n" + menuBuildings);
+			
+			System.out.println("-->Option: ");
+			try {
+				option = sc.nextInt();
+			}
+			catch (Exception e) {
+				System.out.println("Invalid Option");
+				option = -1;
+			}
+			
+			switch(option) {
+				
+				case 1:
+					subMenuBuildsTroops(mainPlanet);
+					break;
+				
+				case 2:
+					subMenuBuildsDefenses(mainPlanet);
+					break;
+				case 3:
+					System.out.println("Going to the Main menu");
+					break;
+				
+				default:
+					System.out.println("Option not in range");
+					sc.nextLine();
+			}
+		}
+	}
+	
+	
+	public static void subMenuBuildsTroops(Planet mainPlanet) {
+		Scanner sc = new Scanner(System.in);
+		
+		String menuBuildTroops = "Menu Build Troops\n" + "1)Build Light Hunter\n" + "2)Build Heavy Hunter\n" 
+				+ "3)Build Battle Ship\n" + "4)Build ArmoredShip\n" + "5)Go Back";
+		
+		int option = -1;
+		int amount = -1;
+		while (option != 5) {
+			System.out.println("\n" + menuBuildTroops);
+			
+			System.out.println("-->Option: ");
+			try {
+				option = sc.nextInt();
+			}
+			catch (Exception e) {
+				System.out.println("Invalid Option");
+				option = -1;
+			}
+			
+			switch(option) {
+				case 1:
+					amount = askAmount();
+					try {
+					mainPlanet.newLightHunter(amount);
+					}catch (ResourceException e) {
+						System.out.println(e.getMessage());
+					}
+					break;
+					
+				case 2:
+					amount = askAmount();
+					try {
+						mainPlanet.newHeavyHunter(amount);
+					}catch (ResourceException e) {
+						System.out.println(e.getMessage());
+					}
+					break;
+					
+				case 3:
+					amount = askAmount();
+
+					try {
+						mainPlanet.newBattleShip(amount);
+					}catch (ResourceException e) {
+						System.out.println(e.getMessage());
+					}
+					break;
+					
+				case 4:
+					amount = askAmount();
+					try {
+						mainPlanet.newArmoredShip(amount);
+					}catch (ResourceException e) {
+						System.out.println(e.getMessage());
+					}
+					break;
+			
+				case 5:
+					System.out.println("Going Back");
+					break;
+				
+				default:
+					System.out.println("Option not in range");
+					sc.nextLine();
+					
+			}
+		}
+	}
+	
+	
+	public static void subMenuBuildsDefenses(Planet mainPlanet) {
+		Scanner sc = new Scanner(System.in);
+		
+		String menuBuildDefenses = "Menu Build Defenses\n" + "1)Build Missile Launcher\n" + "2)Build Ion Cannon\n" 
+				+ "3)Build Plasma Cannon\n" + "4)Go Back";
+		
+		int option = -1;
+		int amount = -1;
+		while (option != 4) {
+			System.out.println("\n" + menuBuildDefenses);
+			
+			System.out.println("-->Option: ");
+			try {
+				option = sc.nextInt();
+			}
+			catch (Exception e) {
+				System.out.println("Invalid Option");
+				option = -1;
+			}
+			
+			switch(option) {
+				case 1:
+					amount = askAmount();
+					// INSERTAR METODO DE CREAR Missile Launcher
+					break;
+					
+				case 2:
+					amount = askAmount();
+					// INSERTAR METODO DE CREAR Ion Cannon
+					break;
+					
+				case 3:
+					amount = askAmount();
+					// INSERTAR METODO DE CREAR Plasma Cannon
+					break;
+					
+				case 4:
+					System.out.println("Going Back");
+					break;
+					
+				default:
+					System.out.println("Option not in range");
+					sc.nextLine();
+					
+			}
+		}
 }
 
+}

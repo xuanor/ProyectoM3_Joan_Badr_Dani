@@ -1,10 +1,11 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
+
 public class MainMenu implements Variables{
 	
 	public static void createMyArmy(Planet myPlanet) {
-		ArrayList<MilitaryUnit>[] mainArmy = new ArrayList[7];
+ArrayList<MilitaryUnit>[] mainArmy = new ArrayList[7];
 		
 		//*** UNIDADES DE BASE EN MI EJERCITO ***
 		final int BASE_UNIT_LIGHT_HUNTER = 15;
@@ -23,23 +24,24 @@ public class MainMenu implements Variables{
 //		Army[5] → arrayList de Ion Cannon
 //		Army[6] → arrayList de Plasma Cannon
 		
+		Clases_ataque cAtack = new Clases_ataque();
 		// Flota
 		ArrayList<MilitaryUnit> arrayLigthHunter = new ArrayList<MilitaryUnit>();
 		for (int i = 0; i < BASE_UNIT_LIGHT_HUNTER; i++) {
-			arrayLigthHunter.add(new LigthHunter(ARMOR_LIGTHHUNTER, BASE_DAMAGE_LIGTHHUNTER));
+			arrayLigthHunter.add(cAtack.new LigthHunter(ARMOR_LIGTHHUNTER, BASE_DAMAGE_LIGTHHUNTER));
 		}
 		ArrayList<MilitaryUnit> arrayHeavyHunter = new ArrayList<MilitaryUnit>();
 		for (int i = 0; i < BASE_UNIT_HEAVY_HUNTER; i++) {
-			arrayHeavyHunter.add(new HeavyHunter(ARMOR_HEAVYHUNTER, BASE_DAMAGE_HEAVYHUNTER));
+			arrayHeavyHunter.add(cAtack.new HeavyHunter(ARMOR_HEAVYHUNTER, BASE_DAMAGE_HEAVYHUNTER));
 		}
 		ArrayList<MilitaryUnit> arrayBattleShip = new ArrayList<MilitaryUnit>();
 		for (int i = 0; i < BASE_UNIT_BATTLE_SHIP; i++) {
-			arrayBattleShip.add(new BattleShip(ARMOR_BATTLESHIP, BASE_DAMAGE_BATTLESHIP));
+			arrayBattleShip.add(cAtack.new BattleShip(ARMOR_BATTLESHIP, BASE_DAMAGE_BATTLESHIP));
 		}
 		
 		ArrayList<MilitaryUnit> arrayArmoredShip = new ArrayList<MilitaryUnit>();
 		for (int i = 0; i < BASE_UNIT_ARMORED_SHIP; i++) {
-			arrayArmoredShip.add(new ArmoredShip(ARMOR_ARMOREDSHIP, BASE_DAMAGE_ARMOREDSHIP));
+			arrayArmoredShip.add(cAtack.new ArmoredShip(ARMOR_ARMOREDSHIP, BASE_DAMAGE_ARMOREDSHIP));
 		}
 		// Defensas
 		Clases_defensa d = new Clases_defensa();

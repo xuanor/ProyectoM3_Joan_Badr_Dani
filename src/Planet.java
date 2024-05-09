@@ -182,7 +182,7 @@ public class Planet implements Variables{
 		}
 	}
 	
-	public void newArmoredShip(int n) {
+	public void newArmoredShip(int n) throws ResourceException{
 		int armor;
 		int atack;
 		Clases_ataque cAtack = new Clases_ataque();
@@ -196,13 +196,15 @@ public class Planet implements Variables{
 				*BASE_DAMAGE_ARMOREDSHIP/100;
 		
 		for (int i = 0; i<n; i++) {
+			if (i == n-1) {
+				System.out.println("Se han creado "+ n + " Armored Ship/s.");
+			}
 			if ((this.metal - METAL_COST_ARMOREDSHIP) > 0) {
 				this.army[3].add(cAtack.new ArmoredShip(armor, atack));
 				this.metal -= METAL_COST_ARMOREDSHIP;
 			}else {
-				System.out.println("You don't have suficiente dinero");
-				// Lanzar excepcion de amount 
-				break;
+				System.out.println("\nDon't hace enough metal.");
+				throw new ResourceException("Solo se han creado "+ i + " Armored Ship/s.\n");	
 			}	
 		}
 	}
@@ -221,14 +223,16 @@ public class Planet implements Variables{
 				*BASE_DAMAGE_MISSILELAUNCHER/100;
 		
 		for (int i = 0; i<n; i++) {
+			if (i == n-1) {
+				System.out.println("Se han creado "+ n + " Missile launcher/s.");
+			}
 			if ((this.metal - METAL_COST_MISSILELAUNCHER) > 0) {
 				this.army[4].add(cDef.new MissileLauncher(armor, atack));
 				this.metal -= METAL_COST_MISSILELAUNCHER;
 			}else {
-				System.out.println("You don't have suficiente dinero");
-				// Lanzar excepcion de amount 
-				break;
-			}	
+				System.out.println("\nDon't hace enough metal.");
+				throw new ResourceException("Solo se han creado "+ i + " Missile launcher/s.\n");	
+			}
 		}
 	}
 	
@@ -288,14 +292,9 @@ public class Planet implements Variables{
 	    int cantidadHeavy = this.army[1].size();
 	    int cantidadBattle = this.army[2].size();
 	    int cantidadArmored = this.army[3].size();
-	    int cantidadMissile = 0;
-		int cantidadIon = 0;
-		int cantidadPlasma =0;
-	    if (!(army[4] == null)) {
-		    cantidadMissile = this.army[4].size();
-		    cantidadIon = this.army[5].size();
-		    cantidadPlasma = this.army[6].size();
-	    }
+	    int cantidadMissile = this.army[4].size();
+	    int cantidadIon = this.army[5].size();
+	    int cantidadPlasma = this.army[6].size();
 		
 	    String stats = String.format("Planet Stats:\n"
 	    						   + "\nTECHNOLOGY\n"
