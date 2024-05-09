@@ -1,7 +1,7 @@
 import java.util.ArrayList;
 
 
-public class Planet {
+public class Planet implements Variables{
 	int technologyDefense;
 	int technologyAtack;
 	int metal;
@@ -104,8 +104,15 @@ public class Planet {
 			// Formula de nivel de tecnologia para las stats
 			int armor;
 			int atack;
-			
-			this.army[0].add(new newLightHunter());
+			// 1000 + (2*5)1000/100 = 1100
+			armor = ARMOR_LIGTHHUNTER + 
+					(this.technologyDefense * PLUS_ARMOR_LIGTHHUNTER_BY_TECHNOLOGY)
+					*ARMOR_LIGTHHUNTER/100;
+			atack = BASE_DAMAGE_LIGTHHUNTER + 
+					(this.technologyAtack * PLUS_ATTACK_LIGTHHUNTER_BY_TECHNOLOGY)
+					*BASE_DAMAGE_LIGTHHUNTER/100;
+			// Continuar *****
+//			this.army[0].add(new Ship().new LightHunter());
 		}
 		
 	}
