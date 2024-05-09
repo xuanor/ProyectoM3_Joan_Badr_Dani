@@ -1,0 +1,88 @@
+/* Reset de estilos */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Estilos de la cabecera */
+#cabecera {
+    background-image: url('../fotos/logo/cabecera.webp'); 
+    background-size: cover; 
+    padding: 10px 0; 
+}
+
+.wrapper {
+    display: flex;
+    justify-content: space-between; 
+    align-items: center; 
+    max-width: 1200px; 
+    margin: 0 auto;
+}
+
+.logo img {
+    width: 200px; 
+    height: auto; 
+}
+
+.links a {
+    color: #fff; 
+    text-decoration: none; 
+    margin-left: 20px; 
+}
+
+.links a:first-child {
+    margin-left: 0; 
+}
+
+/*La parte de abajo*/
+
+.bottom{
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    bottom: -230%;
+    background-color: #242526;
+    text-align: center;
+  }
+  #text_bottom{
+    color: #fff;
+  }
+ 
+
+/* Estilos para los productos */
+#cuerpo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); /*Ajusta la cantidad de productos por linea*/
+    gap: 20px; /* Espacio entre los elementos */
+    justify-content: center; /* Centrar los elementos horizontalmente */
+}
+
+#cuerpo > div {
+    /* Estilos para cada producto, cuadrado donde estan situados y divididos*/
+    background-color: #f9f9f9; 
+    padding: 20px; 
+    text-align: center; 
+}
+
+/* Estilos para las imágenes de los productos, tanto el tamaño del contenedor como el ajuste automatico */
+#cuerpo img {
+    max-width: 100%; 
+    height: auto; 
+}
+
+
+
+.bottom{
+    position: absolute;
+    width: 100%;
+    height: 10%;
+    bottom: -230%;
+    background-color: #242526;
+    text-align: center;
+  }
+  #text_bottom{
+    color: #fff;
+  }
+
+
