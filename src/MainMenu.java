@@ -128,6 +128,7 @@ public class MainMenu implements Variables{
 			
 			case 3:
 				System.out.println("Aqui va el menu de mejorar tecnologias");
+				subMenuUpgradeTechnology(mainPlanet.technologyDefense, mainPlanet.technologyAtack, mainPlanet.deuterium, mainPlanet.upgradeDefenseTechnologyDeuteriumCost, mainPlanet.upgradeAttackTechnologyDeuteriumCost);
 				break;
 				
 			case 4:
@@ -143,16 +144,16 @@ public class MainMenu implements Variables{
 					sc.nextLine();
 				}
 				break;
-
+				
+			default:
+				System.out.println("Option not in range");
+				sc.nextLine();
+				
 				// OPCION DE PRUEBAS PARA CAMBIAR EL ATTACKCOMING
 //			case 6:
 //				attackComing = true;
 //				System.out.println("Se ha cambiado el attackComing a true");
 //				break;
-			
-			default:
-				System.out.println("Option not in range");
-				sc.nextLine();
 			}
 		}
 		
@@ -174,7 +175,6 @@ public class MainMenu implements Variables{
 			catch (Exception e) {
 				System.out.println("Invalid Option");
 				option = -1;
-				sc.nextLine();
 			}
 			
 			switch(option) {
@@ -215,27 +215,26 @@ public class MainMenu implements Variables{
 			catch (Exception e) {
 				System.out.println("Invalid Option");
 				option = -1;
-				sc.nextLine();
 			}
 			
 			switch(option) {
 				case 1:
-					askAmount();
+					amount = askAmount();
 					// INSERTAR METODO DE CREAR Light Hunters
 					break;
 					
 				case 2:
-					askAmount();
+					amount = askAmount();
 					// INSERTAR METODO DE CREAR Heavy Hunters
 					break;
 					
 				case 3:
-					askAmount();
+					amount = askAmount();
 					// INSERTAR METODO DE CREAR Battle Ships
 					break;
 					
 				case 4:
-					askAmount();
+					amount = askAmount();
 					// INSERTAR METODO DE CREAR Armored Ships
 					break;
 			
@@ -269,22 +268,21 @@ public class MainMenu implements Variables{
 			catch (Exception e) {
 				System.out.println("Invalid Option");
 				option = -1;
-				sc.nextLine();
 			}
 			
 			switch(option) {
 				case 1:
-					askAmount();
+					amount = askAmount();
 					// INSERTAR METODO DE CREAR Missile Launcher
 					break;
 					
 				case 2:
-					askAmount();
+					amount = askAmount();
 					// INSERTAR METODO DE CREAR Ion Cannon
 					break;
 					
 				case 3:
-					askAmount();
+					amount = askAmount();
 					// INSERTAR METODO DE CREAR Plasma Cannon
 					break;
 					
@@ -300,6 +298,56 @@ public class MainMenu implements Variables{
 		}
 	}
 
+	public static void subMenuUpgradeTechnology(int defenseTechnology, int attackTechnology, int deuterium, int nextDefenseUpgradeCost, int nextAttackUpgradeCost) {
+		Scanner sc = new Scanner(System.in);
+		
+		String infoTechnology = String.format("Upgrade Technology\n"
+											+ "Actual Defense Technology:%14d\n"
+											+ "Actual Attack Technology:%15d\n\n", 
+											defenseTechnology, attackTechnology);
+		
+		String options = "1)Upgrade Defense Technology. Cost: "+ nextDefenseUpgradeCost + " Deuterium" + "\n" 
+					   + "2)Upgrade Defense Technology. Cost: "+ nextAttackUpgradeCost + " Deuterium" + "\n"
+					   + "3)Go Back\n\n";
+		
+		String deuteriumResources = "Deuterium Resources = " + deuterium;
+		
+		int option = -1;
+		
+		String menuBuildUpgradeTechnology = infoTechnology + options + deuteriumResources;
+		
+		while (option != 3) {
+			System.out.println("\n" + menuBuildUpgradeTechnology + "\n-->Option");
+			try {
+				option = sc.nextInt();
+			} 
+			catch (Exception e) {
+				System.out.println("Invalid Option");
+				option = -1;
+			}
+			
+			switch(option) {
+				case 1:
+					System.out.println();
+					// AQUI VA EL METODO DE INCREMENTAR EL NIVEL DE TECNOLOGIA DE DEFENSA
+					break;
+				
+				case 2:
+					System.out.println();
+					// AQUI VA EL METODO DE INCREMENTAR EL NIVEL DE TECNOLOGIA DE ATAQUE
+					break;
+					
+				case 3:
+					System.out.println("Going back");
+					break;
+					
+				default:
+					System.out.println("Option not in range");
+					sc.nextLine();
+			}
+		}
+	}
+	
 	public static int askAmount() {
 		Scanner sc = new Scanner(System.in);
 		boolean amountOk = false;
