@@ -99,46 +99,187 @@ public class Planet implements Variables{
 	}
 	
 	// Nuevas flotas de ataque
-	public void newLightHunter(int n) {
+	public void newLightHunter(int n) throws ResourceException{
+		int armor;
+		int atack;
+		Clases_ataque cAtack = new Clases_ataque();
+		
+		// Formula de nivel de tecnologia para las stats
+		// 1000 + (2*5)1000/100 = 1100
+		armor = ARMOR_LIGTHHUNTER + 
+				(this.technologyDefense * PLUS_ARMOR_LIGTHHUNTER_BY_TECHNOLOGY)
+				*ARMOR_LIGTHHUNTER/100;
+		atack = BASE_DAMAGE_LIGTHHUNTER + 
+				(this.technologyAtack * PLUS_ATTACK_LIGTHHUNTER_BY_TECHNOLOGY)
+				*BASE_DAMAGE_LIGTHHUNTER/100;
+		
 		for (int i = 0; i<n; i++) {
-			// Formula de nivel de tecnologia para las stats
-			int armor;
-			int atack;
-			// 1000 + (2*5)1000/100 = 1100
-			armor = ARMOR_LIGTHHUNTER + 
-					(this.technologyDefense * PLUS_ARMOR_LIGTHHUNTER_BY_TECHNOLOGY)
-					*ARMOR_LIGTHHUNTER/100;
-			atack = BASE_DAMAGE_LIGTHHUNTER + 
-					(this.technologyAtack * PLUS_ATTACK_LIGTHHUNTER_BY_TECHNOLOGY)
-					*BASE_DAMAGE_LIGTHHUNTER/100;
-			// Continuar *****
-//			this.army[0].add(new Ship().new LightHunter());
+			if (i == n-1) {
+				System.out.println("Se han creado "+ n + " Light hunter/s.");
+			}
+			if ((this.metal - METAL_COST_LIGTHHUNTER) > 0) {
+				this.army[0].add(cAtack.new LigthHunter(armor, atack));
+				this.metal -= METAL_COST_LIGTHHUNTER;
+			}else {
+				System.out.println("\nDon't hace enough metal.");
+				throw new ResourceException("Solo se han creado "+ i + " Heavy hunter/s.\n");	
+			}	
 		}
-		
 	}
 	
-	public void newHeavyHunter(int n) {
+	public void newHeavyHunter(int n) throws ResourceException{
+		int armor;
+		int atack;
+		Clases_ataque cAtack = new Clases_ataque();
 		
+		// Formula de nivel de tecnologia para las stats
+		armor = ARMOR_HEAVYHUNTER + 
+				(this.technologyDefense * PLUS_ARMOR_HEAVYHUNTER_BY_TECHNOLOGY)
+				*ARMOR_HEAVYHUNTER/100;
+		atack = BASE_DAMAGE_HEAVYHUNTER + 
+				(this.technologyAtack * PLUS_ATTACK_HEAVYHUNTER_BY_TECHNOLOGY)
+				*BASE_DAMAGE_HEAVYHUNTER/100;
+		
+		for (int i = 0; i<n; i++) {
+			if (i == n-1) {
+				System.out.println("Se han creado "+ n + " Heavy hunter/s.");
+			}
+			if ((this.metal - METAL_COST_HEAVYHUNTER) > 0) {
+				this.army[1].add(cAtack.new HeavyHunter(armor, atack));
+				this.metal -= METAL_COST_HEAVYHUNTER;
+			}else {
+				System.out.println("\nDon't hace enough metal.");
+				throw new ResourceException("Solo se han creado "+ i + " Heavy hunter/s.\n");	
+			}	
+		}
 	}
 	
-	public void newBattleShip(int n) {
+	public void newBattleShip(int n) throws ResourceException {
+		int armor;
+		int atack;
+		Clases_ataque cAtack = new Clases_ataque();
 		
+		// Formula de nivel de tecnologia para las stats
+		armor = ARMOR_BATTLESHIP + 
+				(this.technologyDefense * PLUS_ARMOR_BATTLESHIP_BY_TECHNOLOGY)
+				*ARMOR_BATTLESHIP/100;
+		atack = BASE_DAMAGE_BATTLESHIP + 
+				(this.technologyAtack * PLUS_ATTACK_BATTLESHIP_BY_TECHNOLOGY)
+				*BASE_DAMAGE_BATTLESHIP/100;
+		
+		for (int i = 0; i<n; i++) {
+			
+				if (i == n-1) {
+					System.out.println("Se han creado "+ n + " Battle Ship/s.");
+				}
+				if ((this.metal - METAL_COST_BATTLESHIP) > 0) {
+					this.army[2].add(cAtack.new BattleShip(armor, atack));
+					this.metal -= METAL_COST_BATTLESHIP;
+				}else {
+					System.out.println("\nDon't hace enough metal.");
+					throw new ResourceException("Solo se han creado "+ i + " Battle Ship/s.\n");	
+				}
+		}
 	}
 	
 	public void newArmoredShip(int n) {
+		int armor;
+		int atack;
+		Clases_ataque cAtack = new Clases_ataque();
 		
+		// Formula de nivel de tecnologia para las stats
+		armor = ARMOR_ARMOREDSHIP + 
+				(this.technologyDefense * PLUS_ARMOR_ARMOREDSHIP_BY_TECHNOLOGY)
+				*ARMOR_ARMOREDSHIP/100;
+		atack = BASE_DAMAGE_ARMOREDSHIP + 
+				(this.technologyAtack * PLUS_ATTACK_ARMOREDSHIP_BY_TECHNOLOGY)
+				*BASE_DAMAGE_ARMOREDSHIP/100;
+		
+		for (int i = 0; i<n; i++) {
+			if ((this.metal - METAL_COST_ARMOREDSHIP) > 0) {
+				this.army[3].add(cAtack.new ArmoredShip(armor, atack));
+				this.metal -= METAL_COST_ARMOREDSHIP;
+			}else {
+				System.out.println("You don't have suficiente dinero");
+				// Lanzar excepcion de amount 
+				break;
+			}	
+		}
 	}
 	// Nueva defensas
 	public void newMissileLauncher(int n) {
+		int armor;
+		int atack;
+		Clases_defensa cDef = new Clases_defensa();
 		
+		// Formula de nivel de tecnologia para las stats
+		armor = ARMOR_MISSILELAUNCHER + 
+				(this.technologyDefense * PLUS_ARMOR_MISSILELAUNCHER_BY_TECHNOLOGY)
+				*ARMOR_MISSILELAUNCHER/100;
+		atack = BASE_DAMAGE_MISSILELAUNCHER + 
+				(this.technologyAtack * PLUS_ATTACK_MISSILELAUNCHER_BY_TECHNOLOGY)
+				*BASE_DAMAGE_MISSILELAUNCHER/100;
+		
+		for (int i = 0; i<n; i++) {
+			if ((this.metal - METAL_COST_MISSILELAUNCHER) > 0) {
+				this.army[4].add(cDef.new MissileLauncher(armor, atack));
+				this.metal -= METAL_COST_MISSILELAUNCHER;
+			}else {
+				System.out.println("You don't have suficiente dinero");
+				// Lanzar excepcion de amount 
+				break;
+			}	
+		}
 	}
 	
 	public void newIonCannon(int n) {
+		int armor;
+		int atack;
+		Clases_defensa cDef = new Clases_defensa();
 		
+		// Formula de nivel de tecnologia para las stats
+		armor = ARMOR_IONCANNON + 
+				(this.technologyDefense * PLUS_ARMOR_IONCANNON_BY_TECHNOLOGY)
+				*ARMOR_IONCANNON/100;
+		atack = BASE_DAMAGE_IONCANNON + 
+				(this.technologyAtack * PLUS_ATTACK_IONCANNON_BY_TECHNOLOGY)
+				*BASE_DAMAGE_IONCANNON/100;
+		
+		for (int i = 0; i<n; i++) {
+			if ((this.metal - METAL_COST_IONCANNON) > 0) {
+				this.army[5].add(cDef.new IonCannon(armor, atack));
+				this.metal -= METAL_COST_IONCANNON;
+			}else {
+				System.out.println("You don't have suficiente dinero");
+				// Lanzar excepcion de amount 
+				break;
+			}	
+		}
 	}
 	
 	public void newPlasmaCannon(int n) {
+		int armor;
+		int atack;
+		Clases_defensa cDef = new Clases_defensa();
 		
+		// Formula de nivel de tecnologia para las stats
+		armor = ARMOR_PLASMACANNON + 
+				(this.technologyDefense * PLUS_ARMOR_PLASMACANNON_BY_TECHNOLOGY)
+				*ARMOR_PLASMACANNON/100;
+		atack = BASE_DAMAGE_PLASMACANNON + 
+				(this.technologyAtack * PLUS_ATTACK_PLASMACANNON_BY_TECHNOLOGY)
+				*BASE_DAMAGE_PLASMACANNON/100;
+		
+		for (int i = 0; i<n; i++) {
+			if ((this.metal - METAL_COST_PLASMACANNON) > 0) {
+				this.army[6].add(cDef.new PlasmaCannon(armor, atack));
+				this.metal -= METAL_COST_PLASMACANNON;
+			}else {
+				System.out.println("You don't have suficiente dinero");
+				// Lanzar excepcion de amount 
+				break;
+			}	
+		}
 	}
 	
 	public void printStats() {
@@ -172,9 +313,11 @@ public class Planet implements Variables{
 	    						   + "\nRESOURCES\n"
 	    						   + "\nMetal%25d\n"
 	    						   + "Deuterium%21d",
-this.technologyAtack, this.technologyDefense, cantidadMissile, cantidadIon, cantidadPlasma, cantidadLight, 
-cantidadHeavy, cantidadBattle, cantidadArmored, this.metal, this.deuterium);
-
+						this.technologyAtack, this.technologyDefense,
+						cantidadMissile, cantidadIon, 
+						cantidadPlasma, cantidadLight, 
+						cantidadHeavy, cantidadBattle, 
+						cantidadArmored, this.metal, this.deuterium);
 	        // Imprime las estadísticas
 	        System.out.println(stats);
 	}	
