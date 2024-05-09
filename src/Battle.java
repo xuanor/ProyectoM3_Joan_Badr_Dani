@@ -4,9 +4,9 @@ public class Battle {
 	// ***VARIABLES***
 	
 	// Para almacenar la flota de nuestro planeta
-	private ArrayList<MilitaryUnit> planetArmy; 
+	private ArrayList<MilitaryUnit>[] planetArmy; 
 	// Para almacenar la flota enemiga
-	private ArrayList<MilitaryUnit> enemyArmy;
+	private ArrayList<MilitaryUnit>[] enemyArmy;
 	// Fila 1 nuestro ejercito, fila 2 ejercito enemigo
 	private ArrayList[][] armies;
 	// Donde guardamos todo el desarrollo de la batalla paso a paso
@@ -48,19 +48,19 @@ public class Battle {
 		return "";
 	}
 	
-	public ArrayList<MilitaryUnit> getPlanetArmy() {
+	public ArrayList<MilitaryUnit>[] getPlanetArmy() {
 		return planetArmy;
 	}
 
-	public void setPlanetArmy(ArrayList<MilitaryUnit> planetArmy) {
+	public void setPlanetArmy(ArrayList<MilitaryUnit>[] planetArmy) {
 		this.planetArmy = planetArmy;
 	}
 
-	public ArrayList<MilitaryUnit> getEnemyArmy() {
+	public ArrayList<MilitaryUnit>[] getEnemyArmy() {
 		return enemyArmy;
 	}
 
-	public void setEnemyArmy(ArrayList<MilitaryUnit> enemyArmy) {
+	public void setEnemyArmy(ArrayList<MilitaryUnit>[] enemyArmy) {
 		this.enemyArmy = enemyArmy;
 	}
 
@@ -70,6 +70,8 @@ public class Battle {
 
 	public void setArmies(ArrayList[][] armies) {
 		this.armies = armies;
+		this.planetArmy = armies[0];
+		this.enemyArmy = armies[1];
 	}
 
 	//  Mostrar batalla paso a paso.

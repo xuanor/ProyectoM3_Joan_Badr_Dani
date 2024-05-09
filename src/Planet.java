@@ -84,16 +84,29 @@ public class Planet {
 	}
 	
 	// Mas metodos
-	public void upgradeTechnologyDefense() {
-		
+	public void upgradeTechnologyDefense(int coste) {
+		if (this.deuterium - coste > 0) {
+			this.technologyDefense += 1;
+			this.deuterium -= coste;
+		}
 	}
 
-	public void upgradeTechnologyAttack() {
-		
+	public void upgradeTechnologyAttack(int coste) {
+		if (this.deuterium - coste > 0) {
+			this.technologyAtack += 1;
+			this.deuterium -= coste;
+		}
 	}
 	
 	// Nuevas flotas de ataque
 	public void newLightHunter(int n) {
+		for (int i = 0; i<n; i++) {
+			// Formula de nivel de tecnologia para las stats
+			int armor;
+			int atack;
+			
+			this.army[0].add(new newLightHunter());
+		}
 		
 	}
 	
@@ -123,23 +136,18 @@ public class Planet {
 	
 	public void printStats() {
 		
-	    int cantidadLight = 0;
-	    int cantidadHeavy = 0;
-	    int cantidadBattle = 0;
-	    int cantidadArmored = 0;
+	    int cantidadLight = this.army[0].size();
+	    int cantidadHeavy = this.army[1].size();
+	    int cantidadBattle = this.army[2].size();
+	    int cantidadArmored = this.army[3].size();
 	    int cantidadMissile = 0;
-	    int cantidadIon = 0;
-	    int cantidadPlasma = 0;
-		
-		for (int i = 0; i < this.army.length; i++) {
-		     cantidadLight = this.army[0].size();
-		     cantidadHeavy = this.army[1].size();
-		     cantidadBattle = this.army[2].size();
-		     cantidadArmored = this.army[3].size();
-		     cantidadMissile = this.army[4].size();
-		     cantidadIon = this.army[5].size();
-		     cantidadPlasma = this.army[6].size();
-		}
+		int cantidadIon = 0;
+		int cantidadPlasma =0;
+	    if (!(army[4] == null)) {
+		    cantidadMissile = this.army[4].size();
+		    cantidadIon = this.army[5].size();
+		    cantidadPlasma = this.army[6].size();
+	    }
 		
 	    String stats = String.format("Planet Stats:\n"
 	    						   + "\nTECHNOLOGY\n"
