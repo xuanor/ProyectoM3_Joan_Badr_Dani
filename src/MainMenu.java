@@ -109,8 +109,6 @@ public class MainMenu implements Variables{
 			}
 			catch (Exception e) {
 				System.out.println("Invalid Option");
-				option = -1;
-				sc.nextLine();
 			}
 			
 			switch (option) {
@@ -136,19 +134,21 @@ public class MainMenu implements Variables{
 				System.out.println("Aqui va el reporte de las batallas");
 				break;
 				
-				
-				// ESTO HAY QUE MODIFICARLO NO ESTA BIEN!
 			case 5:
 				if(attackComing) {
 				System.out.println("Aqui va el reporte del ataque");
 				attackComing = false;
+				}else {
+					System.out.println("Option not in range");
+					sc.nextLine();
 				}
 				break;
 
-			case 6:
-				attackComing = true;
-				System.out.println("Se ha cambiado el attackComing a true");
-				break;
+				// OPCION DE PRUEBAS PARA CAMBIAR EL ATTACKCOMING
+//			case 6:
+//				attackComing = true;
+//				System.out.println("Se ha cambiado el attackComing a true");
+//				break;
 			
 			default:
 				System.out.println("Option not in range");
@@ -220,26 +220,22 @@ public class MainMenu implements Variables{
 			
 			switch(option) {
 				case 1:
-					System.out.println("Amount of Units\nAmount: >");
-					amount = sc.nextInt();
+					askAmount();
 					// INSERTAR METODO DE CREAR Light Hunters
 					break;
 					
 				case 2:
-					System.out.println("Amount of Units\nAmount: >");
-					amount = sc.nextInt();
+					askAmount();
 					// INSERTAR METODO DE CREAR Heavy Hunters
 					break;
 					
 				case 3:
-					System.out.println("Amount of Units\nAmount: >");
-					amount = sc.nextInt();
+					askAmount();
 					// INSERTAR METODO DE CREAR Battle Ships
 					break;
 					
 				case 4:
-					System.out.println("Amount of Units\nAmount: >");
-					amount = sc.nextInt();
+					askAmount();
 					// INSERTAR METODO DE CREAR Armored Ships
 					break;
 			
@@ -278,20 +274,17 @@ public class MainMenu implements Variables{
 			
 			switch(option) {
 				case 1:
-					System.out.println("Amount of Units\nAmount: >");
-					amount = sc.nextInt();
+					askAmount();
 					// INSERTAR METODO DE CREAR Missile Launcher
 					break;
 					
 				case 2:
-					System.out.println("Amount of Units\nAmount: >");
-					amount = sc.nextInt();
+					askAmount();
 					// INSERTAR METODO DE CREAR Ion Cannon
 					break;
 					
 				case 3:
-					System.out.println("Amount of Units\nAmount: >");
-					amount = sc.nextInt();
+					askAmount();
 					// INSERTAR METODO DE CREAR Plasma Cannon
 					break;
 					
@@ -306,4 +299,28 @@ public class MainMenu implements Variables{
 			}
 		}
 	}
+
+	public static int askAmount() {
+		Scanner sc = new Scanner(System.in);
+		boolean amountOk = false;
+		int amount = -1;
+		
+		do {
+			System.out.println("Amount of Units\nAmount: >");
+			try {
+				amount = sc.nextInt();
+				amountOk = true;
+			}
+			catch (Exception e) {
+				System.out.println("Invalid Option");
+				sc.nextLine();
+			}
+		}while(!amountOk);
+		
+		return amount;
+	}
+
+
 }
+
+
