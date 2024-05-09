@@ -1,10 +1,8 @@
 import java.util.ArrayList;
 import java.util.Scanner;
 
-
 public class MainMenu implements Variables{
 	
-
 	public static void createMyArmyInit(Planet myPlanet) {
 		ArrayList<MilitaryUnit>[] mainArmy = new ArrayList[7];
 		
@@ -83,15 +81,16 @@ public class MainMenu implements Variables{
 		
 		createMyArmyInit(mainPlanet);
 		
-		createEnemyArmy();
+		Battle b = new Battle();
+		ArrayList[][] army = {mainPlanet.getArmy(), createEnemyArmy()};
+		b.setArmies(army);	
 		
-		mainMenu(mainPlanet);
+		mainMenu(mainPlanet, b);
 		
 	}
 	
-	public static void mainMenu(Planet mainPlanet) {
+	public static void mainMenu(Planet mainPlanet, Battle b) {
 		Scanner sc = new Scanner(System.in);
-		Battle b = new Battle();
 		boolean attackComing = true;
 		
 		String mainMenu = "Main Menu\n" + "1)View Planet Stats\n" + "2)Build\n" + "3)Upgrade Technology\n"
@@ -355,7 +354,7 @@ public class MainMenu implements Variables{
 	}
 	
 	// CREACION DE EJERCITO ENEMIGO
-	public static void createEnemyArmy() {
+	public static ArrayList[] createEnemyArmy() {
 		
 		// Num aleatorio del 0.0 al 10.0
 		
@@ -474,6 +473,7 @@ public class MainMenu implements Variables{
 //		enemyArmy[5] = arrayIonCannon;
 //		enemyArmy[6] = arrayPlasmaCannon;
 		
+		return enemyArmy;
 	}
 	
 	// VER EL TAMAÑO DEL EJERCITO RIVAL
