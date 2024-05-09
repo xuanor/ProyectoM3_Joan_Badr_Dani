@@ -4,8 +4,9 @@ import java.util.Scanner;
 
 public class MainMenu implements Variables{
 	
-	public static void createMyArmy(Planet myPlanet) {
-ArrayList<MilitaryUnit>[] mainArmy = new ArrayList[7];
+
+	public static void createMyArmyInit(Planet myPlanet) {
+		ArrayList<MilitaryUnit>[] mainArmy = new ArrayList[7];
 		
 		//*** UNIDADES DE BASE EN MI EJERCITO ***
 		final int BASE_UNIT_LIGHT_HUNTER = 15;
@@ -80,15 +81,18 @@ ArrayList<MilitaryUnit>[] mainArmy = new ArrayList[7];
 				UPGRADE_BASE_DEFENSE_TECHNOLOGY_DEUTERIUM_COST,
 				UPGRADE_BASE_ATTACK_TECHNOLOGY_DEUTERIUM_COST);
 		
-		createMyArmy(mainPlanet);
+		createMyArmyInit(mainPlanet);
+		
+		createEnemyArmy();
 		
 		mainMenu(mainPlanet);
 		
 	}
+	
 	public static void mainMenu(Planet mainPlanet) {
 		Scanner sc = new Scanner(System.in);
-		
-		boolean attackComing = false;
+		Battle b = new Battle();
+		boolean attackComing = true;
 		
 		String mainMenu = "Main Menu\n" + "1)View Planet Stats\n" + "2)Build\n" + "3)Upgrade Technology\n"
 				+ "4)View Battle Reports\n" + "0)Exit\n";
@@ -140,6 +144,7 @@ ArrayList<MilitaryUnit>[] mainArmy = new ArrayList[7];
 			case 5:
 				if(attackComing) {
 				System.out.println("Aqui va el reporte del ataque");
+				ViewThreat(b);
 				attackComing = false;
 				}else {
 					System.out.println("Option not in range");
@@ -150,14 +155,13 @@ ArrayList<MilitaryUnit>[] mainArmy = new ArrayList[7];
 			default:
 				System.out.println("Option not in range");
 				sc.nextLine();
-				
-				// OPCION DE PRUEBAS PARA CAMBIAR EL ATTACKCOMING
 
 			}
 		}
 		
 	}
 
+	// SUB MENU DE CONSTRUCCIONES
 	public static void subMenuBuilds() {
 		Scanner sc = new Scanner(System.in);
 		
@@ -196,6 +200,7 @@ ArrayList<MilitaryUnit>[] mainArmy = new ArrayList[7];
 		}
 	}
 
+	// SUB MENU DE CREACION DE UNIDADES DE COMBATE
 	public static void subMenuBuildsTroops() {
 		Scanner sc = new Scanner(System.in);
 		
@@ -249,6 +254,7 @@ ArrayList<MilitaryUnit>[] mainArmy = new ArrayList[7];
 		}
 	}
 	
+	// SUB MENU DE CREACION DE UNIDADES DE DEFENSA
 	public static void subMenuBuildsDefenses() {
 		Scanner sc = new Scanner(System.in);
 		
@@ -297,6 +303,7 @@ ArrayList<MilitaryUnit>[] mainArmy = new ArrayList[7];
 		}
 	}
 
+	// SUB MENU DE MEJORA DE TECNOLOGIAS
 	public static void subMenuUpgradeTechnology(int defenseTechnology, int attackTechnology, int deuterium, int nextDefenseUpgradeCost, int nextAttackUpgradeCost) {
 		Scanner sc = new Scanner(System.in);
 		
@@ -347,6 +354,157 @@ ArrayList<MilitaryUnit>[] mainArmy = new ArrayList[7];
 		}
 	}
 	
+	// CREACION DE EJERCITO ENEMIGO
+	public static void createEnemyArmy() {
+		
+		// Num aleatorio del 0.0 al 10.0
+		
+//		Para crear el ejército enemigo, dispondremos de unos recursos iniciales, que conforme vayan
+//		sucediendo batallas, serán mayores .
+//		Iremos creando unidades enemigas aleatoriamente pero con las siguientes probabilidades:
+//			● Cazador ligero 35%
+//			● Cazador pesado 25%
+//			● Nave de Batalla 20%
+//			● Acorazado 20%.
+//		
+//		Mientras tengamos suficientes recursos para crear la unidad con menor coste, es decir, cazador
+//		ligero, iremos creando unidades aleatoriamente según las probabilidades anteriores
+		Clases_ataque cAtack = new Clases_ataque();
+		ArrayList<MilitaryUnit>[] enemyArmy = new ArrayList[7];
+		//*** UNIDADES DE BASE EN MI EJERCITO ***
+		int BASE_UNIT_LIGHT_HUNTER = 0;
+		int BASE_UNIT_HEAVY_HUNTER = 0;
+		int BASE_UNIT_BATTLE_SHIP = 0;
+		int BASE_UNIT_ARMORED_SHIP = 0;
+//		int BASE_UNIT_MISSILE_LOUNCHER = 0;
+//		int BASE_UNIT_ION_CANNON = 0;
+//		int BASE_UNIT_PLASMA_CANNON = 0;
+		
+		// Para no gastar el metal al inciiar partida
+		int dinero = METAL_BASE_ENEMY_ARMY;
+		
+		// Mientras las reservas de Metal esten x encima del 20% puedes gastar  o 50.000 (REVISAR*)
+		
+		while ( dinero > (METAL_BASE_ENEMY_ARMY*0.20) ) {
+			
+			// Mientras puedas comprar la tropa más barata continua
+			if (dinero > METAL_COST_LIGTHHUNTER) {
+			
+				float num = (float)(Math.random() * 10);
+				// Flota
+				if (num <= 3.5) {
+					BASE_UNIT_LIGHT_HUNTER += 1;
+					dinero -= METAL_COST_LIGTHHUNTER;
+					
+				}else if (num > 3.5 && num <= 6.0) {
+					BASE_UNIT_HEAVY_HUNTER += 1;
+					dinero -= METAL_COST_HEAVYHUNTER;
+				
+				}else if (num > 6.0 && num <= 8.0) {
+					BASE_UNIT_BATTLE_SHIP += 1;
+					dinero -= METAL_COST_BATTLESHIP;
+					
+				}else if (num > 8.0 && num <= 10.0) {
+					BASE_UNIT_ARMORED_SHIP += 1;
+					dinero -= METAL_COST_ARMOREDSHIP;
+					
+				}
+				
+				
+				// Defensas ( enemigo tiene??**)
+//				else if (num > 10.0 && num <= 11.0) {
+//					BASE_UNIT_MISSILE_LOUNCHER += 1;
+//					dinero -= METAL_COST_MISSILELAUNCHER;
+//					
+//				}else if (num > 11.0 && num <= 12.0) {
+//					BASE_UNIT_ION_CANNON += 1;
+//					dinero -= METAL_COST_IONCANNON;
+//					
+//				}else if (num > 12.0 && num <= 13.0) {
+//					BASE_UNIT_PLASMA_CANNON += 1;
+//					dinero -= METAL_COST_PLASMACANNON;
+//				}
+			}
+			
+		}
+//		System.out.println("metal = " + dinero);
+		
+		// Añadir plus de tecnologia por cada creacion de ejercito
+		
+		// Flota
+		ArrayList<MilitaryUnit> arrayLigthHunter = new ArrayList<MilitaryUnit>();
+		for (int i = 0; i < BASE_UNIT_LIGHT_HUNTER; i++) {
+			arrayLigthHunter.add(cAtack.new LigthHunter(ARMOR_LIGTHHUNTER, BASE_DAMAGE_LIGTHHUNTER));
+		}
+		ArrayList<MilitaryUnit> arrayHeavyHunter = new ArrayList<MilitaryUnit>();
+		for (int i = 0; i < BASE_UNIT_HEAVY_HUNTER; i++) {
+			arrayHeavyHunter.add(cAtack.new HeavyHunter(ARMOR_HEAVYHUNTER, BASE_DAMAGE_HEAVYHUNTER));
+		}
+		ArrayList<MilitaryUnit> arrayBattleShip = new ArrayList<MilitaryUnit>();
+		for (int i = 0; i < BASE_UNIT_BATTLE_SHIP; i++) {
+			arrayBattleShip.add(cAtack.new BattleShip(ARMOR_BATTLESHIP, BASE_DAMAGE_BATTLESHIP));
+		}
+		
+		ArrayList<MilitaryUnit> arrayArmoredShip = new ArrayList<MilitaryUnit>();
+		for (int i = 0; i < BASE_UNIT_ARMORED_SHIP; i++) {
+			arrayArmoredShip.add(cAtack.new ArmoredShip(ARMOR_ARMOREDSHIP, BASE_DAMAGE_ARMOREDSHIP));
+		}
+		// Defensas
+//		Clases_defensa d = new Clases_defensa();
+//		
+//		ArrayList<MilitaryUnit> arrayMissileLouncher = new ArrayList<MilitaryUnit>();
+//		for (int i = 0; i < BASE_UNIT_MISSILE_LOUNCHER; i++) {
+//			arrayMissileLouncher.add(d.new MissileLauncher(ARMOR_MISSILELAUNCHER, BASE_DAMAGE_MISSILELAUNCHER));
+//		}
+//		ArrayList<MilitaryUnit> arrayIonCannon = new ArrayList<MilitaryUnit>();
+//		for (int i = 0; i < BASE_UNIT_ION_CANNON; i++) {
+//			arrayIonCannon.add(d.new IonCannon(ARMOR_BATTLESHIP, BASE_DAMAGE_BATTLESHIP));
+//		}
+//		ArrayList<MilitaryUnit> arrayPlasmaCannon = new ArrayList<MilitaryUnit>();
+//		for (int i = 0; i < BASE_UNIT_PLASMA_CANNON; i++) {
+//			arrayPlasmaCannon.add(d.new PlasmaCannon(ARMOR_BATTLESHIP, BASE_DAMAGE_BATTLESHIP));
+//		}
+		
+		enemyArmy[0] = arrayLigthHunter;
+		enemyArmy[1] = arrayHeavyHunter;
+		enemyArmy[2] = arrayBattleShip;
+		enemyArmy[3] = arrayArmoredShip;
+		
+//		enemyArmy[4] = arrayMissileLouncher;
+//		enemyArmy[5] = arrayIonCannon;
+//		enemyArmy[6] = arrayPlasmaCannon;
+		
+	}
+	
+	// VER EL TAMAÑO DEL EJERCITO RIVAL
+	public static void ViewThreat(Battle b) {
+		// Ver la nueva amenaza 
+//		NEW THREAT COMING
+//		Ligth Hunter 16
+//		Heavy Hunter 12
+//		Battle Ship 1
+//		Armored Ship 1
+		
+		
+		// Me llaman desde la opc 5 del menu
+		// Miro la army actual del ejercito enemigo desde un objeto Battle
+		
+		ArrayList<MilitaryUnit>[] enemyArray = b.getEnemyArmy();
+		
+		String datos = String.format("\nNEW THREAT COMING\n"
+				   + "\nLigth Hunter%12d\n"
+				   + "\nHeavy Hunter%12d\n"
+				   + "\nBattle Ship%13d\n"
+				   + "\nArmored Ship%12d\n"
+				   +"\n",
+				   enemyArray[0].size(), 
+				   enemyArray[1].size(),
+				   enemyArray[2].size(),
+				   enemyArray[3].size());
+		System.out.println(datos);
+	}
+	
+	// PREGUNTAR CANTIDAD DE TROPAS/DEFENSAS QUE SE QUIERE CREAR
 	public static int askAmount() {
 		Scanner sc = new Scanner(System.in);
 		boolean amountOk = false;
