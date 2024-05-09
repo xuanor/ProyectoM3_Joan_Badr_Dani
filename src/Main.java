@@ -24,6 +24,9 @@ public class Main implements Variables{
 			// Me crea mi ejercito y se lo añade al planeta
 			createMyArmyInit(mainPlanet);
 			
+			//mainPlanet.printStats();
+			mainMenu(mainPlanet);
+			
 			
 //			// Prueba de ejecucion automatica
 //			TimerTask task1 = new TimerTask() {
@@ -42,24 +45,11 @@ public class Main implements Variables{
 //			timer.schedule(task1, 10000, 5000);
 //			timer.schedule(task2, 8000, 3000);
 			
-			mainPlanet.printStats();
-			
-			try {
-				mainPlanet.newBattleShip(10);
-			}catch (ResourceException e) {
-				System.out.println(e.getMessage());
-			}
-			
-			mainPlanet.printStats();
-//			Battle b = new Battle();
-			ArrayList[][] army = {mainPlanet.getArmy(), createEnemyArmy()};
-			b.setArmies(army);
-//			ViewThreat(b);
-			
 			
 			
 	}
 	
+	// CREO MI EJERCITO INICIAL
 	public static void createMyArmyInit(Planet myPlanet) {
 		ArrayList<MilitaryUnit>[] mainArmy = new ArrayList[7];
 		
@@ -127,7 +117,8 @@ public class Main implements Variables{
 		myPlanet.setArmy(mainArmy);
 	}
 
-	public static ArrayList<MilitaryUnit>[]  createEnemyArmy() {
+	// CREO EJRCITO ENEMIGA
+	public static ArrayList<MilitaryUnit>[] createEnemyArmy() {
 		
 		// Num aleatorio del 0.0 al 10.0
 		
@@ -215,6 +206,7 @@ public class Main implements Variables{
 		return enemyArmy;
 	}
 	
+	// VER EL EJERCITO QUE TE AMENAZA
 	public static void ViewThreat(Battle b) {
 		
 		// Me llaman desde la opc 5 del menu
@@ -235,6 +227,7 @@ public class Main implements Variables{
 		System.out.println(datos);
 	}
 	
+	// METODO DE APOYO PARA INTRODUCIR UN ENTERO
 	public static int askAmount() {
 		Scanner sc = new Scanner(System.in);
 		boolean amountOk = false;
@@ -255,7 +248,7 @@ public class Main implements Variables{
 		return amount;
 	}
 
-	
+	// MENU PRINCIPAL
 	public static void mainMenu(Planet mainPlanet) {
 		Scanner sc = new Scanner(System.in);
 		// Instanciamos la batalla
@@ -308,6 +301,7 @@ public class Main implements Variables{
 			
 			case 3:
 				System.out.println("Aqui va el menu de mejorar tecnologias");
+				subMenuUpgradeTechnology(mainPlanet);
 				break;
 				
 			case 4:
@@ -336,7 +330,7 @@ public class Main implements Variables{
 		
 	}
 
-
+	// SUB MENU DE CONSTRUCCIONES
 	public static void subMenuBuilds(Planet mainPlanet) {
 		Scanner sc = new Scanner(System.in);
 		
@@ -375,7 +369,7 @@ public class Main implements Variables{
 		}
 	}
 	
-	
+	// SUB MENU DE CREACION DE UNIDADES DE COMBATE
 	public static void subMenuBuildsTroops(Planet mainPlanet) {
 		Scanner sc = new Scanner(System.in);
 		
@@ -401,7 +395,7 @@ public class Main implements Variables{
 					amount = askAmount();
 					try {
 					mainPlanet.newLightHunter(amount);
-					}catch (ResourceException e) {
+					}catch (BuildException e) {
 						System.out.println(e.getMessage());
 					}
 					break;
@@ -410,7 +404,7 @@ public class Main implements Variables{
 					amount = askAmount();
 					try {
 						mainPlanet.newHeavyHunter(amount);
-					}catch (ResourceException e) {
+					}catch (BuildException e) {
 						System.out.println(e.getMessage());
 					}
 					break;
@@ -420,7 +414,7 @@ public class Main implements Variables{
 
 					try {
 						mainPlanet.newBattleShip(amount);
-					}catch (ResourceException e) {
+					}catch (BuildException e) {
 						System.out.println(e.getMessage());
 					}
 					break;
@@ -429,7 +423,7 @@ public class Main implements Variables{
 					amount = askAmount();
 					try {
 						mainPlanet.newArmoredShip(amount);
-					}catch (ResourceException e) {
+					}catch (BuildException e) {
 						System.out.println(e.getMessage());
 					}
 					break;
@@ -446,7 +440,7 @@ public class Main implements Variables{
 		}
 	}
 	
-	
+	// SUB MENU DE CREACION DE UNIDADES DE DEFENSA
 	public static void subMenuBuildsDefenses(Planet mainPlanet) {
 		Scanner sc = new Scanner(System.in);
 		
@@ -470,17 +464,29 @@ public class Main implements Variables{
 			switch(option) {
 				case 1:
 					amount = askAmount();
-					// INSERTAR METODO DE CREAR Missile Launcher
+					try {
+					mainPlanet.newMissileLauncher(amount);
+					}catch (BuildException e) {
+						System.out.println(e.getMessage());
+					}
 					break;
 					
 				case 2:
 					amount = askAmount();
-					// INSERTAR METODO DE CREAR Ion Cannon
+					try {
+					mainPlanet.newIonCannon(amount);
+					}catch (BuildException e) {
+						System.out.println(e.getMessage());
+					}
 					break;
 					
 				case 3:
 					amount = askAmount();
-					// INSERTAR METODO DE CREAR Plasma Cannon
+					try {
+					mainPlanet.newPlasmaCannon(amount);
+					}catch (BuildException e) {
+						System.out.println(e.getMessage());
+					}
 					break;
 					
 				case 4:
@@ -494,5 +500,79 @@ public class Main implements Variables{
 			}
 		}
 }
-
+	
+	// SUB MENU DE MEJORA DE TECNOLOGIAS
+	public static void subMenuUpgradeTechnology(Planet mainPlanet) {
+		Scanner sc = new Scanner(System.in);
+		
+		String infoTechnology = String.format("Upgrade Technology\n"
+											+ "Actual Defense Technology:%14d\n"
+											+ "Actual Attack Technology:%15d\n\n", 
+											mainPlanet.technologyDefense, mainPlanet.technologyAtack);
+		
+		String options = "1)Upgrade Defense Technology. Cost: "
+		+ mainPlanet.upgradeDefenseTechnologyDeuteriumCost 
+		+ " Deuterium\n"
+	    + "2)Upgrade Defense Technology. Cost: "
+		+ mainPlanet.upgradeDefenseTechnologyDeuteriumCost 
+		+ " Deuterium\n"
+	    + "3)Go Back\n\n";
+		
+		String deuteriumResources = "Deuterium Resources = " + mainPlanet.deuterium;
+		String menuBuildUpgradeTechnology = infoTechnology + options + deuteriumResources;
+		
+		// Calculo de lo que aumenta el coste de subir de nivel la def tech 
+		//(** Mirar de ponerlo en una varible en otro lado **) CONTINUAR!!
+		int costeUpDef = UPGRADE_BASE_DEFENSE_TECHNOLOGY_DEUTERIUM_COST;
+		for (int i = 0; i < mainPlanet.technologyDefense; i++) {
+			
+			costeUpDef += (costeUpDef * (UPGRADE_PLUS_DEFENSE_TECHNOLOGY_DEUTERIUM_COST / 100));
+		}
+		
+		// Calculo de lo que aumenta el coste de subir de nivel la attack tech
+		int costeUpAtt = UPGRADE_BASE_ATTACK_TECHNOLOGY_DEUTERIUM_COST;
+		for (int i = 0; i < mainPlanet.technologyAtack; i++) {
+			
+			costeUpAtt += (costeUpAtt * (UPGRADE_PLUS_ATTACK_TECHNOLOGY_DEUTERIUM_COST / 100));
+		}
+		
+		int option = -1;
+		while (option != 3) {
+			System.out.println("\n" + menuBuildUpgradeTechnology + "\n-->Option");
+			try {
+				option = sc.nextInt();
+			} 
+			catch (Exception e) {
+				System.out.println("Invalid Option");
+				option = -1;
+			}
+			
+			switch(option) {
+				case 1:
+					try {
+						mainPlanet.upgradeTechnologyDefense(costeUpDef);
+					}catch (ResourceException e) {
+						e.getMessage();
+					}
+					break;
+				
+				case 2:
+					try {
+						mainPlanet.upgradeTechnologyAttack(costeUpAtt);
+					}catch (ResourceException e) {
+						e.getMessage();
+					}
+					break;
+					
+				case 3:
+					System.out.println("Going back");
+					break;
+					
+				default:
+					System.out.println("Option not in range");
+					sc.nextLine();
+			}
+		}
+	}
+		
 }

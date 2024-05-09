@@ -476,7 +476,7 @@ public class MainMenu implements Variables{
 		return enemyArmy;
 	}
 	
-	// VER EL TAMAÑO DEL EJERCITO RIVAL
+	// VER EL TAMAÑO DEL EJERCITO QUE TE AMENAZA
 	public static void ViewThreat(Battle b) {
 		// Ver la nueva amenaza 
 //		NEW THREAT COMING
