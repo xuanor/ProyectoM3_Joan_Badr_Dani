@@ -84,22 +84,26 @@ public class Planet implements Variables{
 	}
 	
 	// Mas metodos
-	public void upgradeTechnologyDefense(int coste) {
+	public void upgradeTechnologyDefense(int coste) throws ResourceException{
 		if (this.deuterium - coste > 0) {
 			this.technologyDefense += 1;
 			this.deuterium -= coste;
+		}else {
+			throw new ResourceException();
 		}
 	}
 
-	public void upgradeTechnologyAttack(int coste) {
+	public void upgradeTechnologyAttack(int coste)  throws ResourceException{
 		if (this.deuterium - coste > 0) {
 			this.technologyAtack += 1;
 			this.deuterium -= coste;
+		}else {
+			throw new ResourceException();
 		}
 	}
 	
 	// Nuevas flotas de ataque
-	public void newLightHunter(int n) throws ResourceException{
+	public void newLightHunter(int n) throws BuildException{
 		int armor;
 		int atack;
 		Clases_ataque cAtack = new Clases_ataque();
@@ -122,12 +126,12 @@ public class Planet implements Variables{
 				this.metal -= METAL_COST_LIGTHHUNTER;
 			}else {
 				System.out.println("\nDon't hace enough metal.");
-				throw new ResourceException("Solo se han creado "+ i + " Heavy hunter/s.\n");	
+				throw new BuildException("Solo se han creado "+ i + " Heavy hunter/s.\n");	
 			}	
 		}
 	}
 	
-	public void newHeavyHunter(int n) throws ResourceException{
+	public void newHeavyHunter(int n) throws BuildException{
 		int armor;
 		int atack;
 		Clases_ataque cAtack = new Clases_ataque();
@@ -149,12 +153,12 @@ public class Planet implements Variables{
 				this.metal -= METAL_COST_HEAVYHUNTER;
 			}else {
 				System.out.println("\nDon't hace enough metal.");
-				throw new ResourceException("Solo se han creado "+ i + " Heavy hunter/s.\n");	
+				throw new BuildException("Solo se han creado "+ i + " Heavy hunter/s.\n");	
 			}	
 		}
 	}
 	
-	public void newBattleShip(int n) throws ResourceException {
+	public void newBattleShip(int n) throws BuildException {
 		int armor;
 		int atack;
 		Clases_ataque cAtack = new Clases_ataque();
@@ -177,12 +181,12 @@ public class Planet implements Variables{
 					this.metal -= METAL_COST_BATTLESHIP;
 				}else {
 					System.out.println("\nDon't hace enough metal.");
-					throw new ResourceException("Solo se han creado "+ i + " Battle Ship/s.\n");	
+					throw new BuildException("Solo se han creado "+ i + " Battle Ship/s.\n");	
 				}
 		}
 	}
 	
-	public void newArmoredShip(int n) throws ResourceException{
+	public void newArmoredShip(int n) throws BuildException{
 		int armor;
 		int atack;
 		Clases_ataque cAtack = new Clases_ataque();
@@ -204,12 +208,12 @@ public class Planet implements Variables{
 				this.metal -= METAL_COST_ARMOREDSHIP;
 			}else {
 				System.out.println("\nDon't hace enough metal.");
-				throw new ResourceException("Solo se han creado "+ i + " Armored Ship/s.\n");	
+				throw new BuildException("Solo se han creado "+ i + " Armored Ship/s.\n");	
 			}	
 		}
 	}
 	// Nueva defensas
-	public void newMissileLauncher(int n) {
+	public void newMissileLauncher(int n) throws BuildException {
 		int armor;
 		int atack;
 		Clases_defensa cDef = new Clases_defensa();
@@ -231,12 +235,12 @@ public class Planet implements Variables{
 				this.metal -= METAL_COST_MISSILELAUNCHER;
 			}else {
 				System.out.println("\nDon't hace enough metal.");
-				throw new ResourceException("Solo se han creado "+ i + " Missile launcher/s.\n");	
+				throw new BuildException("Solo se han creado "+ i + " Missile launcher/s.\n");	
 			}
 		}
 	}
 	
-	public void newIonCannon(int n) {
+	public void newIonCannon(int n)  throws BuildException{
 		int armor;
 		int atack;
 		Clases_defensa cDef = new Clases_defensa();
@@ -250,18 +254,20 @@ public class Planet implements Variables{
 				*BASE_DAMAGE_IONCANNON/100;
 		
 		for (int i = 0; i<n; i++) {
+			if (i == n-1) {
+				System.out.println("Se han creado "+ n + " Ion cannon/s.");
+			}
 			if ((this.metal - METAL_COST_IONCANNON) > 0) {
 				this.army[5].add(cDef.new IonCannon(armor, atack));
 				this.metal -= METAL_COST_IONCANNON;
 			}else {
-				System.out.println("You don't have suficiente dinero");
-				// Lanzar excepcion de amount 
-				break;
-			}	
+				System.out.println("\nDon't hace enough metal.");
+				throw new BuildException("Solo se han creado "+ i + " Ion cannonr/s.\n");	
+			}
 		}
 	}
 	
-	public void newPlasmaCannon(int n) {
+	public void newPlasmaCannon(int n) throws BuildException{
 		int armor;
 		int atack;
 		Clases_defensa cDef = new Clases_defensa();
@@ -275,14 +281,17 @@ public class Planet implements Variables{
 				*BASE_DAMAGE_PLASMACANNON/100;
 		
 		for (int i = 0; i<n; i++) {
+			if (i == n-1) {
+				System.out.println("Se han creado "+ n + " Plasma cannon/s.");
+			}
 			if ((this.metal - METAL_COST_PLASMACANNON) > 0) {
 				this.army[6].add(cDef.new PlasmaCannon(armor, atack));
 				this.metal -= METAL_COST_PLASMACANNON;
 			}else {
-				System.out.println("You don't have suficiente dinero");
-				// Lanzar excepcion de amount 
-				break;
-			}	
+				
+				System.out.println("\nDon't hace enough metal.");
+				throw new BuildException("Solo se han creado "+ i + " Plasma cannon/s.\n");	
+			}
 		}
 	}
 	
