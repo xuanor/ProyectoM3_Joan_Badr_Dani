@@ -13,7 +13,7 @@ public class Main implements Variables{
 			// Cada 3 min reciviremos un ataque con su respectiva batalla ( Gardaremos registro ultimas 5)
 			// Una vez creado todo tendremos menu (con o sin GUI) para controlar nuestro planeta
 			
-			 
+					
 			Planet mainPlanet = new Planet(0,
 					0,
 					METAL_BASE_ENEMY_ARMY, 
@@ -26,26 +26,6 @@ public class Main implements Variables{
 			
 			//mainPlanet.printStats();
 			mainMenu(mainPlanet);
-			
-			
-//			// Prueba de ejecucion automatica
-//			TimerTask task1 = new TimerTask() {
-//				public void run(){
-//					System.out.println("Hola mundo");
-//				}
-//			};
-//			
-//			TimerTask task2 = new TimerTask() {
-//				public void run(){
-//				System.out.println("Bienvenido");
-//				}
-//			};
-//			
-//			Timer timer = new Timer();
-//			timer.schedule(task1, 10000, 5000);
-//			timer.schedule(task2, 8000, 3000);
-			
-			
 			
 	}
 	
@@ -119,7 +99,8 @@ public class Main implements Variables{
 
 	// CREO EJRCITO ENEMIGA
 	public static ArrayList<MilitaryUnit>[] createEnemyArmy() {
-		
+		// Camabiar metodo a boolean ???
+		Battle b = new Battle();
 		// Num aleatorio del 0.0 al 10.0
 		
 //		Para crear el ejército enemigo, dispondremos de unos recursos iniciales, que conforme vayan
@@ -202,6 +183,7 @@ public class Main implements Variables{
 		enemyArmy[2] = arrayBattleShip;
 		enemyArmy[3] = arrayArmoredShip;
 		
+		b.setEnemyArmy(enemyArmy);
 		//System.out.println("Longitud flota enemiga = " + enemyArmy.length);
 		return enemyArmy;
 	}
@@ -211,8 +193,8 @@ public class Main implements Variables{
 		
 		// Me llaman desde la opc 5 del menu
 		// Miro la army actual del ejercito enemigo desde un objeto Battle
-		
-		ArrayList<MilitaryUnit>[] enemyArray = b.getEnemyArmy();
+		ArrayList<MilitaryUnit>[] enemyArray = new ArrayList[7];
+		enemyArray = b.getEnemyArmy();
 		
 		String datos = String.format("\nNEW THREAT COMING\n"
 				   + "\nLigth Hunter%12d\n"
@@ -225,6 +207,46 @@ public class Main implements Variables{
 				   enemyArray[2].size(),
 				   enemyArray[3].size());
 		System.out.println(datos);
+	}
+	
+	
+	public static void amenazaAutomatica() {
+		
+//		boolean AtackFlag;
+		Battle b = new Battle();
+		Timer timer = new Timer();
+	    TimerTask task = new TimerTask() {
+	    
+
+	         public void run() {
+	        	 System.out.println("··· Nueva amenaza ···");
+	        	 // Creo el nuevo ejercito enemigo
+	        	 createEnemyArmy();
+	             ViewThreat(b);
+
+	         }
+
+	    };
+
+	    timer.schedule(task, 5000, 3000);
+	    
+//	    //Prueba de ejecucion automatica
+//		TimerTask task1 = new TimerTask() {
+//			public void run(){
+//				System.out.println("··· Has sido atacado ···");
+//			}
+//		};
+//		
+//		TimerTask task2 = new TimerTask() {
+//			public void run(){
+//			System.out.println("=====Tienes una nueva amenaza=====");
+//				
+//			}
+//		};
+//		
+//		Timer timer = new Timer();
+//		timer.schedule(task1, 10000, 5000);
+//		timer.schedule(task2, 8000, 3000);
 	}
 	
 	// METODO DE APOYO PARA INTRODUCIR UN ENTERO
@@ -247,16 +269,31 @@ public class Main implements Variables{
 		
 		return amount;
 	}
-
+	
 	// MENU PRINCIPAL
 	public static void mainMenu(Planet mainPlanet) {
+		boolean attackComing = false;
 		Scanner sc = new Scanner(System.in);
 		// Instanciamos la batalla
 		Battle b = new Battle();
 		// Set ejercitos en la battle
-		ArrayList[][] army = {mainPlanet.getArmy(), createEnemyArmy()};
-		b.setArmies(army);
-		boolean attackComing = false;
+		//ArrayList[][] army = {mainPlanet.getArmy(), createEnemyArmy()};
+		b.setPlanetArmy(mainPlanet.getArmy());
+		
+		// Activa los avisos de amenaza
+		amenazaAutomatica();
+//		Timer timer = new Timer();
+//	    TimerTask task = new TimerTask() {
+//
+//	         public void run() {
+//	        	 // Creo el nuevo ejercito enemigo
+//	        	 createEnemyArmy();
+//	        	 System.out.println("===Tienes una amenaza===");
+//	        	 
+//	         }
+//	    };
+//
+//	    timer.schedule(task, 60000, 180000);
 		
 		String mainMenu = "Main Menu\n" + "1)View Planet Stats\n" + "2)Build\n" + "3)Upgrade Technology\n"
 				+ "4)View Battle Reports\n" + "0)Exit\n";
@@ -267,6 +304,7 @@ public class Main implements Variables{
 		// Bucle del menu 1
 		int option = -1;
 		while (option != 0) {
+			
 			if (attackComing) {
 			System.out.println("\n" + mainMenuAttack);
 			}else {
@@ -306,6 +344,7 @@ public class Main implements Variables{
 				
 			case 4:
 				System.out.println("Aqui va el reporte de las batallas");
+				// CONTINUAR **
 				break;
 				
 			case 5:
@@ -376,8 +415,8 @@ public class Main implements Variables{
 		String menuBuildTroops = "Menu Build Troops\n" + "1)Build Light Hunter\n" + "2)Build Heavy Hunter\n" 
 				+ "3)Build Battle Ship\n" + "4)Build ArmoredShip\n" + "5)Go Back";
 		
+		int amount;
 		int option = -1;
-		int amount = -1;
 		while (option != 5) {
 			System.out.println("\n" + menuBuildTroops);
 			
@@ -447,8 +486,8 @@ public class Main implements Variables{
 		String menuBuildDefenses = "Menu Build Defenses\n" + "1)Build Missile Launcher\n" + "2)Build Ion Cannon\n" 
 				+ "3)Build Plasma Cannon\n" + "4)Go Back";
 		
+		int amount;
 		int option = -1;
-		int amount = -1;
 		while (option != 4) {
 			System.out.println("\n" + menuBuildDefenses);
 			
@@ -574,5 +613,9 @@ public class Main implements Variables{
 			}
 		}
 	}
+	
+	// MECANICA BATALLA
+	public static void batalla() {
 		
+	}
 }

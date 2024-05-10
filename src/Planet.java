@@ -25,7 +25,6 @@ public class Planet implements Variables{
 	}
 
 		
-
 	// Getters and setters
 	public int getTechnologyDefense() {
 		return technologyDefense;
@@ -86,6 +85,7 @@ public class Planet implements Variables{
 	// Mas metodos
 	public void upgradeTechnologyDefense(int coste) throws ResourceException{
 		if (this.deuterium - coste > 0) {
+			// Añadir desde el setter de la var teckDef?
 			this.technologyDefense += 1;
 			this.deuterium -= coste;
 		}else {

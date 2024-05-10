@@ -8,7 +8,7 @@ public class Battle {
 	// Para almacenar la flota enemiga
 	private ArrayList<MilitaryUnit>[] enemyArmy;
 	// Fila 1 nuestro ejercito, fila 2 ejercito enemigo
-	private ArrayList[][] armies;
+	private ArrayList[][] armies = new ArrayList[2][7];
 	// Donde guardamos todo el desarrollo de la batalla paso a paso
 	private String battleDevelopment;
 	
@@ -54,6 +54,7 @@ public class Battle {
 
 	public void setPlanetArmy(ArrayList<MilitaryUnit>[] planetArmy) {
 		this.planetArmy = planetArmy;
+		this.armies[0] = planetArmy;
 	}
 
 	public ArrayList<MilitaryUnit>[] getEnemyArmy() {
@@ -62,6 +63,7 @@ public class Battle {
 
 	public void setEnemyArmy(ArrayList<MilitaryUnit>[] enemyArmy) {
 		this.enemyArmy = enemyArmy;
+		this.armies[1] = enemyArmy;
 	}
 
 	public ArrayList[][] getArmies() {
