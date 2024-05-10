@@ -34,6 +34,55 @@
 .links a:first-child {
     margin-left: 0; 
 }
+/*Contnedor par alos 3 juegos desarrollados*/
+.JDesenv {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.jeugo {
+    position: relative;
+    width: 25%;
+    overflow: hidden;
+}
+
+.jeugo img {
+    width: 100%;
+    height: auto;
+    transition: transform 0.5s;
+}
+
+.jeugo p {
+    position: absolute;
+    bottom: 10px;
+    left: 10px;
+    color: white;
+    font-size: 1.5rem;
+    opacity: 0;
+    transition: opacity 0.5s;
+}
+
+.jeugo:hover img {
+    transform: scale(1.5);
+}
+
+.jeugo:hover p {
+    opacity: 1;
+}
+
+
+
+
+
+
+
+
+
+
+
+
 
 /*La parte de abajo*/
 
