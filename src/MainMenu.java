@@ -3,6 +3,27 @@ import java.util.Scanner;
 
 public class MainMenu implements Variables{
 	
+	
+	public static void main(String[] args) {
+		
+		Planet mainPlanet = new Planet(0,
+				0,
+				METAL_BASE_ENEMY_ARMY, 
+				DEUTERIUM_BASE_ENEMY_ARMY,
+				UPGRADE_BASE_DEFENSE_TECHNOLOGY_DEUTERIUM_COST,
+				UPGRADE_BASE_ATTACK_TECHNOLOGY_DEUTERIUM_COST);
+		
+		createMyArmyInit(mainPlanet);
+		
+		Battle b = new Battle();
+		ArrayList[][] army = {mainPlanet.getArmy(), createEnemyArmy()};
+		b.setArmies(army);	
+		
+		mainMenu(mainPlanet, b);
+		
+	}
+	
+	// CREAR EJERCITO INICIAL
 	public static void createMyArmyInit(Planet myPlanet) {
 		ArrayList<MilitaryUnit>[] mainArmy = new ArrayList[7];
 		
@@ -70,25 +91,8 @@ public class MainMenu implements Variables{
 		myPlanet.setArmy(mainArmy);
 		//System.out.println("Longitud = " + mainArmy.length);
 	}
-	public static void main(String[] args) {
-		
-		Planet mainPlanet = new Planet(0,
-				0,
-				METAL_BASE_ENEMY_ARMY, 
-				DEUTERIUM_BASE_ENEMY_ARMY,
-				UPGRADE_BASE_DEFENSE_TECHNOLOGY_DEUTERIUM_COST,
-				UPGRADE_BASE_ATTACK_TECHNOLOGY_DEUTERIUM_COST);
-		
-		createMyArmyInit(mainPlanet);
-		
-		Battle b = new Battle();
-		ArrayList[][] army = {mainPlanet.getArmy(), createEnemyArmy()};
-		b.setArmies(army);	
-		
-		mainMenu(mainPlanet, b);
-		
-	}
 	
+	// MENU PRINCIPAL
 	public static void mainMenu(Planet mainPlanet, Battle b) {
 		Scanner sc = new Scanner(System.in);
 		boolean attackComing = true;
