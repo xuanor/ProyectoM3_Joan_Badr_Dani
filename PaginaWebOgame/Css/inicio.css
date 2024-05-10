@@ -10,6 +10,10 @@
     background-image: url('../fotos/logo/cabecera.webp'); 
     background-size: cover; 
     padding: 10px 0; 
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    
 }
 
 .wrapper {
@@ -19,7 +23,7 @@
     max-width: 1200px; 
     margin: 0 auto;
 }
-
+/*
 .logo img {
     width: 200px; 
     height: auto; 
@@ -34,6 +38,44 @@
 .links a:first-child {
     margin-left: 0; 
 }
+
+
+
+
+
+
+
+
+.logo {
+    flex: 1;
+}
+
+.links {
+    flex: 2;
+    text-align: right;
+}
+
+.creden {
+    flex: 1;
+    display: flex;
+    justify-content: flex-end;
+}
+
+.fila {
+    display: flex;
+    align-items: center;
+}
+
+.elemento {
+    margin: 0 5px;
+}
+
+
+*/
+
+
+
+
 
 /*La parte de abajo*/
 
