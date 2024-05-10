@@ -24,6 +24,8 @@ public class Main implements Variables{
 			// Me crea mi ejercito y se lo añade al planeta
 			createMyArmyInit(mainPlanet);
 			
+			//ViewThreat(createEnemyArmy());
+			
 			//mainPlanet.printStats();
 			mainMenu(mainPlanet);
 			
@@ -127,7 +129,7 @@ public class Main implements Variables{
 		
 		// Mientras haya reservas de Metal  puedes gastar
 		
-		while ( dinero > (METAL_BASE_ENEMY_ARMY) ) {
+		while ( dinero > (METAL_COST_LIGTHHUNTER) ) {
 			
 			// Mientras puedas comprar la tropa más barata continua
 			if (dinero > METAL_COST_LIGTHHUNTER) {
@@ -178,23 +180,28 @@ public class Main implements Variables{
 			arrayArmoredShip.add(cAtack.new ArmoredShip(ARMOR_ARMOREDSHIP, BASE_DAMAGE_ARMOREDSHIP));
 		}
 		
+//		System.out.println("Hola " + BASE_UNIT_LIGHT_HUNTER + 
+//				BASE_UNIT_HEAVY_HUNTER +
+//				BASE_UNIT_BATTLE_SHIP +
+//			BASE_UNIT_ARMORED_SHIP);
 		enemyArmy[0] = arrayLigthHunter;
 		enemyArmy[1] = arrayHeavyHunter;
 		enemyArmy[2] = arrayBattleShip;
 		enemyArmy[3] = arrayArmoredShip;
 		
 		b.setEnemyArmy(enemyArmy);
-		//System.out.println("Longitud flota enemiga = " + enemyArmy.length);
+		System.out.println("Longitud flota enemiga = " + enemyArmy[3].size());
 		return enemyArmy;
+		//return b;
 	}
 	
 	// VER EL EJERCITO QUE TE AMENAZA
-	public static void ViewThreat(Battle b) {
+	public static void ViewThreat(ArrayList<MilitaryUnit>[] enemyArray) {
 		
 		// Me llaman desde la opc 5 del menu
 		// Miro la army actual del ejercito enemigo desde un objeto Battle
-		ArrayList<MilitaryUnit>[] enemyArray = new ArrayList[7];
-		enemyArray = b.getEnemyArmy();
+//		ArrayList<MilitaryUnit>[] enemyArray = new ArrayList[7];
+//		enemyArray = b.getEnemyArmy();
 		
 		String datos = String.format("\nNEW THREAT COMING\n"
 				   + "\nLigth Hunter%12d\n"
@@ -213,7 +220,6 @@ public class Main implements Variables{
 	public static void amenazaAutomatica() {
 		
 //		boolean AtackFlag;
-		Battle b = new Battle();
 		Timer timer = new Timer();
 	    TimerTask task = new TimerTask() {
 	    
@@ -221,14 +227,15 @@ public class Main implements Variables{
 	         public void run() {
 	        	 System.out.println("··· Nueva amenaza ···");
 	        	 // Creo el nuevo ejercito enemigo
-	        	 createEnemyArmy();
-	             ViewThreat(b);
+	        	 ArrayList<MilitaryUnit>[] army = createEnemyArmy();
+	        	 
+	             ViewThreat(army);
 
 	         }
 
 	    };
 
-	    timer.schedule(task, 5000, 3000);
+	    timer.schedule(task, 10000, 8000);
 	    
 //	    //Prueba de ejecucion automatica
 //		TimerTask task1 = new TimerTask() {
@@ -282,18 +289,6 @@ public class Main implements Variables{
 		
 		// Activa los avisos de amenaza
 		amenazaAutomatica();
-//		Timer timer = new Timer();
-//	    TimerTask task = new TimerTask() {
-//
-//	         public void run() {
-//	        	 // Creo el nuevo ejercito enemigo
-//	        	 createEnemyArmy();
-//	        	 System.out.println("===Tienes una amenaza===");
-//	        	 
-//	         }
-//	    };
-//
-//	    timer.schedule(task, 60000, 180000);
 		
 		String mainMenu = "Main Menu\n" + "1)View Planet Stats\n" + "2)Build\n" + "3)Upgrade Technology\n"
 				+ "4)View Battle Reports\n" + "0)Exit\n";
@@ -350,7 +345,7 @@ public class Main implements Variables{
 			case 5:
 				if(attackComing) {
 				System.out.println("Aqui va el reporte del ataque");
-				ViewThreat(b);
+				//ViewThreat(b);
 				attackComing = false;
 				}else {
 					System.out.println("Option out of range");
