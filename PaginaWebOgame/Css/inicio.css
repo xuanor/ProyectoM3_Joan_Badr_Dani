@@ -5,105 +5,323 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: #ffffff; /* Fondo negro */
+}
+
 /* Estilos de la cabecera */
 #cabecera {
     background-image: url('../fotos/logo/cabecera.webp'); 
-    background-size: cover; 
-    padding: 10px 0; 
+    padding: 20px; /* Añade un poco más de relleno alrededor del contenedor */
     position: sticky;
     top: 0;
-    z-index: 1000;
-    
+    z-index: 2000; /* Aumenta el z-index para que la cabecera esté por encima de los demás elementos */
 }
 
 .wrapper {
     display: flex;
-    justify-content: space-between; 
-    align-items: center; 
-    max-width: 1200px; 
-    margin: 0 auto;
+    justify-content: space-between; /* Distribuye los elementos a lo largo del eje principal con un espacio igual entre ellos */
+    align-items: center; /* Centra verticalmente los elementos */
+    max-width: 1200px; /* Establece el ancho máximo del contenedor */
+    margin: 0 auto; /* Centra el contenedor horizontalmente en la página */
 }
-/*
-.logo img {
-    width: 200px; 
-    height: auto; 
-}
-
-.links a {
-    color: #fff; 
-    text-decoration: none; 
-    margin-left: 20px; 
-}
-
-.links a:first-child {
-    margin-left: 0; 
-}
-
-
-
-
-
-
-
 
 .logo {
-    flex: 1;
+    order: 2; /* Mueve el logo al medio */
 }
 
 .links {
-    flex: 2;
-    text-align: right;
+    order: 1; /* Mueve el menú al extremo izquierdo */
 }
 
 .creden {
-    flex: 1;
-    display: flex;
-    justify-content: flex-end;
+    order: 3; /* Mueve los inputs y botones al extremo derecho */
 }
 
-.fila {
+/* Estilos del menú desplegable */
+.desplegable {
+    display: none; /* Oculta la lista desplegable por defecto */
+    position: absolute;
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.desplegable li {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    color: black;
+}
+
+.desplegable li:hover {
+    background-color: black;
+}
+
+/* Mostrar el menú desplegable al hacer clic en el botón */
+#menuBtn:hover + .desplegable,
+.desplegable:hover {
+    display: block;
+}
+
+#menuBtn {
+    background-color: #000; /* Fondo negro */
+    color: #fff; /* Letras blancas */
+    padding: 15px 25px; /* Espacio alrededor del texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    text-decoration: none; /* Sin subrayado */
+    font-size: 18px; /* Tamaño de fuente */
+    transition: background-color 0.3s ease; /* Transición suave al pasar el ratón */
+}
+
+#menuBtn:hover {
+    background-color: #333; /* Cambio de color al pasar el ratón */
+}
+
+/* Estilo del div de credenciales */
+.creden {
+    background-color: #000; /* Fondo negro */
+    color: #fff; /* Letras blancas */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    display: flex; /* Usar flexbox */
+    flex-direction: column; /* Organizar los elementos en columna */
+    align-items: center; /* Centrar horizontalmente los elementos */
+    margin-right: 20px; /* Espacio a la derecha */
+}
+
+/* Estilo de los elementos dentro del div de credenciales */
+.creden .fila {
+    display: flex; /* Usar flexbox */
+    align-items: center; /* Centrar verticalmente los elementos */
+    margin-bottom: 15px; /* Espacio entre las filas */
+}
+
+.creden .fila input[type="text"],
+.creden .fila input[type="password"] {
+    margin-right: 15px; /* Espacio entre los inputs */
+    padding: 10px; /* Espacio interno */
+    font-size: 16px; /* Tamaño de fuente */
+}
+
+.creden .fila button {
+    background-color: #333; /* Fondo gris oscuro */
+    color: #fff; /* Letras blancas */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px 20px; /* Espacio alrededor del texto */
+    cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+    transition: background-color 0.3s ease; /* Transición suave al pasar el ratón */
+}
+
+.creden .fila button:hover {
+    background-color: #555; /* Cambio de color al pasar el ratón */
+}
+
+
+
+/* Slider */
+.container {
+    background: #000;
+    width: 650px;
+    margin: 0 auto;
+    padding: 30px;
+}
+
+.slideshow_wrapper {
+    width: 600px;
+    height: 320px;
+    overflow: hidden;
+}
+
+.slideshow {
+    width: 1800px;
+    height: 320px;
+    margin: 0 -600px;
+    position: relative;
+    animation: slide_animation 10s infinite alternate;
+}
+
+.slide {
+    width: 600px;
+    height: 300px;
+    position: relative;
+    float: left;
+    overflow: hidden;
+}
+
+.slideshow img {
+    width: 100%;
+    height: 300px;
+}
+
+@keyframes slide_animation {
+    0% { left: 0; }
+    10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90%, 100% { left: -600px; }
+}
+
+/*Boton*/
+
+.cuerpo {
     display: flex;
+    justify-content: center;
     align-items: center;
+    height: auto; /* Ajusta la altura automáticamente */
+    background: #ffffff;
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+}
+.boton-download {
+    display: flex;
+    justify-content: center;
+    margin: 0; /* Elimina el margen superior e inferior */
 }
 
-.elemento {
-    margin: 0 5px;
+.boton-download a {
+    position: relative;
+    display: inline-block;
+    padding: 25px 30px;
+    color: #fff; /* Color del texto cambiado a blanco */
+    background-color: #000; /* Color de fondo cambiado a negro */
+    text-decoration: none;
+    text-transform: uppercase;
+    transition: 0.5s;
+    letter-spacing: 4px;
+    overflow: hidden;
+    margin-right: 50px;
+}
+
+.boton-download a:hover {
+    background: #03e9f4;
+    color: #050801;
+    box-shadow: 0 0 5px #03e9f4,
+                0 0 25px #03e9f4,
+                0 0 50px #03e9f4,
+                0 0 200px #03e9f4;
+    -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
+}
+
+.boton-download a span {
+    position: absolute;
+}
+
+.boton-download a span:nth-child(1) {
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, #03e9f4);
+    animation: animate1 1s linear infinite;
+}
+
+@keyframes animate1 {
+    0% {
+        left: -100%;
+    }
+    50%, 100% {
+        left: 100%;
+    }
+}
+
+.boton-download a span:nth-child(2) {
+    top: -100%;
+    right: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(180deg, transparent, #03e9f4);
+    animation: animate2 1s linear infinite;
+    animation-delay: 0.25s;
+}
+
+@keyframes animate2 {
+    0% {
+        top: -100%;
+    }
+    50%, 100% {
+        top: 100%;
+    }
+}
+
+.boton-download a span:nth-child(3) {
+    bottom: 0;
+    right: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(270deg, transparent, #03e9f4);
+    animation: animate3 1s linear infinite;
+    animation-delay: 0.50s;
+}
+
+@keyframes animate3 {
+    0% {
+        right: -100%;
+    }
+    50%, 100% {
+        right: 100%;
+    }
+}
+
+.boton-download a span:nth-child(4) {
+    bottom: -100%;
+    left: 0;
+    width: 2px;
+    height: 100%;
+    background: linear-gradient(360deg, transparent, #03e9f4);
+    animation: animate4 1s linear infinite;
+    animation-delay: 0.75s;
+}
+
+@keyframes animate4 {
+    0% {
+        bottom: -100%;
+    }
+    50%, 100% {
+        bottom: 100%;
+    }
 }
 
 
-*/
 
 
 
 
 
-/*La parte de abajo*/
 
-.bottom{
+
+
+
+
+/*Parte de creditos abajo*/
+.bottom {
     position: absolute;
     width: 100%;
     height: 10%;
     bottom: -230%;
     background-color: #242526;
     text-align: center;
-  }
-  #text_bottom{
-    color: #fff;
-  }
- 
-
-  /* Estilos para los recuadros */
-  #resumen {
-    display: flex;
-    flex-direction: column;
-    align-items: left;
 }
 
-/* Estilos para cada sección */
-#intro, #crecimiento, #TecnoUp {
-    border: 2px solid #000;
-    padding: 10px;
-    margin: 10px;
-    width: 80%;
-    max-width: 600px;
+#text_bottom {
+    color: #fff;
+}
+
+
+
+
+
+
+/*adaptacion a cualquier tamaño*/
+
+@media only screen and (max-width: 600px) {
+    /* Ajustar estilos para pantallas con un ancho máximo de 600px (típicamente dispositivos móviles) */
+    .boton-download {
+        flex-direction: column; /* Cambiar la dirección de flexión a columna */
+        align-items: center; /* Centrar horizontalmente los elementos */
+    }
+
+    .boton-download a {
+        margin-bottom: 20px; /* Añadir espacio entre el botón y el texto debajo en dispositivos móviles */
+    }
 }

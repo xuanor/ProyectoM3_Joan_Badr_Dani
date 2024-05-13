@@ -5,47 +5,118 @@
     box-sizing: border-box;
 }
 
+body {
+    background-color: #ffffff; /* Fondo negro */
+}
+
 /* Estilos de la cabecera */
 #cabecera {
     background-image: url('../fotos/logo/cabecera.webp'); 
-    background-size: cover; 
-    padding: 10px 0; 
+    padding: 20px; /* Añade un poco más de relleno alrededor del contenedor */
+    position: sticky;
+    top: 0;
+    z-index: 2000; /* Aumenta el z-index para que la cabecera esté por encima de los demás elementos */
 }
 
 .wrapper {
     display: flex;
-    justify-content: space-between; 
-    align-items: center; 
-    max-width: 1200px; 
-    margin: 0 auto;
+    justify-content: space-between; /* Distribuye los elementos a lo largo del eje principal con un espacio igual entre ellos */
+    align-items: center; /* Centra verticalmente los elementos */
+    max-width: 1200px; /* Establece el ancho máximo del contenedor */
+    margin: 0 auto; /* Centra el contenedor horizontalmente en la página */
 }
 
-.logo img {
-    width: 200px; 
-    height: auto; 
+.logo {
+    order: 2; /* Mueve el logo al medio */
 }
 
-.links a {
-    color: #fff; 
-    text-decoration: none; 
-    margin-left: 20px; 
+.links {
+    order: 1; /* Mueve el menú al extremo izquierdo */
 }
 
-.links a:first-child {
-    margin-left: 0; 
+.creden {
+    order: 3; /* Mueve los inputs y botones al extremo derecho */
 }
 
-/*La parte de abajo*/
-
-.bottom{
+/* Estilos del menú desplegable */
+.desplegable {
+    display: none; /* Oculta la lista desplegable por defecto */
     position: absolute;
-    width: 100%;
-    height: 10%;
-    bottom: -230%;
-    background-color: #242526;
-    text-align: center;
-  }
-  #text_bottom{
-    color: #fff;
-  }
- 
+    background-color: #f9f9f9;
+    min-width: 160px;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+    z-index: 1;
+}
+
+.desplegable li {
+    padding: 12px 16px;
+    text-decoration: none;
+    display: block;
+    color: black;
+}
+
+.desplegable li:hover {
+    background-color: black;
+}
+
+/* Mostrar el menú desplegable al hacer clic en el botón */
+#menuBtn:hover + .desplegable,
+.desplegable:hover {
+    display: block;
+}
+
+#menuBtn {
+    background-color: #000; /* Fondo negro */
+    color: #fff; /* Letras blancas */
+    padding: 15px 25px; /* Espacio alrededor del texto */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    text-decoration: none; /* Sin subrayado */
+    font-size: 18px; /* Tamaño de fuente */
+    transition: background-color 0.3s ease; /* Transición suave al pasar el ratón */
+}
+
+#menuBtn:hover {
+    background-color: #333; /* Cambio de color al pasar el ratón */
+}
+
+/* Estilo del div de credenciales */
+.creden {
+    background-color: #000; /* Fondo negro */
+    color: #fff; /* Letras blancas */
+    padding: 20px; /* Espaciado interno */
+    border-radius: 5px; /* Bordes redondeados */
+    display: flex; /* Usar flexbox */
+    flex-direction: column; /* Organizar los elementos en columna */
+    align-items: center; /* Centrar horizontalmente los elementos */
+    margin-right: 20px; /* Espacio a la derecha */
+}
+
+/* Estilo de los elementos dentro del div de credenciales */
+.creden .fila {
+    display: flex; /* Usar flexbox */
+    align-items: center; /* Centrar verticalmente los elementos */
+    margin-bottom: 15px; /* Espacio entre las filas */
+}
+
+.creden .fila input[type="text"],
+.creden .fila input[type="password"] {
+    margin-right: 15px; /* Espacio entre los inputs */
+    padding: 10px; /* Espacio interno */
+    font-size: 16px; /* Tamaño de fuente */
+}
+
+.creden .fila button {
+    background-color: #333; /* Fondo gris oscuro */
+    color: #fff; /* Letras blancas */
+    border: none; /* Sin borde */
+    border-radius: 5px; /* Bordes redondeados */
+    padding: 10px 20px; /* Espacio alrededor del texto */
+    cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
+    transition: background-color 0.3s ease; /* Transición suave al pasar el ratón */
+}
+
+.creden .fila button:hover {
+    background-color: #555; /* Cambio de color al pasar el ratón */
+}
+
