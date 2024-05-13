@@ -9,9 +9,11 @@ public class Clases_ataque {
 		
 		public Ship() {};// Añadir initial armour 
 		
-		public Ship(int armor, int baseDamage) {
+		public Ship(int initialArmor, int baseDamage) {
+			// Añadir pluses desde el constructor no en metodos de planeta***
 			super();
-			this.armor = armor;
+			this.initialArmor = initialArmor;
+			this.armor = initialArmor;
 			this.baseDamage = baseDamage;
 		}
 		
@@ -30,49 +32,45 @@ public class Clases_ataque {
 	
 		
 		public int attack() {
-			// TODO Auto-generated method stub
-			return 0;
+			// Plus tech??
+			return this.baseDamage;
 		}
 	
 		
 		public void tekeDamage(int receivedDamage) {
-			// TODO Auto-generated method stub
+			armor += receivedDamage;
 			
 		}
 	
 		
 		public int getActualArmor() {
-			// TODO Auto-generated method stub
-			return 0;
+			return this.armor;
 		}
 	
 		
 		public int getMetalCost() {
-			// TODO Auto-generated method stub
-			return 0;
+			return METAL_COST_LIGTHHUNTER;
 		}
 	
 		
 		public int getDeuteriumCost() {
-			// TODO Auto-generated method stub
-			return 0;
+			return DEUTERIUM_COST_LIGTHHUNTER;
 		}
 	
 		
 		public int getChanceGeneratinWaste() {
-			// TODO Auto-generated method stub
-			return 0;
+			return CHANCE_GENERATNG_WASTE_LIGTHHUNTER;
 		}
 	
 		
 		public int getChanceAttackAgain() {
-			// TODO Auto-generated method stub
-			return 0;
+			
+			return CHANCE_ATTACK_AGAIN_LIGTHHUNTER;
 		}
 	
 		
 		public void resetArmor() {
-			// TODO Auto-generated method stub
+			this.armor = this.initialArmor;
 			
 		}
 		
@@ -82,7 +80,6 @@ public class Clases_ataque {
 		
 		public HeavyHunter() {
 			super();
-			// TODO Auto-generated constructor stub
 		}
 	
 		public HeavyHunter(int armor, int baseDamage) {
@@ -91,51 +88,47 @@ public class Clases_ataque {
 	
 		
 		public int attack() {
-			// TODO Auto-generated method stub
-			return 0;
+			return this.baseDamage;
 		}
 	
 		
 		public void tekeDamage(int receivedDamage) {
-			// TODO Auto-generated method stub
+			armor += receivedDamage;
 			
 		}
 	
 		
 		public int getActualArmor() {
-			// TODO Auto-generated method stub
-			return 0;
+			return this.armor;
 		}
 	
 		
 		public int getMetalCost() {
-			// TODO Auto-generated method stub
-			return 0;
+			return METAL_COST_HEAVYHUNTER;
 		}
 	
 		
 		public int getDeuteriumCost() {
-			// TODO Auto-generated method stub
-			return 0;
+			return DEUTERIUM_COST_HEAVYHUNTER;
 		}
 	
 		
 		public int getChanceGeneratinWaste() {
-			// TODO Auto-generated method stub
-			return 0;
+			return CHANCE_GENERATNG_WASTE_HEAVYHUNTER;
 		}
 	
 		
 		public int getChanceAttackAgain() {
-			// TODO Auto-generated method stub
-			return 0;
+			
+			return CHANCE_ATTACK_AGAIN_HEAVYHUNTER;
 		}
 	
 		
 		public void resetArmor() {
-			// TODO Auto-generated method stub
+			this.armor = this.initialArmor;
 			
 		}
+		
 		
 	}
 	class BattleShip extends Ship{
@@ -143,7 +136,6 @@ public class Clases_ataque {
 		
 		public BattleShip() {
 			super();
-			// TODO Auto-generated constructor stub
 		}
 	
 	
@@ -153,51 +145,47 @@ public class Clases_ataque {
 	
 	
 		public int attack() {
-			// TODO Auto-generated method stub
-			return 0;
+			return this.baseDamage;
 		}
 	
 		
 		public void tekeDamage(int receivedDamage) {
-			// TODO Auto-generated method stub
+			armor += receivedDamage;
 			
 		}
 	
 		
 		public int getActualArmor() {
-			// TODO Auto-generated method stub
-			return 0;
+			return this.armor;
 		}
 	
 		
 		public int getMetalCost() {
-			// TODO Auto-generated method stub
-			return 0;
+			return METAL_COST_BATTLESHIP;
 		}
 	
 		
 		public int getDeuteriumCost() {
-			// TODO Auto-generated method stub
-			return 0;
+			return DEUTERIUM_COST_BATTLESHIP;
 		}
 	
 		
 		public int getChanceGeneratinWaste() {
-			// TODO Auto-generated method stub
-			return 0;
+			return CHANCE_GENERATNG_WASTE_BATTLESHIP;
 		}
 	
 		
 		public int getChanceAttackAgain() {
-			// TODO Auto-generated method stub
-			return 0;
+			
+			return CHANCE_ATTACK_AGAIN_BATTLESHIP;
 		}
 	
 		
 		public void resetArmor() {
-			// TODO Auto-generated method stub
+			this.armor = this.initialArmor;
 			
 		}
+		
 		
 	}
 	class ArmoredShip extends Ship{
@@ -205,7 +193,6 @@ public class Clases_ataque {
 		
 		public ArmoredShip() {
 			super();
-			// TODO Auto-generated constructor stub
 		}
 	
 	
@@ -215,50 +202,46 @@ public class Clases_ataque {
 	
 	
 		public int attack() {
-			// TODO Auto-generated method stub
-			return 0;
+			return this.baseDamage;
 		}
 	
 		
 		public void tekeDamage(int receivedDamage) {
-			// TODO Auto-generated method stub
+			armor += receivedDamage;
 			
 		}
 	
 		
 		public int getActualArmor() {
-			// TODO Auto-generated method stub
-			return 0;
+			return this.armor;
 		}
 	
 		
 		public int getMetalCost() {
-			// TODO Auto-generated method stub
-			return 0;
+			return METAL_COST_ARMOREDSHIP;
 		}
 	
 		
 		public int getDeuteriumCost() {
-			// TODO Auto-generated method stub
-			return 0;
+			return DEUTERIUM_COST_ARMOREDSHIP;
 		}
 	
 		
 		public int getChanceGeneratinWaste() {
-			// TODO Auto-generated method stub
-			return 0;
+			return CHANCE_GENERATNG_WASTE_ARMOREDSHIP;
 		}
 	
 		
 		public int getChanceAttackAgain() {
-			// TODO Auto-generated method stub
-			return 0;
+			
+			return CHANCE_ATTACK_AGAIN_ARMOREDSHIP;
 		}
 	
 		
 		public void resetArmor() {
-			// TODO Auto-generated method stub
+			this.armor = this.initialArmor;
 			
 		}
+		
 	}
 }

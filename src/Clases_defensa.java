@@ -1,6 +1,6 @@
 public class Clases_defensa {
 
-	public class Defense implements MilitaryUnit, Variables{
+	public abstract class Defense implements MilitaryUnit, Variables{
 	
 		private int armor;
 		private int initialArmor;
@@ -15,6 +15,85 @@ public class Clases_defensa {
 			this.baseDamage = baseDamage;
 		}
 		
+	}
+	
+	public class MissileLauncher extends Defense {
+	
+		public MissileLauncher(int initialArmor, int baseDamage) {
+			super(initialArmor, baseDamage);
+		}
+
+		public int getArmor() {
+			return this.armor;
+		}
+		public void setArmor(int armor) {
+			this.armor = armor;
+		}
+		public int getInitialArmor() {
+			return initialArmor;
+		}
+		public void setInitialArmor(int initialArmor) {
+			this.initialArmor = initialArmor;
+		}
+		public int getBaseDamage() {
+			return baseDamage;
+		}
+		public void setBaseDamage(int baseDamage) {
+			this.baseDamage = baseDamage;
+		}
+	
+		public int attack() {
+			// Plus tech??
+			return this.baseDamage;
+		}
+	
+		
+		public void tekeDamage(int receivedDamage) {
+			armor += receivedDamage;
+			
+		}
+	
+		
+		public int getActualArmor() {
+			return this.armor;
+		}
+	
+		
+		public int getMetalCost() {
+			return METAL_COST_LIGTHHUNTER;
+		}
+	
+		
+		public int getDeuteriumCost() {
+			return DEUTERIUM_COST_LIGTHHUNTER;
+		}
+	
+		
+		public int getChanceGeneratinWaste() {
+			return CHANCE_GENERATNG_WASTE_LIGTHHUNTER;
+		}
+	
+		
+		public int getChanceAttackAgain() {
+			
+			return CHANCE_ATTACK_AGAIN_LIGTHHUNTER;
+		}
+	
+		
+		public void resetArmor() {
+			this.armor = this.initialArmor;
+			
+		}
+		
+	}
+	
+	 public class IonCannon extends Defense {
+	
+		public IonCannon(int initialArmor, int baseDamage) {
+			super(initialArmor, baseDamage);
+			
+		}
+
 		public int getArmor() {
 			return armor;
 		}
@@ -34,69 +113,46 @@ public class Clases_defensa {
 			this.baseDamage = baseDamage;
 		}
 	
-		@Override
 		public int attack() {
-			// TODO Auto-generated method stub
-			return 0;
+			// Plus tech??
+			return this.baseDamage;
 		}
 	
-		@Override
+		
 		public void tekeDamage(int receivedDamage) {
-			// TODO Auto-generated method stub
+			armor += receivedDamage;
 			
 		}
 	
-		@Override
+		
 		public int getActualArmor() {
-			// TODO Auto-generated method stub
-			return 0;
+			return this.armor;
 		}
 	
-		@Override
+		
 		public int getMetalCost() {
-			// TODO Auto-generated method stub
-			return 0;
+			return METAL_COST_LIGTHHUNTER;
 		}
 	
-		@Override
+		
 		public int getDeuteriumCost() {
-			// TODO Auto-generated method stub
-			return 0;
+			return DEUTERIUM_COST_LIGTHHUNTER;
 		}
 	
-		@Override
+		
 		public int getChanceGeneratinWaste() {
-			// TODO Auto-generated method stub
-			return 0;
+			return CHANCE_GENERATNG_WASTE_LIGTHHUNTER;
 		}
 	
-		@Override
+		
 		public int getChanceAttackAgain() {
-			// TODO Auto-generated method stub
-			return 0;
-		}
-	
-		@Override
-		public void resetArmor() {
-			// TODO Auto-generated method stub
 			
+			return CHANCE_ATTACK_AGAIN_LIGTHHUNTER;
 		}
+	
 		
-		
-	}
-	
-	public class MissileLauncher extends Defense {
-	
-		public MissileLauncher(int initialArmor, int baseDamage) {
-			super(initialArmor, baseDamage);
-		}
-		
-	}
-	
-	 public class IonCannon extends Defense {
-	
-		public IonCannon(int initialArmor, int baseDamage) {
-			super(initialArmor, baseDamage);
+		public void resetArmor() {
+			this.armor = this.initialArmor;
 			
 		}
 		
@@ -106,6 +162,68 @@ public class Clases_defensa {
 	
 		public PlasmaCannon(int initialArmor, int baseDamage) {
 			super(initialArmor, baseDamage);
+			
+		}
+
+		public int getArmor() {
+			return armor;
+		}
+		public void setArmor(int armor) {
+			this.armor = armor;
+		}
+		public int getInitialArmor() {
+			return initialArmor;
+		}
+		public void setInitialArmor(int initialArmor) {
+			this.initialArmor = initialArmor;
+		}
+		public int getBaseDamage() {
+			return baseDamage;
+		}
+		public void setBaseDamage(int baseDamage) {
+			this.baseDamage = baseDamage;
+		}
+	
+		public int attack() {
+			// Plus tech??
+			return this.baseDamage;
+		}
+	
+		
+		public void tekeDamage(int receivedDamage) {
+			armor += receivedDamage;
+			
+		}
+	
+		
+		public int getActualArmor() {
+			return this.armor;
+		}
+	
+		
+		public int getMetalCost() {
+			return METAL_COST_LIGTHHUNTER;
+		}
+	
+		
+		public int getDeuteriumCost() {
+			return DEUTERIUM_COST_LIGTHHUNTER;
+		}
+	
+		
+		public int getChanceGeneratinWaste() {
+			return CHANCE_GENERATNG_WASTE_LIGTHHUNTER;
+		}
+	
+		
+		public int getChanceAttackAgain() {
+			
+			return CHANCE_ATTACK_AGAIN_LIGTHHUNTER;
+		}
+	
+		
+		public void resetArmor() {
+			this.armor = this.initialArmor;
 			
 		}
 		
