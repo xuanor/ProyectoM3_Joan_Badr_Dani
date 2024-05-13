@@ -2,9 +2,9 @@ public class Clases_defensa {
 
 	public abstract class Defense implements MilitaryUnit, Variables{
 	
-		private int armor;
-		private int initialArmor;
-		private int baseDamage;
+		int armor;
+		int initialArmor;
+		int baseDamage;
 		
 		public Defense() {};
 		
@@ -19,29 +19,10 @@ public class Clases_defensa {
 	
 	public class MissileLauncher extends Defense {
 	
-		public MissileLauncher(int initialArmor, int baseDamage) {
-			super(initialArmor, baseDamage);
+		public MissileLauncher(int armor, int baseDamage) {
+			super(armor, baseDamage);
 		}
 
-		public int getArmor() {
-			return this.armor;
-		}
-		public void setArmor(int armor) {
-			this.armor = armor;
-		}
-		public int getInitialArmor() {
-			return initialArmor;
-		}
-		public void setInitialArmor(int initialArmor) {
-			this.initialArmor = initialArmor;
-		}
-		public int getBaseDamage() {
-			return baseDamage;
-		}
-		public void setBaseDamage(int baseDamage) {
-			this.baseDamage = baseDamage;
-		}
-	
 		public int attack() {
 			// Plus tech??
 			return this.baseDamage;
@@ -49,7 +30,7 @@ public class Clases_defensa {
 	
 		
 		public void tekeDamage(int receivedDamage) {
-			armor += receivedDamage;
+			armor -= receivedDamage;
 			
 		}
 	
@@ -60,23 +41,23 @@ public class Clases_defensa {
 	
 		
 		public int getMetalCost() {
-			return METAL_COST_LIGTHHUNTER;
+			return METAL_COST_MISSILELAUNCHER;
 		}
 	
 		
 		public int getDeuteriumCost() {
-			return DEUTERIUM_COST_LIGTHHUNTER;
+			return DEUTERIUM_COST_MISSILELAUNCHER;
 		}
 	
 		
 		public int getChanceGeneratinWaste() {
-			return CHANCE_GENERATNG_WASTE_LIGTHHUNTER;
+			return CHANCE_GENERATNG_WASTE_MISSILELAUNCHER;
 		}
 	
 		
 		public int getChanceAttackAgain() {
 			
-			return CHANCE_ATTACK_AGAIN_LIGTHHUNTER;
+			return CHANCE_ATTACK_AGAIN_MISSILELAUNCHER;
 		}
 	
 		
@@ -84,7 +65,6 @@ public class Clases_defensa {
 			this.armor = this.initialArmor;
 			
 		}
-		
 	}
 	
 	 public class IonCannon extends Defense {
@@ -120,7 +100,7 @@ public class Clases_defensa {
 	
 		
 		public void tekeDamage(int receivedDamage) {
-			armor += receivedDamage;
+			armor -= receivedDamage;
 			
 		}
 	
@@ -131,23 +111,23 @@ public class Clases_defensa {
 	
 		
 		public int getMetalCost() {
-			return METAL_COST_LIGTHHUNTER;
+			return METAL_COST_IONCANNON;
 		}
 	
 		
 		public int getDeuteriumCost() {
-			return DEUTERIUM_COST_LIGTHHUNTER;
+			return DEUTERIUM_COST_IONCANNON;
 		}
 	
 		
 		public int getChanceGeneratinWaste() {
-			return CHANCE_GENERATNG_WASTE_LIGTHHUNTER;
+			return CHANCE_GENERATNG_WASTE_IONCANNON;
 		}
 	
 		
 		public int getChanceAttackAgain() {
 			
-			return CHANCE_ATTACK_AGAIN_LIGTHHUNTER;
+			return CHANCE_ATTACK_AGAIN_IONCANNON;
 		}
 	
 		
@@ -191,7 +171,7 @@ public class Clases_defensa {
 	
 		
 		public void tekeDamage(int receivedDamage) {
-			armor += receivedDamage;
+			armor -= receivedDamage;
 			
 		}
 	
@@ -202,23 +182,23 @@ public class Clases_defensa {
 	
 		
 		public int getMetalCost() {
-			return METAL_COST_LIGTHHUNTER;
+			return METAL_COST_PLASMACANNON;
 		}
 	
 		
 		public int getDeuteriumCost() {
-			return DEUTERIUM_COST_LIGTHHUNTER;
+			return DEUTERIUM_COST_PLASMACANNON;
 		}
 	
 		
 		public int getChanceGeneratinWaste() {
-			return CHANCE_GENERATNG_WASTE_LIGTHHUNTER;
+			return CHANCE_GENERATNG_WASTE_PLASMACANNON;
 		}
 	
 		
 		public int getChanceAttackAgain() {
 			
-			return CHANCE_ATTACK_AGAIN_LIGTHHUNTER;
+			return CHANCE_ATTACK_AGAIN_PLASMACANNON;
 		}
 	
 		
