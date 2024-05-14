@@ -1,9 +1,7 @@
-
 import java.util.ArrayList;
 import java.util.Scanner;
 import java.util.Timer;
 import java.util.TimerTask;
-
 
 public class Main implements Variables{
 	private boolean attackComing = false;
@@ -232,37 +230,37 @@ public class Main implements Variables{
 	// SIN USO**
 	public void amenazaAutomatica(Main principal, Battle b) {
 		
-//		boolean AtackFlag;
-		Timer timer = new Timer();
-	    TimerTask taskThreat = new TimerTask() {
-	    
-
-	         public void run() {
-	        	 System.out.println("··· Nueva amenaza ···");
-	        	 // Creo el nuevo ejercito enemigo
-	        	 ArrayList<MilitaryUnit>[] army = createEnemyArmy();
-	        	 // Añades al obj batalla la army enemiga
-	        	 b.setEnemyArmy(army);
-	        	 principal.setAttackComing(true);
-	             //ViewThreat(army);
-
-	         }
-
-	    };
-	    
-	    TimerTask taskAtack = new TimerTask() {
-		    
-
-	         public void run() {
-	        	 System.out.println("··· Te acaban de atacar ···");
-	        	 // Continuar ***
-	        	 //batalla(b);
-	         }
-
-	    };
-
-	    timer.schedule(taskThreat, 9000, 100000);
-	    timer.schedule(taskAtack, 10000, 8000);
+////		boolean AtackFlag;
+//		Timer timer = new Timer();
+//	    TimerTask taskThreat = new TimerTask() {
+//	    
+//
+//	         public void run() {
+//	        	 System.out.println("··· Nueva amenaza ···");
+//	        	 // Creo el nuevo ejercito enemigo
+//	        	 ArrayList<MilitaryUnit>[] army = createEnemyArmy();
+//	        	 // Añades al obj batalla la army enemiga
+//	        	 b.setEnemyArmy(army);
+//	        	 principal.setAttackComing(true);
+//	             //ViewThreat(army);
+//
+//	         }
+//
+//	    };
+//	    
+//	    TimerTask taskAtack = new TimerTask() {
+//		    
+//
+//	         public void run() {
+//	        	 System.out.println("··· Te acaban de atacar ···");
+//	        	 // Continuar ***
+//	        	 //batalla(b);
+//	         }
+//
+//	    };
+//
+//	    timer.schedule(taskThreat, 9000, 100000);
+//	    timer.schedule(taskAtack, 10000, 8000);
 	   
 	}
 	

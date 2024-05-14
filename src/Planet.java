@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 
-
 public class Planet implements Variables{
 	int technologyDefense;
 	int technologyAtack;

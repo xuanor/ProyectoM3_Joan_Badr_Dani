@@ -1,6 +1,6 @@
+
 import java.util.ArrayList;
 
-import javax.swing.plaf.synth.SynthStyleFactory;
 
 public class Battle implements Variables{
 	// ***VARIABLES***
@@ -39,7 +39,7 @@ public class Battle implements Variables{
 	// Array 2x7 
 	// cada fila representa a un ejercito (0 y 1) 
 	// cada columna representa un tipo de soldado y su cantidad incial (0-7)
-	private int[][] initialArmies = new int[2][7];
+	private int[][] initialArmies = new int[2][];
 	
 	// Tipos de unidades que hay
 	private int[] actualNumberUnitsPlanet, actualNumberUnitsEnemy;
@@ -83,7 +83,10 @@ public class Battle implements Variables{
 		return initialArmies;
 		
 	}
-	
+	//*****
+	public void setInitialArmies(int[][] ints) {
+		this.initialArmies = ints;
+	}
 	
 	//  Mostrar batalla paso a paso.
 	public int[] getEnemyDrops() {
@@ -107,7 +110,9 @@ public class Battle implements Variables{
 	} 
 	
 	// Para inicializar el array initialArmies y poder calcular los reportes. SIN USO ***
-//	public void initInitialArmies() {
+	public void initInitialArmies() {
+		System.out.println("Buenas tardes");
+	}
 	 
 	// Para generar el array de pérdidas.
 	public void updateResourcesLooses() {
@@ -121,34 +126,34 @@ public class Battle implements Variables{
 	
 	// Para calcular unidades de cada flota ****
 	public void initialFleetNumber() {
-		// Calacular total de unidades
-		
-		//initialNumberUnitsPlanet
-		int totalGrupo = 0;
-		int totalUnidades = 0;
-		// Sumar total de tropas
-		ArrayList[][] armies = this.getArmies();
-//		System.out.println("Longitud armies = " + armies.length);
-		int[][] initUnits = getInitialArmies();
-		
-		for (int i = 0; i < 2; i++) {	
-			totalGrupo = 0;
-			totalUnidades = 0;
-			for (int j = 0;j < armies[i].length;j++) {
-				// Por cada fila de la columna armies[i]
-				if (!(armies[i][j] == null)) {
-					totalGrupo += armies[i][j].size();
-					initUnits[i][j] = totalGrupo;
-					totalUnidades += totalGrupo;
-				}
-			}
-//			if (i==0) {
-//				this.initialNumberUnitsPlanet = totalUnidades;
-//			}else {
-//				this.initialNumberUnitsEnemy = totalUnidades;
+//		// Calacular total de unidades
+//		
+//		//initialNumberUnitsPlanet
+//		int totalGrupo = 0;
+//		int totalUnidades = 0;
+//		// Sumar total de tropas
+//		ArrayList[][] armies = this.getArmies();
+////		System.out.println("Longitud armies = " + armies.length);
+//		int[][] initUnits = getInitialArmies();
+//		
+//		for (int i = 0; i < 2; i++) {	
+//			totalGrupo = 0;
+//			totalUnidades = 0;
+//			for (int j = 0;j < armies[i].length;j++) {
+//				// Por cada fila de la columna armies[i]
+//				if (!(armies[i][j] == null)) {
+//					totalGrupo += armies[i][j].size();
+//					initUnits[i][j] = totalGrupo;
+//					totalUnidades += totalGrupo;
+//				}
 //			}
-		}
-		System.out.println("\nPLANETA= "+ initialNumberUnitsPlanet + "\nENEMIGOS= "+ initialNumberUnitsEnemy);
+////			if (i==0) {
+////				this.initialNumberUnitsPlanet = totalUnidades;
+////			}else {
+////				this.initialNumberUnitsEnemy = totalUnidades;
+////			}
+//		}
+//		System.out.println("\nPLANETA= "+ initialNumberUnitsPlanet + "\nENEMIGOS= "+ initialNumberUnitsEnemy);
 
 	} 
 	
@@ -173,9 +178,9 @@ public class Battle implements Variables{
 		
 		int[] chanceMyArmy = CHANCE_ATTACK_PLANET_UNITS;
 		// Calcular que porcentaje representa cada unidad en el army
-		//100*(Cantidad de cazadores ligeros ) / (total de unidades) = 9000/200 = 45 %
+		//100*(Cantidad de cazadores ligeros ) / (total de unidades) = 9000/200 = 45 %  (getInitialArmies()[0][i])
 		for (int i= 0; i< chanceMyArmy.length; i++) {
-			int percent = (int)(100*(army[i].size()) / (getInitialArmies()[0][i]));
+			int percent = (int)(100*(army[i].size()) / 100);
 			chanceMyArmy[i] = percent;
 			//System.out.print(chanceMyArmy[i] + " ");
 		}
@@ -259,13 +264,17 @@ public class Battle implements Variables{
 		
 	}
 	
-	public void batalla(){
+	public void batalla() {
+		System.out.println("ESTIC A LA BATALLA");
+		int[][] ints = {{1,2,3},{1,2,4}};
+		setInitialArmies(ints);
 		// El obj battle que he ido pasando desde mainMenu
 		ArrayList<MilitaryUnit>[] mainArmy, enemyArmy, army = new ArrayList[7];
 		mainArmy = getPlanetArmy();
 		enemyArmy = getEnemyArmy();
 		// Contar total de tropas iniciales
-		//initialFleetNumber();
+		
+		initialFleetNumber();
 		
 		int [] chanceEnenmy = CHANCE_ATTACK_ENEMY_UNITS;
 		int [] chanceMyArmy = CHANCE_ATTACK_PLANET_UNITS;
