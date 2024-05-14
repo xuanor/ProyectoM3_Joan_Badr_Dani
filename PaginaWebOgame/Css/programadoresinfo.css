@@ -5,10 +5,7 @@
     box-sizing: border-box;
 }
 
-body {
-    background-color: grey; 
 
-}
 
 /* Estilos de la cabecera */
 #cabecera {
@@ -123,7 +120,6 @@ body {
     flex-grow: 1;
     width: auto;
     margin-right: 10px;
-    border: 1px solid #15244e; /* Añadimos un borde gris */
     transition: box-shadow 0.3s ease; /* Añadimos transición de sombra */
 }
 
@@ -156,31 +152,87 @@ body {
 #cuerpo {
     margin-top: 100px; /* Agrega un margen superior igual a la altura de la cabecera */
     margin-bottom: 50px; /* Agrega un margen inferior igual a la altura del botón inferior */
+    background-color: white;
+    
 }
 
-/* Estilos para el contenedor JDesenv */
-.JDesenv {
+
+/* Estilos para el contenedor JDesenv dentro de #cuerpo */
+#cuerpo .JDesenv {
     display: flex;
+    width: 70%; /* Ancho fijo del contenedor */
+    margin: 0 auto; /* Centrar horizontalmente */
     justify-content: space-between;
-    align-items: center;
-    flex-wrap: wrap; /* Permite que los elementos se ajusten automáticamente en varias filas */
+    align-items: flex-start; /* Cambiado para evitar superposiciones */
+    flex-wrap: wrap;
 }
+
 
 /* Estilos para cada juego */
-.jeugo {
-    width: calc(33.33% - 20px); /* Calcula el ancho para 3 juegos por fila con un margen de 10px a cada lado */
+.juego {
+    width: calc(30% - 20px); /* Calcula el ancho para 3 juegos por fila con un margen de 10px a cada lado */
     margin-bottom: 20px; /* Espacio entre juegos */
+    position: relative;
 }
-/* Estilos para cada rol de trabajador */
-.empresa,
-.programador,
-.diseniador,
-.relaciones {
+
+.juego img {
     width: 100%;
-    margin-bottom: 20px; /* Espacio entre roles de trabajador */
+    height: auto;
+    display: block;
+    cursor: pointer; /* Cambia el cursor al hacer clic */
+}
+
+.juego p {
+    display: none; /* Oculta el texto inicialmente */
+    position: absolute;
+    top: 0;
+    right: calc(100% + 10px); /* Posición inicial del texto fuera del contenedor */
+    background-color: white;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    width: calc(70% - 20px); /* Ancho del texto */
+    transition: right 0.3s ease; /* Añade una transición para el movimiento */
+}
+
+/* Mostrar el texto y ocultar las otras imágenes al hacer clic en una imagen */
+.juego:target {
+    width: calc(100% - 20px); /* Expande el contenedor al 100% menos el margen */
+}
+
+.juego:target img {
+    width: 70%; /* Ancho de la imagen clicada */
+    float: left; /* Coloca la imagen clicada a la izquierda */
+    clear: both; /* Asegura que no haya otros elementos flotantes en la misma línea */
+}
+
+.juego:target p {
+    display: block; /* Muestra el texto */
+    right: 0; /* Coloca el texto a la derecha */
+}
+
+
+
+
+/* Estilos para cada rol de trabajador */
+.empresa img{
+    width: 100px; /* Tamaño de la imagen */
+    height: 100px;
+    border-radius: 50%; /* Marco circular */
+    margin-right: 20px; /* Espacio entre la imagen y el texto */
+}
+
+
+.empresa, .programador, .diseniador, .relaciones {
+    width: 75%;
+    margin: 0 auto 20px auto; /* Centra el bloque y añade margen inferior */
     display: flex;
     align-items: center;
+    border: 2px solid red;
+    border-radius: 5px;
+    padding: 30px;
 }
+
 
 /* Estilos para las imágenes de avatar */
 .trabajdores img {
@@ -220,9 +272,9 @@ body {
 
 
 /* Establece un tamaño específico para las imágenes */
-.jeugo img,
+
 .trabajdores img {
-    width: 400px;
+    width: 500px;
     height: 300px;
     object-fit: cover; /* Ajusta la imagen sin distorsionarla, recortando si es necesario */
 
