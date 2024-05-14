@@ -38,7 +38,7 @@ public class Clases_ataque {
 	
 		
 		public void tekeDamage(int receivedDamage) {
-			armor += receivedDamage;
+			armor -= receivedDamage;
 			
 		}
 	
@@ -93,7 +93,7 @@ public class Clases_ataque {
 	
 		
 		public void tekeDamage(int receivedDamage) {
-			armor += receivedDamage;
+			armor -= receivedDamage;
 			
 		}
 	
@@ -150,7 +150,7 @@ public class Clases_ataque {
 	
 		
 		public void tekeDamage(int receivedDamage) {
-			armor += receivedDamage;
+			armor -= receivedDamage;
 			
 		}
 	
@@ -207,7 +207,7 @@ public class Clases_ataque {
 	
 		
 		public void tekeDamage(int receivedDamage) {
-			armor += receivedDamage;
+			armor -= receivedDamage;
 			
 		}
 	

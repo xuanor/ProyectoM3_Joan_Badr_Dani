@@ -6,5 +6,6 @@
 			<attribute name="module" value="true"/>
 		</attributes>
 	</classpathentry>
+	<classpathentry kind="lib" path="/home/super/Documents/GitHub/ProyectoM3_Joan_Badr_Dani/DriverDATABASE/ojdbc11.jar"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>
