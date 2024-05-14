@@ -195,7 +195,7 @@ body {
 }
 
 .desc {
-  height: 50%; /* La descripción ocupa el 20% de la altura del producto */
+  height: 25%; /* La descripción ocupa el 20% de la altura del producto */
   padding: 5px; /* Añade un pequeño espacio interno */
   background-color: rgba(255, 255, 255, 0.9); /* Fondo semi-transparente para la descripción */
   border-top: 1px solid #ccc; /* Línea superior para separar la imagen de la descripción */

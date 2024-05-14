@@ -210,8 +210,8 @@ body {
     position: relative;
     display: inline-block;
     padding: 25px 30px;
-    color: #fff; /* Color del texto cambiado a blanco */
-    background-color: #000; /* Color de fondo cambiado a negro */
+    color: #fff; 
+    background-color: #000; 
     text-decoration: none;
     text-transform: uppercase;
     transition: 0.5s;
