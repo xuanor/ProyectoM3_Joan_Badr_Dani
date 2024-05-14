@@ -6,13 +6,13 @@
 }
 
 body {
-    background-color: #ffffff; /* Fondo negro */
+    background-color: grey; 
+
 }
 
 /* Estilos de la cabecera */
 #cabecera {
     background-image: url('../fotos/logo/cabecera.webp'); 
-    padding: 20px; /* Añade un poco más de relleno alrededor del contenedor */
     position: sticky;
     top: 0;
     z-index: 2000; /* Aumenta el z-index para que la cabecera esté por encima de los demás elementos */
@@ -22,16 +22,17 @@ body {
     display: flex;
     justify-content: space-between; /* Distribuye los elementos a lo largo del eje principal con un espacio igual entre ellos */
     align-items: center; /* Centra verticalmente los elementos */
-    max-width: 1200px; /* Establece el ancho máximo del contenedor */
+    max-width: 1800px; /* Establece el ancho máximo del contenedor */
     margin: 0 auto; /* Centra el contenedor horizontalmente en la página */
 }
 
 .logo {
     order: 2; /* Mueve el logo al medio */
+    margin: 0 auto; /* Centra horizontalmente el logo */
 }
 
 .links {
-    order: 1; /* Mueve el menú al extremo izquierdo */
+    order: 1; /* Mueve el menú al extremo izquierdo */    
 }
 
 .creden {
@@ -42,7 +43,7 @@ body {
 .desplegable {
     display: none; /* Oculta la lista desplegable por defecto */
     position: absolute;
-    background-color: #f9f9f9;
+    background-color: #000; /* Fondo negro */
     min-width: 160px;
     box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
     z-index: 1;
@@ -52,12 +53,28 @@ body {
     padding: 12px 16px;
     text-decoration: none;
     display: block;
-    color: black;
+    color: #fff; /* Letras blancas */
+    transition: background-color 0.3s ease; /* Transición suave al pasar el ratón */
 }
 
-.desplegable li:hover {
-    background-color: black;
+
+.desplegable a {
+    text-decoration: none; /* Elimina el subrayado */
+    color: white; /* Color de la letra blanco */
 }
+
+
+.desplegable li:hover {
+    background-color: #333; /* Cambio de color al pasar el ratón */
+}
+
+
+.desplegable a:hover {
+    background-color: rgba(0, 0, 0, 0.2); /* Color de fondo grisaceo al pasar el ratón */
+}
+
+
+
 
 /* Mostrar el menú desplegable al hacer clic en el botón */
 #menuBtn:hover + .desplegable,
@@ -82,81 +99,133 @@ body {
 
 /* Estilo del div de credenciales */
 .creden {
-    background-color: #000; /* Fondo negro */
-    color: #fff; /* Letras blancas */
-    padding: 20px; /* Espaciado interno */
-    border-radius: 5px; /* Bordes redondeados */
-    display: flex; /* Usar flexbox */
-    flex-direction: column; /* Organizar los elementos en columna */
-    align-items: center; /* Centrar horizontalmente los elementos */
-    margin-right: 20px; /* Espacio a la derecha */
+    background-color: transparent; /* Eliminamos el color de fondo */
+    color: #fff;
+    padding: 20px;
+    border-radius: 5px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start; /* Alinear los elementos al inicio del contenedor */
+    margin-right: 5px;
+    
 }
 
-/* Estilo de los elementos dentro del div de credenciales */
 .creden .fila {
-    display: flex; /* Usar flexbox */
-    align-items: center; /* Centrar verticalmente los elementos */
-    margin-bottom: 15px; /* Espacio entre las filas */
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
 }
 
 .creden .fila input[type="text"],
 .creden .fila input[type="password"] {
-    margin-right: 15px; /* Espacio entre los inputs */
-    padding: 10px; /* Espacio interno */
-    font-size: 16px; /* Tamaño de fuente */
+    padding: 10px;
+    font-size: 13px;
+    flex-grow: 1;
+    width: auto;
+    margin-right: 10px;
+    border: 1px solid #15244e; /* Añadimos un borde gris */
+    transition: box-shadow 0.3s ease; /* Añadimos transición de sombra */
+}
+
+.creden .fila input[type="text"]:focus,
+.creden .fila input[type="password"]:focus {
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Añadimos sombra al enfocar */
 }
 
 .creden .fila button {
-    background-color: #333; /* Fondo gris oscuro */
-    color: #fff; /* Letras blancas */
-    border: none; /* Sin borde */
-    border-radius: 5px; /* Bordes redondeados */
-    padding: 10px 20px; /* Espacio alrededor del texto */
-    cursor: pointer; /* Cambiar el cursor al pasar sobre el botón */
-    transition: background-color 0.3s ease; /* Transición suave al pasar el ratón */
+    background-color: transparent; /* Eliminamos el color de fondo */
+    color: #fff;
+    border: 1px solid #ccc; /* Añadimos un borde gris */
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    transition: box-shadow 0.3s ease; /* Añadimos transición de sombra */
+    min-width: 120px; /* Ajustar el ancho mínimo de los botones */
 }
 
 .creden .fila button:hover {
-    background-color: #555; /* Cambio de color al pasar el ratón */
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Añadimos sombra al pasar el ratón */
 }
 
 
+
+
 /*Contnedor par alos 3 juegos desarrollados*/
+
+/* Estilos para el contenedor principal */
+#cuerpo {
+    margin-top: 100px; /* Agrega un margen superior igual a la altura de la cabecera */
+    margin-bottom: 50px; /* Agrega un margen inferior igual a la altura del botón inferior */
+}
+
+/* Estilos para el contenedor JDesenv */
 .JDesenv {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    width: 100%;
+    flex-wrap: wrap; /* Permite que los elementos se ajusten automáticamente en varias filas */
 }
 
+/* Estilos para cada juego */
 .jeugo {
-    position: relative;
-    width: 25%;
-    overflow: hidden;
+    width: calc(33.33% - 20px); /* Calcula el ancho para 3 juegos por fila con un margen de 10px a cada lado */
+    margin-bottom: 20px; /* Espacio entre juegos */
 }
-
-.jeugo img {
+/* Estilos para cada rol de trabajador */
+.empresa,
+.programador,
+.diseniador,
+.relaciones {
     width: 100%;
-    height: auto;
-    transition: transform 0.5s;
+    margin-bottom: 20px; /* Espacio entre roles de trabajador */
+    display: flex;
+    align-items: center;
 }
 
-.jeugo p {
-    position: absolute;
-    bottom: 10px;
-    left: 10px;
-    color: white;
-    font-size: 1.5rem;
-    opacity: 0;
-    transition: opacity 0.5s;
+/* Estilos para las imágenes de avatar */
+.trabajdores img {
+    width: 100px; /* Tamaño de la imagen */
+    height: 100px;
+    border-radius: 50%; /* Marco circular */
+    margin-right: 20px; /* Espacio entre la imagen y el texto */
 }
 
-.jeugo:hover img {
-    transform: scale(1.5);
+/* Estilos para el texto de la información */
+.trabajdores p {
+    margin: 0; /* Elimina el margen predeterminado */
 }
 
-.jeugo:hover p {
-    opacity: 1;
+/* Estilos para el contenedor de la información */
+.avatar-info {
+    display: flex;
+    flex-direction: column;
+    border-radius: 10px; /* Bordes redondeados */
+    border: 1px solid #ccc; /* Borde para el contenedor */
+    padding: 10px; /* Espacio interno */
+}
+
+/* Intercalar la posición de la imagen y el texto */
+.programador,
+.relaciones {
+    flex-direction: row-reverse; /* Invertir el orden */
+}
+
+/* Ajustar el tamaño de la imagen según el contenedor */
+.avatar-container {
+    width: auto;
+    height: 100%;
+    display: flex;
+    align-items: center;
+}
+
+
+/* Establece un tamaño específico para las imágenes */
+.jeugo img,
+.trabajdores img {
+    width: 400px;
+    height: 300px;
+    object-fit: cover; /* Ajusta la imagen sin distorsionarla, recortando si es necesario */
+
 }
 
 
@@ -165,23 +234,28 @@ body {
 
 
 
-
-
-
-
-
-
-/*La parte de abajo*/
-
+/* La parte de abajo */
 .bottom{
-    position: absolute;
+    position: relative; /* Cambiamos a posición relativa */
     width: 100%;
     height: 10%;
-    bottom: -230%;
     background-color: #242526;
     text-align: center;
+    bottom: 0; /* Eliminamos esta línea ya que no es necesaria con position: relative */
+    color: #fff; /* Color del texto */
+    z-index: 9999; /* Asegura que esté por encima de otros elementos */
+}
+
+
+  
+  #text_bottom {
+    color: #fff; /* Color del texto */
   }
-  #text_bottom{
-    color: #fff;
+  
+  /* Adaptación a cualquier tamaño */
+  @media only screen and (max-width: 600px) {
+    .jeugo {
+      width: calc(50% - 20px); /* Calcula el ancho para 2 juegos por fila con un margen de 10px a cada lado */
+    }
   }
- 
+  
