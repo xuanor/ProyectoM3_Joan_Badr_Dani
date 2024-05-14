@@ -6,7 +6,7 @@ import java.util.TimerTask;
 
 
 public class Main implements Variables{
-	boolean attackComing = false;
+	private boolean attackComing = false;
 	
 	public void setAttackComing(boolean flag) {
 		this.attackComing = flag;
@@ -316,7 +316,6 @@ public class Main implements Variables{
 
 	         public void run() {
 	        	 System.out.println("··· Te acaban de atacar ···");
-	        	 // Continuar ***
 	        	 b.batalla();
 	         }
 
