@@ -7,6 +7,7 @@
 
 
 
+
 /* Estilos de la cabecera */
 #cabecera {
     background-image: url('../fotos/logo/cabecera.webp'); 
@@ -182,35 +183,6 @@
     cursor: pointer; /* Cambia el cursor al hacer clic */
 }
 
-.juego p {
-    display: none; /* Oculta el texto inicialmente */
-    position: absolute;
-    top: 0;
-    right: calc(100% + 10px); /* Posición inicial del texto fuera del contenedor */
-    background-color: white;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: calc(70% - 20px); /* Ancho del texto */
-    transition: right 0.3s ease; /* Añade una transición para el movimiento */
-}
-
-/* Mostrar el texto y ocultar las otras imágenes al hacer clic en una imagen */
-.juego:target {
-    width: calc(100% - 20px); /* Expande el contenedor al 100% menos el margen */
-}
-
-.juego:target img {
-    width: 70%; /* Ancho de la imagen clicada */
-    float: left; /* Coloca la imagen clicada a la izquierda */
-    clear: both; /* Asegura que no haya otros elementos flotantes en la misma línea */
-}
-
-.juego:target p {
-    display: block; /* Muestra el texto */
-    right: 0; /* Coloca el texto a la derecha */
-}
-
 
 
 
@@ -223,17 +195,22 @@
 }
 
 
+
 .empresa, .programador, .diseniador, .relaciones {
     width: 75%;
     margin: 0 auto 20px auto; /* Centra el bloque y añade margen inferior */
     display: flex;
     align-items: center;
-    border: 2px solid red;
+    background-color: grey;
     border-radius: 5px;
     padding: 30px;
 }
-
-
+.empresa:hover {
+    transform: scale(1.05); /* Agranda la caja al pasar el ratón */
+  }
+.empresa:hover .overlay {
+    opacity: 100; /* Muestra el overlay cuando se pasa el ratón */
+  }
 /* Estilos para las imágenes de avatar */
 .trabajdores img {
     width: 100px; /* Tamaño de la imagen */
@@ -244,7 +221,7 @@
 
 /* Estilos para el texto de la información */
 .trabajdores p {
-    margin: 0; /* Elimina el margen predeterminado */
+    margin: 10px; /* Elimina el margen predeterminado */
 }
 
 /* Estilos para el contenedor de la información */
