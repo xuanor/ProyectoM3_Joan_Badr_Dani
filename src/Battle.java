@@ -325,7 +325,7 @@ public class Battle implements Variables{
 			randomNum = (int)(Math.random()*armies[empieza%2][cont].size());	
 			attDef.add(armies[empieza%2][cont].get(randomNum));	
 			//army = mainArmy;
-			
+			// Hola
 			// Grupo atack
 			cont = getGroupAttacker(armies[empieza%2]);
 			// Añado grupo enemigo
