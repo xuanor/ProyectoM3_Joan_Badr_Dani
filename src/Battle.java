@@ -126,34 +126,34 @@ public class Battle implements Variables{
 	
 	// Para calcular unidades de cada flota ****
 	public void initialFleetNumber() {
-//		// Calacular total de unidades
-//		
-//		//initialNumberUnitsPlanet
-//		int totalGrupo = 0;
-//		int totalUnidades = 0;
-//		// Sumar total de tropas
-//		ArrayList[][] armies = this.getArmies();
-////		System.out.println("Longitud armies = " + armies.length);
-//		int[][] initUnits = getInitialArmies();
-//		
-//		for (int i = 0; i < 2; i++) {	
-//			totalGrupo = 0;
-//			totalUnidades = 0;
-//			for (int j = 0;j < armies[i].length;j++) {
-//				// Por cada fila de la columna armies[i]
-//				if (!(armies[i][j] == null)) {
-//					totalGrupo += armies[i][j].size();
-//					initUnits[i][j] = totalGrupo;
-//					totalUnidades += totalGrupo;
-//				}
+		// Calacular total de unidades
+		
+		//initialNumberUnitsPlanet
+		int totalGrupo = 0;
+		int totalUnidades = 0;
+		// Sumar total de tropas
+		ArrayList[][] armies = this.getArmies();
+//		System.out.println("Longitud armies = " + armies.length);
+		int[][] initUnits = getInitialArmies();
+		
+		for (int i = 0; i < 2; i++) {	
+			totalGrupo = 0;
+			totalUnidades = 0;
+			for (int j = 0;j < armies[i].length;j++) {
+				// Por cada fila de la columna armies[i]
+				if (!(armies[i][j] == null)) {
+					totalGrupo += armies[i][j].size();
+					initUnits[i][j] = totalGrupo;
+					totalUnidades += totalGrupo;
+				}
+			}
+//			if (i==0) {
+//				this.initialNumberUnitsPlanet = totalUnidades;
+//			}else {
+//				this.initialNumberUnitsEnemy = totalUnidades;
 //			}
-////			if (i==0) {
-////				this.initialNumberUnitsPlanet = totalUnidades;
-////			}else {
-////				this.initialNumberUnitsEnemy = totalUnidades;
-////			}
-//		}
-//		System.out.println("\nPLANETA= "+ initialNumberUnitsPlanet + "\nENEMIGOS= "+ initialNumberUnitsEnemy);
+		}
+		System.out.println("\nPLANETA= "+ initialNumberUnitsPlanet + "\nENEMIGOS= "+ initialNumberUnitsEnemy);
 
 	} 
 	
