@@ -44,6 +44,27 @@ public class Battle implements Variables{
 	// Tipos de unidades que hay
 	private int[] actualNumberUnitsPlanet, actualNumberUnitsEnemy;
 	
+	// Devuelvo las % de escojer cada unidad de cada ejercito
+	private int[] getChanceUnits(ArrayList<MilitaryUnit>[] army) {
+
+		int[] chanceMyArmy = new int[7];
+		
+		if (!(army[4] == null)) {
+			chanceMyArmy = CHANCE_ATTACK_ENEMY_UNITS;
+		}
+		else {
+			// Calcular que porcentaje representa cada unidad en el army
+			//100*(Cantidad de cazadores ligeros ) / (total de unidades) = 9000/200 = 45 %  (getInitialArmies()[0][i])
+			
+			for (int i= 0; i< chanceMyArmy.length; i++) {
+				int percent = (int)(100*(armies[0][i].size()) / 100);
+				chanceMyArmy[i] = percent;
+				//System.out.print(chanceMyArmy[i] + " ");
+			}
+		}
+		return chanceMyArmy;
+	}
+	
 	// ***METODOS***
 	
 	//resumen, battles será el número de batallas que hayamos acumulado
@@ -109,10 +130,6 @@ public class Battle implements Variables{
 		return "";
 	} 
 	
-	// Para inicializar el array initialArmies y poder calcular los reportes. SIN USO ***
-	public void initInitialArmies() {
-		System.out.println("Buenas tardes");
-	}
 	 
 	// Para generar el array de pérdidas.
 	public void updateResourcesLooses() {
@@ -134,25 +151,28 @@ public class Battle implements Variables{
 		// Sumar total de tropas
 		ArrayList[][] armies = this.getArmies();
 //		System.out.println("Longitud armies = " + armies.length);
-		int[][] initUnits = getInitialArmies();
+		int[][] initUnits = new int[2][7];
 		
 		for (int i = 0; i < 2; i++) {	
 			totalGrupo = 0;
 			totalUnidades = 0;
-			for (int j = 0;j < armies[i].length;j++) {
+			for (int j = 0; j < armies[i].length; j++) {
 				// Por cada fila de la columna armies[i]
 				if (!(armies[i][j] == null)) {
 					totalGrupo += armies[i][j].size();
+					System.out.println("grupo = " + totalGrupo);
 					initUnits[i][j] = totalGrupo;
-					totalUnidades += totalGrupo;
+					
 				}
 			}
-//			if (i==0) {
-//				this.initialNumberUnitsPlanet = totalUnidades;
-//			}else {
-//				this.initialNumberUnitsEnemy = totalUnidades;
-//			}
+			totalUnidades += totalGrupo;
+			if (i==0) {
+				this.initialNumberUnitsPlanet = totalUnidades;
+			}else {
+				this.initialNumberUnitsEnemy = totalUnidades;
+			}
 		}
+		setInitialArmies(initUnits);
 		System.out.println("\nPLANETA= "+ initialNumberUnitsPlanet + "\nENEMIGOS= "+ initialNumberUnitsEnemy);
 
 	} 
@@ -175,23 +195,16 @@ public class Battle implements Variables{
 	//	Para que dado un ejército, nos devuelva el grupo defensor, 
 	//	0-3 en el caso de la flota enemiga, 0-6 en el caso del ejército de nuestro planeta.
 	public int getGroupDefender(ArrayList<MilitaryUnit>[] army) {
-		
-		int[] chanceMyArmy = CHANCE_ATTACK_PLANET_UNITS;
-		// Calcular que porcentaje representa cada unidad en el army
-		//100*(Cantidad de cazadores ligeros ) / (total de unidades) = 9000/200 = 45 %  (getInitialArmies()[0][i])
-		for (int i= 0; i< chanceMyArmy.length; i++) {
-			int percent = (int)(100*(army[i].size()) / 100);
-			chanceMyArmy[i] = percent;
-			//System.out.print(chanceMyArmy[i] + " ");
-		}
-		
+		// Calculo probabilidades
+		 int[] chanceMyArmy = getChanceUnits(army);
+	
 		// Por ultimo escojeremos que unidad sera el defensor dentro de ese grupo
 		// EJERCITO > UNIDADES > NAVE
 		int randomNum = (int)(Math.random()*100);
 		int cont = 0;
 		int sumTotal = 0;
 		boolean checkSize = false;
-		// Hola
+		
 		while (!checkSize) {
 			// Ecoger grupo def
 			for (int i = 0; i< chanceMyArmy.length;i++) {
@@ -208,57 +221,67 @@ public class Battle implements Variables{
 	}
 	
 	// Que nos servirán para escoger el GRUPO atacante (a que tropa ataca) tanto del planeta...
-	public int getPlanetGroupAttacker() {
+	public int getGroupAttacker(ArrayList<MilitaryUnit>[] army) {
+		int[] chanceUnits = new int[7];
+		
+		if (!(army[4] == null)) {
+			chanceUnits = CHANCE_ATTACK_ENEMY_UNITS;
+		}
+		else {
+			chanceUnits = CHANCE_ATTACK_PLANET_UNITS;
+		}
+		
 		// Añadir check size aquiS
 		boolean checkSize = false;
 		int cont = 0;
+		
 		while (!checkSize) {
 			int randomNum = (int)(Math.random()*100);			
 			int sumTotal = 0;
 			cont = 0;
 			
 			// Ecoger grupo atack
-			for (int i = 0;i< CHANCE_ATTACK_PLANET_UNITS.length;i++) {
-				sumTotal += CHANCE_ATTACK_PLANET_UNITS[i];
+			for (int i = 0;i< chanceUnits.length;i++) {
+				sumTotal += chanceUnits[i];
 				
 				if (sumTotal < randomNum) {
 					cont += i;
 				}
 			}
 			//Comporbar que ese arraylist tiene tantas posiciones. 
-			if (getPlanetArmy()[cont].size() > 0) {
+			if (army[cont].size() > 0) {
 				checkSize = true;
 			}
 		}
 		return cont;
 	}		
 	
-	//... como de la flota enemiga.
-	public int getEnemyGroupAttacker() {
-		// Añadir check size aquiS
-		boolean checkSize = false;
-		int cont = 0;
-		while (!checkSize) {
-			int randomNum = (int)(Math.random()*100);			
-			int sumTotal = 0;
-			cont = 0;
-			
-			// Ecoger grupo atack
-			for (int i = 0;i< CHANCE_ATTACK_ENEMY_UNITS.length;i++) {
-				sumTotal += CHANCE_ATTACK_ENEMY_UNITS[i];
-				
-				if (sumTotal < randomNum) {
-					cont += i;
-				}
-			}
-			//Comporbar que ese arraylist tiene tantas posiciones. 
-			if (getEnemyArmy()[cont].size() > 0) {
-				checkSize = true;
-			}
-		}
-		return cont;
-	}
-	
+//	//... como de la flota enemiga.
+//	public int getEnemyGroupAttacker() {
+//		// Añadir check size aquiS
+//		boolean checkSize = false;
+//		int cont = 0;
+//		while (!checkSize) {
+//			int randomNum = (int)(Math.random()*100);			
+//			int sumTotal = 0;
+//			cont = 0;
+//			
+//			// Ecoger grupo atack
+//			for (int i = 0;i< CHANCE_ATTACK_ENEMY_UNITS.length;i++) {
+//				sumTotal += CHANCE_ATTACK_ENEMY_UNITS[i];
+//				
+//				if (sumTotal < randomNum) {
+//					cont += i;
+//				}
+//			}
+//			//Comporbar que ese arraylist tiene tantas posiciones. 
+//			if (getEnemyArmy()[cont].size() > 0) {
+//				checkSize = true;
+//			}
+//		}
+//		return cont;
+//	}
+//	
 	//  Restablecer los blindajes de nuestro ejército.
 	public void resetArmyArmor() {
 		
@@ -266,18 +289,16 @@ public class Battle implements Variables{
 	
 	public void batalla() {
 		System.out.println("ESTIC A LA BATALLA");
-		int[][] ints = {{1,2,3},{1,2,4}};
-		setInitialArmies(ints);
+		
 		// El obj battle que he ido pasando desde mainMenu
 		ArrayList<MilitaryUnit>[] mainArmy, enemyArmy, army = new ArrayList[7];
-		mainArmy = getPlanetArmy();
-		enemyArmy = getEnemyArmy();
+//		mainArmy = getPlanetArmy();
+//		enemyArmy = getEnemyArmy();
+		ArrayList<MilitaryUnit>[][] armies = getArmies();
 		// Contar total de tropas iniciales
 		
 		initialFleetNumber();
 		
-		int [] chanceEnenmy = CHANCE_ATTACK_ENEMY_UNITS;
-		int [] chanceMyArmy = CHANCE_ATTACK_PLANET_UNITS;
 		boolean chanceAttack = false;
 		boolean playBattle = false;
 		boolean checkSize = false;
@@ -291,51 +312,42 @@ public class Battle implements Variables{
 		// Cuando uno se muerte lo borramos y añadimos +1 al contador de muertes de se grupo (enemyDarps[indice grupo] += 1)
 		// Despues de la batalla calculamos coste de perdidas por equipo...
 		int empieza = (int)(Math.random()*2 +1);
-		int cont =0;
-		boolean turnoPlanet;
-
-		if (empieza == 1) {
-			turnoPlanet = false;
-		}else {
-			turnoPlanet = true;
-		}
+		int cont = 0;
 		
 		while (playBattle) {
 			// Aqui guardo el grupo att y el grupo def de cada jugada
 			ArrayList<MilitaryUnit> attDef = new ArrayList<MilitaryUnit>();
 			int randomNum = (int)(Math.random()*100);			
 			
-			// Empiza el enemigo
-			if (turnoPlanet) {
-				// Grupo def
-				cont = getGroupDefender(planetArmy);
-				// Añado grupo enemigo
-				randomNum = (int)(Math.random()*mainArmy[cont].size());	
-				attDef.add(mainArmy[cont].get(randomNum));	
-				army = mainArmy;
-				
-				// Grupo atack
-				cont = getEnemyGroupAttacker();
-				// Añado grupo enemigo
-				randomNum = (int)(Math.random()*enemyArmy[cont].size());	
-				attDef.add(enemyArmy[cont].get(randomNum));	
+			// Grupo def
+			cont = getGroupDefender(armies[empieza%2]);
+			// Añado grupo enemigo
+			randomNum = (int)(Math.random()*armies[empieza%2][cont].size());	
+			attDef.add(armies[empieza%2][cont].get(randomNum));	
+			//army = mainArmy;
+			
+			// Grupo atack
+			cont = getGroupAttacker(armies[empieza%2]);
+			// Añado grupo enemigo
+			randomNum = (int)(Math.random()*enemyArmy[cont].size());	
+			attDef.add(armies[empieza%2][cont].get(randomNum));	
 				
 			}
 			// Empiza mi planeta
-			else {
-				cont = getGroupDefender(enemyArmy);
-				// Añado grupo enemigo
-				randomNum = (int)(Math.random()*enemyArmy[cont].size());	
-				attDef.add(enemyArmy[cont].get(randomNum));	
-				army = enemyArmy;
-				
-				// Ecoger grupo atack
-				cont = getPlanetGroupAttacker();	
-				// Añado grupo enemigo
-				randomNum = (int)(Math.random()*mainArmy[cont].size());	
-				attDef.add(mainArmy[cont].get(randomNum));
-				
-			}
+//			else {
+//				cont = getGroupDefender(enemyArmy);
+//				// Añado grupo enemigo
+//				randomNum = (int)(Math.random()*enemyArmy[cont].size());	
+//				attDef.add(enemyArmy[cont].get(randomNum));	
+//				army = enemyArmy;
+//				
+//				// Ecoger grupo atack
+//				cont = getPlanetGroupAttacker();	
+//				// Añado grupo enemigo
+//				randomNum = (int)(Math.random()*mainArmy[cont].size());	
+//				attDef.add(mainArmy[cont].get(randomNum));
+//				
+//			}
 			
 			// Atacante resta a defensa lo que tiene de poder de ataque
 			// Hasta 0 o -0, que se eliminara

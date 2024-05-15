@@ -319,8 +319,8 @@ public class Main implements Variables{
 
 	    };
 
-	    timer.schedule(taskThreat, 9000, 10000);
-	    timer.schedule(taskAtack, 10000, 12000);
+	    timer.schedule(taskThreat, 3000, 10000);
+	    timer.schedule(taskAtack, 4000, 12000);
 		Scanner sc = new Scanner(System.in);
 
 		// Activa los avisos de amenaza
