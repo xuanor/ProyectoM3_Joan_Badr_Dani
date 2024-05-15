@@ -350,33 +350,6 @@ public class Battle implements Variables{
 			// Añado grupo enemigo
 			randomNum = (int)(Math.random()*armies[empieza%2][cont].size());	
 			attDef.add(armies[empieza%2][cont].get(randomNum));	
-<<<<<<< Updated upstream
-			//army = mainArmy;
-			
-			// Grupo atack
-			cont = getGroupAttacker(armies[empieza%2]);
-			// Añado grupo enemigo
-			randomNum = (int)(Math.random()*enemyArmy[cont].size());	
-			attDef.add(armies[empieza%2][cont].get(randomNum));	
-				
-			}
-			// Empiza mi planeta
-//			else {
-//				cont = getGroupDefender(enemyArmy);
-//				// Añado grupo enemigo
-//				randomNum = (int)(Math.random()*enemyArmy[cont].size());	
-//				attDef.add(enemyArmy[cont].get(randomNum));	
-//				army = enemyArmy;
-//				
-//				// Ecoger grupo atack
-//				cont = getPlanetGroupAttacker();	
-//				// Añado grupo enemigo
-//				randomNum = (int)(Math.random()*mainArmy[cont].size());	
-//				attDef.add(mainArmy[cont].get(randomNum));
-//				
-//			}
-=======
->>>>>>> Stashed changes
 			
 			// Grupo atack
 			if (armies[empieza%2][4] == null) {
@@ -395,34 +368,35 @@ public class Battle implements Variables{
 			// Hasta 0 o -0, que se eliminara
 			// PELEA DE DOS
 			int chanceWaste;
-			boolean pelea = true;
+			boolean pelea = false;
+			playBattle = false;
 			while (pelea) {
-				//attDef.get(1).getActualArmor() > 0 &&  attDef.get(0).getActualArmor() > 0
-				// El atacante le pega al defensor
-				attDef.get(0).tekeDamage(attDef.get(1).attack());
-				
-				if (attDef.get(1).getActualArmor() <= 0 ) {
-					// Lo elimino
-					System.out.println("Tu tropa ha muerto");
-					// Sumar +1 a las bajas **** hacer la resta luego
-					//setPlanetDrops(getPlanetDrops()[cont]+1, cont);
-					// Borrar tropa del grupo defensor
-					attDef.remove(attDef.get(1));
-					
-					//Añado un nuevo defensor
-					cont = getGroupDefender(army);
-					// Añado grupo enemigo
-					randomNum = (int)(Math.random()*army[cont].size());	
-					attDef.add(army[cont].get(randomNum));	
-				}
-				// Mirar si vuleve a pegar
-				int chance = attDef.get(0).getChanceAttackAgain();
-				if ((int)(Math.random() *100 ) > chance) {
-					pelea = false;
-					playBattle = false; 
-					System.out.println("Nueva pelea");
-				}
-			}
+//				//attDef.get(1).getActualArmor() > 0 &&  attDef.get(0).getActualArmor() > 0
+//				// El atacante le pega al defensor
+//				attDef.get(0).tekeDamage(attDef.get(1).attack());
+//				
+//				if (attDef.get(1).getActualArmor() <= 0 ) {
+//					// Lo elimino
+//					System.out.println("Tu tropa ha muerto");
+//					// Sumar +1 a las bajas **** hacer la resta luego
+//					//setPlanetDrops(getPlanetDrops()[cont]+1, cont);
+//					// Borrar tropa del grupo defensor
+//					attDef.remove(attDef.get(1));
+//					
+//					//Añado un nuevo defensor
+//					cont = getGroupDefender(army);
+//					// Añado grupo enemigo
+//					randomNum = (int)(Math.random()*army[cont].size());	
+//					attDef.add(army[cont].get(randomNum));	
+//				}
+//				// Mirar si vuleve a pegar
+//				int chance = attDef.get(0).getChanceAttackAgain();
+//				if ((int)(Math.random() *100 ) > chance) {
+//					pelea = false;
+//					playBattle = false; 
+//					System.out.println("Nueva pelea");
+//				}
+//			}
 
 			
 			
@@ -443,7 +417,7 @@ public class Battle implements Variables{
 			//definida en la interfaz Variables, por ejemplo, int CHANCE_GENERATNG_WASTE_LIGTHHUNTER = 55
 			// Si generar_residuo = true entonces se recuepera un 70%  (PERCENTATGE_WASTE) del coste de la unidad
 		
-		
+			}
 		}
 	}
 }
