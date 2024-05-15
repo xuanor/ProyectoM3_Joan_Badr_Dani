@@ -191,7 +191,7 @@ public class Battle implements Variables{
 		int cont = 0;
 		int sumTotal = 0;
 		boolean checkSize = false;
-		
+		// Hola
 		while (!checkSize) {
 			// Ecoger grupo def
 			for (int i = 0; i< chanceMyArmy.length;i++) {
