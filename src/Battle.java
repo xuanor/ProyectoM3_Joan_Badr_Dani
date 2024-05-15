@@ -211,19 +211,24 @@ public class Battle implements Variables{
 
 	} 
 	
-	// Para calcular los porcentajes de unidades que quedan respecto los ejércitos iniciales. *** 
+	// Para calcular los porcentajes de unidades que quedan respecto los ejércitos iniciales.
 	public int remainderPercentageFleet(ArrayList<MilitaryUnit>[] army){
-//		int totalUnits = 0; 
-//		int resultado;
-//		for (ArrayList<MilitaryUnit> arrayList : army) {
-//			totalUnits += arrayList.size();
-//			
-//		}
-//		
-//		if (army.length > 4) {
-//			resultado = totalUnits;
-//		}
-		return 0;
+		int totalUnits = 0; 
+		int resultado;
+		for (ArrayList<MilitaryUnit> arrayList : army) {
+			if (!(arrayList == null)){
+				totalUnits += arrayList.size();
+			}
+			
+		}
+		// Calculo el porcentaje
+		if (army[4] == null) {
+			resultado = totalUnits*100/getInitialNumberUnitsEnemy();
+		}else {
+			resultado = totalUnits*100/getInitialNumberUnitsPlanet();
+		}
+		System.out.println("Porcentaje de ejercito = " + resultado);
+		return resultado;
 	}
 	
 	//	Para que dado un ejército, nos devuelva el grupo defensor, 
@@ -339,11 +344,13 @@ public class Battle implements Variables{
 		// Despues volvemos a hacer lo mismo pero invirtiendo roles (defensor--> atacante y viceversa)
 		// Cuando uno se muerte lo borramos y añadimos +1 al contador de muertes de se grupo (enemyDarps[indice grupo] += 1)
 		// Despues de la batalla calculamos coste de perdidas por equipo...
-		int empieza = (int)(Math.random()+ 0.1);
-		System.out.println("EMPIEZA = " + empieza);
+		int empieza = (int)(Math.random()*2);
+		
 		int cont = 0;
 		
+
 		while (playBattle) {
+			System.out.println("****EMPIEZA = " + empieza);
 			// Aqui guardo el grupo att y el grupo def de cada jugada
 			ArrayList<MilitaryUnit> attDef = new ArrayList<MilitaryUnit>();
 						
@@ -380,6 +387,10 @@ public class Battle implements Variables{
 				// El atacante le pega al defensor
 				attDef.get(0).tekeDamage(attDef.get(1).attack());
 				
+				//Para ver un poquito
+				System.out.println("DEFENSOR = " + attDef.get(1).getActualArmor());
+				System.out.println("ATACANTE = " + attDef.get(0).getActualArmor());
+				
 				if (attDef.get(1).getActualArmor() <= 0 ) {
 					// Lo elimino
 					System.out.println("Tu tropa ha muerto");
@@ -404,18 +415,18 @@ public class Battle implements Variables{
 				int chance = attDef.get(0).getChanceAttackAgain();
 				if ((int)(Math.random() *100 ) > chance) {
 					pelea = false;
-//					playBattle = false; 
 					System.out.println("No vuelve a atacar, nueva pelea");
 				}
 			}
-			
 			// Comprovar que tengo + del 20% de mis tropas
-			if () {
-				
+			if (remainderPercentageFleet(armies[0]) < 21 || remainderPercentageFleet(armies[1]) < 21) {
+				// Se acaba la batalla y se hace recuento
+				System.out.println("Fin pelea, mneos del 20%");
+				playBattle = false;
 			}
-			
-//				System.out.println("DEFENSOR = " + attDef.get(1).getActualArmor());
-//				System.out.println("ATACANTE = " + attDef.get(0).getActualArmor());
+			// Cambia el turno***
+			empieza = empieza%2;
+				
 			
 //				//Meter en updateResourceLosses
 //				attDef.get(0).getChanceGeneratinWaste();
@@ -433,6 +444,7 @@ public class Battle implements Variables{
 		
 			
 		}
+	System.out.println("**Ahora hare un recuento de los recursos**");
 	}
 }
 
