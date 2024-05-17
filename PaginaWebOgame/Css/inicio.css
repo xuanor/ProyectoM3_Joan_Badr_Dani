@@ -168,21 +168,6 @@ body{
     }
 }
 
-
-
-/*Parte de creditos abajo*/
-.bottom{
-    position: absolute;
-    width: 100%;
-    height: 10%;
-    background-color: #242526;
-    text-align: center;
-  
-  }
-  #text_bottom{
-    color: #fff;
-  }
-
 /*adaptacion a cualquier tamaño*/
 
 @media only screen and (max-width: 600px) {
