@@ -43,6 +43,8 @@ public class Battle implements Variables{
 	
 	// Tipos de unidades que hay ?? sin uso?
 	private int[] actualNumberUnitsPlanet, actualNumberUnitsEnemy;
+	
+	private int totalActualUnitsPlanet, totalActualUnitsEnemy;
 
 	// ***METODOS***
 	public int getInitialNumberUnitsPlanet() {
@@ -79,29 +81,23 @@ public class Battle implements Variables{
 		this.actualNumberUnitsEnemy = actualNumberUnitsEnemy;
 	}
 	
-	// Devuelvo las % de escojer cada unidad de cada ejercito
-	private int[] getChanceUnits(ArrayList<MilitaryUnit>[] army) {
-
-		int[] chanceMyArmy = new int[7];
-		
-		if (!(army[4] == null)) {
-			chanceMyArmy = CHANCE_ATTACK_ENEMY_UNITS;
-			
-		}
-		else {
-			// Calcular que porcentaje representa cada unidad en el army
-			//100*(Cantidad de cazadores ligeros ) / (total de unidades) = 9000/200 = 45 %  (getInitialArmies()[0][i])
-			
-			for (int i= 0; i< chanceMyArmy.length; i++) {
-				int percent = (int)(100*(armies[0][i].size()) / getInitialNumberUnitsPlanet());
-				chanceMyArmy[i] = percent;
-//				System.out.print(chanceMyArmy[i] + " * ");
-			}
-		}
-		return chanceMyArmy;
+	
+	public int getTotalActualUnitsPlanet() {
+		return totalActualUnitsPlanet;
 	}
-	
-	
+
+	public void setTotalActualUnitsPlanet(int totalActualUnitsPlanet) {
+		this.totalActualUnitsPlanet = totalActualUnitsPlanet;
+	}
+
+	public int getTotalActualUnitsEnemy() {
+		return totalActualUnitsEnemy;
+	}
+
+	public void setTotalActualUnitsEnemy(int totalActualUnitsEnemy) {
+		this.totalActualUnitsEnemy = totalActualUnitsEnemy;
+	}
+
 	//resumen, battles será el número de batallas que hayamos acumulado
 	public String getBattleReport(int battles) {
 		return "";
@@ -174,6 +170,34 @@ public class Battle implements Variables{
 		this.resourcesLooses = resourcesLooses;
 	}
 
+	// Devuelvo las % de escojer cada unidad de cada ejercito
+	private int[] getChanceUnits(ArrayList<MilitaryUnit>[] army) {
+
+		int[] chanceMyArmy = new int[7];
+		
+		if (!(army[4] == null)) {
+			//System.out.println("ENTRO NE CHANCE ENEMY !!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+			chanceMyArmy = CHANCE_ATTACK_ENEMY_UNITS;
+			
+		}
+		else {
+			// Calcular que porcentaje representa cada unidad en el army
+			//100*(Cantidad de cazadores ligeros ) / (total de unidades) = 9000/200 = 45 %  (getInitialArmies()[0][i])
+			
+			System.out.println("&& PORCENTAJES = ");
+			for (int i= 0; i< chanceMyArmy.length; i++) {
+//					if (!(armies[0][i] == null)) {	
+					int percent = (int)(100*(armies[0][i].size()) / getTotalActualUnitsPlanet() );
+					chanceMyArmy[i] = percent;
+					System.out.print(chanceMyArmy[i] + " * ");
+//					}else {
+//						chanceMyArmy[i] = 0;
+//					}
+			}
+		}
+		return chanceMyArmy;
+	}
+	
 	public void updateUnitDrops() {
 		// tropas iniciales - tropas actuales
 		int[] enemyDrops = new int[7];
@@ -240,7 +264,7 @@ public class Battle implements Variables{
 	
 	
 	// Para calcular unidades de cada flota 
-	public void initialFleetNumber() {
+	public void actualFleetNumber(boolean initFlag) {
 		// Calacular total de unidades
 		
 		//initialNumberUnitsPlanet
@@ -249,7 +273,7 @@ public class Battle implements Variables{
 		// Sumar total de tropas
 		ArrayList[][] armies = this.getArmies();
 //		System.out.println("Longitud armies = " + armies.length);
-		int[][] initUnits = new int[2][7];
+		int[][] units = new int[2][7];
 		
 		for (int i = 0; i < 2; i++) {	
 			totalGrupo = 0;
@@ -258,18 +282,31 @@ public class Battle implements Variables{
 				// Por cada fila de la columna armies[i]
 				if (!(armies[i][j] == null)) {
 					totalGrupo += armies[i][j].size();
-					initUnits[i][j] = totalGrupo;
+					units[i][j] = totalGrupo;
 					
 				}
 			}
 			totalUnidades += totalGrupo;
-			if (i==0) {
-				this.initialNumberUnitsPlanet = totalUnidades;
+			
+			if (initFlag) {
+				if (i==0) {
+					this.initialNumberUnitsPlanet = totalUnidades;
+				}else {
+					this.initialNumberUnitsEnemy = totalUnidades;
+				}
+				setInitialArmies(units);
 			}else {
-				this.initialNumberUnitsEnemy = totalUnidades;
+				if (i==0) {
+					setActualNumberUnitsPlanet(units[i]);
+					setTotalActualUnitsPlanet(totalUnidades);
+					
+				}else {
+					setActualNumberUnitsEnemy(units[i]);
+					setTotalActualUnitsEnemy(totalUnidades);
+				}
 			}
 		}
-		setInitialArmies(initUnits);
+		
 		//System.out.println("\nPLANETA= "+ initialNumberUnitsPlanet + "\nENEMIGOS= "+ initialNumberUnitsEnemy);
 
 	} 
@@ -284,7 +321,7 @@ public class Battle implements Variables{
 			}
 			
 		}
-		// Calculo el porcentaje
+		// Calculo el porcentaje (tiene que ser con los totales inciales)
 		if (army[4] == null) {
 			resultado = totalUnits*100/getInitialNumberUnitsEnemy();
 		}else {
@@ -299,7 +336,7 @@ public class Battle implements Variables{
 	public int getGroupDefender(ArrayList<MilitaryUnit>[] army) {
 		// Calculo probabilidades
 		 int[] chanceMyArmy = getChanceUnits(army);
-	
+		 //ArrayList<int[]> posVacias = new ArrayList<int[]>();
 		// Por ultimo escojeremos que unidad sera el defensor dentro de ese grupo
 		// EJERCITO > UNIDADES > NAVE
 		int cont = 0;
@@ -309,9 +346,10 @@ public class Battle implements Variables{
 		while (!checkSize) {
 			int randomNum = (int)(Math.random()*100);
 			int sumTotal = 0;
-			cont = -1;
+			cont = 0-1;
 			// Ecoger grupo def
 			for (int i = 0; i< chanceMyArmy.length;i++) {
+				
 				sumTotal += chanceMyArmy[i];
 				if (sumTotal < randomNum) {
 					cont ++;
@@ -322,18 +360,21 @@ public class Battle implements Variables{
 			}
 			if (cont == -1) {
 				cont = 0;
+			}else {
+				cont++;
 			}
-			
-			if (!(army[cont] == null) && army[cont].size() > 0 || contBucle == 6) {
+			//|| contBucle == 6
+			if (!(army[cont] == null) && army[cont].size() > 0 ) {
 				checkSize = true;
-			}else if (!(army[cont] == null)) {
-				// Borro ese arrayList
-				if (army[cont].size() == 0) {
-					army[cont] = null;
-				}
-				System.out.println("\n\nSize del arrayList defender = " + army[cont].size() + "\n");
-				System.out.println("\nTropa de defensa erronea\n");
+			}else {
+				System.out.println("\nTropa de defensa erronea " + cont + " \n");
 				contBucle ++;
+//				if (army[cont].size() == 0) {
+//					army[cont] = null;
+//				}
+//				if (!(army[cont] == null)) {
+//					// Borro ese arrayList
+//					System.out.println("\n\nSize del arrayList defender = " + army[cont].size() + "\n");
 			}
 		}
 		return cont;
@@ -362,16 +403,18 @@ public class Battle implements Variables{
 			
 			if (cont == -1) {
 				cont = 0;
+			}else {
+				cont++;
 			}
 			//Comporbar que ese arraylist tiene tantas posiciones.
 			//System.out.println("1 " + getPlanetArmy());
-			if (getPlanetArmy()[cont].size() > 0) {
+			if (!(getPlanetArmy()[cont] == null) && getPlanetArmy()[cont].size() > 0) {
 				checkSize = true;
 			}else {
-				// Borro ese arrayList ( no se si funcionara esto con el GET)
-				if (getPlanetArmy()[cont].size() == 0) {
-					getPlanetArmy()[cont] = null;
-				}
+//				// Borro ese arrayList ( no se si funcionara esto con el GET)
+//				if (getPlanetArmy()[cont].size() == 0) {
+//					getPlanetArmy()[cont] = null;
+//				}
 				System.out.println("\nTropa de ataque 1 erronea\n");	
 			}
 		}
@@ -401,19 +444,21 @@ public class Battle implements Variables{
 			
 			if (cont == -1) {
 				cont = 0;
+			}else {
+				cont++;
 			}
-			
-			if (getEnemyArmy()[cont].size() > 0 || contBucle == 6) {
+			//|| contBucle == 6
+			if (!(getEnemyArmy()[cont] == null) && getEnemyArmy()[cont].size() > 0 ) {
 				checkSize = true;
 			}else {
-				// Borro ese arrayList ( no se si funcionara esto con el GET)
-				if (getEnemyArmy()[cont].size() == 0) {
-					getEnemyArmy()[cont] = null;
-				}
+//				// Borro ese arrayList ( no se si funcionara esto con el GET)
+//				if (getEnemyArmy()[cont].size() == 0) {
+//					getEnemyArmy()[cont] = null;
+//				}
 				System.out.println("\nTropa de ataque 2 erronea\n");
 				contBucle ++;
 			}
-			System.out.println("\n\nSize del arrayList Enemigo = " + getEnemyArmy()[cont].size() + "\n");
+			//System.out.println("\n\nSize del arrayList Enemigo = " + getEnemyArmy()[cont].size() + "\n");
 		}	
 		return cont;
 	}
@@ -427,7 +472,7 @@ public class Battle implements Variables{
 		System.out.println("ESTIC A LA BATALLA");
 		ArrayList<MilitaryUnit>[][] armies = this.armies;
 		// Contar total de tropas iniciales
-		initialFleetNumber();
+		actualFleetNumber(true);
 		
 		boolean chanceAttack = false;
 		boolean playBattle = true;
@@ -444,13 +489,11 @@ public class Battle implements Variables{
 		int empieza = (int)(Math.random()*2);
 		int cont = 0;
 		int auxiliar;
-		
-		if (getInitialNumberUnitsPlanet() == 0) {
-			System.out.println("\nNo tienes suficientes tropas para la batalla.\n GAME OVER\n");
-			playBattle = false;
-		}
 
 		while (playBattle) {
+			// Calcular cada iteracion los numeros act de tropas
+			actualFleetNumber(false);
+			
 			System.out.println("****EMPIEZA = " + empieza);
 			// Aqui guardo el grupo att y el grupo def de cada jugada
 			ArrayList<MilitaryUnit> attDef = new ArrayList<MilitaryUnit>();
@@ -529,8 +572,8 @@ public class Battle implements Variables{
 				}
 			}
 			// Comprovar que tengo + del 20% de mis tropas
-			if (remainderPercentageFleet(armies[0]) <= PERCENTATGE_LIMIT_BATTLE_UNITS 
-					|| remainderPercentageFleet(armies[1]) <= PERCENTATGE_LIMIT_BATTLE_UNITS) {
+			if (remainderPercentageFleet(armies[0]) <= 50 
+					|| remainderPercentageFleet(armies[1]) <= 50) {
 				// Se acaba la batalla y se hace recuento
 				System.out.println("Fin pelea, menos del 20%");
 				playBattle = false;
