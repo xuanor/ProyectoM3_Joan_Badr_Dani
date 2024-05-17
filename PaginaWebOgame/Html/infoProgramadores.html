@@ -1,41 +1,26 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8"/>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="Cache-Control" content="no-cache, no-store, must-revalidate" />
+    <meta http-equiv="Pragma" content="no-cache" />
+    <meta http-equiv="Expires" content="0" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,300i,400,400i,600,600i,700,700i,800,800i&display=swap" rel="stylesheet" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link href="style.css" rel="stylesheet" />
+    <script src="../Js/shadowPartial.js"></script>
     <link rel="stylesheet" href="../Css/programadoresinfo.css">
     <title>Ogame</title>
 </head>
 <body>
-    <div id="cabecera">
-        <nav>
-            <div class="wrapper">
-                <div class="logo"><img src="../fotos/logo/OGamelogopng.png" alt="Logo"></div>
-
-                <div class="links">
-                    <a href="#" id="menuBtn">Menu</a>
-                    <ul class="desplegable">
-                        <li><a href="../Html/ogamePrincipal.html">Inicio</a></li>
-                        <li><a href="../Html/Lore.html">Game</a></li>
-                        <li><a href="../Html/marketing.html">Mercad Planetario</a></li>
-                        <li><a href="../Html/infoProgramadores.html">Who we are?</a></li>
-                    </ul>
-                </div>
-                <div class="creden">
-                    <div class="fila">
-                        <input type="text" id="username" name="username" placeholder="Usuario">
-                        <button>Iniciar Sesión</button>
-                    </div>
-                    <div class="fila">
-                        <input type="password" id="password" name="password" placeholder="Contraseña">
-                        <button>Registrarse</button>
-                    </div>
-                </div>
-                
-            </div>
-        </nav>
-    </div>
     
+    <shadow-partial data-html="../Html/Cabecera.html" data-css="../Css/Cabecera.css"></shadow-partial>
+    <shadow-partial data-html="../Html/Menu.html" data-css="../Css/Menu.css" class="sticky"></shadow-partial>
+
     <div id="cuerpo">
         
         <div class="contenedor">
@@ -107,14 +92,7 @@
 
     </div>
 
-    <div class="bottom">
-        <p id="text_bottom">© Joan, Dani y Badr</p>
-        <div class="links">
-            <a href="https://www.facebook.com/OGame/?locale=es_ES">Facebook</a>
-            <a href="https://www.youtube.com/channel/UC_-ztPBowfj7ElVQ13XPdwA">Youtube</a>
-            <a href="https://twitter.com/OGame?ref_src=twsrc%5Egoogle%7Ctwcamp%5Eserp%7Ctwgr%5Eauthor" class="desktop-item">Twitter</a>
-        </div>
-    </div>
+    <shadow-partial data-html="../Html/Pie.html" data-css="../Css/Pie.css"></shadow-partial>
 
 </body>
 </html>

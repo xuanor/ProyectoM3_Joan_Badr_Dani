@@ -1,12 +1,14 @@
-/* Reset de estilos */
-* {
+body{
+    background: url(../fotos/Fondo/EspacioGif.gif);
+    background-attachment: fixed;
+    background-size: 100%;
     margin: 0;
-    padding: 0;
-    box-sizing: border-box;
 }
 
-body {
-    background-color: #ffffff; /* Fondo negro */
+.sticky{
+    top: 0;
+    position: sticky;
+    z-index: 1000
 }
 
 /* Estilos de la cabecera */
