@@ -147,48 +147,61 @@ body {
     box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Añadimos sombra al pasar el ratón */
 }
 
+
+
+
+
+
+
+
 /* Slider */
 .container {
-    background: #000;
-    width: 650px;
-    margin: 0 auto;
-    padding: 30px;
-}
-
-.slideshow_wrapper {
-    width: 600px;
-    height: 320px;
-    overflow: hidden;
-    margin: 0 auto;
-    padding: 30px;
-
-}
-
-.slideshow {
-    width: 1800px;
-    height: 320px;
-    margin: 0 -600px;
-    position: relative;
-    animation: slide_animation 10s infinite alternate;
-}
-
-.slide {
-    width: 600px;
-    height: 300px;
-    position: relative;
-    float: left;
-    overflow: hidden;
-}
-
-.slideshow img {
     width: 100%;
-    height: 300px;
-}
+    height: 600px;
+    overflow: hidden;
+    position: absolute;
+    right: 0;
+    top: 5%;
+    
+  }
 
-@keyframes slide_animation {
-    0% { left: 0; }
-    10%, 20%, 30%, 40%, 50%, 60%, 70%, 80%, 90%, 100% { left: -600px; }
-}
+  .slider{
+    display: flex;
+    animation: cambio 10s infinite alternate linear;
+    width: 100%;
+    height: 100px;
+  }
+
+  .slider div{
+    width: 50%;
+    list-style: none;
+  }
+  .slider img{
+    width: 50%;
+    height: 50%;
+  }
+  @keyframes cambio{
+    0%{margin-left: 0%;}
+    20%{margin-left: 0%;}
+  
+    25%{margin-left: -100%;}
+    45%{margin-left: -100%;}
+  
+    50%{margin-left: -200%;}
+    70%{margin-left: -200%;}
+  
+    75%{margin-left: -300%;}
+    100%{margin-left: -300%;}
+  } 
+  
+
+
+
+
+
+
+
+
 
 /*Boton*/
 .cuerpo {

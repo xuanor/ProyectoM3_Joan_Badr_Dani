@@ -154,44 +154,68 @@ body {
 
 
 /* Estilos para los productos */
+/*
 #cuerpo {
   display: flex;
-  flex-wrap: wrap; /* Permite que los productos se ajusten automáticamente en varias filas */
-  justify-content: center; /* Centra los productos horizontalmente */
-  gap: 20px; /* Espacio entre los productos */
+  flex-wrap: wrap; 
+  justify-content: space-between; 
 }
+*/
+
+.cuerpo {
+ /* Máximo ancho del contenedor */
+  margin: 0 auto; /* Centramos el contenedor */
+  text-align: center;
+  padding: 20px;
+}
+
+
+
+
+
+.cuerpo h1 {
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+
 
 .producto {
   position: relative;
-  display: inline-block;
+  background-color: white;
+  border-radius: 25px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar efecto de sobresalir */
+  padding: 20px;
+  width: calc(20% - 20px); /* Ajustar el ancho para 5 productos por fila considerando el margen */
   margin: 10px;
-  width: calc(20% - 20px); /* Calcula el ancho para 5 productos por fila con un margen de 10px a cada lado */
-  height: auto; /* Altura automática para adaptarse al contenido */
-  overflow: hidden; /* Oculta el exceso de contenido */
-  border-radius: 10px; /* Bordes redondeados */
+  text-align: center;
   transition: transform 0.3s ease;
-  background-color: #2d2e35; /* Color de fondo deseado */
-}
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: top;
+  height: auto; 
 
-@media only screen and (max-width: 768px) {
-  .producto {
-    width: calc(33.33% - 20px); /* Calcula el ancho para 3 productos por fila con un margen de 10px a cada lado */
-  }
-}
-
-@media only screen and (max-width: 480px) {
-  .producto {
-    width: calc(50% - 20px); /* Calcula el ancho para 2 productos por fila con un margen de 10px a cada lado */
-  }
 }
 
 
+.merch img{
+  height: 150px;
+  object-fit: center;
 
 
-.imagen {
-  width: 100%; /* La imagen ocupa todo el ancho del producto */
-  height: auto; /* La altura se ajusta automáticamente para mantener la proporción */
-  object-fit: cover; /* Escala la imagen para llenar el contenedor manteniendo la relación de aspecto */
+}
+
+ .merch {
+  width: 100%;
+  object-fit: cover;
+  background: rgb(166 175 182); 
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .desc {
@@ -210,14 +234,9 @@ body {
   color: white; /* Color del texto */
 }
 
+
 .overlay {
   color: white; /* Color del texto del overlay */
-  background-color: rgba(128, 128, 128, 0.5); /* Grisaceo y opaco */
-
-}
-
-
-.overlay {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -243,32 +262,38 @@ body {
 }
 
 
-
-
-/* Ajusta el ancho máximo de la fila */
-.fila {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-bottom: 20px; /* Espacio entre filas */
-}
-
-/* Ajusta el ancho de cada producto en la fila */
-.producto {
-  width: calc(20% - 10px); /* Calcula el ancho para 5 productos por fila */
-  margin-bottom: 20px; /* Espacio entre productos */
-}
-
 /* Ajusta el margen derecho del último producto en cada fila */
 .producto:nth-child(5n) {
   margin-right: 0;
 }
-
-/* Ajusta los márgenes laterales de la fila para centrar los productos */
-.fila::after {
-  content: "";
-  flex-grow: 1;
+/*Ajuste del texto y del link del precio*/
+.producto p{
+  margin-top: 20px;
 }
+
+.producto a {
+  text-decoration: none;
+  font-weight: bold;
+}
+.producto >.desc >.precio {
+  display: inline-block;
+
+  margin-top: 10px; /* Espacio superior para el texto */
+  color: #000000;
+  text-decoration: underline; /* Subrayar el texto */
+  cursor: pointer; /* Cambiar el cursor al puntero */
+}
+
+.producto >.precio:hover {
+  color: hsl(0, 0%, 0%); /* Cambiar el color del texto al pasar el ratón */
+  text-decoration: underline; /* Mantener el subrayado */
+}
+
+
+
+
+
+
 
 
 

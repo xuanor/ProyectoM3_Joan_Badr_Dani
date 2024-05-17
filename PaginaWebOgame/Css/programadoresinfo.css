@@ -146,139 +146,116 @@
 
 
 
-/*Contnedor par alos 3 juegos desarrollados*/
 
-/* Estilos para el contenedor principal */
-#cuerpo {
-    margin-top: 100px; /* Agrega un margen superior igual a la altura de la cabecera */
-    margin-bottom: 50px; /* Agrega un margen inferior igual a la altura del botón inferior */
+
+
+
+
+/*Contnedor para los 3 divs */
+.contenedor {
     background-color: white;
-    
-}
-
-
-/* Estilos para el contenedor JDesenv dentro de #cuerpo */
-#cuerpo .JDesenv {
-    display: flex;
-    width: 70%; /* Ancho fijo del contenedor */
-    margin: 0 auto; /* Centrar horizontalmente */
-    justify-content: space-between;
-    align-items: flex-start; /* Cambiado para evitar superposiciones */
-    flex-wrap: wrap;
-}
-
-
-/* Estilos para cada juego */
-.juego {
-    width: calc(30% - 20px); /* Calcula el ancho para 3 juegos por fila con un margen de 10px a cada lado */
-    margin-bottom: 20px; /* Espacio entre juegos */
-    position: relative;
-}
-
-.juego img {
-    width: 100%;
-    height: auto;
-    display: block;
-    cursor: pointer; /* Cambia el cursor al hacer clic */
-}
-
-.juego p {
-    display: none; /* Oculta el texto inicialmente */
-    position: absolute;
-    top: 0;
-    right: calc(100% + 10px); /* Posición inicial del texto fuera del contenedor */
-    background-color: white;
-    padding: 10px;
-    border-radius: 5px;
-    border: 1px solid #ccc;
-    width: calc(70% - 20px); /* Ancho del texto */
-    transition: right 0.3s ease; /* Añade una transición para el movimiento */
-}
-
-/* Mostrar el texto y ocultar las otras imágenes al hacer clic en una imagen */
-.juego:target {
-    width: calc(100% - 20px); /* Expande el contenedor al 100% menos el margen */
-}
-
-.juego:target img {
-    width: 70%; /* Ancho de la imagen clicada */
-    float: left; /* Coloca la imagen clicada a la izquierda */
-    clear: both; /* Asegura que no haya otros elementos flotantes en la misma línea */
-}
-
-.juego:target p {
-    display: block; /* Muestra el texto */
-    right: 0; /* Coloca el texto a la derecha */
-}
-
-
-
-
-/* Estilos para cada rol de trabajador */
-.empresa img{
-    width: 100px; /* Tamaño de la imagen */
-    height: 100px;
-    border-radius: 50%; /* Marco circular */
-    margin-right: 20px; /* Espacio entre la imagen y el texto */
-}
-
-
-.empresa, .programador, .diseniador, .relaciones {
-    width: 75%;
-    margin: 0 auto 20px auto; /* Centra el bloque y añade margen inferior */
-    display: flex;
-    align-items: center;
-    border: 2px solid red;
-    border-radius: 5px;
+    border-radius: 25px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar efecto de sobresalir */
     padding: 30px;
+    max-width: 90%;
+    margin: 0 auto 20px auto; 
+    text-align: center;
+}
+
+#videoJ{
+    background-color: white;
+    border-radius: 25px; /* Bordes redondeados */
+    padding: 30px;
+    max-width: 50%;
+    margin: 0 auto 20px auto; 
+    text-align: center;  
+}
+
+#empresa img{
+    width: 35%; /* La imagen ocupa el 25% */
+    height: auto;
+    border-radius: 70%; /* Marco circular */
+}
+
+#videoJ img{
+    width: 30%; /* La imagen ocupa el 25% */
+    height: auto;
+    border-radius: 70%; /* Marco circular */
+
+
+}
+.trabajador img{
+    width: 25%; /* La imagen ocupa el 25% */
+    height: auto;
+    border-radius: 70%; /* Marco circular */
+    margin: 0 20px; /* Espacio entre la imagen y el texto */
+    object-fit: cover; /* Ajusta la imagen para que cubra el contenedor sin distorsionar */
 }
 
 
-/* Estilos para las imágenes de avatar */
-.trabajdores img {
-    width: 100px; /* Tamaño de la imagen */
-    height: 100px;
-    border-radius: 50%; /* Marco circular */
-    margin-right: 20px; /* Espacio entre la imagen y el texto */
+.valores {
+        justify-content: space-between; /* Espacio entre elementos */
+        width: calc(30% - 20px); /* Ajustar el ancho para 5 productos por fila considerando el margen */
+        text-align: center;
+        display: inline-block;
+        flex-wrap: wrap; /* Permitir que los elementos se ajusten a la siguiente fila si no caben */
 }
 
-/* Estilos para el texto de la información */
-.trabajdores p {
-    margin: 0; /* Elimina el margen predeterminado */
+
+
+.valores p {
+    font-size: 1.1em; /* Tamaño de fuente */
+    line-height: 1.6; /* Altura de línea para mejorar la legibilidad */
+    color: #444; /* Color del texto */
+    font-family: 'Arial', sans-serif; /* Familia de fuentes */
+    margin: 10px; /* Espacio superior */
 }
 
-/* Estilos para el contenedor de la información */
-.avatar-info {
-    display: flex;
-    flex-direction: column;
-    border-radius: 10px; /* Bordes redondeados */
-    border: 1px solid #ccc; /* Borde para el contenedor */
-    padding: 10px; /* Espacio interno */
+
+/*Trbaajadores*/
+
+.trabajador:nth-child(odd) {
+    flex-direction: row; /* Imagen a la izquierda */
 }
 
-/* Intercalar la posición de la imagen y el texto */
-.programador,
-.relaciones {
-    flex-direction: row-reverse; /* Invertir el orden */
+.trabajador:nth-child(even) {
+    flex-direction: row-reverse; /* Imagen a la derecha */
 }
 
-/* Ajustar el tamaño de la imagen según el contenedor */
-.avatar-container {
-    width: auto;
-    height: 100%;
+.trabajador p {
+    width: 75%; /* El texto ocupa el 75% */
+    margin: 0; /* Elimina el margen por defecto del párrafo */
+}
+
+.trabajador {
     display: flex;
     align-items: center;
+    margin-bottom: 20px;
+    background-color: white;
+    border-radius: 25px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar efecto de sobresalir */
+    padding: 30px;
+    width: 100%; /* Asegura que cada trabajador ocupe el 100% del ancho del contenedor */
+    box-sizing: border-box;
 }
 
 
-/* Establece un tamaño específico para las imágenes */
-
-.trabajdores img {
-    width: 500px;
-    height: 300px;
-    object-fit: cover; /* Ajusta la imagen sin distorsionarla, recortando si es necesario */
+.titulo{
+    align-items: center;
+    margin: 10px; /* Espacio superior */
 
 }
+
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -302,12 +279,5 @@
   
   #text_bottom {
     color: #fff; /* Color del texto */
-  }
-  
-  /* Adaptación a cualquier tamaño */
-  @media only screen and (max-width: 600px) {
-    .jeugo {
-      width: calc(50% - 20px); /* Calcula el ancho para 2 juegos por fila con un margen de 10px a cada lado */
-    }
   }
   
