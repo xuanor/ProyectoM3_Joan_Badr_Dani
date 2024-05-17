@@ -110,4 +110,7 @@ public interface Variables {
 	public final int[] CHANCE_ATTACK_ENEMY_UNITS = {10,20,30,40};
 	// percentage of waste that will be generated with respect to the cost of the units
 	public final int PERCENTATGE_WASTE = 70;
+	// Limite de % de tropas para seguir en una batalla
+	public final int PERCENTATGE_LIMIT_BATTLE_UNITS = 20;
+	
 }
