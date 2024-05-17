@@ -344,14 +344,15 @@ public class Battle implements Variables{
 		int contBucle = 0;
 		
 		while (!checkSize) {
-			int randomNum = (int)(Math.random()*100);
+			int randomNum = (int)(Math.random()*98);
+			System.out.println("Numero random defender = " + randomNum);
 			int sumTotal = 0;
-			cont = 0-1;
+			cont = -1;
 			// Ecoger grupo def
 			for (int i = 0; i< chanceMyArmy.length;i++) {
 				
 				sumTotal += chanceMyArmy[i];
-				if (sumTotal < randomNum) {
+				if (sumTotal <= randomNum) {
 					cont ++;
 //					System.out.println("CONTADOR DEFENDER = " + cont);
 				}else {
@@ -388,7 +389,7 @@ public class Battle implements Variables{
 		int cont = 0;
 		
 		while (!checkSize) {
-			int randomNum = (int)(Math.random()*100);			
+			int randomNum = (int)(Math.random()*98);			
 			int sumTotal = 0;
 			cont = -1;
 			
@@ -396,7 +397,7 @@ public class Battle implements Variables{
 			for (int i = 0;i< CHANCE_ATTACK_PLANET_UNITS.length;i++) {
 				sumTotal += CHANCE_ATTACK_PLANET_UNITS[i];
 				
-				if (sumTotal < randomNum) {
+				if (sumTotal <= randomNum) {
 					cont ++;
 				}
 			}
@@ -429,7 +430,7 @@ public class Battle implements Variables{
 		int contBucle =0;
 		
 		while (!checkSize) {
-			int randomNum = (int)(Math.random()*100);			
+			int randomNum = (int)(Math.random()*98);			
 			int sumTotal = 0;
 			cont = -1;
 			
@@ -437,7 +438,7 @@ public class Battle implements Variables{
 			for (int i = 0;i< CHANCE_ATTACK_ENEMY_UNITS.length;i++) {
 				sumTotal += CHANCE_ATTACK_ENEMY_UNITS[i];
 				
-				if (sumTotal < randomNum) {
+				if (sumTotal <= randomNum) {
 					cont ++;
 				}
 			}
