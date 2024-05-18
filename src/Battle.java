@@ -110,6 +110,26 @@ public class Battle implements Variables{
 
 	//resumen, battles será el número de batallas que hayamos acumulado ****
 	public String getBattleReport(int battles) {
+		String[] informes = new String[5];
+		String informeStats = "BATTLE STATISTICS";
+		String informePasoApaso = "";
+		
+		// * Informe stadisticas
+		// Tropas inciales y sus bajas
+		
+		// Costes de cada army en metal y deuterio
+		// Perdidas de cada army en metal y deuterio
+		// Residuos generados
+		// Quien ha ganado la batalla y si consigue residuos o no
+		
+		// Pregunta para ver el informe paso a paso
+		// * Informe pasoApaso
+		//getBattleDevelopment();
+		
+		return informes[battles];
+	}
+	
+	public String getBattleDevelopment() {
 		return "";
 	}
 	
@@ -165,10 +185,6 @@ public class Battle implements Variables{
 
 	public void setPlanetDrops(int[] ints) {
 		this.planetDrops = ints;
-	}
-
-	public String getBattleDevelopment() {
-		return "";
 	} 
 	
 	public int[][] getResourcesLooses() {
@@ -318,9 +334,7 @@ public class Battle implements Variables{
 	
 	// Para calcular unidades de cada flota 
 	public void actualFleetNumber(boolean initFlag) {
-		// Calacular total de unidades
-		
-		//initialNumberUnitsPlanet
+		// Calcular total de unidades
 		int totalGrupo = 0;
 		int totalUnidades = 0;
 		// Sumar total de tropas

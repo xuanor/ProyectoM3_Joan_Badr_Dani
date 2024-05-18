@@ -291,12 +291,9 @@ public class Main implements Variables{
 
 	    };
 
-	    timer.schedule(taskThreat, 3000, 10000);
-	    timer.schedule(taskAtack, 4000, 12000);
+	    timer.schedule(taskThreat, 3000, 60000);
+	    timer.schedule(taskAtack, 4000, 60000);
 		Scanner sc = new Scanner(System.in);
-
-		// Activa los avisos de amenaza
-		//principal.amenazaAutomatica(b);
 		
 		String mainMenu = "Main Menu\n" + "1)View Planet Stats\n" + "2)Build\n" + "3)Upgrade Technology\n"
 				+ "4)View Battle Reports\n" + "0)Exit\n";
@@ -346,8 +343,27 @@ public class Main implements Variables{
 				break;
 				
 			case 4:
-				System.out.println("Aqui va el reporte de las batallas");
-				// CONTINUAR **
+				//System.out.println("Aqui va el reporte de las batallas");
+				boolean checkOpc = false;
+				int opc = -1;
+				while (!checkOpc) {
+					System.out.println("Option > ");
+					try {
+						opc = sc.nextInt();
+					}
+					catch (Exception e) {
+						System.out.println("Invalid Option");
+					}
+					
+					if (opc > 5 || opc < 0) {
+						System.out.println("Option out of range");
+					}else {
+						checkOpc = true;
+					}
+				System.out.println("Reporte " + opc + " escogido");
+				//b.getBattleReport()
+				}
+					
 				break;
 				
 			case 5:
