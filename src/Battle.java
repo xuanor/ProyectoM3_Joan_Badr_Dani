@@ -23,7 +23,7 @@ public class Battle implements Variables{
 	private int initialNumberUnitsPlanet, initialNumberUnitsEnemy;
 	
 	// Residuos generados en la batalla [metal, deuterio].***
-	private int[] wasteMetalDeuterium;
+	private int[] wasteMetalDeuterium = new int[2];
 	
 	// Muertes x ejercicto
 	private int[] enemyDrops, planetDrops = new int[7];
@@ -41,14 +41,24 @@ public class Battle implements Variables{
 	// cada columna representa un tipo de soldado y su cantidad incial (0-7)
 	private int[][] initialArmies = new int[2][];
 	
-	// Tipos de unidades que hay ?? sin uso?
+	// Tipos de unidades que hay 
 	private int[] actualNumberUnitsPlanet, actualNumberUnitsEnemy;
 	
 	private int totalActualUnitsPlanet, totalActualUnitsEnemy;
 
 	// ***METODOS***
+	
+	
 	public int getInitialNumberUnitsPlanet() {
 		return initialNumberUnitsPlanet;
+	}
+
+	public int[] getWasteMetalDeuterium() {
+		return wasteMetalDeuterium;
+	}
+
+	public void setWasteMetalDeuterium(int[] wasteMetalDeuterium) {
+		this.wasteMetalDeuterium = wasteMetalDeuterium;
 	}
 
 	public void setInitialNumberUnitsPlanet(int initialNumberUnitsPlanet) {
@@ -98,7 +108,7 @@ public class Battle implements Variables{
 		this.totalActualUnitsEnemy = totalActualUnitsEnemy;
 	}
 
-	//resumen, battles será el número de batallas que hayamos acumulado
+	//resumen, battles será el número de batallas que hayamos acumulado ****
 	public String getBattleReport(int battles) {
 		return "";
 	}
@@ -161,7 +171,6 @@ public class Battle implements Variables{
 		return "";
 	} 
 	
-	
 	public int[][] getResourcesLooses() {
 		return resourcesLooses;
 	}
@@ -223,38 +232,74 @@ public class Battle implements Variables{
 		setPlanetDrops(planetDrops);
 	}
 	 
-	// Para generar el array de residuos. **** Aqui
+	// Para generar el array de residuos.
 	public void updateWasteMetalDeuterium() {
 		int totalDeu = 0;
 		int totalMet = 0;
+		int [] resources = new int[2];
+		int [] drops = new int [7];
+		int[] vars = {CHANCE_GENERATNG_WASTE_LIGTHHUNTER,
+				CHANCE_GENERATNG_WASTE_HEAVYHUNTER,
+				CHANCE_GENERATNG_WASTE_BATTLESHIP,
+				CHANCE_GENERATNG_WASTE_ARMOREDSHIP,
+				CHANCE_GENERATNG_WASTE_MISSILELAUNCHER,
+				CHANCE_GENERATNG_WASTE_IONCANNON,
+				CHANCE_GENERATNG_WASTE_PLASMACANNON};
 		
-		// Cambiar a planetDrops ??
-		for (ArrayList<MilitaryUnit> unitGroup : getPlanetArmy()) {
-			for (MilitaryUnit unit : unitGroup) {
-				int randomNum = (int)(Math.random()*100);
-				// Si suena la flauta... calcula
-				if (randomNum < unit.getChanceGeneratinWaste()) {
-					totalDeu += unit.getDeuteriumCost()  * PERCENTATGE_WASTE; 
-					totalMet += unit.getMetalCost() * PERCENTATGE_WASTE;
-				}
-//				else {
-//					System.out.println("No hay chanse wey");
+		// Version con tropas
+//		for (ArrayList<MilitaryUnit> unitGroup : getPlanetArmy()) {
+//			for (MilitaryUnit unit : unitGroup) {
+//				int randomNum = (int)(Math.random()*100);
+//				// Si suena la flauta... calcula
+//				if (randomNum < unit.getChanceGeneratinWaste()) {
+//					totalMet += unit.getMetalCost() * PERCENTATGE_WASTE;
+//					totalDeu += unit.getDeuteriumCost()  * PERCENTATGE_WASTE; 
 //				}
-			}
+//			}
+//		
+//		}
 		
+		for (int pos = 0; pos < 2; pos++) {
+			if (pos == 0) {
+				drops = getPlanetDrops();
+				for (int i : drops) {
+					System.out.print(i + " * ");
+				}
+			}else {
+				drops = getEnemyDrops();
+			}
 		}
-		System.out.println("TOTAL DEUTERIO RECUPERADO = " + totalDeu);
-		System.out.println("TOTAL METAL RECUPERADO = " + totalMet);
+//			for (int units : drops) {
+//				System.out.println("Drops = " + units);
+//				if (units > 0) {
+//					
+//					for(int unit = 0; unit < units; unit++) {
+//						int randomNum = (int)(Math.random()*100);
+//						// Si suena la flauta... calcula
+//						if (randomNum < vars[units]) {
+//							totalMet += METAL_COST_UNITS[units] * PERCENTATGE_WASTE;
+//							totalDeu += DEUTERIUM_COST_UNITS[units]  * PERCENTATGE_WASTE; 
+//						}
+//					}
+//				}
+//			}
+//		}
+//		resources[0] = totalMet;
+//		resources[1] = totalDeu;
+		
+//		setWasteMetalDeuterium(resources);
+//		System.out.println("TOTAL METAL RECUPERADO = " + totalMet);
+//		System.out.println("TOTAL DEUTERIO RECUPERADO = " + totalDeu);
 	}
 	
-	// Para calcular costes de las flotas.*** Aqui
+	// Para calcular costes de las flotas perdidas.
 	public void fleetResourceCost(ArrayList<MilitaryUnit>[][] army) {
 		int[][] resourceLooses = new int[2][4];
 		int costeMetal = 0;
 		int costeDeuterio = 0;
 		int totalMetal = 0;
 		int totalDeuterio = 0;
-		
+		// Hacer con el drops??
 		// {perdidas metal planeta, perdidas deuterio planeta, perdidas metal planeta + 5* perdidas deuterio planeta}
 		
 		// Ejercito
@@ -272,11 +317,38 @@ public class Battle implements Variables{
 					totalDeuterio += costeDeuterio;
 				}
 			}
+			
 			resourceLooses[pos][0] = totalMetal;
 			resourceLooses[pos][1] = totalDeuterio;
 			resourceLooses[pos][2] = totalMetal + (totalDeuterio * 5);
 			System.out.println("\nTotal ponderado = " + resourceLooses[pos][2]);
 		}
+		
+//		for (int pos = 0; pos < 2; pos++) {
+//			if (pos == 0) {
+//				drops = getPlanetDrops();
+//				for (int i : drops) {
+//					System.out.print(i + " * ");
+//				}
+//			}else {
+//				drops = getEnemyDrops();
+//			}
+//		}
+//			for (int units : drops) {
+//				System.out.println("Drops = " + units);
+//				if (units > 0) {
+//					
+//					for(int unit = 0; unit < units; unit++) {
+//						int randomNum = (int)(Math.random()*100);
+//						// Si suena la flauta... calcula
+//						if (randomNum < vars[units]) {
+//							totalMet += METAL_COST_UNITS[units] * PERCENTATGE_WASTE;
+//							totalDeu += DEUTERIUM_COST_UNITS[units]  * PERCENTATGE_WASTE; 
+//						}
+//					}
+//				}
+//			}
+//		}
 		setResourcesLooses(resourceLooses);
 	}
 		
@@ -482,7 +554,7 @@ public class Battle implements Variables{
 		return cont;
 	}
 
-	//  Restablecer los blindajes de nuestro ejército.
+	//  Restablecer los blindajes de nuestro ejército. ***
 	public void resetArmyArmor() {
 		
 	}
@@ -606,41 +678,25 @@ public class Battle implements Variables{
 				
 			}else {
 				empieza = 1;
-			}
-				
+			}	
 		}
-	System.out.println("**Ahora hare un recuento de los recursos**");
-	
-	// Calcular bajas
-	fleetResourceCost(armies);
-//	System.out.println("Despues de los recursos");
-	//Calacular recursos totales para saber el GANADOR
-	//updateResourcesLooses();? SIN USO
-	
-	// Calcular los recursos que se han gastado
-	if (getResourcesLooses()[0][2] <= getResourcesLooses()[1][2]) {
-		System.out.println("\n¡El planeta ha ganado!");
+		// Fin batalla
+//		System.out.println("**Ahora hare un recuento de los recursos**");
 		
-		// Calcular residuos que me quedo ***
-		updateWasteMetalDeuterium();
-		
-	} else {
-		System.out.println("\n¡El enemigo ha ganado!");
-	}
+		// Calcular bajas
+		fleetResourceCost(armies);
+		updateUnitDrops();
+		// Calcular los recursos que se han gastado para saber el GANADOR
+		if (getResourcesLooses()[0][2] <= getResourcesLooses()[1][2]) {
+			System.out.println("\n¡El planeta ha ganado!");
+			
+			// Calcular residuos que me quedo 
+			updateWasteMetalDeuterium();
+			
+		} else {
+			System.out.println("\n¡El enemigo ha ganado!");
+		}
 	
-//	//Meter en updateResourceLosses
-//	attDef.get(0).getChanceGeneratinWaste();
-//	// Si la sale true la probabilidad de dejar residuos
-//	if ((int)(Math.random()*100) < chanceWaste) {
-//		// Sumos los residuos de metal (70% de la tropa enemiga)
-//		wasteMetalDeuterium[0] = (attDef.get(1).getMetalCost() * PERCENTATGE_WASTE / 100);
-//		// Sumos los residuos de deuterio (70% de la tropa enemiga)
-//		wasteMetalDeuterium[1] = (attDef.get(1).getDeuteriumCost() * PERCENTATGE_WASTE / 100);
-
-
-	// Antes de eliminarla, comprobaremos si genera residuos, la probabilidad de generar residuos está
-	//definida en la interfaz Variables, por ejemplo, int CHANCE_GENERATNG_WASTE_LIGTHHUNTER = 55
-	// Si generar_residuo = true entonces se recuepera un 70%  (PERCENTATGE_WASTE) del coste de la unidad
 	}
 }
 
