@@ -279,6 +279,14 @@ public class Main implements Variables{
 	         public void run() {
 	        	 System.out.println("··· Te acaban de atacar ···");
 	        	 b.batalla();
+	        	 // Le añado lo ganado a mis recursos (si no gano es(0,0))
+	        	 System.out.println(mainPlanet.getMetal());
+	        	 System.out.println(mainPlanet.getDeuterium());
+	        	 mainPlanet.setMetal( mainPlanet.getMetal() + b.getWasteMetalDeuterium()[0]);
+	        	 mainPlanet.setDeuterium(mainPlanet.getDeuterium() + b.getWasteMetalDeuterium()[1]);
+	        	 System.out.println(mainPlanet.getMetal());
+	        	 System.out.println(mainPlanet.getDeuterium());
+	        	 System.out.println("Ganancias añadidas !!");
 	         }
 
 	    };
