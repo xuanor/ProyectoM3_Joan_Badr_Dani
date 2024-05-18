@@ -226,43 +226,7 @@ public class Main implements Variables{
 				   enemyArray[3].size());
 		System.out.println(datos);
 	}
-	
-	// SIN USO**
-	public void amenazaAutomatica(Main principal, Battle b) {
-		
-////		boolean AtackFlag;
-//		Timer timer = new Timer();
-//	    TimerTask taskThreat = new TimerTask() {
-//	    
-//
-//	         public void run() {
-//	        	 System.out.println("··· Nueva amenaza ···");
-//	        	 // Creo el nuevo ejercito enemigo
-//	        	 ArrayList<MilitaryUnit>[] army = createEnemyArmy();
-//	        	 // Añades al obj batalla la army enemiga
-//	        	 b.setEnemyArmy(army);
-//	        	 principal.setAttackComing(true);
-//	             //ViewThreat(army);
-//
-//	         }
-//
-//	    };
-//	    
-//	    TimerTask taskAtack = new TimerTask() {
-//		    
-//
-//	         public void run() {
-//	        	 System.out.println("··· Te acaban de atacar ···");
-//	        	 // Continuar ***
-//	        	 //batalla(b);
-//	         }
-//
-//	    };
-//
-//	    timer.schedule(taskThreat, 9000, 100000);
-//	    timer.schedule(taskAtack, 10000, 8000);
-	   
-	}
+
 	
 	// METODO DE APOYO PARA INTRODUCIR UN ENTERO
 	public  int askAmount() {
@@ -315,12 +279,20 @@ public class Main implements Variables{
 	         public void run() {
 	        	 System.out.println("··· Te acaban de atacar ···");
 	        	 b.batalla();
+	        	 // Le añado lo ganado a mis recursos (si no gano es(0,0))
+	        	 System.out.println(mainPlanet.getMetal());
+	        	 System.out.println(mainPlanet.getDeuterium());
+	        	 mainPlanet.setMetal( mainPlanet.getMetal() + b.getWasteMetalDeuterium()[0]);
+	        	 mainPlanet.setDeuterium(mainPlanet.getDeuterium() + b.getWasteMetalDeuterium()[1]);
+	        	 System.out.println(mainPlanet.getMetal());
+	        	 System.out.println(mainPlanet.getDeuterium());
+	        	 System.out.println("Ganancias añadidas !!");
 	         }
 
 	    };
 
-	    timer.schedule(taskThreat, 9000, 10000);
-	    timer.schedule(taskAtack, 10000, 12000);
+	    timer.schedule(taskThreat, 3000, 10000);
+	    timer.schedule(taskAtack, 4000, 12000);
 		Scanner sc = new Scanner(System.in);
 
 		// Activa los avisos de amenaza
