@@ -139,7 +139,7 @@ public class Main implements Variables{
 		// Para no gastar el metal al iniciar partida
 		int dinero = METAL_BASE_ENEMY_ARMY;
 		
-		// Mientras haya reservas de Metal  puedes gastar
+		// Mientras haya reservas de Metal  puedes gastar ** AÑADIR DEUTERIO
 		
 		while ( dinero > (METAL_COST_LIGTHHUNTER) ) {
 			
@@ -280,8 +280,8 @@ public class Main implements Variables{
 	        	 System.out.println("··· Te acaban de atacar ···");
 	        	 b.batalla();
 	        	 // Le añado lo ganado a mis recursos (si no gano es(0,0))
-	        	 System.out.println(mainPlanet.getMetal());
-	        	 System.out.println(mainPlanet.getDeuterium());
+//	        	 System.out.println(mainPlanet.getMetal());
+//	        	 System.out.println(mainPlanet.getDeuterium());
 	        	 mainPlanet.setMetal( mainPlanet.getMetal() + b.getWasteMetalDeuterium()[0]);
 	        	 mainPlanet.setDeuterium(mainPlanet.getDeuterium() + b.getWasteMetalDeuterium()[1]);
 	        	 System.out.println(mainPlanet.getMetal());
@@ -291,12 +291,9 @@ public class Main implements Variables{
 
 	    };
 
-	    timer.schedule(taskThreat, 3000, 10000);
-	    timer.schedule(taskAtack, 4000, 12000);
+	    timer.schedule(taskThreat, 3000, 60000);
+	    timer.schedule(taskAtack, 4000, 60000);
 		Scanner sc = new Scanner(System.in);
-
-		// Activa los avisos de amenaza
-		//principal.amenazaAutomatica(b);
 		
 		String mainMenu = "Main Menu\n" + "1)View Planet Stats\n" + "2)Build\n" + "3)Upgrade Technology\n"
 				+ "4)View Battle Reports\n" + "0)Exit\n";
@@ -346,8 +343,45 @@ public class Main implements Variables{
 				break;
 				
 			case 4:
-				System.out.println("Aqui va el reporte de las batallas");
-				// CONTINUAR **
+				//System.out.println("Aqui va el reporte de las batallas");
+				boolean checkOpc = false;
+				int opc = -1;
+				while (!checkOpc) {
+					System.out.println("Option > ");
+					try {
+						opc = sc.nextInt();
+					}
+					catch (Exception e) {
+						System.out.println("Invalid Option");
+					}
+					
+					if (opc > 5 || opc < 0) {
+						System.out.println("Option out of range");
+					}else {
+						checkOpc = true;
+					}
+					System.out.println(b.getBattleReport(opc));
+					
+					// Pregunta para ver el informe paso a paso
+					boolean check = false;
+					
+				    while (! check ) {
+				    	System.out.println("\nView Battle development?(S\\n)");
+				    	String imp = sc.next().toUpperCase();
+				    	if (imp.equals("S")) {
+				    		check = true;
+				    		System.out.println(b.getBattleDevelopment());
+				    	}
+				    	else if (imp.equals("N")) {
+				    		check = true;
+				    		System.out.println("No quieres ver el informe");
+				    	
+				    	}else {
+				    		sc.nextLine();
+				    		System.out.println("Only options (S\\n) are allowed");
+				    	}
+				    }
+				}	
 				break;
 				
 			case 5:
@@ -369,7 +403,7 @@ public class Main implements Variables{
 				sc.nextLine();
 			}
 		}
-		
+		sc.close();
 	}
 
 	// SUB MENU DE CONSTRUCCIONES
@@ -409,6 +443,7 @@ public class Main implements Variables{
 					sc.nextLine();
 			}
 		}
+		sc.close();
 	}
 	
 	// SUB MENU DE CREACION DE UNIDADES DE COMBATE
@@ -480,6 +515,7 @@ public class Main implements Variables{
 					
 			}
 		}
+		sc.close();
 	}
 	
 	// SUB MENU DE CREACION DE UNIDADES DE DEFENSA
@@ -541,6 +577,7 @@ public class Main implements Variables{
 					
 			}
 		}
+		sc.close();
 }
 	
 	// SUB MENU DE MEJORA DE TECNOLOGIAS
@@ -615,6 +652,7 @@ public class Main implements Variables{
 					sc.nextLine();
 			}
 		}
+		sc.close();
 	}
 	
 	

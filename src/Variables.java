@@ -113,4 +113,9 @@ public interface Variables {
 	// Limite de % de tropas para seguir en una batalla
 	public final int PERCENTATGE_LIMIT_BATTLE_UNITS = 20;
 	
+	public final String[] UNIT_NAMES = {
+		"Ligth Hunter", "Heavy Hunter",
+		"Battle Ship","Armored Ship",
+		"Missile Launcher", "Ion Cannon", "Plasma Cannon"};
+	
 }
