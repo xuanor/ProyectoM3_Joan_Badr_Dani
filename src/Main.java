@@ -360,10 +360,28 @@ public class Main implements Variables{
 					}else {
 						checkOpc = true;
 					}
-				//System.out.println("Reporte " + opc + " escogido");
-				System.out.println(b.getBattleReport(opc));
-				}
+					System.out.println(b.getBattleReport(opc));
 					
+					// Pregunta para ver el informe paso a paso
+					boolean check = false;
+					
+				    while (! check ) {
+				    	System.out.println("\nView Battle development?(S\\n)");
+				    	String imp = sc.next().toUpperCase();
+				    	if (imp.equals("S")) {
+				    		check = true;
+				    		System.out.println(b.getBattleDevelopment());
+				    	}
+				    	else if (imp.equals("N")) {
+				    		check = true;
+				    		System.out.println("No quieres ver el informe");
+				    	
+				    	}else {
+				    		sc.nextLine();
+				    		System.out.println("Only options (S\\n) are allowed");
+				    	}
+				    }
+				}	
 				break;
 				
 			case 5:
@@ -385,7 +403,7 @@ public class Main implements Variables{
 				sc.nextLine();
 			}
 		}
-		
+		sc.close();
 	}
 
 	// SUB MENU DE CONSTRUCCIONES
@@ -425,6 +443,7 @@ public class Main implements Variables{
 					sc.nextLine();
 			}
 		}
+		sc.close();
 	}
 	
 	// SUB MENU DE CREACION DE UNIDADES DE COMBATE
@@ -496,6 +515,7 @@ public class Main implements Variables{
 					
 			}
 		}
+		sc.close();
 	}
 	
 	// SUB MENU DE CREACION DE UNIDADES DE DEFENSA
@@ -557,6 +577,7 @@ public class Main implements Variables{
 					
 			}
 		}
+		sc.close();
 }
 	
 	// SUB MENU DE MEJORA DE TECNOLOGIAS
@@ -631,6 +652,7 @@ public class Main implements Variables{
 					sc.nextLine();
 			}
 		}
+		sc.close();
 	}
 	
 	

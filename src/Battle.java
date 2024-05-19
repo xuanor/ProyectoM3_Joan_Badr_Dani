@@ -1,10 +1,13 @@
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 
 public class Battle implements Variables{
 	// ***VARIABLES***
 	
+	// Para mostrar info el informe de la batalla
+	private boolean planetWins;
 	// Para almacenar la flota de nuestro planeta
 	private ArrayList<MilitaryUnit>[] planetArmy; 
 	// Para almacenar la flota enemiga
@@ -170,57 +173,109 @@ public class Battle implements Variables{
 		this.resourcesLooses = resourcesLooses;
 	}
 	
+	
+	public int[][] getInitialCostFleet() {
+		return initialCostFleet;
+	}
+
+	public void setInitialCostFleet(int[][] initialCostFleet) {
+		this.initialCostFleet = initialCostFleet;
+	}
+	
+	
+	public boolean isPlanetWins() {
+		return planetWins;
+	}
+
+	public void setPlanetWins(boolean planetWins) {
+		this.planetWins = planetWins;
+	}
+
 	//resumen, battles será el número de batallas que hayamos acumulado ****
-		public String getBattleReport(int battles) {
-			String[] informes = new String[5];
-			String informeStats = "BATTLE STATISTICS";
-			String informePasoApaso = "";
-			// Hacer un array donde meter los datos de las tropas
-			// * Informe stadisticas
-			// Tropas inciales y sus bajas
-			informeStats += String.format("\n%-16s%12s%12s%26s%8s%12s\n"
-					   + "\n%-16s%12d%12d"
-					   + "%20s%14d%12d"
-					   + "\n%-16s%12d%12d"
-					   + "%20s%14d%12d"
-					   + "\n%-16s%12d%12d"
-					   + "%20s%14d%12d"
-					   + "\n%-16s%12d%12d"
-					   + "%20s%14d%12d"
-					   + "\n%-16s%12d%12d"
-					   + "\n%-16s%12d%12d"
-					   + "\n%-16s%12d%12d"
-					   +"\n",
-					   "Army Planet","Units","Drops","Initial Army Enemy", "Units", "Drops",
-					   "Ligth Hunter",getInitialArmies()[0][0], getPlanetDrops()[0],
-					   "Ligth Hunter",getInitialArmies()[1][0],getEnemyDrops()[0],
-					   "Heavy Hunter",getInitialArmies()[0][1], getPlanetDrops()[1],
-					   "Heavy Hunter",getInitialArmies()[1][1],getEnemyDrops()[1],
-					   "Battle Ship",getInitialArmies()[0][2], getPlanetDrops()[2],
-					   "Battle Ship ",getInitialArmies()[1][2],getEnemyDrops()[2],
-					   "Armored Ship",getInitialArmies()[0][3], getPlanetDrops()[3],
-					   "Armored Ship",getInitialArmies()[1][3],getEnemyDrops()[3],
-					   "Missile Launcher",getInitialArmies()[0][4], getPlanetDrops()[4],
-					   "Ion Cannon",getInitialArmies()[0][5], getPlanetDrops()[5],
-					   "Plasma Cannon",getInitialArmies()[0][6], getPlanetDrops()[6]);
-			
-			informeStats+= "\n\n**************************************************************************************";
-		    
-			// Costes de cada army en metal y deuterio
-			// Perdidas de cada army en metal y deuterio
-			// Residuos generados
-			// Quien ha ganado la batalla y si consigue residuos o no
-			
-			// Pregunta para ver el informe paso a paso
-			// * Informe pasoApaso
-			//getBattleDevelopment();
-			
-			return informeStats;
-		}
+	public String getBattleReport(int battles) {
+		String[] informes = new String[5];
+		String informeStats = "BATTLE STATISTICS\n";
+		String informePasoApaso = "";
+		// Hacer un array donde meter los datos de las tropas
+		// * Informe stadisticas
+		// Tropas inciales y sus bajas
+		informeStats += String.format("\n%-16s%12s%12s%26s%8s%12s\n"
+				   + "\n%-16s%12d%12d"
+				   + "%20s%14d%12d"
+				   + "\n%-16s%12d%12d"
+				   + "%20s%14d%12d"
+				   + "\n%-16s%12d%12d"
+				   + "%20s%14d%12d"
+				   + "\n%-16s%12d%12d"
+				   + "%20s%14d%12d"
+				   + "\n%-16s%12d%12d"
+				   + "\n%-16s%12d%12d"
+				   + "\n%-16s%12d%12d"
+				   +"\n",
+				   "Army Planet","Units","Drops","Initial Army Enemy", "Units", "Drops",
+				   "Ligth Hunter",getInitialArmies()[0][0], getPlanetDrops()[0],
+				   "Ligth Hunter",getInitialArmies()[1][0],getEnemyDrops()[0],
+				   "Heavy Hunter",getInitialArmies()[0][1], getPlanetDrops()[1],
+				   "Heavy Hunter",getInitialArmies()[1][1],getEnemyDrops()[1],
+				   "Battle Ship",getInitialArmies()[0][2], getPlanetDrops()[2],
+				   "Battle Ship ",getInitialArmies()[1][2],getEnemyDrops()[2],
+				   "Armored Ship",getInitialArmies()[0][3], getPlanetDrops()[3],
+				   "Armored Ship",getInitialArmies()[1][3],getEnemyDrops()[3],
+				   "Missile Launcher",getInitialArmies()[0][4], getPlanetDrops()[4],
+				   "Ion Cannon",getInitialArmies()[0][5], getPlanetDrops()[5],
+				   "Plasma Cannon",getInitialArmies()[0][6], getPlanetDrops()[6]);
 		
-		public String getBattleDevelopment() {
-			return "";
-		}
+		informeStats+= "\n\n**************************************************************************************";
+	    
+		// Costes de cada army en metal y deuterio
+		informeStats += String.format("\n%-30s%30s\n"
+				   + "\n%-14s%-31d%-14s%-14d"
+				   + "\n%-14s%-31d%-14s%-14d",
+				   "Cost Army planet","Cost Army Enemy",
+				   "Metal:", getInitialCostFleet()[0][0],
+				   "Metal:", getInitialCostFleet()[1][0],
+				   "Deuterio:", getInitialCostFleet()[0][1],
+				   "Deuterio:", getInitialCostFleet()[1][1]);
+			
+		informeStats+= "\n\n**************************************************************************************";
+		
+		// Perdidas de cada army en metal y deuterio
+		informeStats += String.format("\n%-32s%30s\n"
+				   + "\n%-14s%-31d%-14s%-14d"
+				   + "\n%-14s%-31d%-14s%-14d"
+				   + "\n%-14s%-31d%-14s%-14d",
+				   "Losses Army planet","Losses Army Enemy",
+				   "Metal:", getResourcesLooses()[0][0],
+				   "Metal:", getResourcesLooses()[1][0],
+				   "Deuterio:", getResourcesLooses()[0][1],
+				   "Deuterio:",getResourcesLooses()[1][1],
+				   "Weighted:", getResourcesLooses()[0][2],
+				   "Weighted:",getResourcesLooses()[1][2]);
+		
+	    informeStats+= "\n\n**************************************************************************************";
+		
+	    // Residuos generados, quien ha ganado la batalla y si consigue residuos o no
+	    if (isPlanetWins()) {
+		    informeStats += String.format("\nWaste Generated:\n"
+					   + "\n%-14s%-31d"
+					   + "\n%-14s%-31d",
+					   "Metal:", getWasteMetalDeuterium()[0],
+					   "Deuterio:", getWasteMetalDeuterium()[1]);
+		 
+		    informeStats+= "\nBattle Winned by Planet, We Collect Rubble"
+		    		+ "\n\n#######################################################################################";
+	    }else {
+	    	informeStats+= "\nBattle Winned by Enemy, We Dont't Collect Rubble"
+		    		+ "\n\n#######################################################################################";
+	    }
+	    // Hacer lista de informes  ***
+		return informeStats;
+	}
+	
+	public String getBattleDevelopment() {
+
+		return "\"Estoy en el desarroyo de la batalla\"";
+	}
 		
 	// Devuelvo las % de escojer cada unidad de cada ejercito
 	private int[] getChanceUnits(ArrayList<MilitaryUnit>[] army) {
@@ -324,16 +379,14 @@ public class Battle implements Variables{
 		System.out.println("TOTAL DEUTERIO RECUPERADO = " + totalDeu);
 	}
 	
-	// Para calcular costes de las flotas (perdidas.) ??
+	// Para calcular costes de las flotas iniciales.
 	public void fleetResourceCost(ArrayList<MilitaryUnit>[][] army) {
-		int[][] resourceLooses = new int[2][4];
+		int[][] resourcesCost = new int[2][2];
 		int costeMetal = 0;
 		int costeDeuterio = 0;
 		int totalMetal = 0;
 		int totalDeuterio = 0;
-		// Hacer con el drops??
-		// {perdidas metal planeta, perdidas deuterio planeta, perdidas metal planeta + 5* perdidas deuterio planeta}
-		
+	
 		// Ejercito
 		for (int pos = 0; pos < 2; pos++) {	
 			for (int j = 0; j < army[pos].length; j++) {
@@ -349,7 +402,42 @@ public class Battle implements Variables{
 					totalDeuterio += costeDeuterio;
 				}
 			}
-			
+			resourcesCost[pos][0] = totalMetal;
+			resourcesCost[pos][1] = totalDeuterio;
+			System.out.println("\nTotal metal = " + resourcesCost[pos][0]);
+			System.out.println("\nTotal deuterio = " + resourcesCost[pos][1]);
+		}
+		setInitialCostFleet(resourcesCost);
+	}
+		
+	// Calcular coste de las unidades perdidas
+	public void updateResourcesLooses() {
+		int[][] armiesDrops = new int[2][7];
+		int[][] resourceLooses = new int[2][3];
+		int costeMetal = 0;
+		int costeDeuterio = 0;
+		int totalMetal = 0;
+		int totalDeuterio = 0;
+		// {perdidas metal planeta, perdidas deuterio planeta, perdidas metal planeta + 5* perdidas deuterio planeta}
+		armiesDrops[0] = getPlanetDrops();
+		armiesDrops[1] = getEnemyDrops();
+		
+		// Ejercito
+		for (int pos = 0; pos < 2; pos++) {	
+			for (int j = 0; j < armiesDrops[pos].length; j++) {
+				if (armiesDrops[pos][j] != 0) {
+					for (int i = 0; i < armiesDrops[pos][j]; i++) {
+						
+							// Suma de cada unidad de un grupo
+							costeMetal += METAL_COST_UNITS[j];
+							costeDeuterio += DEUTERIUM_COST_UNITS[j];
+						
+					}// Suma de cada grupo
+					totalMetal += costeMetal;
+					totalDeuterio += costeDeuterio;
+				}
+			}
+			//initialCostFleet
 			resourceLooses[pos][0] = totalMetal;
 			resourceLooses[pos][1] = totalDeuterio;
 			resourceLooses[pos][2] = totalMetal + (totalDeuterio * 5);
@@ -357,8 +445,6 @@ public class Battle implements Variables{
 		}
 		setResourcesLooses(resourceLooses);
 	}
-		
-	
 	// Para calcular unidades de cada flota 
 	public void actualFleetNumber(boolean initFlag) {
 		// Calcular total de unidades
@@ -455,7 +541,8 @@ public class Battle implements Variables{
 			if (cont == -1) {
 				cont = 0;
 			}
-			else {
+			// Revisar **
+			else if (cont != 6){
 				cont++;
 			}
 			//|| contBucle == 6
@@ -572,6 +659,8 @@ public class Battle implements Variables{
 		// Contar total de tropas iniciales
 		actualFleetNumber(true);
 		actualFleetNumber(false);
+		// Calculos los costes de las tropas inciales para el informe
+		fleetResourceCost(armies);
 		
 		boolean zeroUnits = false;
 		boolean chanceAttack = false;
@@ -697,8 +786,7 @@ public class Battle implements Variables{
 						System.out.println("No vuelve a atacar, nueva pelea");
 					}
 				}
-			}
-			if (playBattle) {
+			}if (playBattle) {
 				// Comprovar que tengo + del 20% de mis tropas
 				if (remainderPercentageFleet(armies[0]) <= PERCENTATGE_LIMIT_BATTLE_UNITS
 						|| remainderPercentageFleet(armies[1]) <= PERCENTATGE_LIMIT_BATTLE_UNITS) {
@@ -720,17 +808,23 @@ public class Battle implements Variables{
 		
 		if (!(zeroUnits)) {
 			// Calcular bajas
-			fleetResourceCost(armies);
 			updateUnitDrops();
-			// Calcular los recursos que se han gastado para saber el GANADOR ( el < o > revisar con Jordi)***
-			if (getResourcesLooses()[0][2] >= getResourcesLooses()[1][2]) {
+			
+			// Recursor perdidos
+			updateResourcesLooses();
+	
+			// El que menos recuros pierde GANA 
+			if (getResourcesLooses()[0][2] <= getResourcesLooses()[1][2]) {
 				System.out.println("\n¡El planeta ha ganado!");
-				
+				setPlanetWins(true);
 				// Calcular residuos que me quedo 
 				updateWasteMetalDeuterium();
 				
 			} else {
 				System.out.println("\n¡El enemigo ha ganado!");
+				setPlanetWins(false);
+				// Limpio el array de residuos para el informe
+				setWasteMetalDeuterium(new int[2]);
 			}
 		}
 		
