@@ -1,197 +1,61 @@
-/* Reset de estilos */
-* {
+body{
+  background: url(../fotos/Fondo/EspacioGif.gif);
+  background-attachment: fixed;
+  background-size: 100%;
   margin: 0;
-  padding: 0;
-  box-sizing: border-box;
 }
 
-body {
-  background-color: #ffffff; /* Fondo negro */
-}
-
-/* Estilos de la cabecera */
-#cabecera {
-  background-image: url('../fotos/logo/cabecera.webp'); 
-  position: sticky;
+.sticky{
   top: 0;
-  z-index: 2000; /* Aumenta el z-index para que la cabecera esté por encima de los demás elementos */
+  position: sticky;
+  z-index: 1000
 }
 
-.wrapper {
-  display: flex;
-  justify-content: space-between; /* Distribuye los elementos a lo largo del eje principal con un espacio igual entre ellos */
-  align-items: center; /* Centra verticalmente los elementos */
-  max-width: 1800px; /* Establece el ancho máximo del contenedor */
-  margin: 0 auto; /* Centra el contenedor horizontalmente en la página */
-}
-
-.logo {
-  order: 2; /* Mueve el logo al medio */
-  margin: 0 auto; /* Centra horizontalmente el logo */
-}
-
-.links {
-  order: 1; /* Mueve el menú al extremo izquierdo */    
-}
-
-.creden {
-  order: 3; /* Mueve los inputs y botones al extremo derecho */
-}
-
-/* Estilos del menú desplegable */
-.desplegable {
-  display: none; /* Oculta la lista desplegable por defecto */
-  position: absolute;
-  background-color: #000; /* Fondo negro */
-  min-width: 160px;
-  box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
-  z-index: 1;
-}
-
-.desplegable li {
-  padding: 12px 16px;
-  text-decoration: none;
-  display: block;
-  color: #fff; /* Letras blancas */
-  transition: background-color 0.3s ease; /* Transición suave al pasar el ratón */
-}
-
-
-.desplegable a {
-  text-decoration: none; /* Elimina el subrayado */
-  color: white; /* Color de la letra blanco */
-}
-
-
-.desplegable li:hover {
-  background-color: #333; /* Cambio de color al pasar el ratón */
-}
-
-
-.desplegable a:hover {
-  background-color: rgba(0, 0, 0, 0.2); /* Color de fondo grisaceo al pasar el ratón */
-}
-
-
-
-
-/* Mostrar el menú desplegable al hacer clic en el botón */
-#menuBtn:hover + .desplegable,
-.desplegable:hover {
-  display: block;
-}
-
-#menuBtn {
-  background-color: #000; /* Fondo negro */
-  color: #fff; /* Letras blancas */
-  padding: 15px 25px; /* Espacio alrededor del texto */
-  border: none; /* Sin borde */
-  border-radius: 5px; /* Bordes redondeados */
-  text-decoration: none; /* Sin subrayado */
-  font-size: 18px; /* Tamaño de fuente */
-  transition: background-color 0.3s ease; /* Transición suave al pasar el ratón */
-}
-
-#menuBtn:hover {
-  background-color: #333; /* Cambio de color al pasar el ratón */
-}
-
-/* Estilo del div de credenciales */
-.creden {
-  background-color: transparent; /* Eliminamos el color de fondo */
-  color: #fff;
+.cuerpo {
+ /* Máximo ancho del contenedor */
+  margin: 0 auto; /* Centramos el contenedor */
+  text-align: center;
   padding: 20px;
-  border-radius: 5px;
-  display: flex;
-  flex-direction: column;
-  align-items: flex-start; /* Alinear los elementos al inicio del contenedor */
-  margin-right: 5px;
-  
 }
 
-.creden .fila {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.creden .fila input[type="text"],
-.creden .fila input[type="password"] {
-  padding: 10px;
-  font-size: 13px;
-  flex-grow: 1;
-  width: auto;
-  margin-right: 10px;
-  border: 1px solid #15244e; /* Añadimos un borde gris */
-  transition: box-shadow 0.3s ease; /* Añadimos transición de sombra */
-}
-
-.creden .fila input[type="text"]:focus,
-.creden .fila input[type="password"]:focus {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Añadimos sombra al enfocar */
-}
-
-.creden .fila button {
-  background-color: transparent; /* Eliminamos el color de fondo */
-  color: #fff;
-  border: 1px solid #ccc; /* Añadimos un borde gris */
-  border-radius: 5px;
-  padding: 10px 20px;
-  cursor: pointer;
-  transition: box-shadow 0.3s ease; /* Añadimos transición de sombra */
-  min-width: 120px; /* Ajustar el ancho mínimo de los botones */
-}
-
-.creden .fila button:hover {
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.3); /* Añadimos sombra al pasar el ratón */
-}
-
-
-
-
-
-
-
-
-/* Estilos para los productos */
-#cuerpo {
-  display: flex;
-  flex-wrap: wrap; /* Permite que los productos se ajusten automáticamente en varias filas */
-  justify-content: center; /* Centra los productos horizontalmente */
-  gap: 20px; /* Espacio entre los productos */
+.cuerpo h1 {
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 2px;
 }
 
 .producto {
-  position: relative;
-  display: inline-block;
+  background-color: white;
+  border-radius: 25px; /* Bordes redondeados */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar efecto de sobresalir */
+  padding: 20px;
+  width: calc(20% - 20px); /* Ajustar el ancho para 5 productos por fila considerando el margen */
   margin: 10px;
-  width: calc(20% - 20px); /* Calcula el ancho para 5 productos por fila con un margen de 10px a cada lado */
-  height: auto; /* Altura automática para adaptarse al contenido */
-  overflow: hidden; /* Oculta el exceso de contenido */
-  border-radius: 10px; /* Bordes redondeados */
+  text-align: center;
   transition: transform 0.3s ease;
-  background-color: #2d2e35; /* Color de fondo deseado */
+  box-sizing: border-box;
+  display: inline-block;
+  vertical-align: top;
+  height: auto; 
+
 }
 
-@media only screen and (max-width: 768px) {
-  .producto {
-    width: calc(33.33% - 20px); /* Calcula el ancho para 3 productos por fila con un margen de 10px a cada lado */
-  }
+.merch img{
+  height: 150px;
+  object-fit: center;
+
 }
 
-@media only screen and (max-width: 480px) {
-  .producto {
-    width: calc(50% - 20px); /* Calcula el ancho para 2 productos por fila con un margen de 10px a cada lado */
-  }
-}
-
-
-
-
-.imagen {
-  width: 100%; /* La imagen ocupa todo el ancho del producto */
-  height: auto; /* La altura se ajusta automáticamente para mantener la proporción */
-  object-fit: cover; /* Escala la imagen para llenar el contenedor manteniendo la relación de aspecto */
+ .merch {
+  width: 100%;
+  object-fit: cover;
+  background: rgb(166 175 182); 
+  height: 200px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .desc {
@@ -203,8 +67,6 @@ body {
   font-size: 14px; /* Tamaño de fuente para el texto de la descripción */
 }
 
-
-
 .overlay .texto {
   font-size: 20px; /* Tamaño de la fuente */
   color: white; /* Color del texto */
@@ -212,12 +74,6 @@ body {
 
 .overlay {
   color: white; /* Color del texto del overlay */
-  background-color: rgba(128, 128, 128, 0.5); /* Grisaceo y opaco */
-
-}
-
-
-.overlay {
   position: absolute;
   top: 50%;
   left: 50%;
@@ -242,49 +98,31 @@ body {
   color: white; /* Color del texto */
 }
 
-
-
-
-/* Ajusta el ancho máximo de la fila */
-.fila {
-  display: flex;
-  flex-wrap: wrap;
-  justify-content: space-between;
-  margin-bottom: 20px; /* Espacio entre filas */
-}
-
-/* Ajusta el ancho de cada producto en la fila */
-.producto {
-  width: calc(20% - 10px); /* Calcula el ancho para 5 productos por fila */
-  margin-bottom: 20px; /* Espacio entre productos */
-}
-
 /* Ajusta el margen derecho del último producto en cada fila */
 .producto:nth-child(5n) {
   margin-right: 0;
 }
-
-/* Ajusta los márgenes laterales de la fila para centrar los productos */
-.fila::after {
-  content: "";
-  flex-grow: 1;
+/*Ajuste del texto y del link del precio*/
+.producto p{
+  margin-top: 20px;
 }
 
-
-
-
-/*La parte de abajo*/
-
-.bottom{
-  position: absolute;
-  width: 100%;
-  height: 10%;
-  background-color: #242526;
-  text-align: center;
-
+.producto a {
+  text-decoration: none;
+  font-weight: bold;
 }
-#text_bottom{
-  color: #fff;
+.producto >.desc >.precio {
+  display: inline-block;
+
+  margin-top: 10px; /* Espacio superior para el texto */
+  color: #000000;
+  text-decoration: underline; /* Subrayar el texto */
+  cursor: pointer; /* Cambiar el cursor al puntero */
+}
+
+.producto >.precio:hover {
+  color: hsl(0, 0%, 0%); /* Cambiar el color del texto al pasar el ratón */
+  text-decoration: underline; /* Mantener el subrayado */
 }
 
 /*adaptacion a cualquier tamaño*/
