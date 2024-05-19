@@ -647,9 +647,13 @@ public class Battle implements Variables{
 		return cont;
 	}
 
-	//  Restablecer los blindajes de nuestro ejército. ***
+	//  Restablecer los blindajes de nuestro ejército. 
 	public void resetArmyArmor() {
-		
+		for (ArrayList<MilitaryUnit> group : getPlanetArmy()) {
+			for (MilitaryUnit unit : group) {
+				unit.resetArmor();
+			}
+		}
 	}
 	
 	public void batalla() {
