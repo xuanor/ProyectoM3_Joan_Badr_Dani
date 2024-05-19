@@ -284,15 +284,27 @@ public class Main implements Variables{
 //	        	 System.out.println(mainPlanet.getDeuterium());
 	        	 mainPlanet.setMetal( mainPlanet.getMetal() + b.getWasteMetalDeuterium()[0]);
 	        	 mainPlanet.setDeuterium(mainPlanet.getDeuterium() + b.getWasteMetalDeuterium()[1]);
-	        	 System.out.println(mainPlanet.getMetal());
-	        	 System.out.println(mainPlanet.getDeuterium());
-	        	 System.out.println("Ganancias añadidas !!");
+//	        	 System.out.println(mainPlanet.getMetal());$
+//	        	 System.out.println(mainPlanet.getDeuterium());$
+//	        	 System.out.println("Ganancias añadidas !!");$
+	         }
+
+	    };
+	    
+	    TimerTask taskUpdateResources = new TimerTask() {
+		    
+
+	         public void run() {
+	        	 //System.out.println("**Recursos aumentados**");
+	        	 mainPlanet.setMetal((int)(mainPlanet.getMetal()*1.1));
+	        	 mainPlanet.setDeuterium((int)(mainPlanet.getDeuterium()*1.1));
 	         }
 
 	    };
 
 	    timer.schedule(taskThreat, 3000, 60000);
 	    timer.schedule(taskAtack, 4000, 60000);
+	    timer.schedule(taskUpdateResources, 60000, 60000);
 		Scanner sc = new Scanner(System.in);
 		
 		String mainMenu = "Main Menu\n" + "1)View Planet Stats\n" + "2)Build\n" + "3)Upgrade Technology\n"
