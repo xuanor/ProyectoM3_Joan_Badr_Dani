@@ -108,31 +108,6 @@ public class Battle implements Variables{
 		this.totalActualUnitsEnemy = totalActualUnitsEnemy;
 	}
 
-	//resumen, battles será el número de batallas que hayamos acumulado ****
-	public String getBattleReport(int battles) {
-		String[] informes = new String[5];
-		String informeStats = "BATTLE STATISTICS";
-		String informePasoApaso = "";
-		
-		// * Informe stadisticas
-		// Tropas inciales y sus bajas
-		
-		// Costes de cada army en metal y deuterio
-		// Perdidas de cada army en metal y deuterio
-		// Residuos generados
-		// Quien ha ganado la batalla y si consigue residuos o no
-		
-		// Pregunta para ver el informe paso a paso
-		// * Informe pasoApaso
-		//getBattleDevelopment();
-		
-		return informes[battles];
-	}
-	
-	public String getBattleDevelopment() {
-		return "";
-	}
-	
 	public ArrayList<MilitaryUnit>[] getPlanetArmy() {
 		return planetArmy;
 	}
@@ -194,7 +169,59 @@ public class Battle implements Variables{
 	public void setResourcesLooses(int[][] resourcesLooses) {
 		this.resourcesLooses = resourcesLooses;
 	}
-
+	
+	//resumen, battles será el número de batallas que hayamos acumulado ****
+		public String getBattleReport(int battles) {
+			String[] informes = new String[5];
+			String informeStats = "BATTLE STATISTICS";
+			String informePasoApaso = "";
+			// Hacer un array donde meter los datos de las tropas
+			// * Informe stadisticas
+			// Tropas inciales y sus bajas
+			informeStats += String.format("\n%-16s%12s%12s%26s%8s%12s\n"
+					   + "\n%-16s%12d%12d"
+					   + "%20s%14d%12d"
+					   + "\n%-16s%12d%12d"
+					   + "%20s%14d%12d"
+					   + "\n%-16s%12d%12d"
+					   + "%20s%14d%12d"
+					   + "\n%-16s%12d%12d"
+					   + "%20s%14d%12d"
+					   + "\n%-16s%12d%12d"
+					   + "\n%-16s%12d%12d"
+					   + "\n%-16s%12d%12d"
+					   +"\n",
+					   "Army Planet","Units","Drops","Initial Army Enemy", "Units", "Drops",
+					   "Ligth Hunter",getInitialArmies()[0][0], getPlanetDrops()[0],
+					   "Ligth Hunter",getInitialArmies()[1][0],getEnemyDrops()[0],
+					   "Heavy Hunter",getInitialArmies()[0][1], getPlanetDrops()[1],
+					   "Heavy Hunter",getInitialArmies()[1][1],getEnemyDrops()[1],
+					   "Battle Ship",getInitialArmies()[0][2], getPlanetDrops()[2],
+					   "Battle Ship ",getInitialArmies()[1][2],getEnemyDrops()[2],
+					   "Armored Ship",getInitialArmies()[0][3], getPlanetDrops()[3],
+					   "Armored Ship",getInitialArmies()[1][3],getEnemyDrops()[3],
+					   "Missile Launcher",getInitialArmies()[0][4], getPlanetDrops()[4],
+					   "Ion Cannon",getInitialArmies()[0][5], getPlanetDrops()[5],
+					   "Plasma Cannon",getInitialArmies()[0][6], getPlanetDrops()[6]);
+			
+			informeStats+= "\n\n**************************************************************************************";
+		    
+			// Costes de cada army en metal y deuterio
+			// Perdidas de cada army en metal y deuterio
+			// Residuos generados
+			// Quien ha ganado la batalla y si consigue residuos o no
+			
+			// Pregunta para ver el informe paso a paso
+			// * Informe pasoApaso
+			//getBattleDevelopment();
+			
+			return informeStats;
+		}
+		
+		public String getBattleDevelopment() {
+			return "";
+		}
+		
 	// Devuelvo las % de escojer cada unidad de cada ejercito
 	private int[] getChanceUnits(ArrayList<MilitaryUnit>[] army) {
 
@@ -399,7 +426,7 @@ public class Battle implements Variables{
 	}
 	
 	//	Para que dado un ejército, nos devuelva el grupo defensor, 
-	//	0-3 en el caso de la flota enemiga, 0-6 en el caso del ejército de nuestro planeta.
+	//	0-3 en el caso de la flota enemiga, 0-6 en el caso del ejército de nuestro planeta. REVISAR A FONDO**
 	public int getGroupDefender(ArrayList<MilitaryUnit>[] army) {
 		// Calculo probabilidades
 		int[] chanceMyArmy = getChanceUnits(army);
@@ -418,7 +445,7 @@ public class Battle implements Variables{
 			// Ecoger grupo def
 			for (int i = 0; i< chanceMyArmy.length;i++) {
 				sumTotal += chanceMyArmy[i];
-				if (sumTotal <= randomNum) {
+				if (sumTotal <=randomNum) {
 					cont ++;
 					//System.out.println("CONTADOR DEFENDER = " + cont);
 				}else {

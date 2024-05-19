@@ -139,7 +139,7 @@ public class Main implements Variables{
 		// Para no gastar el metal al iniciar partida
 		int dinero = METAL_BASE_ENEMY_ARMY;
 		
-		// Mientras haya reservas de Metal  puedes gastar
+		// Mientras haya reservas de Metal  puedes gastar ** AÑADIR DEUTERIO
 		
 		while ( dinero > (METAL_COST_LIGTHHUNTER) ) {
 			
@@ -280,8 +280,8 @@ public class Main implements Variables{
 	        	 System.out.println("··· Te acaban de atacar ···");
 	        	 b.batalla();
 	        	 // Le añado lo ganado a mis recursos (si no gano es(0,0))
-	        	 System.out.println(mainPlanet.getMetal());
-	        	 System.out.println(mainPlanet.getDeuterium());
+//	        	 System.out.println(mainPlanet.getMetal());
+//	        	 System.out.println(mainPlanet.getDeuterium());
 	        	 mainPlanet.setMetal( mainPlanet.getMetal() + b.getWasteMetalDeuterium()[0]);
 	        	 mainPlanet.setDeuterium(mainPlanet.getDeuterium() + b.getWasteMetalDeuterium()[1]);
 	        	 System.out.println(mainPlanet.getMetal());
@@ -360,8 +360,8 @@ public class Main implements Variables{
 					}else {
 						checkOpc = true;
 					}
-				System.out.println("Reporte " + opc + " escogido");
-				//b.getBattleReport()
+				//System.out.println("Reporte " + opc + " escogido");
+				System.out.println(b.getBattleReport(opc));
 				}
 					
 				break;
