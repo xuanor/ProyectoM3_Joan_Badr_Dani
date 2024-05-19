@@ -67,6 +67,9 @@ public class Clases_defensa {
 			this.armor = this.initialArmor;
 			
 		}
+		public String getUnitName() {	
+			return UNIT_NAMES[4];
+		}
 	}
 	
 	 public class IonCannon extends Defense {
@@ -138,6 +141,10 @@ public class Clases_defensa {
 			
 		}
 		
+		public String getUnitName() {	
+			return UNIT_NAMES[5];
+		}
+		
 	}
 	
 	 public class PlasmaCannon extends Defense {
@@ -207,6 +214,10 @@ public class Clases_defensa {
 		public void resetArmor() {
 			this.armor = this.initialArmor;
 			
+		}
+		
+		public String getUnitName() {	
+			return UNIT_NAMES[6];
 		}
 		
 	}

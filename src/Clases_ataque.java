@@ -73,6 +73,11 @@ public class Clases_ataque {
 			this.armor = this.initialArmor;
 			
 		}
+
+		
+		public String getUnitName() {	
+			return UNIT_NAMES[0];
+		}
 		
 	}
 	class HeavyHunter extends Ship{
@@ -127,6 +132,9 @@ public class Clases_ataque {
 		public void resetArmor() {
 			this.armor = this.initialArmor;
 			
+		}
+		public String getUnitName() {	
+			return UNIT_NAMES[1];
 		}
 		
 		
@@ -185,7 +193,9 @@ public class Clases_ataque {
 			this.armor = this.initialArmor;
 			
 		}
-		
+		public String getUnitName() {	
+			return UNIT_NAMES[2];
+		}
 		
 	}
 	class ArmoredShip extends Ship{
@@ -241,6 +251,10 @@ public class Clases_ataque {
 		public void resetArmor() {
 			this.armor = this.initialArmor;
 			
+		}
+		
+		public String getUnitName() {	
+			return UNIT_NAMES[3];
 		}
 		
 	}

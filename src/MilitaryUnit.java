@@ -18,5 +18,7 @@ public interface MilitaryUnit{
 	//Nos restablecerá nuestro blindaje a su valor original.
 	abstract void resetArmor();
 	
+	abstract String getUnitName();
+	
 	
 }

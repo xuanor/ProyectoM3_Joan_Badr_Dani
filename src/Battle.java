@@ -15,7 +15,7 @@ public class Battle implements Variables{
 	// Fila 1 nuestro ejercito, fila 2 ejercito enemigo
 	private ArrayList[][] armies = new ArrayList[2][];
 	// Donde guardamos todo el desarrollo de la batalla paso a paso
-	private String battleDevelopment;
+	private String battleDevelopment = "";
 	
 	//	COSTE de metal de los ejercitos iniciales
 	//	[[metal][deuterio],[metal][deuterio]] ,
@@ -50,8 +50,6 @@ public class Battle implements Variables{
 	private int totalActualUnitsPlanet, totalActualUnitsEnemy;
 
 	// ***METODOS***
-	
-	
 	public int getInitialNumberUnitsPlanet() {
 		return initialNumberUnitsPlanet;
 	}
@@ -193,7 +191,7 @@ public class Battle implements Variables{
 
 	//resumen, battles será el número de batallas que hayamos acumulado ****
 	public String getBattleReport(int battles) {
-		String[] informes = new String[5];
+		//String[] informes = new String[5];
 		String informeStats = "BATTLE STATISTICS\n";
 		String informePasoApaso = "";
 		// Hacer un array donde meter los datos de las tropas
@@ -269,12 +267,12 @@ public class Battle implements Variables{
 		    		+ "\n\n#######################################################################################";
 	    }
 	    // Hacer lista de informes  ***
+	    
 		return informeStats;
 	}
 	
 	public String getBattleDevelopment() {
-
-		return "\"Estoy en el desarroyo de la batalla\"";
+		return battleDevelopment;
 	}
 		
 	// Devuelvo las % de escojer cada unidad de cada ejercito
@@ -358,7 +356,7 @@ public class Battle implements Variables{
 //		}
 		
 		for (int units = 0; units< drops.length; units++) {
-			System.out.println("Drops = " + drops[units]);
+//			System.out.println("Drops = " + drops[units]);$
 			if (units > 0) {
 				
 				for(int unit = 0; unit < drops[units]; unit++) {
@@ -375,8 +373,8 @@ public class Battle implements Variables{
 		resources[1] = totalDeu;
 		
 		setWasteMetalDeuterium(resources);
-		System.out.println("TOTAL METAL RECUPERADO = " + totalMet);
-		System.out.println("TOTAL DEUTERIO RECUPERADO = " + totalDeu);
+//		System.out.println("TOTAL METAL RECUPERADO = " + totalMet);$
+//		System.out.println("TOTAL DEUTERIO RECUPERADO = " + totalDeu);$
 	}
 	
 	// Para calcular costes de las flotas iniciales.
@@ -404,8 +402,8 @@ public class Battle implements Variables{
 			}
 			resourcesCost[pos][0] = totalMetal;
 			resourcesCost[pos][1] = totalDeuterio;
-			System.out.println("\nTotal metal = " + resourcesCost[pos][0]);
-			System.out.println("\nTotal deuterio = " + resourcesCost[pos][1]);
+//			System.out.println("\nTotal metal = " + resourcesCost[pos][0]);$
+//			System.out.println("\nTotal deuterio = " + resourcesCost[pos][1]);$
 		}
 		setInitialCostFleet(resourcesCost);
 	}
@@ -441,7 +439,7 @@ public class Battle implements Variables{
 			resourceLooses[pos][0] = totalMetal;
 			resourceLooses[pos][1] = totalDeuterio;
 			resourceLooses[pos][2] = totalMetal + (totalDeuterio * 5);
-			System.out.println("\nTotal ponderado = " + resourceLooses[pos][2]);
+//			System.out.println("\nTotal ponderado = " + resourceLooses[pos][2]);$
 		}
 		setResourcesLooses(resourceLooses);
 	}
@@ -507,7 +505,7 @@ public class Battle implements Variables{
 		}else {
 			resultado = totalUnits*100/getInitialNumberUnitsPlanet();
 		}
-		System.out.println("Porcentaje de ejercito = " + resultado);
+//		System.out.println("Porcentaje de ejercito = " + resultado);$
 		return resultado;
 	}
 	
@@ -521,11 +519,11 @@ public class Battle implements Variables{
 		// EJERCITO > UNIDADES > NAVE
 		int cont = 0;
 		boolean checkSize = false;
-		int contBucle = 0;
+//		int contBucle = 0;
 		
 		while (!checkSize) {
 			int randomNum = (int)(Math.random()*98);
-			System.out.println("*** Numero random defender = " + randomNum);
+			//System.out.println("*** Numero random defender = " + randomNum);$
 			int sumTotal = 0;
 			cont = -1;
 			// Ecoger grupo def
@@ -565,7 +563,6 @@ public class Battle implements Variables{
 	
 	// Que nos servirán para escoger el GRUPO atacante (a que tropa ataca) tanto del planeta...
 	public int getPlanetGroupAttacker() {
-
 		// Añadir check size aquiS
 		boolean checkSize = false;
 		int cont = 0;
@@ -594,13 +591,14 @@ public class Battle implements Variables{
 			//System.out.println("1 " + getPlanetArmy());
 			if (!(getPlanetArmy()[cont] == null) && getPlanetArmy()[cont].size() > 0) {
 				checkSize = true;
-			}else {
-//				// Borro ese arrayList ( no se si funcionara esto con el GET)
-//				if (getPlanetArmy()[cont].size() == 0) {
-//					getPlanetArmy()[cont] = null;
-//				}
-				System.out.println("\nTropa de ataque 1 erronea\n");	
 			}
+//			else {
+////				// Borro ese arrayList ( no se si funcionara esto con el GET)
+////				if (getPlanetArmy()[cont].size() == 0) {
+////					getPlanetArmy()[cont] = null;
+////				}
+//				System.out.println("\nTropa de ataque 1 erronea\n");	
+//			}
 		}
 		return cont;
 	}		
@@ -610,7 +608,7 @@ public class Battle implements Variables{
 		// Añadir check size aqui
 		boolean checkSize = false;
 		int cont = 0;
-		int contBucle =0;
+//		int contBucle =0;
 		
 		while (!checkSize) {
 			int randomNum = (int)(Math.random()*98);			
@@ -635,14 +633,15 @@ public class Battle implements Variables{
 			//|| contBucle == 6
 			if (!(getEnemyArmy()[cont] == null) && getEnemyArmy()[cont].size() > 0 ) {
 				checkSize = true;
-			}else {
+			}
+//			else {
 //				// Borro ese arrayList ( no se si funcionara esto con el GET)
 //				if (getEnemyArmy()[cont].size() == 0) {
 //					getEnemyArmy()[cont] = null;
 //				}
-				System.out.println("\nTropa de ataque 2 erronea\n");
-				contBucle ++;
-			}
+//				System.out.println("\nTropa de ataque 2 erronea\n");$
+//				contBucle ++;
+//			}
 			//System.out.println("\n\nSize del arrayList Enemigo = " + getEnemyArmy()[cont].size() + "\n");
 		}	
 		return cont;
@@ -654,7 +653,7 @@ public class Battle implements Variables{
 	}
 	
 	public void batalla() {
-		System.out.println("ESTIC A LA BATALLA");
+		//System.out.println("ESTIC A LA BATALLA");
 		ArrayList<MilitaryUnit>[][] armies = this.armies;
 		// Contar total de tropas iniciales
 		actualFleetNumber(true);
@@ -668,7 +667,7 @@ public class Battle implements Variables{
 		boolean checkSize = false;
 		// Si no tienes tropas
 		if (getTotalActualUnitsPlanet() <= 1) {
-			System.out.println("No tine suficientes tropas para atacar, pierdes la batalla");
+			//System.out.println("No tine suficientes tropas para atacar, pierdes la batalla");$
 			// Le quito dinero por perder ( revisar porque le suma aunque pierda la batalla)
 //			int [] updateCosts = {getWasteMetalDeuterium()[0] + 20000
 //					,getWasteMetalDeuterium()[1] + 4000};
@@ -689,7 +688,7 @@ public class Battle implements Variables{
 
 		while (playBattle) {
 			
-			System.out.println("****EMPIEZA = " + empieza);
+			//System.out.println("****EMPIEZA = " + empieza);$
 			// Aqui guardo el grupo att y el grupo def de cada jugada
 			ArrayList<MilitaryUnit> attDef = new ArrayList<MilitaryUnit>();
 			
@@ -703,17 +702,20 @@ public class Battle implements Variables{
 				auxiliar = 1;
 			}
 			// Grupo atack
+			battleDevelopment += "\n\n********************CHANGE ATTACKER********************\n";
 			if (armies[auxiliar][4] == null) {
 				//System.out.println("===Grupo atacker es enemigo===");
 				cont = getEnemyGroupAttacker();
 				randomNum = (int)(Math.random()*armies[1][cont].size());	
-				attDef.add(armies[1][cont].get(randomNum));	
+				attDef.add(armies[1][cont].get(randomNum));
+				battleDevelopment+= "Attacks fleet enemy: ";
 			}else {
 				cont = getPlanetGroupAttacker();
 				randomNum = (int)(Math.random()*armies[0][cont].size());	
-				attDef.add(armies[0][cont].get(randomNum));	
-	
+				attDef.add(armies[0][cont].get(randomNum));
+				battleDevelopment+= "Attacks Planet: ";
 			}
+			battleDevelopment+= attDef.get(0).getUnitName() + " attacks ";
 			
 			// Grupo def
 			cont = getGroupDefender(armies[empieza]);
@@ -721,8 +723,9 @@ public class Battle implements Variables{
 			randomNum = (int)(Math.random()*armies[empieza][cont].size());
 			//System.out.println("SIZE DEL ARMY DEFENDER = " + armies[empieza%2][cont].size());
 			attDef.add(armies[empieza][cont].get(randomNum));	
-						
+			battleDevelopment+= attDef.get(1).getUnitName() + "\n";
 
+						
 			// Atacante resta a defensa lo que tiene de poder de ataque
 			// Hasta 0 o -0, que se eliminara
 			// PELEA DE DOS
@@ -730,18 +733,27 @@ public class Battle implements Variables{
 			boolean pelea = true;
 			
 			while (pelea) {
-				System.out.println("\nGuantazo\n");
+//				System.out.println("\nGuantazo\n");$
 				//attDef.get(1).getActualArmor() > 0 &&  attDef.get(0).getActualArmor() > 0
 				// El atacante le pega al defensor
 				attDef.get(1).tekeDamage(attDef.get(0).attack());
 				
-				//Para ver un poquito
-				System.out.println("DEFENSOR = " + attDef.get(1).getActualArmor());
-				System.out.println("ATACANTE = " + attDef.get(0).getActualArmor());
+				//Fuerza del golpe att
+				battleDevelopment+= attDef.get(0).getUnitName() 
+						+" generates the damage = " 
+						+ attDef.get(0).attack() + "\n";
+				// Armadura del def
+				battleDevelopment+= attDef.get(1).getUnitName() 
+						+" stays with armor = " 
+						+ attDef.get(1).getActualArmor() + "\n";
+		
+				//System.out.println("DEFENSOR = " + attDef.get(1).getActualArmor());$
+				//System.out.println("ATACANTE = " + attDef.get(0).getActualArmor());$
 				
 				if (attDef.get(1).getActualArmor() <= 0 ) {
 					// Lo elimino
-					System.out.println("Tu tropa ha muerto");
+//					System.out.println("Tu tropa ha muerto");$
+					battleDevelopment+= "we eliminate " + attDef.get(1).getUnitName() + "\n";
 					// Sumar +1 a las bajas **** hacer la resta luego
 					//setPlanetDrops(getPlanetDrops()[cont]+1, cont);
 					// Borrar tropa del grupo defensor
@@ -758,7 +770,7 @@ public class Battle implements Variables{
 					actualFleetNumber(false);
 					
 					if (getTotalActualUnitsPlanet() <= 1) {
-						System.out.println("No tine suficientes tropas para atacar, pierdes la batalla");
+//						System.out.println("No tine suficientes tropas para atacar, pierdes la batalla");$
 						// Le quito dinero por perder simepre que no sea < 0 
 //						if (getWasteMetalDeuterium()[0] > 0 && getWasteMetalDeuterium()[1] > 0) {
 //							int [] updateCosts = {getWasteMetalDeuterium()[0] - 20000
@@ -783,7 +795,7 @@ public class Battle implements Variables{
 					int chance = attDef.get(0).getChanceAttackAgain();
 					if ((int)(Math.random() *100 ) > chance) {
 						pelea = false;
-						System.out.println("No vuelve a atacar, nueva pelea");
+//						System.out.println("No vuelve a atacar, nueva pelea");$
 					}
 				}
 			}if (playBattle) {
@@ -791,7 +803,7 @@ public class Battle implements Variables{
 				if (remainderPercentageFleet(armies[0]) <= PERCENTATGE_LIMIT_BATTLE_UNITS
 						|| remainderPercentageFleet(armies[1]) <= PERCENTATGE_LIMIT_BATTLE_UNITS) {
 					// Se acaba la batalla y se hace recuento
-					System.out.println("Fin pelea, menos del 20%");
+//					System.out.println("Fin pelea, menos del 20%");$
 					playBattle = false;
 				}
 				// Cambia el turno
@@ -803,6 +815,7 @@ public class Battle implements Variables{
 				}	
 			}
 		}
+		battleDevelopment += "\n";
 		// Fin batalla
 //		System.out.println("**Ahora hare un recuento de los recursos**");
 		
@@ -815,13 +828,13 @@ public class Battle implements Variables{
 	
 			// El que menos recuros pierde GANA 
 			if (getResourcesLooses()[0][2] <= getResourcesLooses()[1][2]) {
-				System.out.println("\n¡El planeta ha ganado!");
+//				System.out.println("\n¡El planeta ha ganado!");$
 				setPlanetWins(true);
 				// Calcular residuos que me quedo 
 				updateWasteMetalDeuterium();
 				
 			} else {
-				System.out.println("\n¡El enemigo ha ganado!");
+//				System.out.println("\n¡El enemigo ha ganado!");$
 				setPlanetWins(false);
 				// Limpio el array de residuos para el informe
 				setWasteMetalDeuterium(new int[2]);
