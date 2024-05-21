@@ -62,7 +62,7 @@ body{
   #video-container:before,
   #video-container:after { /* Cambiado de .shadow:after a #video-container:after para coherencia */
     content: '';
-    position: relative;
+    position: absolute;
     top: -10px;
     left: -10px;
     background: linear-gradient(45deg, #ff76c6, #00c3ff);
@@ -218,7 +218,7 @@ body{
         /* Video */
     #video-container {
         width: 90%; /* Ancho máximo del 90% del viewport */
-        max-width: 600px; /* Ancho máximo de 600px */
+        max-width: 90%; /* Ancho máximo de 600px */
         margin: 0 auto; /* Centra el contenedor horizontalmente */
     }
 
