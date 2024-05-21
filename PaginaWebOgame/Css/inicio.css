@@ -61,7 +61,7 @@ body{
   #video-container:before,
   #video-container:after { /* Cambiado de .shadow:after a #video-container:after para coherencia */
     content: '';
-    position: absolute;
+    position: relative;
     top: -10px;
     left: -10px;
     background: linear-gradient(45deg, #ff76c6, #00c3ff);
@@ -97,7 +97,7 @@ body{
 #boton-download {
     display: flex;
     justify-content: center;
-    margin: 100px; 
+    margin: 50px; 
 }
 
 #boton-download a {
