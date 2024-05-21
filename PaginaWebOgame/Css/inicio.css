@@ -83,7 +83,7 @@ body{
     100% { background-position: 0 0; }
   }
   
-  #video-container video {
+  #video-container iframe {
     width:600px; /* Ancho deseado para el video */
     height: 350px; /* Alto deseado para el video */
 }
