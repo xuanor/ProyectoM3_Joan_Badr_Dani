@@ -147,11 +147,12 @@ public class Planet implements Variables{
 			if (i == n-1) {
 				System.out.println("Se han creado "+ n + " Heavy hunter/s.");
 			}
-			if ((this.metal - METAL_COST_HEAVYHUNTER) > 0) {
+			if ((this.metal - METAL_COST_HEAVYHUNTER) > 0 && (this.deuterium - DEUTERIUM_COST_HEAVYHUNTER) > 0) {
 				this.army[1].add(cAtack.new HeavyHunter(armor, atack));
 				this.metal -= METAL_COST_HEAVYHUNTER;
+				this.deuterium -= DEUTERIUM_COST_HEAVYHUNTER;
 			}else {
-				System.out.println("\nDon't hace enough metal.");
+				System.out.println("\nDon't hace enough resources.");
 				throw new BuildException("Solo se han creado "+ i + " Heavy hunter/s.\n");	
 			}	
 		}

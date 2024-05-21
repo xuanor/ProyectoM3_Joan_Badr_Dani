@@ -314,6 +314,7 @@ public class Battle implements Variables{
 				
 				if (i == 0) {
 					planetDrops[j] = getInitialArmies()[i][j] - getArmies()[i][j].size();
+					//System.out.println("Units del paneta = " + getArmies()[i][j].size());
 					//System.out.println("\nPlanet drops = " + planetDrops[j] );
 				}else {
 					if (!(getArmies()[i][j] == null)) {
@@ -356,15 +357,15 @@ public class Battle implements Variables{
 //		}
 		
 		for (int units = 0; units< drops.length; units++) {
-//			System.out.println("Drops = " + drops[units]);$
+//			System.out.println("Drops = " + drops[units]);
 			if (units > 0) {
 				
 				for(int unit = 0; unit < drops[units]; unit++) {
 					int randomNum = (int)(Math.random()*100);
 					// Si suena la flauta... calcula
 					if (randomNum < vars[units]) {
-						totalMet += METAL_COST_UNITS[units] * (PERCENTATGE_WASTE / 100);
-						totalDeu += DEUTERIUM_COST_UNITS[units]  * (PERCENTATGE_WASTE / 100); 
+						totalMet += (METAL_COST_UNITS[units] * PERCENTATGE_WASTE) / 100;
+						totalDeu += (DEUTERIUM_COST_UNITS[units]  * PERCENTATGE_WASTE) / 100; 
 					}
 				}
 			}
@@ -373,8 +374,8 @@ public class Battle implements Variables{
 		resources[1] = totalDeu;
 		
 		setWasteMetalDeuterium(resources);
-//		System.out.println("TOTAL METAL RECUPERADO = " + totalMet);$
-//		System.out.println("TOTAL DEUTERIO RECUPERADO = " + totalDeu);$
+//		System.out.println("TOTAL METAL RECUPERADO = " + totalMet);
+//		System.out.println("TOTAL DEUTERIO RECUPERADO = " + totalDeu);
 	}
 	
 	// Para calcular costes de las flotas iniciales.
@@ -392,15 +393,15 @@ public class Battle implements Variables{
 					for (int i = 0; i < army[pos][j].size(); i++) {
 						
 							// Suma de cada unidad de un grupo
-							costeMetal += army[pos][j].get(i).getDeuteriumCost();
-							costeDeuterio += army[pos][j].get(i).getMetalCost();
+							costeMetal += army[pos][j].get(i).getMetalCost();
+							costeDeuterio += army[pos][j].get(i).getDeuteriumCost();
 						
 					}// Suma de cada grupo
 					totalMetal += costeMetal;
 					totalDeuterio += costeDeuterio;
 				}
 			}
-			System.out.println("Pos = " + pos);
+			//System.out.println("Pos = " + pos);
 			resourcesCost[pos][0] = totalMetal;
 			resourcesCost[pos][1] = totalDeuterio;
 //			System.out.println("\nTotal metal = " + resourcesCost[pos][0]);$
@@ -451,7 +452,7 @@ public class Battle implements Variables{
 		// Calcular total de unidades
 		int totalGrupo = 0;
 		int totalUnidades = 0;
-		// Sumar total de tropas
+		// Sumar total de tropas ARMIES ***
 		ArrayList[][] armies = getArmies();
 //		System.out.println("Longitud armies = " + armies.length);
 		int[][] units = new int[2][7];
@@ -463,11 +464,11 @@ public class Battle implements Variables{
 				// Por cada fila de la columna armies[i]
 				if (!(armies[i][j] == null)) {
 					totalGrupo += armies[i][j].size();
-					units[i][j] = totalGrupo;
+					units[i][j] = armies[i][j].size();;
 					
 				}
 			}
-			totalUnidades += totalGrupo;
+			totalUnidades = totalGrupo;
 			
 			if (initFlag) {
 				if (i==0) {
@@ -803,6 +804,7 @@ public class Battle implements Variables{
 //						System.out.println("Fin pelea, menos del 20%");$
 					pelea = false;
 					playBattle = false;
+					setPlanetWins(false);
 				}	
 					
 				}
