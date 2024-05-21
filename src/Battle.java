@@ -363,8 +363,8 @@ public class Battle implements Variables{
 					int randomNum = (int)(Math.random()*100);
 					// Si suena la flauta... calcula
 					if (randomNum < vars[units]) {
-						totalMet += METAL_COST_UNITS[units] * PERCENTATGE_WASTE;
-						totalDeu += DEUTERIUM_COST_UNITS[units]  * PERCENTATGE_WASTE; 
+						totalMet += METAL_COST_UNITS[units] * (PERCENTATGE_WASTE / 100);
+						totalDeu += DEUTERIUM_COST_UNITS[units]  * (PERCENTATGE_WASTE / 100); 
 					}
 				}
 			}
@@ -380,13 +380,13 @@ public class Battle implements Variables{
 	// Para calcular costes de las flotas iniciales.
 	public void fleetResourceCost(ArrayList<MilitaryUnit>[][] army) {
 		int[][] resourcesCost = new int[2][2];
-		int costeMetal = 0;
-		int costeDeuterio = 0;
-		int totalMetal = 0;
-		int totalDeuterio = 0;
-	
+		
 		// Ejercito
 		for (int pos = 0; pos < 2; pos++) {	
+			int costeMetal = 0;
+			int costeDeuterio = 0;
+			int totalMetal = 0;
+			int totalDeuterio = 0;
 			for (int j = 0; j < army[pos].length; j++) {
 				if (!(army[pos][j] == null)) {
 					for (int i = 0; i < army[pos][j].size(); i++) {
@@ -400,6 +400,7 @@ public class Battle implements Variables{
 					totalDeuterio += costeDeuterio;
 				}
 			}
+			System.out.println("Pos = " + pos);
 			resourcesCost[pos][0] = totalMetal;
 			resourcesCost[pos][1] = totalDeuterio;
 //			System.out.println("\nTotal metal = " + resourcesCost[pos][0]);$
@@ -410,18 +411,20 @@ public class Battle implements Variables{
 		
 	// Calcular coste de las unidades perdidas
 	public void updateResourcesLooses() {
+
 		int[][] armiesDrops = new int[2][7];
 		int[][] resourceLooses = new int[2][3];
-		int costeMetal = 0;
-		int costeDeuterio = 0;
-		int totalMetal = 0;
-		int totalDeuterio = 0;
+		
 		// {perdidas metal planeta, perdidas deuterio planeta, perdidas metal planeta + 5* perdidas deuterio planeta}
 		armiesDrops[0] = getPlanetDrops();
 		armiesDrops[1] = getEnemyDrops();
 		
 		// Ejercito
 		for (int pos = 0; pos < 2; pos++) {	
+			int costeMetal = 0;
+			int costeDeuterio = 0;
+			int totalMetal = 0;
+			int totalDeuterio = 0;
 			for (int j = 0; j < armiesDrops[pos].length; j++) {
 				if (armiesDrops[pos][j] != 0) {
 					for (int i = 0; i < armiesDrops[pos][j]; i++) {
@@ -475,11 +478,12 @@ public class Battle implements Variables{
 				setInitialArmies(units);
 			}else {
 				
-				setActualNumberUnitsPlanet(units[i]);
 				if (i==0) {
+					setActualNumberUnitsPlanet(units[i]);
 					setTotalActualUnitsPlanet(totalUnidades);
 					
 				}else {
+					setActualNumberUnitsEnemy(units[i]);
 					setTotalActualUnitsEnemy(totalUnidades);
 				}
 			}
@@ -773,25 +777,33 @@ public class Battle implements Variables{
 					// Calcular cada iteracion los numeros act de tropas
 					actualFleetNumber(false);
 					
-					if (getTotalActualUnitsPlanet() <= 1) {
-//						System.out.println("No tine suficientes tropas para atacar, pierdes la batalla");$
-						// Le quito dinero por perder simepre que no sea < 0 
-//						if (getWasteMetalDeuterium()[0] > 0 && getWasteMetalDeuterium()[1] > 0) {
-//							int [] updateCosts = {getWasteMetalDeuterium()[0] - 20000
-//									,getWasteMetalDeuterium()[1] - 4000};
-//							setWasteMetalDeuterium(updateCosts); 
-//					}
-						pelea = false;
-						playBattle = false;
-					}else {
+//					if (getTotalActualUnitsPlanet() <= 1) {
+////						System.out.println("No tine suficientes tropas para atacar, pierdes la batalla");$
+//						// Le quito dinero por perder simepre que no sea < 0 
+////						if (getWasteMetalDeuterium()[0] > 0 && getWasteMetalDeuterium()[1] > 0) {
+////							int [] updateCosts = {getWasteMetalDeuterium()[0] - 20000
+////									,getWasteMetalDeuterium()[1] - 4000};
+////							setWasteMetalDeuterium(updateCosts); 
+////					}
+//						pelea = false;
+//						playBattle = false;
+//					}else {
 						
 						attDef.remove(attDef.get(1));
 						cont = getGroupDefender(armies[empieza]);
 						// Añado grupo enemigo
 						randomNum = (int)(Math.random()*armies[empieza][cont].size());
 						attDef.add(armies[empieza][cont].get(randomNum));	
-					}
+					//}
 					
+				// Comprovar que tengo + del 20% de mis tropas (meter en pelela***)
+				if (remainderPercentageFleet(armies[0]) <= PERCENTATGE_LIMIT_BATTLE_UNITS
+						|| remainderPercentageFleet(armies[1]) <= PERCENTATGE_LIMIT_BATTLE_UNITS) {
+					// Se acaba la batalla y se hace recuento
+//						System.out.println("Fin pelea, menos del 20%");$
+					pelea = false;
+					playBattle = false;
+				}	
 					
 				}
 				if (pelea) {
@@ -803,13 +815,13 @@ public class Battle implements Variables{
 					}
 				}
 			}if (playBattle) {
-				// Comprovar que tengo + del 20% de mis tropas
-				if (remainderPercentageFleet(armies[0]) <= PERCENTATGE_LIMIT_BATTLE_UNITS
-						|| remainderPercentageFleet(armies[1]) <= PERCENTATGE_LIMIT_BATTLE_UNITS) {
-					// Se acaba la batalla y se hace recuento
-//					System.out.println("Fin pelea, menos del 20%");$
-					playBattle = false;
-				}
+//				// Comprovar que tengo + del 20% de mis tropas (meter en pelela***)
+//				if (remainderPercentageFleet(armies[0]) <= PERCENTATGE_LIMIT_BATTLE_UNITS
+//						|| remainderPercentageFleet(armies[1]) <= PERCENTATGE_LIMIT_BATTLE_UNITS) {
+//					// Se acaba la batalla y se hace recuento
+////					System.out.println("Fin pelea, menos del 20%");$
+//					playBattle = false;
+//				}
 				// Cambia el turno
 				if (empieza == 1) {
 					empieza = 0;
