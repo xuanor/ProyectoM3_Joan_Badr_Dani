@@ -56,7 +56,6 @@ body{
     margin: 30px auto 0;
     height: max-content;
     width: min-content;
-    background: black;
   }
   
   #video-container:before,
@@ -82,8 +81,8 @@ body{
   }
   
   #video-container iframe {
-    width: 100vb;
-    height: 60vb;
+    width: 55vw;
+    height: 30vw;
 }
 
 /*Boton*/
