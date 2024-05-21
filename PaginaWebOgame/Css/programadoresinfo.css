@@ -21,6 +21,29 @@ body{
     margin: 0 auto 20px auto; 
     text-align: center;
 }
+#etica {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: auto; /* Ajusta la altura automáticamente */
+    font-family: 'Raleway', sans-serif;
+    font-weight: bold;
+    background-color: white;
+    border-radius: 25px; /* Bordes redondeados */
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar efecto de sobresalir */
+    padding: 30px;
+    max-width: 90%;
+    margin: 0 auto 20px auto; 
+
+
+}
+
+
+
+
+
+
+
 
 #videoJ{
     background-color: white;

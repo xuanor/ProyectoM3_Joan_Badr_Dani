@@ -3,55 +3,93 @@ body{
     background-attachment: fixed;
     background-size: 100%;
     margin: 0;
-}
-
-.sticky{
+  }
+  
+  .sticky{
     top: 0;
     position: sticky;
     z-index: 1000
-}
-
+  }
+  
 /* Slider */
-.container {
+#container {
     width: 100%;
-    height: 600px;
-    overflow: hidden;
+    height: 100%;
     position: absolute;
     right: 0;
+    flex-direction: column;
+    align-items: center;
+
+
   }
 
-  .slider{
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@700&display=swap'); /* Importa una fuente desde Google Fonts */
+
+
+#titulo {
     display: flex;
-    animation: cambio 10s infinite alternate linear;
+    justify-content: center;
     width: 100%;
-    height: 100px;
+}
+
+#titulo h1 {
+    margin-top: 50px; /* Aumenta el margen superior */
+    margin-bottom: 20px; /* Reduce el margen inferior */
+    padding-top: 20px; /* Aumenta el relleno superior */
+    padding-bottom: 20px; /* Aumenta el relleno inferior */
+    color:white;
+    text-align:center;
+    align-items:center;
+    justify-content:center;
+    font-family:'Roboto';
+    text-transform:uppercase;
+    position: relative; /* Cambia la posición a relativa */
+    top: 0; /* Reinicia la posición superior */
+    font-size:3em;
+    padding:0.5em;
+    text-shadow:0px 0px  10px rgb(54, 35, 161),
+        0px 0px  40px rgb(6, 85, 85),
+    0px 0px  80px purple,
+    0px 0px  120px rgb(1, 31, 31),
+    0px 0px  200px rgb(18, 97, 97);
+    
+}
+
+#video-container{
+    position:relative;
+    margin:30px auto 0;
+    width:600px; /* Ancho deseado para el video */
+    height: 350px; /* Alto deseado para el video */
+    background:black;
+  }
+  #video-container:before,.shadow:after{
+    content: '';
+    position: absolute;
+    top:-10px;
+    left:-10px;
+    background:linear-gradient(45deg,#fb0094,#0000ff);
+    width:calc(100% + 4px);
+    height:calc(100% + 4px);
+    background-size: 400%;
+    z-index:-1;
+    animation:animate 20s linear infinite alternate both;
+  }
+  #video-container:after{filter:blur(20px);}
+  @keyframes animate{
+    0%{background-position:0 0;}
+    50%{background-position:400% 0;}
+    100%{background-position:0 0;}
   }
 
-  .slider div{
-    width: 50%;
-    list-style: none;
-  }
-  .slider img{
-    width: 50%;
-    height: 50%;
-  }
-  @keyframes cambio{
-    0%{margin-left: 0%;}
-    20%{margin-left: 0%;}
-  
-    25%{margin-left: -100%;}
-    45%{margin-left: -100%;}
-  
-    50%{margin-left: -200%;}
-    70%{margin-left: -200%;}
-  
-    75%{margin-left: -300%;}
-    100%{margin-left: -300%;}
-  } 
+  #video-container video {
+    width:600px; /* Ancho deseado para el video */
+    height: 350px; /* Alto deseado para el video */
+}
+
 
 
 /*Boton*/
-.cuerpo {
+#cuerpo {
     display: flex;
     justify-content: center;
     align-items: center;
@@ -59,13 +97,13 @@ body{
     font-family: 'Raleway', sans-serif;
     font-weight: bold;
 }
-.boton-download {
+#boton-download {
     display: flex;
     justify-content: center;
     margin: 100px; 
 }
 
-.boton-download a {
+#boton-download a {
     position: relative;
     display: inline-block;
     padding: 25px 30px;
@@ -79,7 +117,7 @@ body{
     margin-right: 50px;
 }
 
-.boton-download a:hover {
+#boton-download a:hover {
     background: #03e9f4;
     color: #050801;
     box-shadow: 0 0 5px #03e9f4,
@@ -89,11 +127,11 @@ body{
     -webkit-box-reflect: below 1px linear-gradient(transparent, #0005);
 }
 
-.boton-download a span {
+#boton-download a span {
     position: absolute;
 }
 
-.boton-download a span:nth-child(1) {
+#boton-download a span:nth-child(1) {
     top: 0;
     left: 0;
     width: 100%;
@@ -111,7 +149,7 @@ body{
     }
 }
 
-.boton-download a span:nth-child(2) {
+#boton-download a span:nth-child(2) {
     top: -100%;
     right: 0;
     width: 2px;
@@ -130,7 +168,7 @@ body{
     }
 }
 
-.boton-download a span:nth-child(3) {
+#boton-download a span:nth-child(3) {
     bottom: 0;
     right: 0;
     width: 100%;
@@ -149,7 +187,7 @@ body{
     }
 }
 
-.boton-download a span:nth-child(4) {
+#boton-download a span:nth-child(4) {
     bottom: -100%;
     left: 0;
     width: 2px;
@@ -169,15 +207,36 @@ body{
 }
 
 /*adaptacion a cualquier tamaño*/
-
+/* Adaptación a dispositivos móviles */
 @media only screen and (max-width: 600px) {
-    /* Ajustar estilos para pantallas con un ancho máximo de 600px (típicamente dispositivos móviles) */
-    .boton-download {
+    /* Estilos específicos para dispositivos móviles con ancho máximo de 600px */
+
+    /* Título */
+    #titulo h1 {
+        margin-top: 20px; /* Reducir margen superior */
+        margin-bottom: 10px; /* Reducir margen inferior */
+        font-size: 2em; /* Reducir tamaño de fuente */
+    }
+        /* Video */
+    #video-container {
+        width: 90%; /* Ancho máximo del 90% del viewport */
+        max-width: 600px; /* Ancho máximo de 600px */
+        margin: 0 auto; /* Centra el contenedor horizontalmente */
+    }
+
+    #video-container video {
+        width: 100%; /* Ancho completo del video dentro del contenedor */
+        height: auto; /* Altura automática para mantener la proporción */
+        margin-bottom: calc(5vw); /* Margen inferior proporcional al 5% del ancho de la pantalla */
+    }
+
+    /* Botón */
+    #boton-download {
         flex-direction: column; /* Cambiar la dirección de flexión a columna */
         align-items: center; /* Centrar horizontalmente los elementos */
     }
 
-    .boton-download a {
+    #boton-download a {
         margin-bottom: 20px; /* Añadir espacio entre el botón y el texto debajo en dispositivos móviles */
     }
 }
