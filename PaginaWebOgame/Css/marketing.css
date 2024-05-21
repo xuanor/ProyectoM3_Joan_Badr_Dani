@@ -61,7 +61,7 @@ body{
   border-radius: 25px; /* Bordes redondeados */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar efecto de sobresalir */
   padding: 20px;
-  width: calc(20% - 20px); /* Ajustar el ancho para 5 productos por fila considerando el margen */
+  width: 300px; /* Ajustar el ancho del producto */
   margin: 10px;
   text-align: center;
   transition: transform 0.3s ease;
@@ -191,7 +191,7 @@ body{
 }
 
 .overlay .texto {
-  font-size: 20px;
+  font-size: 50px;
   color: white;
 }
 
@@ -218,7 +218,7 @@ body{
 }
 
 .overlay .texto {
-  font-size: 30px;
+  font-size: 60px;
   color: white;
 }
 
