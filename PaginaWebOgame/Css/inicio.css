@@ -5,17 +5,16 @@ body{
     margin: 0;
   }
   
-  .sticky{
+.sticky{
     top: 0;
     position: sticky;
     z-index: 1000
   }
   
-/* Slider */
 #container {
     width: 100%;
     height: 100%;
-    position: absolute;
+    position: relative;
     right: 0;
     flex-direction: column;
     align-items: center;
@@ -81,12 +80,10 @@ body{
     100%{background-position:0 0;}
   }
 
-  #video-container video {
-    width:600px; /* Ancho deseado para el video */
+  #video-container iframe {
+    width: 600px; /* Ancho deseado para el video */
     height: 350px; /* Alto deseado para el video */
 }
-
-
 
 /*Boton*/
 #cuerpo {
