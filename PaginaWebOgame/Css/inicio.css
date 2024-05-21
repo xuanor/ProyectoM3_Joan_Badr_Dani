@@ -54,8 +54,8 @@ body{
 #video-container {
     position: relative;
     margin: 30px auto 0;
-    width: 600px; /* Ancho deseado para el video */
-    height: 350px; /* Alto deseado para el video */
+    height: max-content;
+    width: min-content;
     background: black;
   }
   
@@ -82,8 +82,8 @@ body{
   }
   
   #video-container iframe {
-    width:600px; /* Ancho deseado para el video */
-    height: 350px; /* Alto deseado para el video */
+    width: 100vb;
+    height: 60vb;
 }
 
 /*Boton*/
