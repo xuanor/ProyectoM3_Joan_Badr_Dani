@@ -5,6 +5,13 @@ body{
   margin: 0;
 }
 
+@media only screen and (max-width: 600px) {
+  body{
+      background: url(../fotos/Fondo/EspacioGif2Movil.gif);
+      background-size: 200%;
+  }
+}
+
 .sticky{
   top: 0;
   position: sticky;
