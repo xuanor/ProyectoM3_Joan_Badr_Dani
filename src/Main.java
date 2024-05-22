@@ -17,11 +17,7 @@ public class Main implements Variables{
 	public static void main(String[] args) {
 		
 		// ** A HACER **
-			// Crear varios planetas
-			// Crear ejercito por planeta con stats inicales
-			// Cada X tiempo aumentan nuestros recursos 
-			// Cada 3 min reciviremos un ataque con su respectiva batalla ( Gardaremos registro ultimas 5)
-			// Una vez creado todo tendremos menu (con o sin GUI) para controlar nuestro planeta
+			//Cargar datos de la bbdd
 		
 			// Instancio clase principal
 			Main principal = new Main();
@@ -261,7 +257,7 @@ public class Main implements Variables{
 	    
 
 	         public void run() {
-	        	 System.out.println("··· Nueva amenaza ···");
+	        	 System.out.println("\n\nNEW THREAD IS COMMING");
 	        	 // Creo el nuevo ejercito enemigo
 	        	 ArrayList<MilitaryUnit>[] army = createEnemyArmy();
 	        	 // Añades al obj batalla la army enemiga
@@ -277,7 +273,7 @@ public class Main implements Variables{
 		    
 
 	         public void run() {
-	        	 System.out.println("··· Te acaban de atacar ···");
+	        	 System.out.println("\n\nWE HAVE BEEN ATTACKED!!");
 	        	 b.batalla();
 	        	 // Le añado lo ganado a mis recursos (si no gano es(0,0))
 //	        	 System.out.println(mainPlanet.getMetal());
@@ -452,10 +448,10 @@ public class Main implements Variables{
 				
 				default:
 					System.out.println("Option not in range");
-					sc.nextLine(); // Puede petar con el timer task si no se escribe nada??***
+					sc.nextLine(); 
 			}
 		}
-		sc.close();
+		//sc.close();
 	}
 	
 	// SUB MENU DE CREACION DE UNIDADES DE COMBATE
@@ -527,7 +523,7 @@ public class Main implements Variables{
 					
 			}
 		}
-		sc.close();
+		//sc.close();
 	}
 	
 	// SUB MENU DE CREACION DE UNIDADES DE DEFENSA
@@ -589,7 +585,7 @@ public class Main implements Variables{
 					
 			}
 		}
-		sc.close();
+		//sc.close();
 }
 	
 	// SUB MENU DE MEJORA DE TECNOLOGIAS
@@ -664,7 +660,7 @@ public class Main implements Variables{
 					sc.nextLine();
 			}
 		}
-		sc.close();
+		//sc.close();
 	}
 	
 	

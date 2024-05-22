@@ -176,9 +176,10 @@ public class Planet implements Variables{
 				if (i == n-1) {
 					System.out.println("Se han creado "+ n + " Battle Ship/s.");
 				}
-				if ((this.metal - METAL_COST_BATTLESHIP) > 0) {
+				if ((this.metal - METAL_COST_BATTLESHIP) > 0  && (this.deuterium - DEUTERIUM_COST_BATTLESHIP) > 0) {
 					this.army[2].add(cAtack.new BattleShip(armor, atack));
 					this.metal -= METAL_COST_BATTLESHIP;
+					this.deuterium -= DEUTERIUM_COST_BATTLESHIP;
 				}else {
 					System.out.println("\nDon't hace enough metal.");
 					throw new BuildException("Solo se han creado "+ i + " Battle Ship/s.\n");	

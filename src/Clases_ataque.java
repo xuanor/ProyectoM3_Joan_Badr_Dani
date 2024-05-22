@@ -1,4 +1,4 @@
-import Clases_ataque.HeavyHunter;
+
 
 public class Clases_ataque {
 	
@@ -91,27 +91,6 @@ public class Clases_ataque {
 		public HeavyHunter(int armor, int baseDamage) {
 			super(armor, baseDamage);
 			
-//			// Formula de nivel de tecnologia para las stats
-//			armor = ARMOR_HEAVYHUNTER + 
-//					(this. * PLUS_ARMOR_HEAVYHUNTER_BY_TECHNOLOGY)
-//					*ARMOR_HEAVYHUNTER/100;
-//			atack = BASE_DAMAGE_HEAVYHUNTER + 
-//					(this.technologyAtack * PLUS_ATTACK_HEAVYHUNTER_BY_TECHNOLOGY)
-//					*BASE_DAMAGE_HEAVYHUNTER/100;
-//			
-//			for (int i = 0; i<n; i++) {
-//				if (i == n-1) {
-//					System.out.println("Se han creado "+ n + " Heavy hunter/s.");
-//				}
-//				if ((this.metal - METAL_COST_HEAVYHUNTER) > 0 && (this.deuterium - DEUTERIUM_COST_HEAVYHUNTER) > 0) {
-//					this.army[1].add(cAtack.new HeavyHunter(armor, atack));
-//					this.metal -= METAL_COST_HEAVYHUNTER;
-//					this.deuterium -= DEUTERIUM_COST_HEAVYHUNTER;
-//				}else {
-//					System.out.println("\nDon't hace enough resources.");
-//					throw new BuildException("Solo se han creado "+ i + " Heavy hunter/s.\n");	
-//				}	
-//			}
 		}
 	
 		
