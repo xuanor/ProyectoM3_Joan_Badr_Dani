@@ -777,7 +777,6 @@ public class Battle implements Variables{
 					
 					// Calcular cada iteracion los numeros act de tropas
 					actualFleetNumber(false);
-					
 //					if (getTotalActualUnitsPlanet() <= 1) {
 ////						System.out.println("No tine suficientes tropas para atacar, pierdes la batalla");$
 //						// Le quito dinero por perder simepre que no sea < 0 

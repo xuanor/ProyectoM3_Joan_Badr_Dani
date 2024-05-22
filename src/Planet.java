@@ -8,7 +8,7 @@ public class Planet implements Variables{
 	int upgradeDefenseTechnologyDeuteriumCost;
 	int upgradeAttackTechnologyDeuteriumCost;
 	ArrayList<MilitaryUnit>[] army = new ArrayList[7];
-	
+	private int[] NumberUnits;
 	
 	// Constructor
 	public Planet(int technologyDefense, int technologyAtack, int metal, int deuterium,
@@ -25,9 +25,20 @@ public class Planet implements Variables{
 
 		
 	// Getters and setters
+	
 	public int getTechnologyDefense() {
 		return technologyDefense;
 	}
+
+	public int[] getNumberUnits() {
+		return NumberUnits;
+	}
+
+
+	public void setNumberUnits(int[] numberUnits) {
+		NumberUnits = numberUnits;
+	}
+
 
 	public void setTechnologyDefense(int technologyDefense) {
 		this.technologyDefense = technologyDefense;
