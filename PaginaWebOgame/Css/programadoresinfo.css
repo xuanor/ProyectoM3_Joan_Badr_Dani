@@ -12,7 +12,7 @@ body{
 }
 
 /*Contnedor para los 3 divs */
-#contenedor, #empresa,#videoJ,#trabajadores,#etica{
+#contenedor, #empresa,#contenedor-videojuegos,#trabajadores,#contenedor-valores{
     background-color: white;
     border-radius: 25px; /* Bordes redondeados */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar efecto de sobresalir */
@@ -33,7 +33,7 @@ body{
     text-transform: uppercase;
     position: relative; 
     top: 0; 
-    font-size: 80px;
+    font-size: 50px;
     z-index: 1; 
   }
   
@@ -64,6 +64,23 @@ body{
 
 
 /*Videojuegos*/
+#contenedor-videojuegos {
+  text-align: center;
+}
+
+#juegos {
+  display: flex;
+  justify-content: space-between;
+  padding: 0 20px; /* Agrega un espacio de 20px a cada lado del contenedor */
+}
+
+.juego {
+  flex-basis: 30%; /* Ajusta según el número de juegos y el espacio disponible */
+  margin: 0 5px;
+  text-align: center;
+}
+
+
 
 .juego img {
     border-radius: 50%; /* Bordes redondeados */
@@ -73,16 +90,34 @@ body{
     margin: 0 auto 20px; /* Centra la imagen horizontalmente y añade margen inferior */
   }
 
-.juego {
-    display: flex; /* Utilizamos flexbox para ordenar los elementos dentro de cada juego */
-    flex-direction: row; /* Establecemos la dirección como fila */
-    align-items: center; /* Centramos verticalmente los elementos */
-    margin-right: 20px; /* Espacio entre cada juego */
-}
+
 
 
 
 /*Empleados*/
+
+
+#contenedor-trabajadores {
+  text-align: center;
+}
+
+#trabajadores {
+  display: flex;
+  flex-direction: column; /* Cambia la dirección del flexbox a vertical */
+  align-items: center; /* Centra los elementos horizontalmente */
+  gap: 20px; /* Espacio entre los elementos */
+}
+
+.trabajador {
+  display: flex;
+  align-items: center; /* Centra verticalmente los elementos dentro de cada trabajador */
+}
+
+.trabajador.invertido {
+  flex-direction: row-reverse; /* Invierte el orden de los elementos para los trabajadores impares */
+}
+
+
 .trabajador img {
     border-radius: 20%; /* Bordes redondeados */
     max-width: 15%; /* Limita el ancho de la imagen */
@@ -92,3 +127,28 @@ body{
   }
 
 /*Etica*/
+
+
+
+#contenedor-valores {
+  text-align: center; /* Centrar el texto dentro del contenedor */
+}
+
+#valores {
+
+  display: flex; /* Utilizar flexbox para colocar los elementos en línea */
+  justify-content: space-between; /* Distribuir los elementos con espacios iguales entre ellos */
+  padding: 0 50px; /* Agrega un espacio de 20px a cada lado del contenedor */
+
+}
+
+.valor {
+
+  text-align: left; /* Alinear el texto a la derecha */
+  flex-basis: 20%; /* Ancho del 20% para cada valor */
+  margin: 0 5px; /* Espacio entre los elementos */
+}
+
+
+
+
