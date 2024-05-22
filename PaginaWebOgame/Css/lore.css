@@ -41,6 +41,9 @@ body{
     background-color: yellow;
     padding: 25px;
 }
+
+
+
 #info{
     max-width: 100%;
     border: green solid 3px;
@@ -56,6 +59,111 @@ body{
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    padding: 2vw 2vw 2vw 2vw;
+}
+
+.imagenJuego{
+    margin: auto;
+    border: white solid 3px;
+    padding: 1vw 1vw 1vw 1vw;
+    background-color: white;
+    border-radius: 10px;
+}
+
+.imagenJuego img{
+    border-radius: 10px;
+    box-shadow: 5px 5px 20px black;
+    width: 100%;
+}
+
+.imagenJuego p{
+    text-align: center;
+    font-size: 1vw;
+    margin-bottom: 0;
+}
+
+.apartado2{
+    display: flex;
+    flex-direction: row-reverse;
+    margin: 25px;
+    background-color: lightblue;
+    justify-content: space-between;
+    padding: 2vw 2vw 2vw 2vw;
+}
+
+.apartado2 .explicacion{
+    flex-direction: row-reverse;
+}
+
+.apartado2 .explicacion img{
+    transform: scaleX(-1);
+}
+
+.explicacion{
+    display: flex;
+    flex-direction: row;
+    background-color: red;
+    width: 50%;
+}
+
+.explicacion p{
+    background-color: white;
+    padding: 0 2% 0 2%;
+    border-radius: 10px;
+    max-width: 50%;
+    height: fit-content;
+    text-align: center;
     
-    padding: 0px 100px 0px 100px;
+}
+
+.explicacion img{
+    width: 20vw;
+    height: 30vw;
+}
+
+.imagenJuego:hover{
+    transform: scale(1.2);
+    transition: 0.8s ease-in-out;
+}
+
+.explicacion p:hover{
+    transform: scale(1.3);
+    transition: 0.8s ease-in-out;
+}
+
+
+@media only screen and (max-width: 600px) {
+
+    .explicacion{
+        width: 100%;
+        flex-direction: column  ;
+    }
+
+    .explicacion img{
+        display: none;
+    }
+
+    .explicacion p{
+        max-width: 100%;
+    }
+    
+    .apartado{
+        flex-direction: column;
+        background-color: white;
+        border-radius: 10px;
+    }
+
+    .apartado2{
+        flex-direction: column;
+        background-color: white;
+        border-radius: 10px;
+    }
+
+    .apartado2 .explicacion{
+        flex-direction: column;
+    }
+
+    .imagenJuego p{
+        font-size: 4vw;
+    }
 }
