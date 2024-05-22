@@ -12,7 +12,7 @@ body{
 }
 
 /*Contnedor para los 3 divs */
-#contenedor, #empresa,#contenedor-videojuegos,#trabajadores,#contenedor-valores{
+#contenedor, #empresa,#contenedor-videojuegos,#trabajadores,#contenedor-valores, .valor{
     background-color: white;
     border-radius: 25px; /* Bordes redondeados */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar efecto de sobresalir */
@@ -20,6 +20,7 @@ body{
     max-width: 90%;
     margin: 0 auto 20px auto; 
     text-align: center;
+    
 }
 
 
@@ -43,7 +44,7 @@ body{
 
 #empresa img {
     border-radius: 50%; /* Bordes redondeados */
-    max-width: 70%; /* Limita el ancho de la imagen */
+    max-width: 60%; /* Limita el ancho de la imagen */
     height: auto; /* Mantiene la proporción de la imagen */
     display: block; /* Asegura que la imagen sea un bloque, para aplicar margin auto */
     margin: 0 auto 20px; /* Centra la imagen horizontalmente y añade margen inferior */
@@ -64,32 +65,44 @@ body{
 
 
 /*Videojuegos*/
-#contenedor-videojuegos {
-  text-align: center;
-}
+
 
 #juegos {
   display: flex;
   justify-content: space-between;
   padding: 0 20px; /* Agrega un espacio de 20px a cada lado del contenedor */
+  
 }
 
 .juego {
-  flex-basis: 30%; /* Ajusta según el número de juegos y el espacio disponible */
-  margin: 0 5px;
+  flex-basis: 40%; /* Ajusta según el número de juegos y el espacio disponible */
+  margin: 0 10px;
   text-align: center;
+  background: url(../fotos/Fondo/EspacioGif.gif);
+
+
 }
 
-
-
 .juego img {
-    border-radius: 50%; /* Bordes redondeados */
-    max-width: 50%; /* Limita el ancho de la imagen */
-    height: auto; /* Mantiene la proporción de la imagen */
+    border-radius: 10%; /* Bordes redondeados */
+    max-width: 70%; /* Limita el ancho de la imagen */
+    height: 70%; /* Mantiene la proporción de la imagen */
     display: block; /* Asegura que la imagen sea un bloque, para aplicar margin auto */
     margin: 0 auto 20px; /* Centra la imagen horizontalmente y añade margen inferior */
   }
-
+.juego p{
+  margin-top: 15px; 
+    margin-bottom: 15px;
+    color: black;
+    text-align: center;
+    font-family: 'Roboto',sans-serif; 
+    position: relative; 
+    top: 0; 
+    font-size: 20px;
+    z-index: 1;
+    margin-left:10%;
+    margin-right:10%;
+}
 
 
 
@@ -97,9 +110,6 @@ body{
 /*Empleados*/
 
 
-#contenedor-trabajadores {
-  text-align: center;
-}
 
 #trabajadores {
   display: flex;
@@ -110,12 +120,11 @@ body{
 
 .trabajador {
   display: flex;
-  align-items: center; /* Centra verticalmente los elementos dentro de cada trabajador */
+  align-items: left; /* Centra verticalmente los elementos dentro de cada trabajador */
+  background: url(../fotos/Fondo/EspacioGif.gif);
 }
 
-.trabajador.invertido {
-  flex-direction: row-reverse; /* Invierte el orden de los elementos para los trabajadores impares */
-}
+
 
 
 .trabajador img {
@@ -123,30 +132,27 @@ body{
     max-width: 15%; /* Limita el ancho de la imagen */
     height: auto; /* Mantiene la proporción de la imagen */
     display: block; /* Asegura que la imagen sea un bloque, para aplicar margin auto */
-    margin: 0 auto 20px; /* Centra la imagen horizontalmente y añade margen inferior */
+    margin-left: 10px; /* Centra la imagen horizontalmente y añade margen inferior */
   }
 
 /*Etica*/
 
-
-
-#contenedor-valores {
-  text-align: center; /* Centrar el texto dentro del contenedor */
-}
-
 #valores {
-
   display: flex; /* Utilizar flexbox para colocar los elementos en línea */
   justify-content: space-between; /* Distribuir los elementos con espacios iguales entre ellos */
   padding: 0 50px; /* Agrega un espacio de 20px a cada lado del contenedor */
-
 }
 
 .valor {
-
-  text-align: left; /* Alinear el texto a la derecha */
-  flex-basis: 20%; /* Ancho del 20% para cada valor */
+  text-align: left; /* Alinear el texto a la izquierda */
+  flex-basis: 30%; /* Ancho del 30% para cada valor */
   margin: 0 5px; /* Espacio entre los elementos */
+  transition: transform 0.5s ease, box-shadow 0.5s ease; /* Transición suave con duración de 0.5s y función ease */
+}
+
+.valor:hover {
+  transform: scale(1.05); /* Aumenta ligeramente el tamaño al pasar el ratón */
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Agrega una sombra suave alrededor del elemento */
 }
 
 
