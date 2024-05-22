@@ -48,67 +48,77 @@ body{
 
 /*Empresa*/
 
+#empresa {
+  display: flex;
+  margin-top: 10px;
+}
 
+/* Estilo para el logotipo de la empresa */
 #empresa img {
-    border-radius: 50%; /* Bordes redondeados */
-    max-width: 60%; /* Limita el ancho de la imagen */
-    height: auto; /* Mantiene la proporción de la imagen */
-    display: block; /* Asegura que la imagen sea un bloque, para aplicar margin auto */
-    margin: 0 auto 20px; /* Centra la imagen horizontalmente y añade margen inferior */
-  }
-#empresa p{
-    margin-top: 15px; 
-    margin-bottom: 15px;
-    color: black;
-    text-align: center;
-    font-family: sans-serif; 
-    position: relative; 
-    top: 0; 
-    font-size: 18px;
-    z-index: 1;
-    margin-left:10%;
-    margin-right:10%;
+  max-width: 200px;
+  height: auto;
+  margin-right: 20px; 
+  border-radius: 10px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+/* Estilo para el texto de la empresa */
+#empresa p {
+  font-size: 1.1em;
+  color: #666;
+  line-height: 1.5;
+  max-width: calc(100% - 540px); 
+  margin-top: 20px; 
+  margin-bottom: 0; 
+  margin-left: 20px;
 }
 
 
 /*Videojuegos*/
-
-
 #juegos {
   display: flex;
-  justify-content: space-between;
-  padding: 0 20px; /* Agrega un espacio de 20px a cada lado del contenedor */
-  
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
+/* Estilos para cada juego */
 .juego {
-  flex-basis: 40%; /* Ajusta según el número de juegos y el espacio disponible */
-  margin: 0 10px;
-  text-align: center;
-  background: url(../fotos/Fondo/EspacioGif.gif);
-
-
+  flex: 1 1 30%;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  position: relative; 
 }
 
+/* Estilo para la imagen */
 .juego img {
-    border-radius: 10%; /* Bordes redondeados */
-    max-width: 70%; /* Limita el ancho de la imagen */
-    height: 70%; /* Mantiene la proporción de la imagen */
-    display: block; /* Asegura que la imagen sea un bloque, para aplicar margin auto */
-    margin: 0 auto 20px; /* Centra la imagen horizontalmente y añade margen inferior */
-  }
-.juego p{
-  margin-top: 15px; 
-    margin-bottom: 15px;
-    color: black;
-    text-align: center;
-    font-family: 'Roboto',sans-serif; 
-    position: relative; 
-    top: 0; 
-    font-size: 20px;
-    z-index: 1;
-    margin-left:10%;
-    margin-right:10%;
+  max-width: 100%;
+  height: auto;
+  border-radius: 10px;
+  cursor: pointer; 
+  transition: transform 0.3s; 
+}
+
+/* Estilo para la información del juego */
+.info {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(255, 255, 255, 0.8); 
+  padding: 5px;
+  font-size: 1.2em;
+  color: #333;
+  border-radius: 0 0 10px 10px; 
+  opacity: 0; 
+  transition: opacity 0.3s; 
+}
+
+/* Mostrar la información del juego al pasar el ratón sobre el juego */
+.juego:hover .info {
+  opacity: 1; 
 }
 
 
@@ -116,52 +126,101 @@ body{
 
 /*Empleados*/
 
+/* Estilos para el contenedor principal */
+#contenedor-trabajdores {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 20px;
+  text-align: center;
+  font-family: Arial, sans-serif;
+}
 
+/* Estilo para el título */
+.titulo {
+  font-size: 2em;
+  margin-bottom: 20px;
+  color: #333;
+}
 
+/* Estilos para el contenedor de los trabajadores */
 #trabajadores {
   display: flex;
-  flex-direction: column; /* Cambia la dirección del flexbox a vertical */
-  align-items: center; /* Centra los elementos horizontalmente */
-  gap: 20px; /* Espacio entre los elementos */
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
+/* Estilos para cada trabajador */
 .trabajador {
-  display: flex;
-  align-items: left; /* Centra verticalmente los elementos dentro de cada trabajador */
-  background: url(../fotos/Fondo/EspacioGif.gif);
+  flex: 1 1 30%;
+  box-sizing: border-box;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  transition: transform 0.3s;
 }
 
+/* Efecto hover para cada trabajador */
+.trabajador:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
 
-
-
+/* Estilo para las imágenes de los trabajadores */
 .trabajador img {
-    border-radius: 20%; /* Bordes redondeados */
-    max-width: 15%; /* Limita el ancho de la imagen */
-    height: auto; /* Mantiene la proporción de la imagen */
-    display: block; /* Asegura que la imagen sea un bloque, para aplicar margin auto */
-    margin-left: 10px; /* Centra la imagen horizontalmente y añade margen inferior */
-  }
+    border-radius: 20%; 
+    max-width: 45%; 
+    height: auto; 
+    display: block; 
+    margin-left: 10px; 
+}
+
+/* Estilo para el texto debajo de las imágenes */
+.trabajador p {
+  margin-top: 10px;
+  font-size: 1em;
+  color: #000000;
+  
+}
+
 
 /*Etica*/
-
 #valores {
-  display: flex; /* Utilizar flexbox para colocar los elementos en línea */
-  justify-content: space-between; /* Distribuir los elementos con espacios iguales entre ellos */
-  padding: 0 50px; /* Agrega un espacio de 20px a cada lado del contenedor */
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
 }
 
+/* Estilos para cada valor */
 .valor {
-  text-align: left; /* Alinear el texto a la izquierda */
-  flex-basis: 30%; /* Ancho del 30% para cada valor */
-  margin: 0 5px; /* Espacio entre los elementos */
-  transition: transform 0.5s ease, box-shadow 0.5s ease; /* Transición suave con duración de 0.5s y función ease */
+  flex: 1 1 30%;
+  box-sizing: border-box;
+  padding: 20px;
+  margin: 10px;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  background-color: #f9f9f9;
+  transition: transform 0.3s; 
 }
 
+/* Estilo para el título del valor */
+.valor h1 {
+  font-size: 1.5em;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+/* Estilo para el texto del valor */
+.valor p {
+  font-size: 1.1em;
+  color: #666;
+  line-height: 1.5;
+}
+
+/* Efecto de sombra al hacer hover */
 .valor:hover {
-  transform: scale(1.05); /* Aumenta ligeramente el tamaño al pasar el ratón */
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); /* Agrega una sombra suave alrededor del elemento */
+  box-shadow: 0 0 10px black;
 }
-
 
 
 
