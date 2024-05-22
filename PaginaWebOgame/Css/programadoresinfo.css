@@ -19,17 +19,26 @@ body{
 }
 
 /*Contnedor para los 3 divs */
-#contenedor, #empresa,#contenedor-videojuegos,#trabajadores,#contenedor-valores, .valor{
+#contenedores{
     background-color: white;
     border-radius: 25px; /* Bordes redondeados */
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); /* Sombra para dar efecto de sobresalir */
     padding: 30px;
     max-width: 90%;
     margin: 0 auto 20px auto; 
-    text-align: center;
-    
+    text-align: center;   
 }
+#contenedor-videojuegos,#trabajadores,#contenedor-valores, .valor{
+  padding: 30px;
+  max-width: 90%;
+  margin: 0 auto 20px auto; 
+  text-align: center; 
 
+}
+#contenedores > div {
+  border-bottom: 1px solid black; /* Establece un borde inferior de 1 píxel sólido de color gris claro */
+  padding-bottom: 40px; /* Añade un espacio entre los contenedores */
+}
 
 
 .titulo {
@@ -43,35 +52,56 @@ body{
     top: 0; 
     font-size: 50px;
     z-index: 1; 
-  }
-  
+}
+
+#eslogan{
+  color: aquamarine;
+  font-size: 50px;
+
+}
+
 
 /*Empresa*/
-
 #empresa {
   display: flex;
+  align-items: center; /* Centra verticalmente los elementos dentro del contenedor */
   margin-top: 10px;
+  position: relative; /* Establece la posición relativa para el contenedor */
 }
 
 /* Estilo para el logotipo de la empresa */
 #empresa img {
-  max-width: 200px;
+  max-width: 20%;
   height: auto;
   margin-right: 20px; 
   border-radius: 10px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+}
+
+
+/* Estilo para el contenido de la empresa */
+#empresa .desc {
+  padding-left: 20px; /* Agrega espacio entre la línea vertical y el contenido */
 }
 
 /* Estilo para el texto de la empresa */
-#empresa p {
+#desc p {
   font-size: 1.1em;
   color: #666;
   line-height: 1.5;
-  max-width: calc(100% - 540px); 
+  max-width: calc(100% - 500px); 
   margin-top: 20px; 
   margin-bottom: 0; 
-  margin-left: 20px;
+  margin-left: 10px; /* Ajusta el margen izquierdo del texto */
 }
+
+#desc h1 {
+  font-size: 1.1em;
+  color: #666;
+  line-height: 1.5;
+  margin-left: 10px; /* Ajusta el margen izquierdo del título */
+}
+
+
 
 
 /*Videojuegos*/
@@ -126,14 +156,7 @@ body{
 
 /*Empleados*/
 
-/* Estilos para el contenedor principal */
-#contenedor-trabajdores {
-  max-width: 800px;
-  margin: 0 auto;
-  padding: 20px;
-  text-align: center;
-  font-family: Arial, sans-serif;
-}
+
 
 /* Estilo para el título */
 .titulo {

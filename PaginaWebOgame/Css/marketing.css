@@ -98,7 +98,7 @@ body{
   font-size: 14px; /* Tamaño de fuente para el texto de la descripción */
 }
 
-.overlay .texto {
+.overlay> .texto {
   font-size: 20px; /* Tamaño de la fuente */
   color: white; /* Color del texto */
 }
@@ -152,7 +152,7 @@ body{
 }
 
 .producto >.precio:hover {
-  color: hsl(0, 0%, 0%); /* Cambiar el color del texto al pasar el ratón */
+  color: black; /* Cambiar el color del texto al pasar el ratón */
   text-decoration: underline; /* Mantener el subrayado */
 }
 
@@ -183,7 +183,7 @@ body{
   .desc {
     height: 25%;
     padding: 5px;
-    background-color: rgba(255, 255, 255, 0.9);
+    background-color: white;
     border-top: 1px solid #ccc;
     text-align: center;
     font-size: 14px;
