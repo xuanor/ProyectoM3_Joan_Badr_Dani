@@ -133,14 +133,12 @@ public class ConnectionDB {
 			rs = stmnt.executeQuery(query);	
 			
 			rs.next();
+			//{Metal, deuterio, techD, techA}
 			int[] planetStats = {
 					rs.getInt(4),rs.getInt(5),
-					rs.getInt(6),rs.getInt(7),
-					rs.getInt(8),rs.getInt(9),
-					rs.getInt(10),rs.getInt(11),
-					rs.getInt(12),rs.getInt(13),
-					rs.getInt(14),rs.getInt(15)};
+					rs.getInt(6),rs.getInt(7)};
 			
+			// Crear int[][][] donde guarde cada grupo-unidad-stats
 			this.setPlanetStats(planetStats);
 			setRs(rs);
 			return rs;

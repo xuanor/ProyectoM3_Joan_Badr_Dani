@@ -18,14 +18,6 @@ CREATE TABLE planet_stats (
     resource_dauterion_amount NUMBER,
     resource_defense NUMBER,
     resource_attack NUMBER,
-    battle_counter NUMBER,
-    missile_launcher_remaining NUMBER,
-    ion_cannon_remaining NUMBER,
-    plasma_cannon_remaining NUMBER,
-    light_hunter_remaining NUMBER,
-    heavy_hunter_remaining NUMBER,
-    battle_ship_remaining NUMBER,
-    armored_ship_remaining NUMBER,
     FOREIGN KEY (user_id) REFERENCES user_credentials(user_id)
 );
 
@@ -78,8 +70,8 @@ CREATE TABLE missile_launcher (
     FOREIGN KEY (planet_id) REFERENCES planet_stats(planet_id)
 );
 
---CREAR TABLA battle_ship
-CREATE TABLE battle_ship (
+--CREAR TABLA plasma_cannon
+CREATE TABLE plasma_cannon (
     planet_id NUMBER PRIMARY KEY NOT NULL,
     armour NUMBER,
     atack NUMBER,
@@ -118,15 +110,7 @@ INSERT INTO planet_stats (
     resource_metal_amount ,
     resource_dauterion_amount ,
     resource_defense ,
-    resource_attack ,
-    battle_counter ,
-    missile_launcher_remaining ,
-    ion_cannon_remaining ,
-    plasma_cannon_remaining ,
-    light_hunter_remaining ,
-    heavy_hunter_remaining ,
-    battle_ship_remaining ,
-    armored_ship_remaining
+    resource_attack 
 )
 VALUES (
     (SELECT user_id FROM user_credentials),
@@ -135,18 +119,10 @@ VALUES (
     10000,
     10000,
     0,
-    0,
-    0,
-    10,
-    10,
-    10,
-    100,
-    10000,
-    10,
-    12
+    0
 );
 
---INSERTAR DATOS EN LA TABLA battle_stats
+--INSERTAR DATOS EN LA TABLA battle
 INSERT INTO battle (
     planet_id,
     num_battles,
@@ -156,8 +132,87 @@ INSERT INTO battle (
 VALUES (
     (SELECT planet_id FROM planet_stats),
     1,
-    "estadisticas batalla",
-    "batalla paso a paso"
+    'estadisticas batalla',
+    'batalla paso a paso'
+);
+
+INSERT INTO light_hunter (
+    planet_id,
+    armour,
+    atack
+)
+VALUES (
+    (SELECT planet_id FROM planet_stats),
+    400,
+    80
+);
+
+INSERT INTO heavy_hunter (
+    planet_id,
+    armour,
+    atack
+)
+VALUES (
+    (SELECT planet_id FROM planet_stats),
+    1000,
+    150
+);
+
+
+INSERT INTO battle_ship (
+    planet_id,
+    armour,
+    atack
+)
+VALUES (
+    (SELECT planet_id FROM planet_stats),
+    6000,
+    1000
+);
+
+
+INSERT INTO armored_ship (
+    planet_id,
+    armour,
+    atack
+)
+VALUES (
+    (SELECT planet_id FROM planet_stats),
+    8000,
+    700
+);
+
+INSERT INTO missile_launcher (
+    planet_id,
+    armour,
+    atack
+)
+VALUES (
+    (SELECT planet_id FROM planet_stats),
+    200,
+    80
+);
+
+INSERT INTO ion_cannon (
+    planet_id,
+    armour,
+    atack
+)
+VALUES (
+    (SELECT planet_id FROM planet_stats),
+    1200,
+    250
+);
+
+INSERT INTO plasma_cannon (
+    planet_id,
+    armour,
+    atack
+)
+VALUES (
+    (SELECT planet_id FROM planet_stats),
+    7000,
+    2000
 );
 
 /*

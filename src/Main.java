@@ -115,11 +115,11 @@ public class Main implements Variables{
 		}
 		ArrayList<MilitaryUnit> arrayIonCannon = new ArrayList<MilitaryUnit>();
 		for (int i = 0; i < BASE_UNIT_ION_CANNON; i++) {
-			arrayIonCannon.add(d.new IonCannon(ARMOR_BATTLESHIP, BASE_DAMAGE_BATTLESHIP));
+			arrayIonCannon.add(d.new IonCannon(ARMOR_IONCANNON, BASE_DAMAGE_IONCANNON));
 		}
 		ArrayList<MilitaryUnit> arrayPlasmaCannon = new ArrayList<MilitaryUnit>();
 		for (int i = 0; i < BASE_UNIT_PLASMA_CANNON; i++) {
-			arrayPlasmaCannon.add(d.new PlasmaCannon(ARMOR_BATTLESHIP, BASE_DAMAGE_BATTLESHIP));
+			arrayPlasmaCannon.add(d.new PlasmaCannon(ARMOR_PLASMACANNON, BASE_DAMAGE_PLASMACANNON));
 		}
 		
 		mainArmy[0] = arrayLigthHunter;
