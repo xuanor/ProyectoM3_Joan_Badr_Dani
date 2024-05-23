@@ -8,7 +8,7 @@ public class Planet implements Variables{
 	int upgradeDefenseTechnologyDeuteriumCost;
 	int upgradeAttackTechnologyDeuteriumCost;
 	ArrayList<MilitaryUnit>[] army = new ArrayList[7];
-	
+	private int[] NumberUnits;
 	
 	// Constructor
 	public Planet(int technologyDefense, int technologyAtack, int metal, int deuterium,
@@ -25,9 +25,20 @@ public class Planet implements Variables{
 
 		
 	// Getters and setters
+	
 	public int getTechnologyDefense() {
 		return technologyDefense;
 	}
+
+	public int[] getNumberUnits() {
+		return NumberUnits;
+	}
+
+
+	public void setNumberUnits(int[] numberUnits) {
+		NumberUnits = numberUnits;
+	}
+
 
 	public void setTechnologyDefense(int technologyDefense) {
 		this.technologyDefense = technologyDefense;
@@ -147,11 +158,12 @@ public class Planet implements Variables{
 			if (i == n-1) {
 				System.out.println("Se han creado "+ n + " Heavy hunter/s.");
 			}
-			if ((this.metal - METAL_COST_HEAVYHUNTER) > 0) {
+			if ((this.metal - METAL_COST_HEAVYHUNTER) > 0 && (this.deuterium - DEUTERIUM_COST_HEAVYHUNTER) > 0) {
 				this.army[1].add(cAtack.new HeavyHunter(armor, atack));
 				this.metal -= METAL_COST_HEAVYHUNTER;
+				this.deuterium -= DEUTERIUM_COST_HEAVYHUNTER;
 			}else {
-				System.out.println("\nDon't hace enough metal.");
+				System.out.println("\nDon't hace enough resources.");
 				throw new BuildException("Solo se han creado "+ i + " Heavy hunter/s.\n");	
 			}	
 		}
@@ -175,9 +187,10 @@ public class Planet implements Variables{
 				if (i == n-1) {
 					System.out.println("Se han creado "+ n + " Battle Ship/s.");
 				}
-				if ((this.metal - METAL_COST_BATTLESHIP) > 0) {
+				if ((this.metal - METAL_COST_BATTLESHIP) > 0  && (this.deuterium - DEUTERIUM_COST_BATTLESHIP) > 0) {
 					this.army[2].add(cAtack.new BattleShip(armor, atack));
 					this.metal -= METAL_COST_BATTLESHIP;
+					this.deuterium -= DEUTERIUM_COST_BATTLESHIP;
 				}else {
 					System.out.println("\nDon't hace enough metal.");
 					throw new BuildException("Solo se han creado "+ i + " Battle Ship/s.\n");	
