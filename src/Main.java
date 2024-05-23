@@ -16,41 +16,87 @@ public class Main implements Variables{
 	
 	public static void main(String[] args) {
 		int[] DBreasources;
-		
-		//Cargar datos de la bbdd
-		ConnectionDB cdb = new ConnectionDB();
-		cdb.conection(1, null);
-		// PULL
-		DBreasources = cdb.getArrayReasources().get(0);
-		
-		// Cargar datos aqui
-		Planet mainPlanet = new Planet(DBreasources[2],
-				DBreasources[3],
-				DBreasources[0], 
-				DBreasources[1],
-				UPGRADE_BASE_DEFENSE_TECHNOLOGY_DEUTERIUM_COST,
-				UPGRADE_BASE_ATTACK_TECHNOLOGY_DEUTERIUM_COST);	
-		
-
-		// Datos de inicio planeta
-		// Datos de inicio army planet y army
-		
 		// Instancio clase principal
 		Main principal = new Main();
+		//Cargar datos de la bbdd
+		ConnectionDB cdb = new ConnectionDB();
 		
+		boolean start = principal.menuUser(cdb);
 		
-		// Me crea mi ejercito y se lo añade al planeta
-		principal.createMyArmyInit(mainPlanet, cdb);
-		
-		//ViewThreat(createEnemyArmy());
-		
-		//mainPlanet.printStats();
-		principal.mainMenu(mainPlanet);
-		// PUSH
-		//cdb.conection(2, mainPlanet);
+		// EMPIEZA EL JUEGO SI INTRODUCES UN USER VALIDO
+		if (start) {
+			cdb.conection(2, null, null, null, null);
+			
+			// PULL
+			DBreasources = cdb.getArrayReasources().get(0);
+			// Cargar array de Reportes de Batalla
+			Battle b = new Battle();
+			b.setBattleStats(cdb.getArrayReportesBatalla());
+			
+			// Cargar datos aqui
+			Planet mainPlanet = new Planet(DBreasources[2],
+					DBreasources[3],
+					DBreasources[0], 
+					DBreasources[1],
+					UPGRADE_BASE_DEFENSE_TECHNOLOGY_DEUTERIUM_COST,
+					UPGRADE_BASE_ATTACK_TECHNOLOGY_DEUTERIUM_COST);	
+			
+			
+			
+			// Me crea mi ejercito y se lo añade al planeta
+			principal.createMyArmyInit(mainPlanet, cdb);
+			
+			
+			
+			principal.mainMenu(mainPlanet, b);
+			
+			
+			// PUSH
+			//cdb.conection(3, mainPlanet, b, null, null);
+		}
+		else {
+			System.out.println("\nToo many tries, exit.");
+		}
 	}
 	
+	// MENU USUARIOS
+	public boolean menuUser(ConnectionDB cdb ) {
+
+		Scanner sc = new Scanner(System.in);
+		boolean checkUsr = false;
+		boolean result = false;
+		
+		while (!checkUsr) {
+			// TENGO 5 INTENTOS
+			for (int intento= 0; intento <5; intento++) {
+				
+				String userMenu = "LOGO OGAME\n";
+				System.out.println("\n" + userMenu);
+	
+				System.out.println("USER: ");
+				String user = sc.next();
+				
+				System.out.println("PASS: ");
+				String pswd = sc.next();
+				// Check del usuario
+				cdb.conection(1, null, null, user, pswd);
+				
+				if (cdb.getUser_id() == -1) {
+					System.out.println("INCORRECT USER OR PASSWORD, " + (4-intento) + " TRIES LEFT, TRY AGAIN.");
+					
+				}
+				// LOGIN CORRECTO, SALGO
+				else {
+					result = true;
+					break;
+				}
+				sc.nextLine();
+			}
+		}
+		return result;
+	}
 	// CREO MI EJERCITO INICIAL
+
 	public void createMyArmyInit(Planet myPlanet, ConnectionDB cdb) {
 		ArrayList<MilitaryUnit>[] mainArmy = new ArrayList[7];
 		
@@ -267,10 +313,13 @@ public class Main implements Variables{
 	}
 	
 	// MENU PRINCIPAL
-	public  void mainMenu(Planet mainPlanet) {
+	public  void mainMenu(Planet mainPlanet, Battle b) {
 		boolean AtackFlag;
 		// Instanciamos la batalla
-		Battle b = new Battle();
+		//Battle b = new Battle();
+		
+		// Set reportes de batalla BBDD
+		
 		// Set ejercitos en la battle
 		b.setPlanetArmy(mainPlanet.getArmy());
 		Timer timer = new Timer();
@@ -321,8 +370,8 @@ public class Main implements Variables{
 
 	    };
 
-	    timer.schedule(taskThreat, 3000, 60000);
-	    timer.schedule(taskAtack, 10000, 60000);
+	    timer.schedule(taskThreat, 4000, 4000);
+	    timer.schedule(taskAtack, 6000, 6000);
 	    timer.schedule(taskUpdateResources, 60000, 60000);
 		Scanner sc = new Scanner(System.in);
 		
@@ -378,43 +427,58 @@ public class Main implements Variables{
 			case 4:
 				//System.out.println("Aqui va el reporte de las batallas");
 				boolean checkOpc = false;
+				boolean exit = false;
+				
 				int opc = -1;
 				while (!checkOpc) {
-					System.out.println("Option > ");
+					System.out.println("Option >  (Exit -1)");
 					try {
 						opc = sc.nextInt();
 					}
 					catch (Exception e) {
 						System.out.println("Invalid Option");
 					}
-					
-					if (opc > 5 || opc < 0) {
+					if (opc == -1) {
+						checkOpc = true;
+						exit = true;
+						
+					}
+					if (opc >= b.getBattleStats().size() || opc < 0) {
 						System.out.println("Option out of range");
 					}else {
 						checkOpc = true;
 					}
-					System.out.println(b.getBattleReport(opc));
+				}
+				if (! exit) {
+					// Si hay reportes
+					//&& b.getBattleStats().size()+1 < 6  
+					if (b.getBattleStats().size() > 0 ) {
+						System.out.println(b.getBattleStats().get(opc)[0]);
 					
-					// Pregunta para ver el informe paso a paso
-					boolean check = false;
+						// Pregunta para ver el informe paso a paso
+						boolean check = false;
 					
-				    while (! check ) {
-				    	System.out.println("\nView Battle development?(S\\n)");
-				    	String imp = sc.next().toUpperCase();
-				    	if (imp.equals("S")) {
-				    		check = true;
-				    		System.out.println(b.getBattleDevelopment());
-				    	}
-				    	else if (imp.equals("N")) {
-				    		check = true;
-				    		System.out.println("No quieres ver el informe");
-				    	
-				    	}else {
-				    		sc.nextLine();
-				    		System.out.println("Only options (S\\n) are allowed");
-				    	}
-				    }
-				}	
+					    while (! check ) {
+					    	System.out.println("\nView Battle development?(S\\n)");
+					    	String imp = sc.next().toUpperCase();
+					    	if (imp.equals("S")) {
+					    		check = true;
+					    		System.out.println(b.getBattleStats().get(opc)[1]);
+					    	}
+					    	else if (imp.equals("N")) {
+					    		check = true;
+					    		System.out.println("No quieres ver el informe");
+					    	
+					    	}else {
+					    		sc.nextLine();
+					    		System.out.println("Only options (S\\n) are allowed");
+					    	}
+					    }
+					}
+					else {
+						System.out.println("\nYou don't have any battle report available.");
+					}
+				}
 				break;
 				
 			case 5:
@@ -617,21 +681,6 @@ public class Main implements Variables{
 	public void subMenuUpgradeTechnology(Planet mainPlanet) {
 		Scanner sc = new Scanner(System.in);
 		
-		String infoTechnology = String.format("Upgrade Technology\n"
-											+ "Actual Defense Technology:%14d\n"
-											+ "Actual Attack Technology:%15d\n\n", 
-											mainPlanet.technologyDefense, mainPlanet.technologyAtack);
-		
-		String options = "1)Upgrade Defense Technology. Cost: "
-		+ mainPlanet.upgradeDefenseTechnologyDeuteriumCost 
-		+ " Deuterium\n"
-	    + "2)Upgrade Defense Technology. Cost: "
-		+ mainPlanet.upgradeDefenseTechnologyDeuteriumCost 
-		+ " Deuterium\n"
-	    + "3)Go Back\n\n";
-		
-		String deuteriumResources = "Deuterium Resources = " + mainPlanet.deuterium;
-		String menuBuildUpgradeTechnology = infoTechnology + options + deuteriumResources;
 		
 		// Calculo de lo que aumenta el coste de subir de nivel la def tech 
 		//(** Mirar de ponerlo en una varible en otro lado **) CONTINUAR!!
@@ -649,7 +698,24 @@ public class Main implements Variables{
 		}
 		
 		int option = -1;
+		
 		while (option != 3) {
+			String infoTechnology = String.format("Upgrade Technology\n"
+					+ "Actual Defense Technology:%14d\n"
+					+ "Actual Attack Technology:%15d\n\n", 
+					mainPlanet.technologyDefense, mainPlanet.technologyAtack);
+
+			String options = "1)Upgrade Defense Technology. Cost: "
+			+ mainPlanet.upgradeDefenseTechnologyDeuteriumCost 
+			+ " Deuterium\n"
+			+ "2)Upgrade Defense Technology. Cost: "
+			+ mainPlanet.upgradeDefenseTechnologyDeuteriumCost 
+			+ " Deuterium\n"
+			+ "3)Go Back\n\n";
+			
+			String deuteriumResources = "Deuterium Resources = " + mainPlanet.getDeuterium();
+			String menuBuildUpgradeTechnology = infoTechnology + options + deuteriumResources ;
+			
 			System.out.println("\n" + menuBuildUpgradeTechnology + "\n-->Option");
 			try {
 				option = sc.nextInt();
@@ -663,6 +729,7 @@ public class Main implements Variables{
 				case 1:
 					try {
 						mainPlanet.upgradeTechnologyDefense(costeUpDef);
+						System.out.println("\nDefense technology upgraded");
 					}catch (ResourceException e) {
 						e.getMessage();
 					}
@@ -671,6 +738,7 @@ public class Main implements Variables{
 				case 2:
 					try {
 						mainPlanet.upgradeTechnologyAttack(costeUpAtt);
+						System.out.println("\nAttack technology upgraded");
 					}catch (ResourceException e) {
 						e.getMessage();
 					}

@@ -17,6 +17,7 @@ public class Battle implements Variables{
 	// Donde guardamos todo el desarrollo de la batalla paso a paso
 	private String battleDevelopment = "";
 	
+	private ArrayList<String[]> battleStats = new ArrayList<String[]>() ;
 	//	COSTE de metal de los ejercitos iniciales
 	//	[[metal][deuterio],[metal][deuterio]] ,
 	//	el 0 es mi ejercito el 1 los enemigos
@@ -50,8 +51,17 @@ public class Battle implements Variables{
 	private int totalActualUnitsPlanet, totalActualUnitsEnemy;
 
 	// ***METODOS***
+	
 	public int getInitialNumberUnitsPlanet() {
 		return initialNumberUnitsPlanet;
+	}
+
+	public ArrayList<String[]> getBattleStats() {
+		return battleStats;
+	}
+
+	public void setBattleStats(ArrayList<String[]> battleStats) {
+		this.battleStats = battleStats;
 	}
 
 	public int[] getWasteMetalDeuterium() {
@@ -188,9 +198,9 @@ public class Battle implements Variables{
 	public void setPlanetWins(boolean planetWins) {
 		this.planetWins = planetWins;
 	}
-
+	
 	//resumen, battles será el número de batallas que hayamos acumulado ****
-	public String getBattleReport(int battles) {
+	public void makeBattleReport() {
 		//String[] informes = new String[5];
 		String informeStats = "BATTLE STATISTICS\n";
 		String informePasoApaso = "";
@@ -266,9 +276,14 @@ public class Battle implements Variables{
 	    	informeStats+= "\nBattle Winned by Enemy, We Dont't Collect Rubble"
 		    		+ "\n\n#######################################################################################";
 	    }
-	    // Hacer lista de informes  ***
+	    // Lista de informes 
 	    
-		return informeStats;
+    	this.battleStats.add(new String[] {informeStats, getBattleDevelopment()});
+    	if (battleStats.size() > 5) {
+    		// Borras el mas viejo
+	    	this.battleStats.remove(0);
+	    }
+		
 	}
 	
 	public String getBattleDevelopment() {
@@ -694,7 +709,7 @@ public class Battle implements Variables{
 		int empieza = (int)(Math.random()*2);
 		int cont = 0;
 		int auxiliar;
-
+		battleDevelopment = "";
 		while (playBattle) {
 			
 			//System.out.println("****EMPIEZA = " + empieza);$
@@ -857,7 +872,7 @@ public class Battle implements Variables{
 				setWasteMetalDeuterium(new int[2]);
 			}
 		}
-		
+		makeBattleReport();
 	}
 }
 
