@@ -4,10 +4,19 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.ArrayList;
 
 public class ConnectionDB {
-	private int[] planetStats;
-	private ResultSet rs;
+//	private ArrayList planetStats;
+	private ArrayList<int[]> arrayReasources;
+	private ArrayList<int[]> arrayHeavytHunter;
+	private ArrayList<int[]> arrayLightHunter;
+	private ArrayList<int[]> arrayBattleShip;
+	private ArrayList<int[]> arrayArmoredShip;
+	private ArrayList<int[]> arrayMissileLouncher;
+	private ArrayList<int[]> arrayIonCannon;
+	private ArrayList<int[]> arrayPlasmaCannon;
+
 	
 //	public static void main(String[] args) {
 //		ConnectionDB cdb = new ConnectionDB();
@@ -49,13 +58,13 @@ public class ConnectionDB {
 //			//System.out.println("ID = " + rs.getInt(1) + ", Password = " + rs.getString(2) + ", Name = " + rs.getString(3));
 //			
 //			
-//            // Preparar la inserción de un nuevo registro
-////            String insertQuery = "INSERT INTO user_credentials (user_id, user_password, user_name) VALUES (?, ?, ?)";
-////            PreparedStatement insertStatement = conn.prepareStatement(insertQuery);
-////            insertStatement.setInt(1, 65);
-////            insertStatement.setString(2, "Contra1");
-////            insertStatement.setString(3, "danielin");
-////            insertStatement.executeUpdate();
+//             Preparar la inserción de un nuevo registro
+//            String insertQuery = "INSERT INTO user_credentials (user_id, user_password, user_name) VALUES (?, ?, ?)";
+//            PreparedStatement insertStatement = conn.prepareStatement(insertQuery);
+//            insertStatement.setInt(1, 65);
+//            insertStatement.setString(2, "Contra1");
+//            insertStatement.setString(3, "danielin");
+//            insertStatement.executeUpdate();
 //            
 //			// TABLAS
 //			// UserCredentials
@@ -70,25 +79,93 @@ public class ConnectionDB {
 //			System.out.println("Conexion no realizada");
 //			e.printStackTrace();
 //		}
+//		ConnectionDB cdb = new ConnectionDB();
+//		cdb.conection(1, null);
+//		// PULL
+//		ArrayList planetStats = new ArrayList();
+//		planetStats = cdb.getPlanetStats();
+//		
+//		//System.out.println(planetStats.size());
+//		
+//		
 //	}
 	
 	
-	public int[] getPlanetStats() {
-		return planetStats;
-	}
-
-	public ResultSet getRs() {
-		return rs;
-	}
-
-	public void setRs(ResultSet rs) {
-		this.rs = rs;
-	}
-
-	public void setPlanetStats(int[] planetStats) {
-		this.planetStats = planetStats;
-	}
+//	public ArrayList getPlanetStats() {
+//		return planetStats;
+//	}
+//
+//	
+//
+//	public void setPlanetStats(ArrayList planetStats) {
+//		this.planetStats = planetStats;
+//	}
 	
+	
+	public ArrayList<int[]> getArrayReasources() {
+		return arrayReasources;
+	}
+
+	public ArrayList<int[]> getArrayLightHunter() {
+		return arrayLightHunter;
+	}
+
+	public void setArrayLightHunter(ArrayList<int[]> arrayLightHunter) {
+		this.arrayLightHunter = arrayLightHunter;
+	}
+
+	public void setArrayReasources(ArrayList<int[]> arrayReasources) {
+		this.arrayReasources = arrayReasources;
+	}
+
+	public ArrayList<int[]> getArrayHeavytHunter() {
+		return arrayHeavytHunter;
+	}
+
+	public void setArrayHeavytHunter(ArrayList<int[]> arrayHeavytHunter) {
+		this.arrayHeavytHunter = arrayHeavytHunter;
+	}
+
+	public ArrayList<int[]> getArrayBattleShip() {
+		return arrayBattleShip;
+	}
+
+	public void setArrayBattleShip(ArrayList<int[]> arrayBattleShip) {
+		this.arrayBattleShip = arrayBattleShip;
+	}
+
+	public ArrayList<int[]> getArrayArmoredShip() {
+		return arrayArmoredShip;
+	}
+
+	public void setArrayArmoredShip(ArrayList<int[]> arrayArmoredShip) {
+		this.arrayArmoredShip = arrayArmoredShip;
+	}
+
+	public ArrayList<int[]> getArrayMissileLouncher() {
+		return arrayMissileLouncher;
+	}
+
+	public void setArrayMissileLouncher(ArrayList<int[]> arrayMissileLouncher) {
+		this.arrayMissileLouncher = arrayMissileLouncher;
+	}
+
+	public ArrayList<int[]> getArrayIonCannon() {
+		return arrayIonCannon;
+	}
+
+	public void setArrayIonCannon(ArrayList<int[]> arrayIonCannon) {
+		this.arrayIonCannon = arrayIonCannon;
+	}
+
+	public ArrayList<int[]> getArrayPlasmaCannon() {
+		return arrayPlasmaCannon;
+	}
+
+	public void setArrayPlasmaCannon(ArrayList<int[]> arrayPlasmaCannon) {
+		this.arrayPlasmaCannon = arrayPlasmaCannon;
+	}
+
 	// Metodo de conexion y selector de la accion que quiero (push/pull)
 	public void conection( int opc, Planet p) {
 		String urlDatos =  "jdbc:oracle:thin:@localhost:1521/orcl";
@@ -107,7 +184,7 @@ public class ConnectionDB {
 				 metodoPull(conn);
 				break;
 			case 2:
-				metodoPush(conn, getRs(), p);
+				metodoPush(conn, p);
 				break;
 //			case 3:
 //				metodoPush
@@ -125,55 +202,162 @@ public class ConnectionDB {
 		}	
 	}
 	
-	public ResultSet metodoPull(Connection conn) {
-		ResultSet rs = null;
+	public void metodoPull(Connection conn) {
 		try {
 			String query = "SELECT * FROM planet_stats";
 			Statement stmnt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
-			rs = stmnt.executeQuery(query);	
+			ResultSet rs = stmnt.executeQuery(query);	
+			
+			//{Metal, deuterio, techD, techA}
+			ArrayList<int[]> arrayReasources = new ArrayList<int[]>();
 			
 			rs.next();
-			//{Metal, deuterio, techD, techA}
-			int[] planetStats = {
-					rs.getInt(4),rs.getInt(5),
-					rs.getInt(6),rs.getInt(7)};
+			arrayReasources.add(new int[] {rs.getInt(4),rs.getInt(5),rs.getInt(6),rs.getInt(7)});
 			
-			// Crear int[][][] donde guarde cada grupo-unidad-stats
-			this.setPlanetStats(planetStats);
-			setRs(rs);
-			return rs;
+			this.setArrayReasources(arrayReasources);
+			
+//			System.out.println("\nSize =" + arrayReasources.size());
+//			for (int[] is : arrayReasources) {
+//				for (int i : is) {
+//					System.out.println(i);
+//				}
+//			}
+			
+			//LighHunter
+			String query1 = "SELECT * FROM light_hunter";
+			rs = stmnt.executeQuery(query1);	
+			ArrayList<int[]> arrayLightHunter = new ArrayList<int[]>();
+			
+			while (rs.next()) {
+				
+				arrayLightHunter.add(new int[] {rs.getInt(2),rs.getInt(3)});
+			}
+			this.setArrayLightHunter(arrayLightHunter);
+			
+			
+//			System.out.println("\nSize =" + arrayLightHunter.size());
+//			for (int[] is : arrayLightHunter) {
+//				for (int i : is) {
+//					System.out.println(i);
+//				}
+//			}
+			
+			//HeavyHunter
+			String query2 = "SELECT * FROM heavy_hunter";
+			rs = stmnt.executeQuery(query2);	
+			ArrayList<int[]> arrayHeavytHunter = new ArrayList<int[]>();
+			
+			while (rs.next()) {
+				
+				arrayHeavytHunter.add(new int[] {rs.getInt(2),rs.getInt(3)});
+			}
+			this.setArrayHeavytHunter(arrayHeavytHunter);
+			
+			
+			//BattleShip
+			String query3 = "SELECT * FROM battle_ship";
+			rs = stmnt.executeQuery(query3);	
+			ArrayList<int[]> arrayBattleShip = new ArrayList<int[]>();
+			
+			while (rs.next()) {
+				
+				arrayBattleShip.add(new int[] {rs.getInt(2),rs.getInt(3)});
+			}
+			
+			this.setArrayBattleShip(arrayBattleShip);
+			
+			//ArmoredShip
+			String query4 = "SELECT * FROM armored_ship";
+			rs = stmnt.executeQuery(query4);	
+			ArrayList<int[]> arrayArmoredShip = new ArrayList<int[]>();
+			
+			while (rs.next()) {
+				
+				arrayArmoredShip.add(new int[] {rs.getInt(2),rs.getInt(3)});
+			}
+			
+			this.setArrayArmoredShip(arrayArmoredShip);
+			
+			//MissileLouncher
+			String query5 = "SELECT * FROM missile_launcher";
+			rs = stmnt.executeQuery(query5);	
+			ArrayList<int[]> arrayMissileLouncher = new ArrayList<int[]>();
+			
+			while (rs.next()) {
+				
+				arrayMissileLouncher.add(new int[] {rs.getInt(2),rs.getInt(3)});
+			}
+			
+			this.setArrayMissileLouncher(arrayMissileLouncher);
+			
+			//IonCannon
+			String query6 = "SELECT * FROM ion_cannon";
+			rs = stmnt.executeQuery(query6);	
+			ArrayList<int[]> arrayIonCannon = new ArrayList<int[]>();
+			
+			while (rs.next()) {
+				
+				arrayIonCannon.add(new int[] {rs.getInt(2),rs.getInt(3)});
+			}
+			
+			this.setArrayIonCannon(arrayIonCannon);
+			
+			//PlasmaCannon
+			String query7 = "SELECT * FROM plasma_cannon";
+			rs = stmnt.executeQuery(query7);	
+			ArrayList<int[]> arrayPlasmaCannon = new ArrayList<int[]>();
+			
+			while (rs.next()) {
+				
+				arrayPlasmaCannon.add(new int[] {rs.getInt(2),rs.getInt(3)});
+			}
+			
+			this.setArrayPlasmaCannon(arrayPlasmaCannon);
+			
+			// ArrayList que guarda cada grupo-unidad-stats
+			
 		} catch (SQLException e) {
-			System.out.println(e.getMessage());
-			//e.printStackTrace();
+			//System.out.println(e.getMessage());
+			e.printStackTrace();
 		}
-		return rs;
 	}
 	
 
-	public void metodoPush(Connection conn, ResultSet rs, Planet p) {
+	public void metodoPush(Connection conn, Planet p) {
 		int [] units = p.getNumberUnits();
 		try {
-		rs.absolute(1);
-		// Actualizo la BBDD a traves de mi ResultSet
-		rs.updateInt("resource_metal_amount", p.getMetal());
-		rs.updateInt("resource_dauterion_amount", p.getDeuterium());
-		rs.updateInt("resource_defense", p.getTechnologyDefense());
-		rs.updateInt("resource_attack", p.getTechnologyAtack());
-		rs.updateInt("missile_launcher_remaining", units[5]);
-		rs.updateInt("ion_cannon_remaining", units[6]);
-		rs.updateInt("plasma_cannon_remaining", units[0]);
-		rs.updateInt("light_hunter_remaining", units[1]);
-		rs.updateInt("heavy_hunter_remaining", units[2]);
-		rs.updateInt("battle_ship_remaining", units[3]);
-		rs.updateInt("armored_ship_remaining", units[4]);
-		
-		rs.updateRow();
+			// Preparar la inserción de un nuevo registro
+            String insertQuery = "INSERT INTO user_credentials (user_id, user_password, user_name) VALUES (?, ?, ?)";
+            PreparedStatement insertStatement = conn.prepareStatement(insertQuery);
+            insertStatement.setInt(1, 65);
+            insertStatement.setString(2, "Contra1");
+            insertStatement.setString(3, "danielin");
+            insertStatement.executeUpdate();
+			
+//		// Utilizar preparedStatemnet ***
+//		rs.absolute(1);
+//		// Actualizo la BBDD a traves de mi ResultSet
+//		rs.updateInt("resource_metal_amount", p.getMetal());
+//		rs.updateInt("resource_dauterion_amount", p.getDeuterium());
+//		rs.updateInt("resource_defense", p.getTechnologyDefense());
+//		rs.updateInt("resource_attack", p.getTechnologyAtack());
+//		rs.updateInt("missile_launcher_remaining", units[5]);
+//		rs.updateInt("ion_cannon_remaining", units[6]);
+//		rs.updateInt("plasma_cannon_remaining", units[0]);
+//		rs.updateInt("light_hunter_remaining", units[1]);
+//		rs.updateInt("heavy_hunter_remaining", units[2]);
+//		rs.updateInt("battle_ship_remaining", units[3]);
+//		rs.updateInt("armored_ship_remaining", units[4]);
+//		
+//		rs.updateRow();
 		
 		
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();
 		}
+		
+		
 	}
 
 

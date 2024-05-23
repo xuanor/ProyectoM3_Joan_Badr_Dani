@@ -15,49 +15,43 @@ public class Main implements Variables{
 	}
 	
 	public static void main(String[] args) {
-		int [] planetStats;
+		int[] DBreasources;
 		
-		// ** A HACER **
-			//Cargar datos de la bbdd
-			ConnectionDB cdb = new ConnectionDB();
-			cdb.conection(1, null);
-			// PULL
-			planetStats =  cdb.getPlanetStats();
-			
-			// Cargar datos aqui
-			Planet mainPlanet = new Planet(planetStats[2],
-					planetStats[3],
-					planetStats[0], 
-					planetStats[1],
-					UPGRADE_BASE_DEFENSE_TECHNOLOGY_DEUTERIUM_COST,
-					UPGRADE_BASE_ATTACK_TECHNOLOGY_DEUTERIUM_COST);
-//			mainPlanet.setTechnologyDefense(planetStats[2]);
-//			mainPlanet.setTechnologyAtack(planetStats[3]);
-//			
-//			for (int i : planetStats) {
-//				System.out.println(i);
-//			}
-			// Datos de inicio planeta
-			// Datos de inicio army planet y army
-			
-			// Instancio clase principal
-			Main principal = new Main();
-			
-			
-			
-			// Me crea mi ejercito y se lo añade al planeta
-			principal.createMyArmyInit(mainPlanet, planetStats);
-			
-			//ViewThreat(createEnemyArmy());
-			
-			//mainPlanet.printStats();
-			principal.mainMenu(mainPlanet);
-			// PUSH
-			cdb.conection(2, mainPlanet);
+		//Cargar datos de la bbdd
+		ConnectionDB cdb = new ConnectionDB();
+		cdb.conection(1, null);
+		// PULL
+		DBreasources = cdb.getArrayReasources().get(0);
+		
+		// Cargar datos aqui
+		Planet mainPlanet = new Planet(DBreasources[2],
+				DBreasources[3],
+				DBreasources[0], 
+				DBreasources[1],
+				UPGRADE_BASE_DEFENSE_TECHNOLOGY_DEUTERIUM_COST,
+				UPGRADE_BASE_ATTACK_TECHNOLOGY_DEUTERIUM_COST);	
+		
+
+		// Datos de inicio planeta
+		// Datos de inicio army planet y army
+		
+		// Instancio clase principal
+		Main principal = new Main();
+		
+		
+		// Me crea mi ejercito y se lo añade al planeta
+		principal.createMyArmyInit(mainPlanet, cdb);
+		
+		//ViewThreat(createEnemyArmy());
+		
+		//mainPlanet.printStats();
+		principal.mainMenu(mainPlanet);
+		// PUSH
+		//cdb.conection(2, mainPlanet);
 	}
 	
 	// CREO MI EJERCITO INICIAL
-	public void createMyArmyInit(Planet myPlanet, int[] planetStats) {
+	public void createMyArmyInit(Planet myPlanet, ConnectionDB cdb) {
 		ArrayList<MilitaryUnit>[] mainArmy = new ArrayList[7];
 		
 		//*** UNIDADES DE BASE EN MI EJERCITO ***
@@ -69,57 +63,57 @@ public class Main implements Variables{
 //		final int BASE_UNIT_ION_CANNON = 2;
 //		final int BASE_UNIT_PLASMA_CANNON = 0;
 		
-		// Cambiar para añadir vida y ataque actualizados
-		final int BASE_UNIT_LIGHT_HUNTER = planetStats[7];
-		final int BASE_UNIT_HEAVY_HUNTER = planetStats[8];
-		final int BASE_UNIT_BATTLE_SHIP = planetStats[9];
-		final int BASE_UNIT_ARMORED_SHIP = planetStats[10];
-		final int BASE_UNIT_MISSILE_LOUNCHER = planetStats[4];
-		final int BASE_UNIT_ION_CANNON = planetStats[5];
-		final int BASE_UNIT_PLASMA_CANNON = planetStats[6];
-		
-//		Army[0] → arrayList de Ligth Hunter
-//		Army[1] → arrayList de Heavy Hunter
-//		Army[2] → arrayList de Battle Ship
-//		Army[3] → arrayList de Armored Ship
-//		Army[4] → arrayList de Missile Launcher
-//		Army[5] → arrayList de Ion Cannon
-//		Army[6] → arrayList de Plasma Cannon
-		
+		ArrayList<int[]> statsHeavytHunter = cdb.getArrayLightHunter();
+		ArrayList<int[]> statsLightHunter = cdb.getArrayHeavytHunter();
+		ArrayList<int[]> statsBattleShip = cdb.getArrayBattleShip();
+		ArrayList<int[]> statsArmoredShip = cdb.getArrayArmoredShip();
+		ArrayList<int[]> statsMissileLouncher = cdb.getArrayMissileLouncher();
+		ArrayList<int[]> statsIonCannon = cdb.getArrayIonCannon();
+	    ArrayList<int[]> statsPlasmaCannon = cdb.getArrayPlasmaCannon();
+	    
+//	    System.out.println("Prueba = " +  statsHeavytHunter.size());
+//	    
+//		for (int[] i : statsHeavytHunter) {
+//			for (int j : i) {
+//				System.out.println(j);
+//			}
+//			
+//		}
+	    
 		Clases_ataque cAtack = new Clases_ataque();
 		// Flota
 		ArrayList<MilitaryUnit> arrayLigthHunter = new ArrayList<MilitaryUnit>();
 		// myPlanet.newLightHunter(1) hacer asi con nivel de tech ??
-		for (int i = 0; i < BASE_UNIT_LIGHT_HUNTER; i++) {
-			arrayLigthHunter.add(cAtack.new LigthHunter(ARMOR_LIGTHHUNTER, BASE_DAMAGE_LIGTHHUNTER));
+		for (int i = 0; i < statsLightHunter.size(); i++) {
+			arrayLigthHunter.add(cAtack.new LigthHunter(statsLightHunter.get(i)[0], statsLightHunter.get(i)[1]));
 		}
 		ArrayList<MilitaryUnit> arrayHeavyHunter = new ArrayList<MilitaryUnit>();
-		for (int i = 0; i < BASE_UNIT_HEAVY_HUNTER; i++) {
-			arrayHeavyHunter.add(cAtack.new HeavyHunter(ARMOR_HEAVYHUNTER, BASE_DAMAGE_HEAVYHUNTER));
+		for (int i = 0; i < statsHeavytHunter.size(); i++) {
+			arrayHeavyHunter.add(cAtack.new HeavyHunter(statsHeavytHunter.get(i)[0], statsHeavytHunter.get(i)[1]));
 		}
 		ArrayList<MilitaryUnit> arrayBattleShip = new ArrayList<MilitaryUnit>();
-		for (int i = 0; i < BASE_UNIT_BATTLE_SHIP; i++) {
-			arrayBattleShip.add(cAtack.new BattleShip(ARMOR_BATTLESHIP, BASE_DAMAGE_BATTLESHIP));
+		for (int i = 0; i < statsBattleShip.size(); i++) {
+			arrayBattleShip.add(cAtack.new BattleShip(statsBattleShip.get(i)[0], statsBattleShip.get(i)[1]));
 		}
 		
 		ArrayList<MilitaryUnit> arrayArmoredShip = new ArrayList<MilitaryUnit>();
-		for (int i = 0; i < BASE_UNIT_ARMORED_SHIP; i++) {
-			arrayArmoredShip.add(cAtack.new ArmoredShip(ARMOR_ARMOREDSHIP, BASE_DAMAGE_ARMOREDSHIP));
+		for (int i = 0; i < statsArmoredShip.size(); i++) {
+			arrayArmoredShip.add(cAtack.new ArmoredShip(statsArmoredShip.get(i)[0], statsArmoredShip.get(i)[1]));
 		}
 		// Defensas
 		Clases_defensa d = new Clases_defensa();
 		
 		ArrayList<MilitaryUnit> arrayMissileLouncher = new ArrayList<MilitaryUnit>();
-		for (int i = 0; i < BASE_UNIT_MISSILE_LOUNCHER; i++) {
-			arrayMissileLouncher.add(d.new MissileLauncher(ARMOR_MISSILELAUNCHER, BASE_DAMAGE_MISSILELAUNCHER));
+		for (int i = 0; i < statsMissileLouncher.size(); i++) {
+			arrayMissileLouncher.add(d.new MissileLauncher(statsMissileLouncher.get(i)[0], statsMissileLouncher.get(i)[1]));
 		}
 		ArrayList<MilitaryUnit> arrayIonCannon = new ArrayList<MilitaryUnit>();
-		for (int i = 0; i < BASE_UNIT_ION_CANNON; i++) {
-			arrayIonCannon.add(d.new IonCannon(ARMOR_IONCANNON, BASE_DAMAGE_IONCANNON));
+		for (int i = 0; i < statsIonCannon.size(); i++) {
+			arrayIonCannon.add(d.new IonCannon(statsIonCannon.get(i)[0], statsIonCannon.get(i)[1]));
 		}
 		ArrayList<MilitaryUnit> arrayPlasmaCannon = new ArrayList<MilitaryUnit>();
-		for (int i = 0; i < BASE_UNIT_PLASMA_CANNON; i++) {
-			arrayPlasmaCannon.add(d.new PlasmaCannon(ARMOR_PLASMACANNON, BASE_DAMAGE_PLASMACANNON));
+		for (int i = 0; i < statsPlasmaCannon.size(); i++) {
+			arrayPlasmaCannon.add(d.new PlasmaCannon(statsPlasmaCannon.get(i)[0], statsPlasmaCannon.get(i)[1]));
 		}
 		
 		mainArmy[0] = arrayLigthHunter;
@@ -328,7 +322,7 @@ public class Main implements Variables{
 	    };
 
 	    timer.schedule(taskThreat, 3000, 60000);
-	    timer.schedule(taskAtack, 4000, 60000);
+	    timer.schedule(taskAtack, 10000, 60000);
 	    timer.schedule(taskUpdateResources, 60000, 60000);
 		Scanner sc = new Scanner(System.in);
 		
@@ -362,6 +356,8 @@ public class Main implements Variables{
 			switch (option) {
 			case 0:
 				System.out.println("See you later!");
+				// Apgo el timer
+				timer.cancel();
 				break;
 			
 			case 1:
