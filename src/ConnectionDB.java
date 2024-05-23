@@ -201,9 +201,10 @@ public class ConnectionDB {
 			Class.forName("oracle.jdbc.driver.OracleDriver");
 			
 			Connection conn = DriverManager.getConnection(urlDatos, usuario, pass);
-			if (conn != null) {
-				System.out.println("Connected with connection");
-			}
+//			if (conn != null) {
+//				System.out.println("Connected with connection");
+//			}
+			
 			switch (opc) {
 			case 1:
 				login(conn, usr, pswd);
@@ -237,8 +238,9 @@ public class ConnectionDB {
 			ResultSet rs = stmnt.executeQuery(query);
 			
 			while (rs.next()) {
-				if (rs.getString(1).equals(usr) && rs.getString(2).equals(pswd)) {
-					setUser_id(rs.getInt(0));
+				//System.out.println(rs.getString(1) +" "+ rs.getString(2) +" "+ rs.getString(3));
+				if (rs.getString(2).equals(usr) && rs.getString(3).equals(pswd)) {
+					setUser_id(rs.getInt(1));
 					break;
 				}
 			}
@@ -252,7 +254,7 @@ public class ConnectionDB {
 	public void metodoPull(Connection conn) {
 		try {
 					
-			String query = "SELECT * FROM planet_stats WHEN USER_ID = " + getUser_id();
+			String query = "SELECT * FROM planet_stats WHERE USER_ID = " + getUser_id();
 			Statement stmnt = conn.createStatement(ResultSet.TYPE_SCROLL_INSENSITIVE, ResultSet.CONCUR_UPDATABLE);
 			ResultSet rs = stmnt.executeQuery(query);	
 			
@@ -265,7 +267,7 @@ public class ConnectionDB {
 			this.setArrayReasources(arrayReasources);
 			
 			//Battle Reports
-			String query0 = "SELECT * FROM battle WHEN USER_ID = " + getUser_id();
+			String query0 = "SELECT * FROM battle WHERE PLANET_ID = " + getUser_id();
 			rs = stmnt.executeQuery(query0);	
 			ArrayList<String[]> arrayReportesBatalla = new ArrayList<String[]>();
 			
@@ -276,7 +278,7 @@ public class ConnectionDB {
 			this.setArrayReportesBatalla(arrayReportesBatalla);
 			
 			//LighHunter
-			String query1 = "SELECT * FROM light_hunter WHEN USER_ID = " + getUser_id();
+			String query1 = "SELECT * FROM light_hunter WHERE PLANET_ID = " + getUser_id();
 			rs = stmnt.executeQuery(query1);	
 			ArrayList<int[]> arrayLightHunter = new ArrayList<int[]>();
 			
@@ -295,7 +297,7 @@ public class ConnectionDB {
 //			}
 			
 			//HeavyHunter
-			String query2 = "SELECT * FROM heavy_hunter WHEN USER_ID = " + getUser_id();
+			String query2 = "SELECT * FROM heavy_hunter WHERE PLANET_ID = " + getUser_id();
 			rs = stmnt.executeQuery(query2);	
 			ArrayList<int[]> arrayHeavytHunter = new ArrayList<int[]>();
 			
@@ -307,7 +309,7 @@ public class ConnectionDB {
 			
 			
 			//BattleShip
-			String query3 = "SELECT * FROM battle_ship WHEN USER_ID = " + getUser_id();
+			String query3 = "SELECT * FROM battle_ship WHERE PLANET_ID = " + getUser_id();
 			rs = stmnt.executeQuery(query3);	
 			ArrayList<int[]> arrayBattleShip = new ArrayList<int[]>();
 			
@@ -319,7 +321,7 @@ public class ConnectionDB {
 			this.setArrayBattleShip(arrayBattleShip);
 			
 			//ArmoredShip
-			String query4 = "SELECT * FROM armored_ship WHEN USER_ID = " + getUser_id();
+			String query4 = "SELECT * FROM armored_ship WHERE PLANET_ID = " + getUser_id();
 			rs = stmnt.executeQuery(query4);	
 			ArrayList<int[]> arrayArmoredShip = new ArrayList<int[]>();
 			
@@ -331,7 +333,7 @@ public class ConnectionDB {
 			this.setArrayArmoredShip(arrayArmoredShip);
 			
 			//MissileLouncher
-			String query5 = "SELECT * FROM missile_launcher WHEN USER_ID = " + getUser_id();
+			String query5 = "SELECT * FROM missile_launcher WHERE PLANET_ID = " + getUser_id();
 			rs = stmnt.executeQuery(query5);	
 			ArrayList<int[]> arrayMissileLouncher = new ArrayList<int[]>();
 			
@@ -343,7 +345,7 @@ public class ConnectionDB {
 			this.setArrayMissileLouncher(arrayMissileLouncher);
 			
 			//IonCannon
-			String query6 = "SELECT * FROM ion_cannon WHEN USER_ID = " + getUser_id();
+			String query6 = "SELECT * FROM ion_cannon WHERE PLANET_ID = " + getUser_id();
 			rs = stmnt.executeQuery(query6);	
 			ArrayList<int[]> arrayIonCannon = new ArrayList<int[]>();
 			
@@ -355,7 +357,7 @@ public class ConnectionDB {
 			this.setArrayIonCannon(arrayIonCannon);
 			
 			//PlasmaCannon
-			String query7 = "SELECT * FROM plasma_cannon WHEN USER_ID = " + getUser_id();
+			String query7 = "SELECT * FROM plasma_cannon WHERE PLANET_ID = " + getUser_id();
 			rs = stmnt.executeQuery(query7);	
 			ArrayList<int[]> arrayPlasmaCannon = new ArrayList<int[]>();
 			
@@ -392,7 +394,7 @@ public class ConnectionDB {
 			
 			// Reportes Batalla
 			int cont = 1;
-			String delete = "DELETE FROM battle WHERE USER_ID = " + getUser_id();
+			String delete = "DELETE FROM battle WHERE PLANET_ID = " + getUser_id();
 			update = "INSERT INTO battle (planet_id, num_battles, battle_stats, battle_log)"
 					 + "VALUES (?,?,?,?)";
 			
@@ -414,7 +416,7 @@ public class ConnectionDB {
 			
 			// Light Hunters
 			cont = 1;
-			delete = "DELETE FROM light_hunter WHERE USER_ID = " + getUser_id();
+			delete = "DELETE FROM light_hunter WHERE PLANET_ID = " + getUser_id();
 			update = "INSERT INTO light_hunter (id, planet_id,armour,atack)"
 					+ "VALUES (?,?,?,?)";
 			
@@ -435,7 +437,7 @@ public class ConnectionDB {
 			}
 			
 			// Heavy Hunters
-			delete = "DELETE FROM heavy_hunter WHERE USER_ID = " + getUser_id();
+			delete = "DELETE FROM heavy_hunter WHERE PLANET_ID = " + getUser_id();
 			update = "INSERT INTO heavy_hunter (id, planet_id,armour,atack)"
 					+ "VALUES (?,?,?,?)";
 			
@@ -457,7 +459,7 @@ public class ConnectionDB {
 			
 			
 			// Battle Ship
-			delete = "DELETE FROM battle_ship WHERE USER_ID = " + getUser_id();
+			delete = "DELETE FROM battle_ship WHERE PLANET_ID = " + getUser_id();
 			update = "INSERT INTO battle_ship (id, planet_id,armour,atack)"
 					+ "VALUES (?,?,?,?)";
 			
@@ -478,7 +480,7 @@ public class ConnectionDB {
 			}
 			
 			// Armored Ship
-			delete = "DELETE FROM armored_ship WHERE USER_ID = " + getUser_id();
+			delete = "DELETE FROM armored_ship WHERE PLANET_ID = " + getUser_id();
 			update = "INSERT INTO armored_ship (id, planet_id,armour,atack)"
 					+ "VALUES (?,?,?,?)";
 			
@@ -500,7 +502,7 @@ public class ConnectionDB {
 			}
 			
 			// Missile Louncher
-			delete = "DELETE FROM missile_launcher WHERE USER_ID = " + getUser_id();
+			delete = "DELETE FROM missile_launcher WHERE PLANET_ID = " + getUser_id();
 			update = "INSERT INTO missile_launcher (id, planet_id,armour,atack)"
 					+ "VALUES (?,?,?,?)";
 			
@@ -522,7 +524,7 @@ public class ConnectionDB {
 			}
 			
 			// Ion cannon
-			delete = "DELETE FROM ion_cannon WHERE USER_ID = " + getUser_id();
+			delete = "DELETE FROM ion_cannon WHERE PLANET_ID = " + getUser_id();
 			update = "INSERT INTO ion_cannon (id, planet_id,armour,atack)"
 					+ "VALUES (?,?,?,?)";
 					
@@ -545,7 +547,7 @@ public class ConnectionDB {
 			}
 			
 			// Plasma cannon
-			delete = "DELETE FROM plasma_cannon WHERE USER_ID = " + getUser_id();
+			delete = "DELETE FROM plasma_cannon WHERE PLANET_ID = " + getUser_id();
 			update = "INSERT INTO plasma_cannon (id, planet_id,armour,atack)"
 					+ "VALUES (?,?,?,?)";
 					
@@ -566,28 +568,7 @@ public class ConnectionDB {
 				ps.executeUpdate();
 				cont++;
 			}
-			
-			// Informe stats **
-			// Informe log **
-			
-////		// Utilizar preparedStatemnet ***
-////		rs.absolute(1);
-////		// Actualizo la BBDD a traves de mi ResultSet
-////		rs.updateInt("resource_metal_amount", p.getMetal());
-////		rs.updateInt("resource_dauterion_amount", p.getDeuterium());
-////		rs.updateInt("resource_defense", p.getTechnologyDefense());
-////		rs.updateInt("resource_attack", p.getTechnologyAtack());
-////		rs.updateInt("missile_launcher_remaining", units[5]);
-////		rs.updateInt("ion_cannon_remaining", units[6]);
-////		rs.updateInt("plasma_cannon_remaining", units[0]);
-////		rs.updateInt("light_hunter_remaining", units[1]);
-////		rs.updateInt("heavy_hunter_remaining", units[2]);
-////		rs.updateInt("battle_ship_remaining", units[3]);
-////		rs.updateInt("armored_ship_remaining", units[4]);
-////		
-////		rs.updateRow();
-//		
-//		
+				
 		} catch (SQLException e) {
 			System.out.println(e.getMessage());
 			e.printStackTrace();

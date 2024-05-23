@@ -6,6 +6,70 @@ import java.util.TimerTask;
 public class Main implements Variables{
 	private boolean attackComing = false;
 	
+	String userMenu = "\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::⠀\r\n"
+			+ "::::::::::::::::::::::::::::::::::::::::::::::::::::::: ⢠⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
+			+ "::'#######:::'######::::::'###::::'##::::'##:'########:⠀⣷⣶⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
+			+ ":'##.... ##:'##... ##::::'## ##::: ###::'###: ##.....:: ⣿⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
+			+ ": ##:::: ##: ##:::..::::'##:. ##:: ####'####: ##:::::::⠀⣿⣿⣿⣿⣿⣿⣧⡀⠤⠤⣤⣤⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
+			+ ": ##:::: ##: ##::'####:'##:::. ##: ## ### ##: ######:::⠀⣿⣿⣿⣿⣿⣿⣿⣇⠀⣦⣤⣤⣄⣈⡉⠉⠛⠛⠷⢶⠄⢠⣴⣦⡀⠀⠀⠀⠀\r\n"
+			+ ": ##:::: ##: ##::: ##:: #########: ##. #: ##: ##...:::: ⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠉⠉⠛⠛⠷⣦⣀⠀⠀⢻⣿⣿⣿⡀⠀⠀⠀\r\n"
+			+ ": ##:::: ##: ##::: ##:: ##.... ##: ##:.:: ##: ##:::::::⠀⣿⣿⣿⣿⣿⣿⣿⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣹⡆⠀⠀⠈⠉⠘⡇⠀⠀⠀\r\n"
+			+ ":. #######::. ######::: ##:::: ##: ##:::: ##: ########:⠀⣿⣿⣿⣿⣿⣿⡟⠁⠀⠀⢀⠀⢀⣀⣠⣤⡴⠾⠋⠀⠀⠀⢀⣠⡾⠃⠀⠀⠀\r\n"
+			+ "::.......::::......::::..:::::..::..:::::..::........::⠀⣿⣿⣿⣿⣿⣿⠶⠶⠶⠀⠿⠃⠘⠉⠉⠀⠀⢀⣀⣤⣴⠾⠛⠉⠀⠀⠀⠀⠀\r\n"
+			+ "::::::::::::::::::::::::::::::::::::::::::::::::::::::: ⣿⣿⣟⣉⣀⣀⣀⣀⣠⣤⣤⣤⣴⡶⠶⠿⠛⠛⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
+			+ ":::::::::::::::::::::::::::::::::::::::::::::::::::::::⠀⠛⠛⠋⠉⠉⠉⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
+			+ "                                                      ⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
+			+ "                 .WELCOME TO THE SPACE ODYSSEY.                         ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀";
+
+			
+	String dibujo2 = "                   \r\n\n"
+			+ "                   ( )\r\n"
+			+ "                    )\r\n"
+			+ "                   ( )\r\n"
+			+ "\r\n"
+			+ "                  \\/ \\/\r\n"
+			+ "                  |\\_/|\r\n"
+			+ "                  '   '\r\n"
+			+ "                  |. .|\r\n"
+			+ "                  . o .\r\n"
+			+ "                   |o|\r\n"
+			+ "                   . .\r\n"
+			+ "                    |\r\n"
+			+ "               ____\r\n"
+			+ "          .-'\"\"p 8o\"\"`-.\r\n"
+			+ "       .-'8888P'Y.`Y[ ' `-.\r\n"
+			+ "     ,']88888b.J8oo_      '`.\r\n"
+			+ "   ,' ,88888888888[\"        Y`.\r\n"
+			+ "  /   8888888888P            Y8\\\r\n"
+			+ " /    Y8888888P'             ]88\\\r\n"
+			+ ":     `Y88'   P              `888:\r\n"
+			+ ":       Y8.oP '- >            Y88:\r\n"
+			+ "|          `Yb  __             `'|\r\n"
+			+ ":            `'d8888bo.          :\r\n"
+			+ ":             d88888888ooo.      ;\r\n"
+			+ " \\            Y88888888888P     /\r\n"
+			+ "  \\            `Y88888888P     /\r\n"
+			+ "   `.            d88888P'    ,'\r\n"
+			+ "     `.          888PP'    ,'\r\n"
+			+ "       `-.      d8P'    ,-'   \r\n"
+			+ "          `-.,,_'__,,.-'";	
+	
+	
+	String dibujo1 = "\n            `. ___\r\n"
+			+ "                    __,' __`.                _..----....____\r\n"
+			+ "        __...--.'``;.   ,.   ;``--..__     .'    ,-._    _.-'\r\n"
+			+ "  _..-''-------'   `'   `'   `'     O ``-''._   (,;') _,'\r\n"
+			+ ",'________________                          \\`-._`-','\r\n"
+			+ " `._              ```````````------...___   '-.._'-:\r\n"
+			+ "    ```--.._      ,.                     ````--...__\\-.\r\n"
+			+ "            `.--. `-`                       ____    |  |`\r\n"
+			+ "              `. `.                       ,'`````.  ;  ;`\r\n"
+			+ "                `._`.        __________   `.      \\'__/`\r\n"
+			+ "                   `-:._____/______/___/____`.     \\  `\r\n"
+			+ "                               |       `._    `.    \\\r\n"
+			+ "                               `._________`-.   `.   `.___\r\n"
+			+ "                                                  `------'`";
+	
 	public void setAttackComing(boolean flag) {
 		this.attackComing = flag;
 	}
@@ -52,7 +116,7 @@ public class Main implements Variables{
 			
 			
 			// PUSH
-			//cdb.conection(3, mainPlanet, b, null, null);
+			cdb.conection(3, mainPlanet, b, null, null);
 		}
 		else {
 			System.out.println("\nToo many tries, exit.");
@@ -66,32 +130,29 @@ public class Main implements Variables{
 		boolean checkUsr = false;
 		boolean result = false;
 		
-		while (!checkUsr) {
-			// TENGO 5 INTENTOS
-			for (int intento= 0; intento <5; intento++) {
+		
+		// TENGO 5 INTENTOS
+		for (int intento= 0; intento < 5; intento++) {
+			System.out.println(userMenu);
+
+			System.out.println("\n>>> USER: ");
+			String user = sc.next();
+			
+			System.out.println("\n>>> PASS: ");
+			String pswd = sc.next();
+			// Check del usuario
+			cdb.conection(1, null, null, user, pswd);
+			
+			if (cdb.getUser_id() == -1) {
+				System.out.println("INCORRECT USER OR PASSWORD, " + (4-intento) + " TRIES LEFT, TRY AGAIN.");
 				
-				String userMenu = "LOGO OGAME\n";
-				System.out.println("\n" + userMenu);
-	
-				System.out.println("USER: ");
-				String user = sc.next();
-				
-				System.out.println("PASS: ");
-				String pswd = sc.next();
-				// Check del usuario
-				cdb.conection(1, null, null, user, pswd);
-				
-				if (cdb.getUser_id() == -1) {
-					System.out.println("INCORRECT USER OR PASSWORD, " + (4-intento) + " TRIES LEFT, TRY AGAIN.");
-					
-				}
-				// LOGIN CORRECTO, SALGO
-				else {
-					result = true;
-					break;
-				}
-				sc.nextLine();
 			}
+			// LOGIN CORRECTO, SALGO
+			else {
+				result = true;
+				break;
+			}
+			sc.nextLine();
 		}
 		return result;
 	}
@@ -327,7 +388,7 @@ public class Main implements Variables{
 	    
 
 	         public void run() {
-	        	 System.out.println("\n\nNEW THREAD IS COMMING");
+	        	 System.out.println("\n\nNEW THREAD IS COMMING" + dibujo1);
 	        	 // Creo el nuevo ejercito enemigo
 	        	 ArrayList<MilitaryUnit>[] army = createEnemyArmy();
 	        	 // Añades al obj batalla la army enemiga
@@ -343,7 +404,7 @@ public class Main implements Variables{
 		    
 
 	         public void run() {
-	        	 System.out.println("\n\nWE HAVE BEEN ATTACKED!!");
+	        	 System.out.println("\n\nWE HAVE BEEN ATTACKED!!" + dibujo2);
 	        	 b.batalla();
 	        	 // Añado total a variable de planet para el push de BBDD
 	        	 mainPlanet.setNumberUnits(b.getActualNumberUnitsPlanet());
@@ -370,12 +431,13 @@ public class Main implements Variables{
 
 	    };
 
-	    timer.schedule(taskThreat, 4000, 4000);
-	    timer.schedule(taskAtack, 6000, 6000);
+	    timer.schedule(taskThreat, 10000, 60000);
+	    timer.schedule(taskAtack, 15000, 60000);
 	    timer.schedule(taskUpdateResources, 60000, 60000);
 		Scanner sc = new Scanner(System.in);
 		
-		String mainMenu = "Main Menu\n" + "1)View Planet Stats\n" + "2)Build\n" + "3)Upgrade Technology\n"
+		String mainMenu = "\n********************************************************************\n"
+				+ "Main Menu\n" + "1)View Planet Stats\n" + "2)Build\n" + "3)Upgrade Technology\n"
 				+ "4)View Battle Reports\n" + "0)Exit\n";
 		
 		String mainMenuAttack = "Main Menu\n" + "1)View Planet Stats\n" + "2)Build\n" + "3)Upgrade Technology\n"
