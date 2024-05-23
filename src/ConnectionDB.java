@@ -6,6 +6,8 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
 
+import sesion_JDBC.Construcciones;
+
 public class ConnectionDB {
 //	private ArrayList planetStats;
 	private ArrayList<int[]> arrayReasources;
@@ -326,13 +328,34 @@ public class ConnectionDB {
 	public void metodoPush(Connection conn, Planet p) {
 		int [] units = p.getNumberUnits();
 		try {
-			// Preparar la inserción de un nuevo registro
-            String insertQuery = "INSERT INTO user_credentials (user_id, user_password, user_name) VALUES (?, ?, ?)";
-            PreparedStatement insertStatement = conn.prepareStatement(insertQuery);
-            insertStatement.setInt(1, 65);
-            insertStatement.setString(2, "Contra1");
-            insertStatement.setString(3, "danielin");
-            insertStatement.executeUpdate();
+			//Recursos
+			String update = "UPDATE planet_stats SET RESOURCE_METAL_AMOUNT = ?, RESOURCE_DAUTERION_AMOUNT = ?,"
+					+ "RESOURCE_DEFENSE = ?, RESOURCE_ATTACK = ?"
+					+ "WHERE  USER_ID = 1";
+			
+			PreparedStatement ps = conn.prepareStatement(update);
+			ps.setInt(1, p.getMetal());
+			ps.setInt(2, p.getDeuterium());
+			ps.setInt(3, p.getTechnologyDefense());
+			ps.setInt(4, p.getTechnologyAtack());
+			ps.executeUpdate();
+			
+			// Light Hunters
+			update = "UPDATE light_hunter SET ARMOUR = ?, ATACK = ?"
+					+ "WHERE  PLANET_ID = 1";
+			//******
+			PreparedStatement ps = conn.prepareStatement(update);
+			ps.setInt(1, p.getMetal());
+			ps.setInt(2, p.getDeuterium());
+			ps.setInt(3, p.getTechnologyDefense());
+			ps.setInt(4, p.getTechnologyAtack());
+			ps.executeUpdate();
+			for (Construcciones c : construcciones) {
+				
+				ps.setInt(3, c.getPrecio());
+				ps.setInt(4, c.getId_granjero());
+				ps.executeUpdate();
+			}
 			
 //		// Utilizar preparedStatemnet ***
 //		rs.absolute(1);
