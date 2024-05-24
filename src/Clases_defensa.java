@@ -23,6 +23,7 @@ public class Clases_defensa {
 	
 		public MissileLauncher(int armor, int baseDamage) {
 			super(armor, baseDamage);
+			
 		}
 
 		public int attack() {
