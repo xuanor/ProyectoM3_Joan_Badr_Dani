@@ -7,9 +7,9 @@ body{
 
 @media only screen and (max-width: 600px) {
   body{
-      background: url(../fotos/Fondo/EspacioGif2Movil.gif);
-      background-size: 200%;
-  }
+    background: url(../fotos/Fondo/EspacioGif2Movil.gif);
+    background-size: 200%;
+}
 }
 
 .sticky{
