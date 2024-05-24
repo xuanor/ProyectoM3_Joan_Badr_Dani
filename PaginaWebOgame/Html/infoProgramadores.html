@@ -14,83 +14,99 @@
     <link href="style.css" rel="stylesheet" />
     <script src="../Js/shadowPartial.js"></script>
     <link rel="stylesheet" href="../Css/programadoresinfo.css">
-    <title>Ogame</title>
+    <title>Bugisoft</title>
 </head>
 <body>
     
     <shadow-partial data-html="../Html/Cabecera.html" data-css="../Css/Cabecera.css"></shadow-partial>
     <shadow-partial data-html="../Html/Menu.html" data-css="../Css/Menu.css" class="sticky"></shadow-partial>
 
-    <div id="cuerpo">
-        
-        <div class="contenedor">
-            <h1>Who we are?</h1>
-            <div id="empresa">
-                <img src="../fotos/empresa/logoEmpresa.jpg" alt="">
-                <p>En Bugisoft creamos mundos para los amantes de los videojuegos deseosos de nuevos horizontes. </p>
-            </div>
-            <h1>Our Games</h1>
 
-            <div id="videoJ">
-                <div class="juego">
-                    <img src="../fotos/empresa/juego1.webp" alt="">
-                    <p>Aventurate con josh a las estrellas a bordo de Starfield, la nave mas veloz de la galaxia,<br>
-                    enfrentate a peligros inimaginables para salar al universo.</p>
-                </div>
-                <div class="juego">
-                    <img src="../fotos/empresa/juego2.webp" alt="">
-                    <p>Junto a tus fiel compañero Doggy, gestiona tu batallon para repeler a las fuerzas enemigas <br>
-                    en infinitaas oleada intentando sobrevivir el mayor tiempo pisible.</p>
-                </div>
-                <div class="juego">
-                    <img src="../fotos/empresa/juego3.jpg" alt="">
-                    <p>Dirige tu colonia espacial que se encuentra en camino a su siguiente planeta, dirige el personal y <br>
-                    manten a la tripulación sana y a salvo en el espacio para poder llegar al destino final de la humanidad.</p>
+    <div id="contenedores">
+            <div id="contenedor-empresa">
+                
+
+                <div id="empresa">
+                    <img src="../fotos/empresa/logoEmpresa.jpg" alt="">
+                    <div class="desc">
+                        <h1 class="titulo">unleash the bug</h1>
+                        <p>Bugisoft ofrece entretenimiento de calidad a los gamers de todas las plataformas.<br>
+                        miles de millones de gamers a traves de nuestras redes, productos y mas. Nuestro estudio crea contenido para los fanaticos de los rts y mmorpg, de forma intergalactica, prometiendo llegar a todos con nuestros vastos mundos por exlorar, esperando al valiente que se enfrente al reto.
+                        </p> 
+                    </div>
+                   
                 </div>
             </div>
-        
-        
-            
-        </div>
-        <h1 class="titulo">Our workers</h1>
-
-        <div class="contenedor">
-            
-            <div class="trabajador">
-                <img src="../fotos/empresa/avatar2.jpg" alt="">
-                <p>Joan<br>Presidente y Programador senior   </p>
-            </div>
-            <div class="trabajador">
-                <img src="../fotos/empresa/avatar1.webp" alt="">
-                <p>Badr<br>President y Principal diseñador senior </p>
-            </div>
-            <div class="trabajador">
-                <img src="../fotos/empresa/avatar3.png" alt="">
-                <p>Daniel<br>Presidente y director de marketing y relaciones pulicas</p>
-            </div>
-        </div>
-        <h1 class="titulo">Nuestros valores</h1>
-
-        <div class="contenedor">
-            <div class="valores">
-                <h1>Optimismo y detemrinación</h1>
-                <p>We share a positive belief that we can navigate any challenges ahead and thrive in the current landscape. </p>
-            </div>
-            <div class="valores">
-                <h1>Optimismo y detemrinación</h1>
-                <p>We are resilient in the face of change and move quickly to anticipate and create what’s next.</p> 
-            </div>
-            <div class="valores">
-                <h1>Inclusividad y colaboracion</h1>
-                <p>We embrace diversity, empathize, and support employees to better collaborate and seize opportunities. </p>
+                        
+            <div id="contenedor-videojuegos">
+                <h1 class="titulo">Our Games</h1>
+                <div id="juegos">
+                    <div class="juego">
+                        <img src="../fotos/empresa/juego1.webp" alt="">
+                        <div class="info">
+                            <p class="nombre-juego">Starfield</p>
+                            <p class="descripcion-juego">Explora las profundidades del espacio.</p>
+                        </div>
+                    </div>
+                    <div class="juego">
+                        <img src="../fotos/empresa/juego2.webp" alt="">
+                        <div class="info">
+                            <p class="nombre-juego">Starlink</p>
+                            <p class="descripcion-juego">Contruye tu red intergalactica.</p>
+                        </div>
+                    </div>
+                    <div class="juego">
+                        <img src="../fotos/empresa/juego3.jpg" alt="">
+                        <div class="info">
+                            <p class="nombre-juego">Startopia</p>
+                            <p class="descripcion-juego">Gestiona tu propia estacion espacial.</p>
+                        </div>
+                    </div>
+                </div>
             </div>
 
+            <div id="contenedor-trabajdores">
+                <h1 class="titulo">Our workers</h1>
 
-        </div>
+                <div id="trabajadores">
 
+                    <div class="trabajador">
+                        <img src="../fotos/empresa/avatar2.jpg" alt="">
+                        <p><b>Joan Martinez</b><br>Programador</p>
+                    </div>
+                    <div class="trabajador">
+                        <img src="../fotos/empresa/avatar3.jpg" alt="">
+                        <p><b>Badr Ouabid</b><br>Diseñador grafico</p>
+                    </div>
+                    <div class="trabajador">
+                        <img src="../fotos/empresa/avatar1.webp" alt="">
+                        <p><b>Daniel Artiaga</b><br>Director de marketing</p>
 
+                    </div>
+                </div>
+            </div>
+    
+            <div id="contenedor-valores">
+                <h1 class="titulo">Nuestros valores</h1>
+                <dev id="valores">
+                    <div class="valor">
+                        <h1>Optimismo y detemrinación</h1>
+                        <p>Compartimos la creencia positiva de que podemos superar cualquier desafío futuro y prosperar en el panorama actual. </p>
+                    </div>
+                    <div class="valor">
+                        <h1>Agilidad y adaptabilidad</h1>
+
+                        <p>Somos resilientes ante el cambio y nos movemos rápidamente para anticipar y crear el futuro.</p> 
+                    </div>
+                    <div class="valor">                       
+                        <h1>Optimismo y detemrinación</h1>
+                        <p>Aceptamos la diversidad, empatizamos y apoyamos a los empleados para que colaboren mejor y aprovechen las oportunidades. </p>
+                    </div>
+                </dev>
+            </div>
 
     </div>
+
 
     <shadow-partial data-html="../Html/Pie.html" data-css="../Css/Pie.css"></shadow-partial>
 
