@@ -74,6 +74,7 @@ body{
     background-color: white;
     border-radius: 10px;
     transition: 0.8s ease-in-out;
+    max-width: 30vw;
 }
 
 .imagenJuego img{
@@ -91,7 +92,8 @@ body{
 .explicacion{
     display: flex;
     flex-direction: row;
-    width: 50%;
+    max-width: 50%;    
+    transition: 0.8s ease-in-out;
 }
 
 .explicacion p{
@@ -101,12 +103,15 @@ body{
     max-width: 50%;
     height: fit-content;
     text-align: center;
-    transition: 0.8s ease-in-out;
 }
 
 .explicacion img{
     width: 20vw;
     height: 30vw;
+}
+
+.explicacionMovil{
+    display: none;
 }
 
 .imagenJuego:hover{
@@ -124,12 +129,66 @@ iframe {
     height: 100%;
 }
 
+.soloFotos{
+    display: flex;
+    flex-direction: row;
+    max-width: 100%;
+    background-color: rgba(104, 104, 104, 0.438);
+    border-radius: 20px;
+    margin: 25px;
+    justify-content: center;
+}
+
+.nave{
+    margin: 1vw;
+    display: flex;
+    flex-direction: column;
+    background-color: white;
+    border-radius: 15px;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.nave img{
+    width: 20vw;
+    transition: 0.3s ease-in-out;
+}
+
+.nave h1{
+    text-align: center;
+    font-size: 1.5vw;
+}
+
+.nave p{
+    position: absolute;
+    opacity: 0;
+    transition: 0.5s ease-in-out;
+    max-width: 17vw;
+}
+
+.nave:hover{
+    background-color: rgba(255, 255, 255, 0.8);
+}
+
+.nave:hover img{
+    opacity: 0.15;
+    transition: 0.3s ease-in-out;
+}
+
+.nave:hover p{
+    opacity: 1;
+    transition: 0.5s ease-in-out;
+}
 
 @media only screen and (max-width: 600px) {
 
+    .apartado{
+        align-items: center;
+    }
+
     .explicacion{
-        width: 100%;
-        flex-direction: column  ;
+        max-width: 100%;
+        flex-direction: column;
     }
 
     .explicacion img{
@@ -138,6 +197,14 @@ iframe {
 
     .explicacion p{
         max-width: 100%;
+    }
+
+    .explicacionNormal{
+        display: none;
+    }
+
+    .explicacionMovil{
+        display: flex;
     }
     
     .apartado{

@@ -77,32 +77,28 @@ body{
   border-radius: 10px;
 }
 
-
-/* Estilo para el contenido de la empresa */
-#empresa .desc {
-  padding-left: 20px; /* Agrega espacio entre la línea vertical y el contenido */
+#desc{
+  display: flex;
+  flex-direction: column;
+  align-items: left;
+  text-align: left;
 }
 
 /* Estilo para el texto de la empresa */
 #desc p {
-  font-size: 1.1em;
   color: #666;
   line-height: 1.5;
-  max-width: calc(100% - 500px); 
-  margin-top: 20px; 
-  margin-bottom: 0; 
-  margin-left: 10px; /* Ajusta el margen izquierdo del texto */
+  text-align: left;
+  max-width: 70%;
 }
 
 #desc h1 {
-  font-size: 1.1em;
   color: #666;
   line-height: 1.5;
-  margin-left: 10px; /* Ajusta el margen izquierdo del título */
+  text-align: left;
+  margin-bottom: 0;
+  margin-top: 0;
 }
-
-
-
 
 /*Videojuegos*/
 #juegos {
@@ -245,5 +241,27 @@ body{
   box-shadow: 0 0 10px black;
 }
 
+@media only screen and (max-width: 600px) {
 
+  #empresa{
+    flex-direction: column;
+  }
+
+  #empresa img{
+    width: 50vw;
+    height: 100%;
+    max-width: none;
+    margin: 0;
+    margin-bottom: 5vw;
+  }
+ 
+  #desc h1{
+    text-align: center;
+  }
+
+  #desc p{
+    max-width: none;
+    text-align: center;
+  }
+}
 
