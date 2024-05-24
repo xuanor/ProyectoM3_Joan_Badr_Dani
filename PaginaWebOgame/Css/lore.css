@@ -134,7 +134,7 @@ iframe {
     justify-content: center;
 }
 
-.nave{
+.naveDef{
     margin: 1vw;
     display: flex;
     flex-direction: column;
@@ -144,38 +144,43 @@ iframe {
     justify-content: space-between;
 }
 
-.nave img{
+.naveDef img{
     width: 20vw;
     transition: 0.3s ease-in-out;
 }
 
-.nave h1{
+.naveDef h1{
     text-align: center;
     font-size: 1.5vw;
 }
 
-.nave p{
+.naveDef p{
     position: absolute;
     opacity: 0;
     transition: 0.5s ease-in-out;
     max-width: 17vw;
 }
 
-.nave:hover{
+.naveDef:hover{
     background-color: rgba(255, 255, 255, 0.8);
 }
 
-.nave:hover img{
+.naveDef:hover img{
     opacity: 0.15;
     transition: 0.3s ease-in-out;
 }
 
-.nave:hover p{
+.naveDef:hover p{
     opacity: 1;
     transition: 0.5s ease-in-out;
 }
 
 @media only screen and (max-width: 600px) {
+
+    body{
+        background: url(../fotos/Fondo/EspacioGif2Movil.gif);
+        background-size: 200%;
+    }
 
     .apartado{
         align-items: center;
@@ -220,5 +225,17 @@ iframe {
 
     .imagenJuego p{
         font-size: 4vw;
+    }
+
+    .soloFotos{
+        flex-wrap: wrap;
+    }
+
+    .naveDef{
+        width: 40%;
+    }
+
+    .naveDef h1{
+        font-size: 3vw;
     }
 }
