@@ -18,79 +18,73 @@ CREATE TABLE planet_stats (
     resource_dauterion_amount NUMBER,
     resource_defense NUMBER,
     resource_attack NUMBER,
-    battle_counter NUMBER,
-    missile_launcher_remaining NUMBER,
-    ion_cannon_remaining NUMBER,
-    plasma_cannon_remaining NUMBER,
-    light_hunter_remaining NUMBER,
-    heavy_hunter_remaining NUMBER,
-    battle_ship_remaining NUMBER,
-    armored_ship_remaining NUMBER,
     FOREIGN KEY (user_id) REFERENCES user_credentials(user_id)
 );
 
---CREAR TABLA DE ESTADISTICAS DE LAS BATALLAS
-CREATE TABLE battle_stats(
-    planet_id NUMBER,
-    num_battles NUMBER PRIMARY KEY NOT NULL,
-    resource_metal_acquires NUMBER,
-    resource_deuterion_acquires NUMBER,
+
+--CREAR TABLA LighHunters
+CREATE TABLE light_hunter (
+    planet_id NUMBER PRIMARY KEY NOT NULL,
+    armour NUMBER,
+    atack NUMBER,
     FOREIGN KEY (planet_id) REFERENCES planet_stats(planet_id)
 );
 
---CREAR TABLA DE LOS REGISTROS DE LAS BATALLAS
-CREATE TABLE battle_log (
-    planet_id NUMBER,
-    num_battles NUMBER,
-    num_line NUMBER PRIMARY KEY NOT NULL,
-    log_entry LONG,
-    FOREIGN KEY (planet_id) REFERENCES planet_stats(planet_id),
-    FOREIGN KEY (num_battles) REFERENCES battle_stats(num_battles)
+--CREAR TABLA heavy_hunters
+CREATE TABLE heavy_hunter (
+    planet_id NUMBER PRIMARY KEY NOT NULL,
+    armour NUMBER,
+    atack NUMBER,
+    FOREIGN KEY (planet_id) REFERENCES planet_stats(planet_id)
 );
 
-
---CREAR TABLA DE LAS FLOTAS ENEMIGAS
-CREATE TABLE enemy_army (
-    num_battles NUMBER,
-    light_hunter_sent NUMBER,
-    light_hunter_destroyed NUMBER,
-    heavy_hunter_sent NUMBER,
-    heavy_hunter_destroyed NUMBER,
-    battle_ship_sent NUMBER,
-    battle_ship_destroyed NUMBER,
-    armored_ship_sent NUMBER,
-    armored_ship_destroyed NUMBER,
-    FOREIGN KEY (num_battles) REFERENCES battle_stats(num_battles)
+--CREAR TABLA battle_ship
+CREATE TABLE battle_ship (
+    planet_id NUMBER PRIMARY KEY NOT NULL,
+    armour NUMBER,
+    atack NUMBER,
+    FOREIGN KEY (planet_id) REFERENCES planet_stats(planet_id)
 );
 
---CREAR TABLA DE LAS DEFENSAS DE LOS PLANETAS EN LAS BATALLAS
-CREATE TABLE planet_battle_defense (
-    planet_id NUMBER,
-    num_battles NUMBER,
-    missile_launcher_builded NUMBER,
-    missile_launcher_destroyed NUMBER,
-    ion_cannon_builded NUMBER,
-    ion_cannon_destroyed NUMBER,
-    plasma_cannon_builded NUMBER,
-    plasma_cannon_destroyed NUMBER,
-    FOREIGN KEY (planet_id) REFERENCES planet_stats(planet_id),
-    FOREIGN KEY (num_battles) REFERENCES battle_stats(num_battles)
+--CREAR TABLA armored_ship
+CREATE TABLE armored_ship (
+    planet_id NUMBER PRIMARY KEY NOT NULL,
+    armour NUMBER,
+    atack NUMBER,
+    FOREIGN KEY (planet_id) REFERENCES planet_stats(planet_id)
 );
 
---CREAR TABLA DE LA FLOTA DE LOS PLANETAS EN LAS BATALLAS
-CREATE TABLE planet_battle_army (
+--CREAR TABLA ion_cannon
+CREATE TABLE ion_cannon (
+    planet_id NUMBER PRIMARY KEY NOT NULL,
+    armour NUMBER,
+    atack NUMBER,
+    FOREIGN KEY (planet_id) REFERENCES planet_stats(planet_id)
+);
+
+--CREAR TABLA battle_ship
+CREATE TABLE missile_launcher (
+    planet_id NUMBER PRIMARY KEY NOT NULL,
+    armour NUMBER,
+    atack NUMBER,
+    FOREIGN KEY (planet_id) REFERENCES planet_stats(planet_id)
+);
+
+--CREAR TABLA plasma_cannon
+CREATE TABLE plasma_cannon (
+    planet_id NUMBER PRIMARY KEY NOT NULL,
+    armour NUMBER,
+    atack NUMBER,
+    FOREIGN KEY (planet_id) REFERENCES planet_stats(planet_id)
+);
+
+--CREAR TABLA DE ESTADISTICAS DE LAS BATALLAS
+CREATE TABLE battle(
     planet_id NUMBER,
-    num_battles NUMBER,
-    light_hunter_builded NUMBER,
-    light_hunter_destroyed NUMBER,
-    heavy_hunter_builded NUMBER,
-    heavy_hunter_destroyed NUMBER,
-    battle_ship_builded NUMBER,
-    battle_ship_destroyed NUMBER,
-    armored_ship_builded NUMBER,
-    armored_ship_destroyed NUMBER,
-    FOREIGN KEY (planet_id) REFERENCES planet_stats(planet_id),
-    FOREIGN KEY (num_battles) REFERENCES battle_stats(num_battles)
+    num_battles NUMBER PRIMARY KEY NOT NULL,
+    battle_stats VARCHAR2(50),
+    battle_log VARCHAR2(50),
+    FOREIGN KEY (planet_id) REFERENCES planet_stats(planet_id)
 );
 
 
@@ -116,15 +110,7 @@ INSERT INTO planet_stats (
     resource_metal_amount ,
     resource_dauterion_amount ,
     resource_defense ,
-    resource_attack ,
-    battle_counter ,
-    missile_launcher_remaining ,
-    ion_cannon_remaining ,
-    plasma_cannon_remaining ,
-    light_hunter_remaining ,
-    heavy_hunter_remaining ,
-    battle_ship_remaining ,
-    armored_ship_remaining
+    resource_attack 
 )
 VALUES (
     (SELECT user_id FROM user_credentials),
@@ -133,113 +119,115 @@ VALUES (
     10000,
     10000,
     0,
-    0,
-    0,
-    10,
-    10,
-    10,
-    100,
-    10000,
-    10,
-    12
+    0
 );
 
---INSERTAR DATOS EN LA TABLA battle_stats
-INSERT INTO battle_stats (
+--INSERTAR DATOS EN LA TABLA battle
+INSERT INTO battle (
     planet_id,
     num_battles,
-    resource_metal_acquires,
-    resource_deuterion_acquires
+    battle_stats,
+    battle_log
 )
 VALUES (
     (SELECT planet_id FROM planet_stats),
     1,
-    100000,
-    100000
+    'estadisticas batalla',
+    'batalla paso a paso'
 );
 
---INSERTAR DATOS EN LA TABLA battle_log
-INSERT INTO battle_log (
+INSERT INTO light_hunter (
     planet_id,
-    num_battles,
-    num_line,
-    log_entry
+    armour,
+    atack
 )
 VALUES (
     (SELECT planet_id FROM planet_stats),
-    (SELECT num_battles FROM battle_stats),
-    1,
-    'Esta es la primera entrada del LOG'
+    400,
+    80
 );
 
---INSERTAR DATOS EN LA TABLA enemy_army
-INSERT INTO enemy_army (
-    num_battles,
-    light_hunter_sent,
-    light_hunter_destroyed,
-    heavy_hunter_sent,
-    heavy_hunter_destroyed,
-    battle_ship_sent,
-    battle_ship_destroyed,
-    armored_ship_sent,
-    armored_ship_destroyed
-)
-VALUES (
-    (SELECT num_battles FROM battle_stats),
-    10,
-    5,
-    20,
-    13,
-    30,
-    10,
-    40,
-    15
-);
-
---INSERTAR DATOS EN LA TABLA planet_battle_defense
-INSERT INTO planet_battle_defense (
+INSERT INTO heavy_hunter (
     planet_id,
-    num_battles,
-    missile_launcher_builded,
-    missile_launcher_destroyed,
-    ion_cannon_builded,
-    ion_cannon_destroyed,
-    plasma_cannon_builded,
-    plasma_cannon_destroyed
+    armour,
+    atack
 )
 VALUES (
     (SELECT planet_id FROM planet_stats),
-    (SELECT num_battles FROM battle_stats),
-    15,
-    3,
-    32,
-    20,
-    80,
-    27
+    1000,
+    150
 );
 
---INSERTAR DATOS EN LA TABLA planet_battle_army
-INSERT INTO planet_battle_army (
+
+INSERT INTO battle_ship (
     planet_id,
-    num_battles,
-    light_hunter_builded,
-    light_hunter_destroyed,
-    heavy_hunter_builded,
-    heavy_hunter_destroyed,
-    battle_ship_builded,
-    battle_ship_destroyed,
-    armored_ship_builded,
-    armored_ship_destroyed
+    armour,
+    atack
 )
 VALUES (
     (SELECT planet_id FROM planet_stats),
-    (SELECT num_battles FROM battle_stats),
-    80,
-    23,
-    90,
-    29,
-    28,
-    20,
-    89,
-    10
+    6000,
+    1000
 );
+
+
+INSERT INTO armored_ship (
+    planet_id,
+    armour,
+    atack
+)
+VALUES (
+    (SELECT planet_id FROM planet_stats),
+    8000,
+    700
+);
+
+INSERT INTO missile_launcher (
+    planet_id,
+    armour,
+    atack
+)
+VALUES (
+    (SELECT planet_id FROM planet_stats),
+    200,
+    80
+);
+
+INSERT INTO ion_cannon (
+    planet_id,
+    armour,
+    atack
+)
+VALUES (
+    (SELECT planet_id FROM planet_stats),
+    1200,
+    250
+);
+
+INSERT INTO plasma_cannon (
+    planet_id,
+    armour,
+    atack
+)
+VALUES (
+    (SELECT planet_id FROM planet_stats),
+    7000,
+    2000
+);
+
+/*
+UPDATE planet_stats
+SET
+    resource_metal_amount = 180000,
+    resource_dauterion_amount = 26000,
+    resource_defense = 0,
+    resource_attack = 0,
+    battle_counter = 0,
+    missile_launcher_remaining = 10,
+    ion_cannon_remaining = 2,
+    plasma_cannon_remaining = 0,
+    light_hunter_remaining = 15,
+    heavy_hunter_remaining = 5,
+    battle_ship_remaining = 0,
+    armored_ship_remaining = 1;
+*/

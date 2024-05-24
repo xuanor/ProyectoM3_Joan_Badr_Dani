@@ -6,6 +6,6 @@ public class ResourceException extends Exception{
 	}
 	
 	public ResourceException(){
-		System.out.println("You don't have enough metal");
+		System.out.println("You don't have enough resources");
 	}
 }

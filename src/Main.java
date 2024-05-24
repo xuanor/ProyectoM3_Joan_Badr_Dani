@@ -6,6 +6,70 @@ import java.util.TimerTask;
 public class Main implements Variables{
 	private boolean attackComing = false;
 	
+	String userMenu = "\n:::::::::::::::::::::::::::::::::::::::::::::::::::::::⠀\r\n"
+			+ "::::::::::::::::::::::::::::::::::::::::::::::::::::::: ⢠⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
+			+ "::'#######:::'######::::::'###::::'##::::'##:'########:⠀⣷⣶⣦⣀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀ ⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
+			+ ":'##.... ##:'##... ##::::'## ##::: ###::'###: ##.....:: ⣿⣿⣿⣿⣷⣄⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
+			+ ": ##:::: ##: ##:::..::::'##:. ##:: ####'####: ##:::::::⠀⣿⣿⣿⣿⣿⣿⣧⡀⠤⠤⣤⣤⣀⣀⣀⣀⡀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
+			+ ": ##:::: ##: ##::'####:'##:::. ##: ## ### ##: ######:::⠀⣿⣿⣿⣿⣿⣿⣿⣇⠀⣦⣤⣤⣄⣈⡉⠉⠛⠛⠷⢶⠄⢠⣴⣦⡀⠀⠀⠀⠀\r\n"
+			+ ": ##:::: ##: ##::: ##:: #########: ##. #: ##: ##...:::: ⣿⣿⣿⣿⣿⣿⣿⣿⠀⠀⠀⠀⠉⠉⠛⠛⠷⣦⣀⠀⠀⢻⣿⣿⣿⡀⠀⠀⠀\r\n"
+			+ ": ##:::: ##: ##::: ##:: ##.... ##: ##:.:: ##: ##:::::::⠀⣿⣿⣿⣿⣿⣿⣿⡏⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⣹⡆⠀⠀⠈⠉⠘⡇⠀⠀⠀\r\n"
+			+ ":. #######::. ######::: ##:::: ##: ##:::: ##: ########:⠀⣿⣿⣿⣿⣿⣿⡟⠁⠀⠀⢀⠀⢀⣀⣠⣤⡴⠾⠋⠀⠀⠀⢀⣠⡾⠃⠀⠀⠀\r\n"
+			+ "::.......::::......::::..:::::..::..:::::..::........::⠀⣿⣿⣿⣿⣿⣿⠶⠶⠶⠀⠿⠃⠘⠉⠉⠀⠀⢀⣀⣤⣴⠾⠛⠉⠀⠀⠀⠀⠀\r\n"
+			+ "::::::::::::::::::::::::::::::::::::::::::::::::::::::: ⣿⣿⣟⣉⣀⣀⣀⣀⣠⣤⣤⣤⣴⡶⠶⠿⠛⠛⠉⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
+			+ ":::::::::::::::::::::::::::::::::::::::::::::::::::::::⠀⠛⠛⠋⠉⠉⠉⠉⠉⠉⠉⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
+			+ "                                                      ⠈⠁⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀\r\n"
+			+ "                 .WELCOME TO THE SPACE ODYSSEY.                         ⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀⠀";
+
+			
+	String dibujo2 = "                   \r\n\n"
+			+ "                   ( )\r\n"
+			+ "                    )\r\n"
+			+ "                   ( )\r\n"
+			+ "\r\n"
+			+ "                  \\/ \\/\r\n"
+			+ "                  |\\_/|\r\n"
+			+ "                  '   '\r\n"
+			+ "                  |. .|\r\n"
+			+ "                  . o .\r\n"
+			+ "                   |o|\r\n"
+			+ "                   . .\r\n"
+			+ "                    |\r\n"
+			+ "               ____\r\n"
+			+ "          .-'\"\"p 8o\"\"`-.\r\n"
+			+ "       .-'8888P'Y.`Y[ ' `-.\r\n"
+			+ "     ,']88888b.J8oo_      '`.\r\n"
+			+ "   ,' ,88888888888[\"        Y`.\r\n"
+			+ "  /   8888888888P            Y8\\\r\n"
+			+ " /    Y8888888P'             ]88\\\r\n"
+			+ ":     `Y88'   P              `888:\r\n"
+			+ ":       Y8.oP '- >            Y88:\r\n"
+			+ "|          `Yb  __             `'|\r\n"
+			+ ":            `'d8888bo.          :\r\n"
+			+ ":             d88888888ooo.      ;\r\n"
+			+ " \\            Y88888888888P     /\r\n"
+			+ "  \\            `Y88888888P     /\r\n"
+			+ "   `.            d88888P'    ,'\r\n"
+			+ "     `.          888PP'    ,'\r\n"
+			+ "       `-.      d8P'    ,-'   \r\n"
+			+ "          `-.,,_'__,,.-'";	
+	
+	
+	String dibujo1 = "\n            `. ___\r\n"
+			+ "                    __,' __`.                _..----....____\r\n"
+			+ "        __...--.'``;.   ,.   ;``--..__     .'    ,-._    _.-'\r\n"
+			+ "  _..-''-------'   `'   `'   `'     O ``-''._   (,;') _,'\r\n"
+			+ ",'________________                          \\`-._`-','\r\n"
+			+ " `._              ```````````------...___   '-.._'-:\r\n"
+			+ "    ```--.._      ,.                     ````--...__\\-.\r\n"
+			+ "            `.--. `-`                       ____    |  |`\r\n"
+			+ "              `. `.                       ,'`````.  ;  ;`\r\n"
+			+ "                `._`.        __________   `.      \\'__/`\r\n"
+			+ "                   `-:._____/______/___/____`.     \\  `\r\n"
+			+ "                               |       `._    `.    \\\r\n"
+			+ "                               `._________`-.   `.   `.___\r\n"
+			+ "                                                  `------'`";
+	
 	public void setAttackComing(boolean flag) {
 		this.attackComing = flag;
 	}
@@ -15,88 +79,148 @@ public class Main implements Variables{
 	}
 	
 	public static void main(String[] args) {
+		int[] DBreasources;
+		// Instancio clase principal
+		Main principal = new Main();
+		//Cargar datos de la bbdd
+		ConnectionDB cdb = new ConnectionDB();
 		
-		// ** A HACER **
-			// Crear varios planetas
-			// Crear ejercito por planeta con stats inicales
-			// Cada X tiempo aumentan nuestros recursos 
-			// Cada 3 min reciviremos un ataque con su respectiva batalla ( Gardaremos registro ultimas 5)
-			// Una vez creado todo tendremos menu (con o sin GUI) para controlar nuestro planeta
+		boolean start = principal.menuUser(cdb);
 		
-			// Instancio clase principal
-			Main principal = new Main();
+		// EMPIEZA EL JUEGO SI INTRODUCES UN USER VALIDO
+		if (start) {
+			cdb.conection(2, null, null, null, null);
 			
-			Planet mainPlanet = new Planet(0,
-					0,
-					METAL_BASE_ENEMY_ARMY, 
-					DEUTERIUM_BASE_ENEMY_ARMY,
+			// PULL
+			DBreasources = cdb.getArrayReasources().get(0);
+			// Cargar array de Reportes de Batalla
+			Battle b = new Battle();
+			b.setBattleStats(cdb.getArrayReportesBatalla());
+			
+			// Cargar datos aqui
+			Planet mainPlanet = new Planet(DBreasources[2],
+					DBreasources[3],
+					DBreasources[0], 
+					DBreasources[1],
 					UPGRADE_BASE_DEFENSE_TECHNOLOGY_DEUTERIUM_COST,
-					UPGRADE_BASE_ATTACK_TECHNOLOGY_DEUTERIUM_COST);
+					UPGRADE_BASE_ATTACK_TECHNOLOGY_DEUTERIUM_COST);	
+			
+			
 			
 			// Me crea mi ejercito y se lo añade al planeta
-			principal.createMyArmyInit(mainPlanet);
+			principal.createMyArmyInit(mainPlanet, cdb);
 			
-			//ViewThreat(createEnemyArmy());
 			
-			//mainPlanet.printStats();
-			principal.mainMenu(mainPlanet);
 			
+			principal.mainMenu(mainPlanet, b);
+			
+			
+			// PUSH
+			cdb.conection(3, mainPlanet, b, null, null);
+		}
+		else {
+			System.out.println("\nToo many tries, exit.");
+		}
 	}
 	
+	// MENU USUARIOS
+	public boolean menuUser(ConnectionDB cdb ) {
+
+		Scanner sc = new Scanner(System.in);
+		boolean checkUsr = false;
+		boolean result = false;
+		
+		
+		// TENGO 5 INTENTOS
+		for (int intento= 0; intento < 5; intento++) {
+			System.out.println(userMenu);
+
+			System.out.println("\n>>> USER: ");
+			String user = sc.next();
+			
+			System.out.println("\n>>> PASS: ");
+			String pswd = sc.next();
+			// Check del usuario
+			cdb.conection(1, null, null, user, pswd);
+			
+			if (cdb.getUser_id() == -1) {
+				System.out.println("INCORRECT USER OR PASSWORD, " + (4-intento) + " TRIES LEFT, TRY AGAIN.");
+				
+			}
+			// LOGIN CORRECTO, SALGO
+			else {
+				result = true;
+				break;
+			}
+			sc.nextLine();
+		}
+		return result;
+	}
 	// CREO MI EJERCITO INICIAL
-	public void createMyArmyInit(Planet myPlanet) {
+
+	public void createMyArmyInit(Planet myPlanet, ConnectionDB cdb) {
 		ArrayList<MilitaryUnit>[] mainArmy = new ArrayList[7];
 		
 		//*** UNIDADES DE BASE EN MI EJERCITO ***
-		final int BASE_UNIT_LIGHT_HUNTER = 15;
-		final int BASE_UNIT_HEAVY_HUNTER = 5;
-		final int BASE_UNIT_BATTLE_SHIP = 0;
-		final int BASE_UNIT_ARMORED_SHIP = 1;
-		final int BASE_UNIT_MISSILE_LOUNCHER = 10;
-		final int BASE_UNIT_ION_CANNON = 2;
-		final int BASE_UNIT_PLASMA_CANNON = 0;
+//		final int BASE_UNIT_LIGHT_HUNTER = 15;
+//		final int BASE_UNIT_HEAVY_HUNTER = 5;
+//		final int BASE_UNIT_BATTLE_SHIP = 0;
+//		final int BASE_UNIT_ARMORED_SHIP = 1;
+//		final int BASE_UNIT_MISSILE_LOUNCHER = 10;
+//		final int BASE_UNIT_ION_CANNON = 2;
+//		final int BASE_UNIT_PLASMA_CANNON = 0;
 		
-//		Army[0] → arrayList de Ligth Hunter
-//		Army[1] → arrayList de Heavy Hunter
-//		Army[2] → arrayList de Battle Ship
-//		Army[3] → arrayList de Armored Ship
-//		Army[4] → arrayList de Missile Launcher
-//		Army[5] → arrayList de Ion Cannon
-//		Army[6] → arrayList de Plasma Cannon
-		
+		ArrayList<int[]> statsHeavytHunter = cdb.getArrayLightHunter();
+		ArrayList<int[]> statsLightHunter = cdb.getArrayHeavytHunter();
+		ArrayList<int[]> statsBattleShip = cdb.getArrayBattleShip();
+		ArrayList<int[]> statsArmoredShip = cdb.getArrayArmoredShip();
+		ArrayList<int[]> statsMissileLouncher = cdb.getArrayMissileLouncher();
+		ArrayList<int[]> statsIonCannon = cdb.getArrayIonCannon();
+	    ArrayList<int[]> statsPlasmaCannon = cdb.getArrayPlasmaCannon();
+	    
+//	    System.out.println("Prueba = " +  statsHeavytHunter.size());
+//	    
+//		for (int[] i : statsHeavytHunter) {
+//			for (int j : i) {
+//				System.out.println(j);
+//			}
+//			
+//		}
+	    
 		Clases_ataque cAtack = new Clases_ataque();
 		// Flota
 		ArrayList<MilitaryUnit> arrayLigthHunter = new ArrayList<MilitaryUnit>();
-		for (int i = 0; i < BASE_UNIT_LIGHT_HUNTER; i++) {
-			arrayLigthHunter.add(cAtack.new LigthHunter(ARMOR_LIGTHHUNTER, BASE_DAMAGE_LIGTHHUNTER));
+		// myPlanet.newLightHunter(1) hacer asi con nivel de tech ??
+		for (int i = 0; i < statsLightHunter.size(); i++) {
+			arrayLigthHunter.add(cAtack.new LigthHunter(statsLightHunter.get(i)[0], statsLightHunter.get(i)[1]));
 		}
 		ArrayList<MilitaryUnit> arrayHeavyHunter = new ArrayList<MilitaryUnit>();
-		for (int i = 0; i < BASE_UNIT_HEAVY_HUNTER; i++) {
-			arrayHeavyHunter.add(cAtack.new HeavyHunter(ARMOR_HEAVYHUNTER, BASE_DAMAGE_HEAVYHUNTER));
+		for (int i = 0; i < statsHeavytHunter.size(); i++) {
+			arrayHeavyHunter.add(cAtack.new HeavyHunter(statsHeavytHunter.get(i)[0], statsHeavytHunter.get(i)[1]));
 		}
 		ArrayList<MilitaryUnit> arrayBattleShip = new ArrayList<MilitaryUnit>();
-		for (int i = 0; i < BASE_UNIT_BATTLE_SHIP; i++) {
-			arrayBattleShip.add(cAtack.new BattleShip(ARMOR_BATTLESHIP, BASE_DAMAGE_BATTLESHIP));
+		for (int i = 0; i < statsBattleShip.size(); i++) {
+			arrayBattleShip.add(cAtack.new BattleShip(statsBattleShip.get(i)[0], statsBattleShip.get(i)[1]));
 		}
 		
 		ArrayList<MilitaryUnit> arrayArmoredShip = new ArrayList<MilitaryUnit>();
-		for (int i = 0; i < BASE_UNIT_ARMORED_SHIP; i++) {
-			arrayArmoredShip.add(cAtack.new ArmoredShip(ARMOR_ARMOREDSHIP, BASE_DAMAGE_ARMOREDSHIP));
+		for (int i = 0; i < statsArmoredShip.size(); i++) {
+			arrayArmoredShip.add(cAtack.new ArmoredShip(statsArmoredShip.get(i)[0], statsArmoredShip.get(i)[1]));
 		}
 		// Defensas
 		Clases_defensa d = new Clases_defensa();
 		
 		ArrayList<MilitaryUnit> arrayMissileLouncher = new ArrayList<MilitaryUnit>();
-		for (int i = 0; i < BASE_UNIT_MISSILE_LOUNCHER; i++) {
-			arrayMissileLouncher.add(d.new MissileLauncher(ARMOR_MISSILELAUNCHER, BASE_DAMAGE_MISSILELAUNCHER));
+		for (int i = 0; i < statsMissileLouncher.size(); i++) {
+			arrayMissileLouncher.add(d.new MissileLauncher(statsMissileLouncher.get(i)[0], statsMissileLouncher.get(i)[1]));
 		}
 		ArrayList<MilitaryUnit> arrayIonCannon = new ArrayList<MilitaryUnit>();
-		for (int i = 0; i < BASE_UNIT_ION_CANNON; i++) {
-			arrayIonCannon.add(d.new IonCannon(ARMOR_BATTLESHIP, BASE_DAMAGE_BATTLESHIP));
+		for (int i = 0; i < statsIonCannon.size(); i++) {
+			arrayIonCannon.add(d.new IonCannon(statsIonCannon.get(i)[0], statsIonCannon.get(i)[1]));
 		}
 		ArrayList<MilitaryUnit> arrayPlasmaCannon = new ArrayList<MilitaryUnit>();
-		for (int i = 0; i < BASE_UNIT_PLASMA_CANNON; i++) {
-			arrayPlasmaCannon.add(d.new PlasmaCannon(ARMOR_BATTLESHIP, BASE_DAMAGE_BATTLESHIP));
+		for (int i = 0; i < statsPlasmaCannon.size(); i++) {
+			arrayPlasmaCannon.add(d.new PlasmaCannon(statsPlasmaCannon.get(i)[0], statsPlasmaCannon.get(i)[1]));
 		}
 		
 		mainArmy[0] = arrayLigthHunter;
@@ -250,10 +374,13 @@ public class Main implements Variables{
 	}
 	
 	// MENU PRINCIPAL
-	public  void mainMenu(Planet mainPlanet) {
+	public  void mainMenu(Planet mainPlanet, Battle b) {
 		boolean AtackFlag;
 		// Instanciamos la batalla
-		Battle b = new Battle();
+		//Battle b = new Battle();
+		
+		// Set reportes de batalla BBDD
+		
 		// Set ejercitos en la battle
 		b.setPlanetArmy(mainPlanet.getArmy());
 		Timer timer = new Timer();
@@ -261,7 +388,7 @@ public class Main implements Variables{
 	    
 
 	         public void run() {
-	        	 System.out.println("··· Nueva amenaza ···");
+	        	 System.out.println("\n\nNEW THREAD IS COMMING" + dibujo1);
 	        	 // Creo el nuevo ejercito enemigo
 	        	 ArrayList<MilitaryUnit>[] army = createEnemyArmy();
 	        	 // Añades al obj batalla la army enemiga
@@ -277,8 +404,10 @@ public class Main implements Variables{
 		    
 
 	         public void run() {
-	        	 System.out.println("··· Te acaban de atacar ···");
+	        	 System.out.println("\n\nWE HAVE BEEN ATTACKED!!" + dibujo2);
 	        	 b.batalla();
+	        	 // Añado total a variable de planet para el push de BBDD
+	        	 mainPlanet.setNumberUnits(b.getActualNumberUnitsPlanet());
 	        	 // Le añado lo ganado a mis recursos (si no gano es(0,0))
 //	        	 System.out.println(mainPlanet.getMetal());
 //	        	 System.out.println(mainPlanet.getDeuterium());
@@ -302,12 +431,13 @@ public class Main implements Variables{
 
 	    };
 
-	    timer.schedule(taskThreat, 3000, 60000);
-	    timer.schedule(taskAtack, 4000, 60000);
+	    timer.schedule(taskThreat, 10000, 60000);
+	    timer.schedule(taskAtack, 15000, 60000);
 	    timer.schedule(taskUpdateResources, 60000, 60000);
 		Scanner sc = new Scanner(System.in);
 		
-		String mainMenu = "Main Menu\n" + "1)View Planet Stats\n" + "2)Build\n" + "3)Upgrade Technology\n"
+		String mainMenu = "\n********************************************************************\n"
+				+ "Main Menu\n" + "1)View Planet Stats\n" + "2)Build\n" + "3)Upgrade Technology\n"
 				+ "4)View Battle Reports\n" + "0)Exit\n";
 		
 		String mainMenuAttack = "Main Menu\n" + "1)View Planet Stats\n" + "2)Build\n" + "3)Upgrade Technology\n"
@@ -337,6 +467,8 @@ public class Main implements Variables{
 			switch (option) {
 			case 0:
 				System.out.println("See you later!");
+				// Apgo el timer
+				timer.cancel();
 				break;
 			
 			case 1:
@@ -357,43 +489,58 @@ public class Main implements Variables{
 			case 4:
 				//System.out.println("Aqui va el reporte de las batallas");
 				boolean checkOpc = false;
+				boolean exit = false;
+				
 				int opc = -1;
 				while (!checkOpc) {
-					System.out.println("Option > ");
+					System.out.println("Option >  (Exit -1)");
 					try {
 						opc = sc.nextInt();
 					}
 					catch (Exception e) {
 						System.out.println("Invalid Option");
 					}
-					
-					if (opc > 5 || opc < 0) {
+					if (opc == -1) {
+						checkOpc = true;
+						exit = true;
+						
+					}
+					if (opc >= b.getBattleStats().size() || opc < 0) {
 						System.out.println("Option out of range");
 					}else {
 						checkOpc = true;
 					}
-					System.out.println(b.getBattleReport(opc));
+				}
+				if (! exit) {
+					// Si hay reportes
+					//&& b.getBattleStats().size()+1 < 6  
+					if (b.getBattleStats().size() > 0 ) {
+						System.out.println(b.getBattleStats().get(opc)[0]);
 					
-					// Pregunta para ver el informe paso a paso
-					boolean check = false;
+						// Pregunta para ver el informe paso a paso
+						boolean check = false;
 					
-				    while (! check ) {
-				    	System.out.println("\nView Battle development?(S\\n)");
-				    	String imp = sc.next().toUpperCase();
-				    	if (imp.equals("S")) {
-				    		check = true;
-				    		System.out.println(b.getBattleDevelopment());
-				    	}
-				    	else if (imp.equals("N")) {
-				    		check = true;
-				    		System.out.println("No quieres ver el informe");
-				    	
-				    	}else {
-				    		sc.nextLine();
-				    		System.out.println("Only options (S\\n) are allowed");
-				    	}
-				    }
-				}	
+					    while (! check ) {
+					    	System.out.println("\nView Battle development?(S\\n)");
+					    	String imp = sc.next().toUpperCase();
+					    	if (imp.equals("S")) {
+					    		check = true;
+					    		System.out.println(b.getBattleStats().get(opc)[1]);
+					    	}
+					    	else if (imp.equals("N")) {
+					    		check = true;
+					    		System.out.println("No quieres ver el informe");
+					    	
+					    	}else {
+					    		sc.nextLine();
+					    		System.out.println("Only options (S\\n) are allowed");
+					    	}
+					    }
+					}
+					else {
+						System.out.println("\nYou don't have any battle report available.");
+					}
+				}
 				break;
 				
 			case 5:
@@ -452,10 +599,10 @@ public class Main implements Variables{
 				
 				default:
 					System.out.println("Option not in range");
-					sc.nextLine();
+					sc.nextLine(); 
 			}
 		}
-		sc.close();
+		//sc.close();
 	}
 	
 	// SUB MENU DE CREACION DE UNIDADES DE COMBATE
@@ -527,7 +674,7 @@ public class Main implements Variables{
 					
 			}
 		}
-		sc.close();
+		//sc.close();
 	}
 	
 	// SUB MENU DE CREACION DE UNIDADES DE DEFENSA
@@ -589,28 +736,13 @@ public class Main implements Variables{
 					
 			}
 		}
-		sc.close();
+		//sc.close();
 }
 	
 	// SUB MENU DE MEJORA DE TECNOLOGIAS
 	public void subMenuUpgradeTechnology(Planet mainPlanet) {
 		Scanner sc = new Scanner(System.in);
 		
-		String infoTechnology = String.format("Upgrade Technology\n"
-											+ "Actual Defense Technology:%14d\n"
-											+ "Actual Attack Technology:%15d\n\n", 
-											mainPlanet.technologyDefense, mainPlanet.technologyAtack);
-		
-		String options = "1)Upgrade Defense Technology. Cost: "
-		+ mainPlanet.upgradeDefenseTechnologyDeuteriumCost 
-		+ " Deuterium\n"
-	    + "2)Upgrade Defense Technology. Cost: "
-		+ mainPlanet.upgradeDefenseTechnologyDeuteriumCost 
-		+ " Deuterium\n"
-	    + "3)Go Back\n\n";
-		
-		String deuteriumResources = "Deuterium Resources = " + mainPlanet.deuterium;
-		String menuBuildUpgradeTechnology = infoTechnology + options + deuteriumResources;
 		
 		// Calculo de lo que aumenta el coste de subir de nivel la def tech 
 		//(** Mirar de ponerlo en una varible en otro lado **) CONTINUAR!!
@@ -628,7 +760,24 @@ public class Main implements Variables{
 		}
 		
 		int option = -1;
+		
 		while (option != 3) {
+			String infoTechnology = String.format("Upgrade Technology\n"
+					+ "Actual Defense Technology:%14d\n"
+					+ "Actual Attack Technology:%15d\n\n", 
+					mainPlanet.technologyDefense, mainPlanet.technologyAtack);
+
+			String options = "1)Upgrade Defense Technology. Cost: "
+			+ mainPlanet.upgradeDefenseTechnologyDeuteriumCost 
+			+ " Deuterium\n"
+			+ "2)Upgrade Defense Technology. Cost: "
+			+ mainPlanet.upgradeDefenseTechnologyDeuteriumCost 
+			+ " Deuterium\n"
+			+ "3)Go Back\n\n";
+			
+			String deuteriumResources = "Deuterium Resources = " + mainPlanet.getDeuterium();
+			String menuBuildUpgradeTechnology = infoTechnology + options + deuteriumResources ;
+			
 			System.out.println("\n" + menuBuildUpgradeTechnology + "\n-->Option");
 			try {
 				option = sc.nextInt();
@@ -642,6 +791,7 @@ public class Main implements Variables{
 				case 1:
 					try {
 						mainPlanet.upgradeTechnologyDefense(costeUpDef);
+						System.out.println("\nDefense technology upgraded");
 					}catch (ResourceException e) {
 						e.getMessage();
 					}
@@ -650,6 +800,7 @@ public class Main implements Variables{
 				case 2:
 					try {
 						mainPlanet.upgradeTechnologyAttack(costeUpAtt);
+						System.out.println("\nAttack technology upgraded");
 					}catch (ResourceException e) {
 						e.getMessage();
 					}
@@ -664,7 +815,7 @@ public class Main implements Variables{
 					sc.nextLine();
 			}
 		}
-		sc.close();
+		//sc.close();
 	}
 	
 	

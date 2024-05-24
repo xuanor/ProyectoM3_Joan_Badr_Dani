@@ -1,4 +1,5 @@
 
+
 public class Clases_ataque {
 	
 
@@ -89,6 +90,7 @@ public class Clases_ataque {
 	
 		public HeavyHunter(int armor, int baseDamage) {
 			super(armor, baseDamage);
+			
 		}
 	
 		
